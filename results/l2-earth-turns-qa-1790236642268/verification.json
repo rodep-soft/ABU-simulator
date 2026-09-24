@@ -1,0 +1,224 @@
+{
+  "time": 180,
+  "scores": {
+    "red": {
+      "transfer": 75,
+      "tower": 240,
+      "mustika": 250,
+      "total": 565,
+      "sky": 2
+    },
+    "blue": {
+      "transfer": 75,
+      "tower": 470,
+      "mustika": 0,
+      "total": 545,
+      "sky": 5
+    }
+  },
+  "config": {
+    "maxSpeed": 7,
+    "acceleration": 3.5,
+    "redSpeed": 1,
+    "blueSpeed": 1,
+    "redTrPlan": "stock-e3",
+    "blueTrPlan": "stock-e3",
+    "redBrPlan": "earth-late",
+    "blueBrPlan": "mustika-fast",
+    "bodySize": 0.5,
+    "rampFactor": 0.55,
+    "stairSpeed": 0.25,
+    "stairPause": 0.6,
+    "scanSeconds": 1,
+    "pickupSeconds": 1.5,
+    "placeSeconds": 2.5,
+    "brAutoRetrySeconds": 5,
+    "redBrTurns": [
+      "l2-earth",
+      "mustika-fast"
+    ],
+    "blueBrTurns": [
+      "second-layer"
+    ]
+  },
+  "turns": [
+    {
+      "time": 36.45,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 1回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 1,
+      "strategy": "second-layer",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 36.6,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 1回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 1,
+      "strategy": "l2-earth",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 68.05,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 2回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 2,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 68.2,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 2回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 2,
+      "strategy": "mustika-fast",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 75.3,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 3回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 3,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 75.65,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 3回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 3,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 96.5,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 4回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 4,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 97.8,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 4回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 4,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 101.9,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 5回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 5,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 119.8,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 5回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 5,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 129.55,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 6回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 6,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 142.9,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 6回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 6,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 147.8,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 7回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 7,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 160.65,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 7回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 7,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    },
+    {
+      "time": 161.45,
+      "robot": "redBR",
+      "action": "br-turn-complete",
+      "text": "BR 8回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 8,
+      "strategy": "earth-late",
+      "nextStrategy": "earth-late"
+    },
+    {
+      "time": 178.15,
+      "robot": "blueBR",
+      "action": "br-turn-complete",
+      "text": "BR 8回目の作業完了",
+      "kind": "action",
+      "rule": "",
+      "turn": 8,
+      "strategy": "mustika-fast",
+      "nextStrategy": "mustika-fast"
+    }
+  ],
+  "errors": [],
+  "pixels": 516
+}

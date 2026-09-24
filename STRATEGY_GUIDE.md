@@ -7,7 +7,7 @@
 | `sim/controllers.js` | 戦略の登録一覧 `catalog`、TRの `courier`、BRの `builder`・`splitBuilder`、戦略の呼び分け `next` |
 | `sim/score-planner.js` | BRの得点探索。`plan` が候補評価、`next` が帰還・受取・見渡し・作業の指示 |
 | `sim/efficient-strategy.js` | 効率化版TR・BR。必要量補給、Mustika先回り、直接受取準備、短時間の補給待機 |
-| `sim/match-strategies.js` | 2つの戦略モード、BRの候補優先順位、150秒の方針切替、モードのTR/BR組み合わせ |
+| `sim/match-strategies.js` | Mustika最速案・Earth固定点・L2 Earth最優先、BRの候補優先順位、150秒の方針切替、モードのTR/BR組み合わせ |
 | `sim/competitive-strategies.js` | 2段目狙い、点差対応、終盤の反転順序・単体運搬。追加3モードの評価関数とSky反撃試算 |
 | `sim/engine.js` | 競技ルール、採点、移動、積載制約、見渡し、時間進行。戦略の公平な比較では共通にする |
 | `sim/field.js` | フィールド形状、スポット、移動先の座標 |
@@ -56,6 +56,35 @@ Mustikaの取得・受取・奉納は共通の効率化手順を使います。M
 2モードの建設候補は、その観測からの1回の出動分を比較します。空荷の反転は `score-planner.js` の `flipBatch` が「訪問済みの組み合わせ＋最後のスポット」ごとの最短経路を比較します。最大8スポットの部分集合を扱い、同じ認識中に同じSkyを反転し直しません。見渡し場所への途中帰還なしで複数反転でき、Mustika案は条件達成後の取得に移れるよう反転列を区切ります。将来の相手行動は読まず、走行中に盤面情報も更新しません。
 
 2モードのTRは `stock-e3` です。初便E3を固定し、その後は `efficient-strategy.js` の `stockDemand` がEarth3・Sky4への不足分を選びます。BRの返却予約分とTRの既存手持ちを数え、停止時に未採集分だけ再計画します。Earth案の150秒未満はEarth不足を優先します。これは事前設定の共有で、BRの内部計画を通信するものではありません。納品できる種類から降ろし、満杯時は受け渡し口を塞がない自陣坂の待機点へ移ります。
+
+## L2 Earth最優先と作業回の順番
+
+`l2-earth` は `sim/match-strategies.js` の `selectPlan` に登録した、150秒で切り替えないEarth優先方策です。`ranker` のEarth評価を使い、L2 Earth加点、専有Earth加点、Earth合計加点、短い時間の順で候補を比較します。有効なEarthを含む2個組、Earthを含む単体候補、新規配置の2個組、単体配置、最後に空手の連続反転の順です。得点と合法性は既存planner/engineを使います。
+
+プリセットのTRは `stock-e3`。`stockDemand` はこのBR戦略の間、150秒以降もEarth不足を先に補います。在庫上限、返却予約、初便E3、Mustikaの共通優先は維持します。
+
+GUIの「BRの順番」は、追加コードなしで既存のBR戦略を順番に呼ぶ設定です。Nodeでも同じ設定を指定できます:
+
+```js
+const { Simulation } = require('./sim/engine.js');
+const controllers = require('./sim/controllers.js');
+const sim = new Simulation({
+  redTrPlan: 'stock-e3',
+  redBrTurns: ['l2-earth', 'mustika-fast'],
+  redBrPlan: 'earth-late', // 3回目以降
+  blueBrTurns: ['second-layer'],
+  blueBrPlan: 'endgame', // 2回目以降
+});
+while (!sim.ended) sim.step(0.05, controllers);
+```
+
+`Simulation.brStrategy(team)` が現在のIDを選び、`view.brPlan` に渡します。順番は固定方策ではないので通常の戦略一覧や総当たりprofileには追加していません。任意の順番の全列挙は未実装です。単体方策の既定総当たりは(TR5種 x BR10種)の赤青順序付き50 x 50 x 速度組5種 = 12,500試合です。
+
+回数の正本はBRの `brTurn.completed` / `worked`。`recordBrTurn` は成功した `place` / `flip` / `enshrine` を記録し、空手で通常のscanを完了したときに1回進めます。受取・待機・局所scan・失敗・Retry自体では進めません。Retryでbrainを消しても回数は残り、手持ちを置く/返すまで同じ回です。何も実行できなければ、その回の方策で待機・再認識します。
+
+複数配置・連続反転の途中で戦略を切り替えず、次回の通常見渡しを境に切り替えます。指定終了後は通常BR戦略へ戻ります。進捗はスナップショットにも含むため、リプレイ表示はその時刻の戦略になります。TRは現在のBR方針を補給選択に使いますが、相手の計画や新しい盤面情報をBRへ渡す処理は追加していません。Mustikaの共通優先処理は順番指定時にも働き、奉納も1回の成功作業に含みます。
+
+検証は `sim/tests/l2-earth.test.cjs`, `sim/tests/br-turns.test.cjs`, `sim/tests/l2-earth-turns-browser.cjs`。新しいブラウザテストは `require('playwright')` を使い、任意の `ROBO_BROWSER_CHANNEL` と結果保存先 `ROBO_QA_DIR` に対応します。既存のWindows専用ブラウザテストとは依存解決方法が異なります。
 
 ## 追加3モードの評価
 

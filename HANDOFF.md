@@ -1,14 +1,14 @@
 # ABU Robocon 2027 シミュレータ引継ぎ
 
-初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。追記として、ユーザーが追加した `Reference/` の同梱資料と、Earth/Sky反転の対応済み状態を反映しています。
+初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。`Reference/` 同梱とEarth/Sky反転に加え、その後のL2 Earth最優先・BR作業回の順番指定の実装を反映しています。
 
 ## 最初に読むこと
 
 - 現行アプリの入口は **`field-simulator.html`**。`index.html` と `tactical-replay.html` は旧版です。
 - HTML、`sim/`、`vendor/` を一緒に置けば、Windowsではファイルを直接開いて動かせる構成です。本体にビルド・npm install・常駐サーバーは不要です。
-- 引継ぎ作業は **この `HANDOFF.md` と `AGENTS.md` の作成・更新のみ**。ソース変更、依存導入、WSLへのコピー、Git初期化・commit・revertは行っていません。`Reference/` はユーザーが追加した資料です。
-- 本体テスト158件は初回引継ぎ作成時にWindowsで成功。WSLでの動作は未確認です。ブラウザテストには移植が必要なWindows固定パスがあります。
-- **プロジェクト自身に `.git` はありません。** WindowsでGitを実行すると上位の `C:/Users/sasah` のリポジトリを拾います。「差分が空だからコミット済み」と判断しないでください。
+- 初回引継ぎ作業は資料のみでしたが、その後の依頼で **L2 Earth最優先戦略とBR作業回の順番設定** を実装しました。WSL移行やBR用APIは未実装です。`Reference/` はユーザーが追加した資料です。
+- 現行の本体テストはWindowsで171件成功。初回引継ぎ時は158件でした。WSLでの動作は未確認です。既存ブラウザテストには移植が必要なWindows固定パスがあります。
+- **Git管理用フォルダーは `ABU-simulator-git`** です。`https://github.com/rodep-soft/ABU-simulator.git` をcloneし、`main` を追跡しています。元の `robocon-strategy-sim` には `.git` がなく、そこでGitを実行すると上位の `C:/Users/sasah` のリポジトリを拾います。作業前にリポジトリルートを確認してください。
 - ルールブック原文・日本語訳、注意点PPTX、フィールドモデルは **`Reference/` に同梱済み**。プロジェクトを丸ごとコピーすれば参照資料も移行できます。
 - 試合終了後の分析では、配置済みEarthの各段と各配置先のSkyを選択して反転できます。
 
@@ -24,13 +24,19 @@ TRは資材を供給元から受け渡し場所へ運ぶ側、BRは受け取っ�
 
 ## プロジェクトの場所と構成
 
-現在のWindowsルート:
+元のWindows作業フォルダー:
 
 ```text
 C:\Users\sasah\.codex\.chatgpt-projects\g-p-69fe0570a8308191bc6819be4d7b5465\robocon-strategy-sim
 ```
 
-この資料での相対パスとコマンドの基準は、この `robocon-strategy-sim` です。上位のChatGPTプロジェクトルートとは区別してください。
+Git管理・コミット・プッシュ用のWindows作業フォルダー:
+
+```text
+C:\Users\sasah\.codex\.chatgpt-projects\g-p-69fe0570a8308191bc6819be4d7b5465\ABU-simulator-git
+```
+
+この資料での相対パスとコマンドは、使用するコピーのプロジェクトルートを基準にします。Windows起動例は元フォルダーのパスなので、Git管理版では `ABU-simulator-git` に読み替えてください。上位のChatGPTプロジェクトルートとは区別してください。
 
 | パス | 現在の役割 |
 | --- | --- |
@@ -44,7 +50,7 @@ C:\Users\sasah\.codex\.chatgpt-projects\g-p-69fe0570a8308191bc6819be4d7b5465\rob
 | `sim/competitive-strategies.js` | `RoboCompetitive`。2段目狙い、得点差対応、終盤優先の3系統 |
 | `sim/post-match-review.js` | `RoboReview.Review`。試合終了後の仮想盤面編集、再集計、undo/redo |
 | `sim/view.js`, `sim/style.css` | Canvas 2D表示、GUIイベント、再生、設定、分析画面 |
-| `sim/tests/` | Node本体テスト `*.test.cjs` とPlaywrightブラウザテスト2本 |
+| `sim/tests/` | Node本体テスト `*.test.cjs` とPlaywrightブラウザテスト3本 |
 | `tools/case-study.cjs` | 並列一括対戦、再開、ソースハッシュ付きログ保存 |
 | `tools/case-study-core.cjs` | `run`, `profiles`, `scenarios`, `verdict`, `secureBounds` 等の対戦・分析処理 |
 | `tools/case-study-cache.cjs` | 一括対戦用のキャッシュ最適化。等価性をテスト |
@@ -99,7 +105,7 @@ view.js (人間用GUI)       case-study-core.cjs (画面なし対戦)
 - 同梱 `vendor/lucide.min.js` はヘッダー上v1.8.0、ISC。`astar-LICENSE`, `lucide-LICENSE` を維持してください。
 - 今回テストに使ったNodeは **v24.19.0**。場所は `C:/Users/sasah/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe`。これはWindowsの検証環境であり、アプリ本体の必須インストール先ではありません。
 - Nodeテストは `node:test` 等、一括対戦は `worker_threads`, `fs`, `crypto`, `zlib` 等の標準モジュールを使用します。
-- Playwrightはブラウザテストだけの外部依存です。2本ともWindowsのCodex同梱Playwrightを絶対パスで読み、`channel: 'msedge'` で起動します。WSLでは現状のまま実行できません。
+- Playwrightはブラウザテストだけの外部依存です。既存2本はWindowsのCodex同梱Playwrightを絶対パスで読み、`channel: 'msedge'` で起動します。WSLでは現状のまま実行できません。新規 `l2-earth-turns-browser.cjs` は `require('playwright')` で解決し、通常はChromium、環境変数 `ROBO_BROWSER_CHANNEL` で任意のブラウザを選択します。
 - Pythonは任意の静的配信に使えるだけで、通常のアプリには不要です。SolidWorks、PowerPoint、PDF処理ライブラリもアプリ実行には不要です。
 - 設定の正本は `sim/engine.js` の `DEFAULTS`。GUI設定はメモリー上で保持され、通常の試合書き出しには `config` が含まれます。専用の永続設定ファイルはありません。
 
@@ -111,6 +117,7 @@ view.js (人間用GUI)       case-study-core.cjs (画面なし対戦)
 | `redSpeed`, `blueSpeed` | 各1。速度倍率は最高速と加速度をともに縮小 |
 | `redTrPlan`, `blueTrPlan` | `adaptive` |
 | `redBrPlan`, `blueBrPlan` | `efficient` |
+| `redBrTurns`, `blueBrTurns` | 初期値は空配列。指定した作業回のBR戦略ID、終了後は通常のBrPlan |
 | `bodySize` | 0.5 m。軸に平行な正方形車体モデル |
 | `rampFactor` | 0.55 |
 | `stairSpeed`, `stairPause` | 0.25、0.6秒。段差動作は簡易モデル |
@@ -164,6 +171,8 @@ node sim/tests/browser-smoke.cjs
 node sim/tests/l2-review-browser.cjs
 ```
 
+新規 `node sim/tests/l2-earth-turns-browser.cjs` は解決可能なPlaywright依存が必要です。Windows確認では既存の同梱node_modulesを `NODE_PATH` に指定し、`ROBO_BROWSER_CHANNEL=msedge` を使用しました。新規テストは日時付きの結果フォルダーを作り、`ROBO_QA_DIR` で上書きできます。既存 `browser-smoke.cjs` も `ROBO_QA_DIR` を指定可能になっています。
+
 ### 一括対戦
 
 WSL移行確認後の少数試行例。実行すると結果ファイルを作成します:
@@ -173,7 +182,7 @@ node tools/case-study.cjs "results/wsl-check-$(date +%Y%m%d-%H%M%S)" --limit=1 -
 node tools/case-study.cjs "results/wsl-pilot-$(date +%Y%m%d-%H%M%S)" --pilot --workers=2
 ```
 
-`--workers=2`, `--limit=1` のように `=` を付けます。無指定で大規模実行しないでください。`--pilot` は登録組合せから16件抽出、`--competitive` は新3戦略と旧2戦略の比較60試合です。通常の全組合せはTR5種 x BR9種 = 45方策、赤青の順序付き45 x 45 x 速度組5種 = **10,125試合**。速度組は1:1、3/4:1、1:3/4、1/2:1、1:1/2です。GUI等にある1/4速度はこの既定一括比較には入りません。
+`--workers=2`, `--limit=1` のように `=` を付けます。無指定で大規模実行しないでください。`--pilot` は登録組合せから16件抽出、`--competitive` は新3戦略と旧2戦略の比較60試合です。現行の通常全組合せはTR5種 x BR10種 = 50方策、赤青の順序付き50 x 50 x 速度組5種 = **12,500試合**。速度組は1:1、3/4:1、1:3/4、1/2:1、1:1/2です。GUI等にある1/4速度と、任意のBR順番指定の全列挙はこの既定一括比較には入りません。
 
 これは「登録戦略同士の総当たり」であって、全行動列の全探索ではありません。`sim/score-planner.js` も有限の先読みです。高速計算でも経路探索・候補評価の計算量はなくなりません。
 
@@ -203,14 +212,23 @@ node tools/case-study.cjs "results/wsl-pilot-$(date +%Y%m%d-%H%M%S)" --pilot --w
 `sim/controllers.js` の `catalog.TR/BR` に登録し、`listStrategies`, `strategyDetails`, `listPresets`, `transportPlan`, `next(view)` から利用します。ロボットごとの `brain` と行動列を持ち、赤青/TR/BR別に選べます。
 
 - TR: `balanced`, `e3-e1s2`, `adaptive`, `adaptive-e3-e1s2`, `stock-e3`。
-- BR: `score-search`, `basic`, `split-seed`, `efficient`, `mustika-fast`, `earth-late`, `second-layer`, `score-adaptive`, `endgame`。
-- 5つの戦略セットはTRを `stock-e3` と組み合わせています。デフォルトTR `adaptive` とは区別してください。
+- BR: `score-search`, `basic`, `split-seed`, `efficient`, `mustika-fast`, `earth-late`, `second-layer`, `score-adaptive`, `endgame`, `l2-earth`。
+- 6つの戦略セットはTRを `stock-e3` と組み合わせています。デフォルトTR `adaptive` とは区別してください。
 - `efficient-strategy.js` の `courier`, `builder`, `demand`, `stockDemand`, `oneActionAway`, `execute`, `returnCargo`, `mustikaDelivery`, `handoffNext` 等が搬送と作業を調整します。Mustika受渡・奉納の共通処理は個別戦略より優先される場合があります。
 - 効率化したBR方策では通常資材を有効な2個組で持つことを重視します。Mustika、空手での反転、現地での失敗復旧等は例外です。すべての旧方策に厳密な2個出発が課されているわけではありません。
 - `mustika-fast` は共有/専有へEarthを分散し、相手利用または自前完成で資格を狙います。`earth-late` は固定Earth得点を重視し、終盤にSkyへ移行します。
 - `competitive-strategies.js` の `selectPlan`, `metrics`, `builder`, `replyDamage`, `endgameRank`, `phase` 等が既存Earthの2段目、観測された得点差、終盤のSky応答を評価します。150秒の切替は次の判断時で、実行中の仕事を突然破棄しません。
 - `score-planner.js` の `plan`, `next`, `flipBatch`, `travelSeconds`, `travelTo` が候補・所要時間を評価します。通常2往復内などの有限先読みで、仮想状態の合法性と得点には本体処理を再利用します。終盤の反転順序も評価対象ですが、全競技の厳密な最適解ではありません。
 - 戦略追加はJSの実装、CommonJS/ブラウザ双方の接続、controllersの登録が必要です。外部戦略ファイルをGUIへ投入するプラグイン機構はまだありません。
+
+### 追加: L2 Earth最優先・BRの順番指定
+
+- `l2-earth` は `match-strategies.js` のEarth評価を試合終了まで使い、L2 Earth、L1専有Earth、L1共有Earthを優先します。150秒でSkyへ切り替えません。有効な2個組を優先し、組めなければ単体も比較。Earth候補がなければSky配置、最後に連続反転です。Mustikaの共通優先は維持します。
+- `controllers.js` に新方策を登録し、プリセットではTR `stock-e3` と組合せます。`efficient-strategy.js` の `stockDemand` もこの方策中はEarth不足を優先します。実際の在庫・時間によってSkyやL1へ進むため、L2を必ず埋め切る固定手順ではありません。
+- GUIの「BRの順番」で各チーム独立に回を追加し、戦略を選び、上下移動・削除ができます。「この戦略で初期化」で適用します。指定後は通常BR戦略へ戻ります。プリセットを選ぶとそのチームの順番指定を消します。
+- `Simulation.config.redBrTurns` / `blueBrTurns` にID配列、BRの `brTurn` に `completed` / `worked` を保持。`brStrategy(team)` が現在の戦略IDを `view.brPlan` に渡します。`recordBrTurn` は成功した配置・反転・奉納の後、空手で通常scanを終えたときに次の回へ進めます。補給/受取scan、局所scan、待機、失敗では進みません。Retryでも回数を保持し、残荷物の返却まで同じ回です。
+- 競技ルールや得点式は変更していません。順番は試合前設定であり、競技中のBR向け遠隔指示ではありません。実行できる作業がない回は自動で飛ばしません。Mustika奉納も成功した1回の作業に含みます。
+- `sim/view.js` / `sim/style.css` が順番編集と現在回の表示を担当。新規テストは `l2-earth.test.cjs`, `br-turns.test.cjs`, `l2-earth-turns-browser.cjs`。通常の試合JSONに設定・進捗・`br-turn-complete` ログが残り、リプレイ時も当時の回数を表示します。
 
 ### L2見渡しと表示の改善
 
@@ -269,7 +287,14 @@ L2見渡しの座標は参照PPTXの5枚目の注記位置を目安に設定し�
 
 ## Git状態と最近の変更
 
-### 実際に確認したGit状態
+### GitHub連携時の状態 (2026-09-24)
+
+- ユーザー指定の `https://github.com/rodep-soft/ABU-simulator.git` を、新規の `ABU-simulator-git` フォルダーへcloneしました。ブランチは `main`、追跡先は `origin/main` です。
+- clone時のHEADは `49fc1905afbeb53adfa244d0f2531e12655e0c29` (`UzoMuzo`)。既存のReference・結果ログを保全し、元フォルダーの最新実装との差分と新しい検証記録を反映しました。
+- 元フォルダーは別コピーのままです。以後はGit管理版で開発し、両方を独立に編集して変更を混在させないでください。最新のコミット・送信状態は `git status --short --branch`、`git log -1 --oneline`、必要に応じてリモート照合で確認してください。
+- 元フォルダーやユーザーホームのGitは変更していません。以下は初回引継ぎ時の履歴であり、GitHub管理版の現在の状態ではありません。
+
+### 初回引継ぎ時に確認したGit状態
 
 以下は初回引継ぎ作成時、2資料と `Reference/` の追加前の記録です。ファイル件数は当時の値であり、追記後の現在値ではありません。
 
@@ -285,7 +310,7 @@ L2見渡しの座標は参照PPTXの5枚目の注記位置を目安に設定し�
 
 Windowsでは初回に所有者不一致の警告があり、読み取り確認に限り `git -c safe.directory=C:/Users/sasah ...` を使いました。グローバルGit設定は変更していません。`GIT_OPTIONAL_LOCKS=0` とプロジェクト範囲の `-- .` で確認しています。
 
-このため、現行コードの変更履歴をGitのコミット差分から復元することはできません。既存の未コミット作業はすべて保全してください。ユーザーフォルダー全体の `.git` をWSLへ持っていかないでください。新しいリポジトリを作るかは次の担当者がユーザーと確認する事項です。
+初回時点では、過去の変更履歴をGitのコミット差分から復元できませんでした。元フォルダーの未コミット作業は保全してください。現在は上記の独立したGit管理版があります。ユーザーフォルダー全体の `.git` をWSLへ持っていかないでください。
 
 初回引継ぎ作成で追加した新規ファイルは `HANDOFF.md` と `AGENTS.md` の2件です。その際のファイル一覧は490件から492件となり、既存ファイルの変更・削除はありませんでした。既存ソース等52件はSHA-256、`results/` 438件はサイズ・更新時刻が不変であることを確認しました。その後ユーザーが `Reference/` に6ファイルを追加し、この追記開始時点では498件あります。
 
@@ -301,6 +326,13 @@ Windowsでは初回に所有者不一致の警告があり、読み取り確認�
 L2認識・帰還と終了後分析に関する変更は上記の現行ファイルで確認しました。古いZIPにはこれらが入っていないので、**移行元には今のフォルダーを使ってください**。今回ZIPの再作成はしていません。
 
 ## 動作確認・未確認・既知の注意点
+
+### L2 Earth・順番指定追加後の確認
+
+- Windows Node v24.19.0で `node --test sim/tests/*.test.cjs` が **171件成功、失敗0、約62.3秒**。新方策の終盤優先・補給・代替候補、順番の境界、部分作業、局所認識、Retry、3分試合を含みます。
+- 新規ブラウザテストで赤青の独立設定、追加/並替/削除/取消、実180秒対戦、回の遷移、リプレイ/初期化、1440px・390px・320px表示を確認。JavaScriptエラー0、画面はみ出しなし。PC/320pxの画像を目視確認済み。
+- 記録は `results/l2-earth-turns-qa-1790236642268/`。既存の広範囲ブラウザ確認も成功し、別出力先 `results/l2-earth-regression-1790236701453/` に保存しました。過去の結果は上書きしていません。
+- 戦略の最適性・勝率比較や12,500試合の総当たりは実施していません。WSLでの実行は引き続き未確認です。
 
 ### 初回引継ぎ作成時に実行して確認したこと
 
@@ -321,7 +353,7 @@ L2認識・帰還と終了後分析に関する変更は上記の現行ファイ
 
 `results/competitive-modes-2026-09-24/VERIFICATION.md` に新3戦略 vs 旧2戦略、赤青入替、速度組5種、TR `stock-e3` の計60試合の記録があります。記録上は `second-layer` 11勝9敗、`score-adaptive` 4勝16敗、`endgame` 14勝6敗でした。
 
-ただし同ディレクトリのmanifestのハッシュは、現在の `engine.js`, `field.js`, `controllers.js`, `score-planner.js`, `efficient-strategy.js` と一致しません。**L2等の修正前の履歴** であり、現行版での期待勝率や全探索結果ではありません。現在の全10,125試合の完了を示すものもありません。再評価は新しい出力先で行ってください。
+ただし同ディレクトリのmanifestのハッシュは、現在の `engine.js`, `field.js`, `controllers.js`, `score-planner.js`, `efficient-strategy.js` と一致しません。**L2等の修正前の履歴** であり、現行版での期待勝率や全探索結果ではありません。当時の全10,125試合や、現行の全12,500試合の完了を示すものもありません。再評価は新しい出力先で行ってください。
 
 ### 未確認・既知の不具合/制限
 
@@ -339,11 +371,18 @@ L2認識・帰還と終了後分析に関する変更は上記の現行ファイ
 
 移行先の例は `~/projects/robocon-strategy-sim` です。まだ作成・コピーした事実はありません。既存の移行先がある場合は上書きせず差分を確認してください。以下のフォルダー全体のコピーには `Reference/` も含まれるため、同梱したルールブック・PPTX・モデルを別途コピーする必要はありません。
 
-WSL側でのコピー例:
+GitHubへの反映後は、WSL側でリポジトリをcloneする方法を優先します (移行先が既存なら上書きしないこと):
 
 ```sh
 mkdir -p "$HOME/projects"
-src='/mnt/c/Users/sasah/.codex/.chatgpt-projects/g-p-69fe0570a8308191bc6819be4d7b5465/robocon-strategy-sim'
+git clone https://github.com/rodep-soft/ABU-simulator.git "$HOME/projects/robocon-strategy-sim"
+```
+
+ネットワークを使わずGit管理版をコピーする場合の例 (cloneとはどちらか一方だけを実行):
+
+```sh
+mkdir -p "$HOME/projects"
+src='/mnt/c/Users/sasah/.codex/.chatgpt-projects/g-p-69fe0570a8308191bc6819be4d7b5465/ABU-simulator-git'
 dst="$HOME/projects/robocon-strategy-sim"
 if [ -e "$dst" ]; then
   printf '%s\n' 'Destination already exists; stop and compare before copying.'
@@ -381,8 +420,8 @@ chromium.launch({ channel: 'msedge', headless: true })
 
 移行後の受入確認:
 
-1. 本体依存の構築、Nodeテスト158件相当の成功、画面なし180秒の完走。
-2. 現行GUIの起動、両チームTR/BR、戦略選択、3倍速、3分計算、リプレイ、書き出し。
+1. 本体依存の構築、現行Nodeテスト171件の成功、画面なし180秒の完走。
+2. 現行GUIの起動、両チームTR/BR、L2 Earth戦略・BR順番指定、3倍速、3分計算、リプレイ、書き出し。
 3. L1/L2の見渡し表示、L2作業後のL2再観測、補給時のL1帰還、地形に沿う移動。
 4. 元の得点、サンクチュアリの履歴、Mustika後も180秒まで継続すること。
 5. 終了後分析で下段を含むEarthと全箇所Skyの選択・色変更・差分・undo/redo/reset・元結果保全。

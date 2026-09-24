@@ -53,6 +53,10 @@
   class Simulation {
     constructor(config = {}) {
       this.config = { ...DEFAULTS, ...config };
+      for (const team of ['red', 'blue']) {
+        const key = `${team}BrTurns`;
+        this.config[key] = Array.isArray(config[key]) ? config[key].filter(id => typeof id === 'string' && id.length) : [];
+      }
       this.time = 0; this.ended = false; this.events = []; this.history = []; this.lastFrame = -1; this.version = 0; this.graphs = new Map();
       this.objects = initialObjects(); this.sanctuary = { red: null, blue: null }; this.sanctuaryEvidence = { red: null, blue: null }; this.transferPoints = { red: 0, blue: 0 };
       this.robots = [];
@@ -62,6 +66,7 @@
       this.log(null, '開始', '初期配置を確認しました', 'setup'); this.capture();
     }
     robot(id) { return this.robots.find(r => r.id === id); }
+    brStrategy(team) { return this.config[`${team}BrTurns`][this.robot(`${team}BR`)?.brTurn?.completed || 0] || this.config[`${team}BrPlan`]; }
     object(id) { return this.objects.find(o => o.id === id); }
     stock(team) { return this.objects.filter(o => o.location === 'transfer' && o.transferTeam === team); }
     tower(id) { return this.objects.filter(o => o.location === 'spot' && o.spotId === id).sort((a, b) => a.layer - b.layer); }
@@ -182,7 +187,7 @@
     view(robot) {
       const motion = Object.fromEntries(['maxSpeed', 'acceleration', 'bodySize', 'rampFactor', 'stairSpeed', 'stairPause', 'scanSeconds', 'pickupSeconds', 'placeSeconds'].map(key => [key, this.config[key]]));
       motion.speedFactor = this.config[`${robot.team}Speed`];
-      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], brPlan: this.config[`${robot.team}BrPlan`] });
+      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], brPlan: this.brStrategy(robot.team) });
     }
     changed() { this.version++; this.graphs.clear(); }
     mustikaOffer(team) {
@@ -368,9 +373,20 @@
         if (!result.ok) { this.reject(r, job, result); return; }
       }
       r.job = null; r.status = '待機'; r.failure = null;
+      this.recordBrTurn(r, job);
       this.updateSanctuary(); this.log(r, job.type, `${job.type === 'scan' && job.local ? 'その場で停止・再認識' : labels[job.type]}${job.spotId ? ' · ' + F.spotById[job.spotId].label : ''}${job.objectId ? ' · ' + job.objectId : ''}`, 'action', '', { cargo: [...r.cargo], observationAt: r.observation?.at ?? null, objectId: job.objectId, objectType: this.object(job.objectId)?.type, spotId: job.spotId,
         ...(job.type === 'scan' ? { local: !!job.local, level: F.surface(r).type, origin: { x: r.x, y: r.y } } : {}),
         ...(job.type === 'pickup' && job.objectId === 'M' ? { sanctuaryAt: this.sanctuary[r.team], sanctuaryEvidence: clone(this.sanctuaryEvidence[r.team]) } : {}) });
+    }
+    recordBrTurn(r, job) {
+      if (r.role !== 'BR' || !this.config[`${r.team}BrTurns`].length) return;
+      r.brTurn ||= { completed: 0, worked: false };
+      if (['place', 'flip', 'enshrine'].includes(job.type)) r.brTurn.worked = true;
+      // Supply scans, failures and local replans stay in the same sortie, even after partial work.
+      if (job.type !== 'scan' || job.local || r.cargo.length || !r.brTurn.worked) return;
+      const strategy = this.brStrategy(r.team);
+      r.brTurn.completed++; r.brTurn.worked = false; r.brain = { stage: 'choose' }; r.decision = null;
+      this.log(r, 'br-turn-complete', `BR ${r.brTurn.completed}回目の作業完了`, 'action', '', { turn: r.brTurn.completed, strategy, nextStrategy: this.brStrategy(r.team) });
     }
     recordDelivery(r, o) {
       r.transport.pending.push({ id: o.id, type: o.type });
@@ -553,7 +569,7 @@
     }
     snapshot() { return clone({ time: this.time, ended: this.ended, robots: this.robots.map(({ queue, brain, ...r }) => ({ ...r, queueLength: queue.length, pendingWork: [r.job, ...queue].filter(a => a && ['place', 'flip', 'enshrine', 'return'].includes(a.type)).map(({ type, spotId, objectId }) => ({ type, spotId, objectId })) })), objects: this.objects, scores: this.scores(), sanctuary: this.sanctuary, sanctuaryEvidence: this.sanctuaryEvidence }); }
     capture(force = false) { if (force || Math.floor(this.time * 2) !== this.lastFrame) { this.lastFrame = Math.floor(this.time * 2); this.history.push(this.snapshot()); } }
-    export() { return { format: 'robocon-field-sim-v1', config: this.config, assumptions: ['axis-aligned square body', 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo', 'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points', 'TR unloading reserves capacity for BR held blocks; any held Earth/Sky may be selected for unloading', 'efficient BR policies require two useful normal blocks; Mustika, empty-handed flips and local recovery are exceptions', 'distinct observed Sky flips may be queued on one scan; this does not increase carry capacity', 'phase policies switch at the next planning decision on or after 150 seconds, without interrupting committed work', 'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo', 'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence', 'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source', 'manual retry carrying Earth/Sky unsupported', 'no rigid-body tipping physics'], events: this.events, history: this.history, final: this.snapshot() }; }
+    export() { return { format: 'robocon-field-sim-v1', config: this.config, assumptions: ['axis-aligned square body', 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo', 'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points', 'TR unloading reserves capacity for BR held blocks; any held Earth/Sky may be selected for unloading', 'efficient BR defaults to two useful normal blocks; endgame and l2-earth allow single-block fallbacks; Mustika, empty-handed flips and local recovery are exceptions', 'distinct observed Sky flips may be queued on one scan; this does not increase carry capacity', 'phase policies switch at the next planning decision on or after 150 seconds; l2-earth keeps Earth priority throughout', 'optional BR strategy sequence advances after successful work, empty cargo and a normal scan; not on supply waits, local scans or Retry itself', 'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo', 'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence', 'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source', 'manual retry carrying Earth/Sky unsupported', 'no rigid-body tipping physics'], events: this.events, history: this.history, final: this.snapshot() }; }
   }
   return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget };
 });

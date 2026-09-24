@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '../..');
-const output = path.join(root, 'results/field-sim-qa');
+const output = process.env.ROBO_QA_DIR ? path.resolve(process.env.ROBO_QA_DIR) : path.join(root, 'results/field-sim-qa');
 fs.mkdirSync(output, { recursive: true });
 const server = http.createServer((request, response) => {
   const filename = path.resolve(root, '.' + decodeURIComponent(new URL(request.url, 'http://localhost').pathname));

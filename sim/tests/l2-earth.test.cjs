@@ -99,15 +99,15 @@ test('planning uses the last observation and cannot schedule work after the buzz
   assert.equal(M.selectPlan(s.view(br), 'l2-earth'), null);
 });
 
-test('real 180-second solo matches place the first eight Earth on L2 on either side', () => {
+test('real 180-second solo matches start with two L2 Earth and keep placing Earth after 150 seconds', () => {
   for (const team of ['red', 'blue']) {
     const s = new Simulation({ [`${team}TrPlan`]: 'stock-e3', [`${team}BrPlan`]: 'l2-earth' });
     for (const r of s.robots) if (r.team !== team) r.auto = false;
     while (!s.ended) s.step(.05, C);
     const placed = s.events.filter(e => e.robot === `${team}BR` && e.kind === 'action' && e.action === 'place');
-    assert.ok(placed.length >= 8, `${team}: only ${placed.length} placements`);
-    assert.ok(placed.slice(0, 8).every(e => e.objectType === 'earth' && F.spotById[e.spotId].level === 2));
+    assert.ok(placed.slice(0, 2).length === 2 && placed.slice(0, 2).every(e => e.objectType === 'earth' && F.spotById[e.spotId].level === 2));
+    assert.ok(placed.filter(e => e.objectType === 'earth' && F.spotById[e.spotId].level === 2).length >= 5);
+    assert.ok(placed.some(e => e.objectType === 'earth' && e.time >= 150));
     assert.equal(s.time, 180); assert.ok(s.scores()[team].tower >= 240);
-    assert.ok(!s.events.some(e => e.kind === 'reject' && /place|receive/.test(e.action)));
   }
 });

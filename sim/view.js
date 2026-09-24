@@ -9,6 +9,11 @@ let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;
 const strategyFields = ['red', 'blue'].flatMap(team => ['TR', 'BR'].map(role => ({ team, role, key: `${team}${role === 'TR' ? 'Tr' : 'Br'}Plan`, id: `${team}-${role.toLowerCase()}-plan` })));
+const strategyTurns = { red: [], blue: [] };
+function displayedBrPlan(team) {
+  const completed = snapshot.robots.find(r => r.id === `${team}BR`)?.brTurn?.completed || 0;
+  return sim.config[`${team}BrTurns`][completed] || sim.config[`${team}BrPlan`];
+}
 const currentRobot = () => sim.robot(selected);
 function icons() { lucide.createIcons(); }
 function initStrategyMenus() {
@@ -21,32 +26,62 @@ function initStrategyMenus() {
     preset.replaceChildren(new Option('個別設定', ''), ...RoboControllers.listPresets().map(p => new Option(p.name, p.id)));
     preset.onchange = () => {
       const chosen = RoboControllers.listPresets().find(p => p.id === preset.value);
-      if (chosen) { $(`${team}-tr-plan`).value = chosen.tr; $(`${team}-br-plan`).value = chosen.br; }
+      if (chosen) { $(`${team}-tr-plan`).value = chosen.tr; $(`${team}-br-plan`).value = chosen.br; strategyTurns[team] = []; renderTurnEditor(team); }
       renderStrategyPreviews(); renderStrategyState();
     };
     presetLabel.append(preset); group.append(presetLabel);
     for (const field of strategyFields.filter(f => f.team === team)) {
       const label = document.createElement('label'), select = document.createElement('select'), details = document.createElement('dl');
-      label.textContent = `${field.role} · ${field.role === 'TR' ? '搬送戦略' : '配置戦略'}`;
+      label.textContent = `${field.role} · ${field.role === 'TR' ? '搬送戦略' : '通常の配置戦略'}`;
       select.id = field.id;
       select.replaceChildren(...RoboControllers.listStrategies(field.role).map(entry => new Option(entry.name, entry.id)));
       select.onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
       details.id = `${field.id}-details`; details.className = 'strategy-details';
       label.append(select); group.append(label, details);
     }
+    const turns = document.createElement('div'), heading = document.createElement('div'), title = document.createElement('strong'), add = document.createElement('button'), rows = document.createElement('div');
+    turns.className = 'br-turns'; heading.className = 'turn-heading'; title.textContent = 'BRの順番';
+    add.id = `${team}-add-turn`; add.className = 'icon'; add.title = '作業回を追加'; add.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BRの作業回を追加`); add.innerHTML = '<i data-lucide="plus"></i>';
+    add.onclick = () => { strategyTurns[team].push($(`${team}-br-plan`).value); renderTurnEditor(team); renderStrategyPreviews(); renderStrategyState(); };
+    rows.id = `${team}-br-turns`; heading.append(title, add); turns.append(heading, rows); group.append(turns);
     $('strategy-selectors').append(group);
   }
   syncStrategyMenus();
+}
+function renderTurnEditor(team) {
+  const entries = RoboControllers.listStrategies('BR');
+  $(`${team}-br-turns`).replaceChildren(...strategyTurns[team].map((id, index) => {
+    const row = document.createElement('div'), label = document.createElement('label'), select = document.createElement('select'), controls = document.createElement('div');
+    row.className = 'br-turn-row'; label.textContent = `${index + 1}回目`; select.id = `${team}-br-turn-${index}`; select.title = `${index + 1}回目のBR戦略`;
+    select.replaceChildren(...entries.map(entry => new Option(entry.shortName, entry.id))); select.value = id;
+    select.onchange = () => { strategyTurns[team][index] = select.value; renderStrategyPreviews(); renderStrategyState(); };
+    label.append(select); controls.className = 'turn-controls';
+    for (const [action, icon, title] of [['up', 'arrow-up', '前へ'], ['down', 'arrow-down', '後へ'], ['remove', 'trash-2', '削除']]) {
+      const button = document.createElement('button'); button.className = 'icon'; button.dataset.turnAction = action;
+      button.title = title; button.setAttribute('aria-label', `${index + 1}回目を${title}`); button.innerHTML = `<i data-lucide="${icon}"></i>`;
+      button.onclick = () => {
+        const turns = strategyTurns[team], next = index + (action === 'up' ? -1 : 1);
+        if (action === 'remove') turns.splice(index, 1);
+        else if (next >= 0 && next < turns.length) [turns[index], turns[next]] = [turns[next], turns[index]];
+        renderTurnEditor(team); renderStrategyPreviews(); renderStrategyState();
+      };
+      controls.append(button);
+    }
+    row.append(label, controls); return row;
+  }));
+  const after = document.createElement('div'); after.className = 'turn-fallback'; after.textContent = strategyTurns[team].length ? `${strategyTurns[team].length + 1}回目以降: 通常の配置戦略` : '全作業: 通常の配置戦略';
+  $(`${team}-br-turns`).append(after); icons();
 }
 function syncStrategyMenus() {
   for (const field of strategyFields) {
     const entries = RoboControllers.listStrategies(field.role);
     $(field.id).value = entries.some(entry => entry.id === sim.config[field.key]) ? sim.config[field.key] : entries[0].id;
   }
+  for (const team of ['red', 'blue']) { strategyTurns[team] = [...sim.config[`${team}BrTurns`]]; renderTurnEditor(team); }
   renderStrategyPreviews();
 }
 function renderStrategyPreviews() {
-  for (const team of ['red', 'blue']) $(`${team}-mode`).value = RoboControllers.listPresets().find(p => p.tr === $(`${team}-tr-plan`).value && p.br === $(`${team}-br-plan`).value)?.id || '';
+  for (const team of ['red', 'blue']) $(`${team}-mode`).value = strategyTurns[team].length ? '' : RoboControllers.listPresets().find(p => p.tr === $(`${team}-tr-plan`).value && p.br === $(`${team}-br-plan`).value)?.id || '';
   for (const field of strategyFields) {
     $(`${field.id}-details`).replaceChildren(...RoboControllers.strategyDetails(field.role, $(field.id).value, field.team).map(([name, value]) => {
       const row = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
@@ -55,16 +90,22 @@ function renderStrategyPreviews() {
   }
 }
 function renderStrategyState() {
-  const dirty = strategyFields.some(field => $(field.id).value !== sim.config[field.key]);
+  const dirty = strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]));
   $('strategy-status').textContent = dirty ? '変更あり · 未適用' : '適用済み';
   $('strategy-status').classList.toggle('pending', dirty);
   $('apply-strategies').disabled = computing; $('revert-strategies').disabled = computing || !dirty;
   for (const field of strategyFields) $(field.id).disabled = computing;
   for (const team of ['red', 'blue']) {
     $(`${team}-mode`).disabled = computing;
+    $(`${team}-add-turn`).disabled = computing;
+    $(`${team}-br-turns`).querySelectorAll('select').forEach(select => { select.disabled = computing; });
+    $(`${team}-br-turns`).querySelectorAll('.br-turn-row').forEach((row, index) => {
+      for (const button of row.querySelectorAll('button')) button.disabled = computing || button.dataset.turnAction === 'up' && index === 0 || button.dataset.turnAction === 'down' && index === strategyTurns[team].length - 1;
+    });
     $(`${team}-strategy-summary`).textContent = strategyFields.filter(f => f.team === team).map(field => {
-      const entries = RoboControllers.listStrategies(field.role), entry = entries.find(e => e.id === sim.config[field.key]) || entries[0];
-      return `${field.role} ${entry.shortName}`;
+      const entries = RoboControllers.listStrategies(field.role), entry = entries.find(e => e.id === (field.role === 'BR' ? displayedBrPlan(team) : sim.config[field.key])) || entries[0];
+      const number = field.role === 'BR' && sim.config[`${team}BrTurns`].length ? `${(snapshot.robots.find(r => r.id === `${team}BR`)?.brTurn?.completed || 0) + 1}回目 ` : '';
+      return `${field.role} ${number}${entry.shortName}`;
     }).join(' / ');
   }
 }
@@ -274,8 +315,8 @@ function render() {
   $('robot-ground').textContent = `${({ ground: '地上', l1: 'L1', l2: 'L2', ramp: '坂', stairs: '地上階段', upperStairs: 'L2階段', transfer: '受け渡し' })[ground.type]} / ${(r.z * 1000).toFixed(0)} mm`;
   $('robot-scan').textContent = r.observation ? `${r.observation.local ? '現地 ' : r.observation.origin ? (F.surface(r.observation.origin).type === 'l2' ? 'L2 ' : 'L1 ') : ''}${r.observation.at.toFixed(1)} s (${(snapshot.time - r.observation.at).toFixed(1)}秒前)` : '未認識';
   $('br-work').hidden = r.role !== 'BR';
-  const brPlan = sim.config[`${r.team}BrPlan`];
-  $('robot-phase').textContent = ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
+  const brPlan = displayedBrPlan(r.team);
+  $('robot-phase').textContent = ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
   $('pending-work').replaceChildren(...(r.pendingWork?.length ? r.pendingWork : [null]).map(a => {
     const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotById[a.spotId].label + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
   }));
@@ -362,6 +403,7 @@ $('apply-strategies').onclick = () => {
   if (computing) return;
   const config = { ...sim.config };
   for (const field of strategyFields) config[field.key] = $(field.id).value;
+  for (const team of ['red', 'blue']) config[`${team}BrTurns`] = [...strategyTurns[team]];
   reset(config);
 };
 $('revert-strategies').onclick = () => { syncStrategyMenus(); renderStrategyState(); };

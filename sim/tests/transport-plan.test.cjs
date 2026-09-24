@@ -26,7 +26,7 @@ function types(delivery) { return delivery.items.map(o => o.type); }
 test('strategy catalog separates roles and returns isolated menu metadata', () => {
   const tr = controllers.listStrategies('TR'), br = controllers.listStrategies('BR');
   assert.deepEqual(tr.map(s => s.id), ['balanced', 'e3-e1s2', 'adaptive', 'adaptive-e3-e1s2', 'stock-e3']);
-  assert.deepEqual(br.map(s => s.id), ['score-search', 'basic', 'split-seed', 'efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame']);
+  assert.deepEqual(br.map(s => s.id), ['score-search', 'basic', 'split-seed', 'efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth']);
   for (const entry of [...tr, ...br]) {
     assert.ok(entry.name); assert.ok(entry.shortName); assert.equal(entry.run, undefined);
   }
