@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ABU 2027 フィールドシミュレーター</title>
+  <link rel="stylesheet" href="sim/style.css">
+</head>
+<body>
+  <header class="topbar"><div><span class="brand-mark">R27</span><h1>ABU 2027 <span>フィールドシミュレーター</span></h1></div><a href="SIMULATION_RULES.md" target="_blank">競技仕様 <i data-lucide="arrow-up-right"></i></a></header>
+  <main>
+    <section class="matchbar" aria-label="試合状況">
+      <div class="team-score red"><span>赤チーム</span><strong id="red-score">0</strong><small id="red-detail"></small><span id="red-mandate" class="mandate">条件未達</span></div>
+      <div class="clock"><span id="match-state">開始前</span><strong id="clock">3:00.0</strong><progress id="progress" max="180" value="0"></progress></div>
+      <div class="team-score blue"><span>青チーム</span><strong id="blue-score">0</strong><small id="blue-detail"></small><span id="blue-mandate" class="mandate">条件未達</span></div>
+    </section>
+    <section class="strategy-bar" aria-label="採用中の戦略">
+      <strong class="strategy-bar-title">採用中の戦略</strong>
+      <div class="strategy-current"><strong class="team-red">赤チーム</strong><span id="red-strategy-summary"></span></div>
+      <div class="strategy-current"><strong class="team-blue">青チーム</strong><span id="blue-strategy-summary"></span></div>
+      <button id="edit-strategies" class="icon" title="戦略を選択" aria-label="戦略を選択"><i data-lucide="sliders-horizontal"></i></button>
+    </section>
+    <div class="workspace">
+      <section class="field-panel">
+        <div class="toolbar">
+          <button id="play" class="icon primary" title="開始・一時停止" aria-label="開始・一時停止"><i data-lucide="play"></i></button>
+          <button id="step" class="icon" title="0.5秒進める" aria-label="0.5秒進める"><i data-lucide="step-forward"></i></button>
+          <button id="finish" title="180秒まで計算"><i data-lucide="fast-forward"></i><span>3分計算</span></button>
+          <button id="reset" class="icon" title="初期状態に戻す" aria-label="初期状態に戻す"><i data-lucide="rotate-ccw"></i></button>
+          <label class="rate-label">再生<select id="rate"><option value="1">1倍</option><option value="3" selected>3倍</option><option value="5">5倍</option><option value="20">20倍</option><option value="60">60倍</option></select></label>
+          <div class="zoom-tools"><button id="zoom-out" class="icon" title="フィールドを縮小" aria-label="フィールドを縮小"><i data-lucide="zoom-out"></i></button><button id="zoom-in" class="icon" title="フィールドを拡大" aria-label="フィールドを拡大"><i data-lucide="zoom-in"></i></button></div>
+          <button id="download" class="icon push" title="試合ログを保存" aria-label="試合ログを保存"><i data-lucide="download"></i></button>
+        </div>
+        <div class="field-wrap"><canvas id="field" width="1000" height="1000" aria-label="競技フィールド。タップして移動先を指定"></canvas></div>
+        <div class="timeline"><span id="elapsed">0.0 s</span><input id="timeline" type="range" min="0" max="180" step="0.5" value="0" aria-label="リプレイ時刻"><span>180 s</span></div>
+        <div class="legend"><span><b class="earth-symbol">E</b> Earth</span><span><b class="sky-symbol">S</b> Sky</span><span><b class="mustika-symbol">M</b> Mustika</span><label><input id="show-path" type="checkbox" checked>経路</label><label><input id="show-body" type="checkbox" checked>車体外形</label></div>
+        <div class="robot-strip" id="robots"></div>
+      </section>
+      <aside>
+        <nav class="tabs" aria-label="表示切替"><button class="active" data-tab="operate">操作</button><button data-tab="strategies">戦略</button><button data-tab="state">盤面</button><button data-tab="settings">設定</button><button data-tab="log">ログ</button></nav>
+        <section id="tab-operate" class="tab-content">
+          <h2>ロボット</h2>
+          <div id="robot-select" class="segmented"><button data-robot="redTR" class="active">赤 TR</button><button data-robot="redBR">赤 BR</button><button data-robot="blueTR">青 TR</button><button data-robot="blueBR">青 BR</button></div>
+          <label class="toggle-row"><span>選択した戦略で自動運転</span><input id="auto" type="checkbox" checked></label>
+          <button id="stop-robot" class="stop-robot" title="移動を停止して自動運転を解除"><i data-lucide="square"></i>このロボットの移動を停止</button>
+          <dl class="robot-data"><div><dt>現在の動作</dt><dd id="robot-status"></dd></div><div><dt>手持ち</dt><dd id="robot-cargo"></dd></div><div><dt>接地面 / 高さ</dt><dd id="robot-ground"></dd></div><div><dt>最後の見渡し</dt><dd id="robot-scan"></dd></div></dl>
+          <dl id="br-decision" class="robot-data" hidden><div><dt>選択した作業</dt><dd id="decision-summary"></dd></div><div><dt>今回の予測加点</dt><dd id="decision-gain"></dd></div><div><dt>2往復内の予測</dt><dd id="decision-horizon"></dd></div></dl>
+          <dl class="robot-data" id="transport-data"><div><dt>今回の搬送目標</dt><dd id="robot-plan"></dd></div><div><dt>納品済み</dt><dd id="robot-deliveries"></dd></div></dl>
+          <h2>移動先</h2><select id="destination" aria-label="移動先"></select>
+          <div class="command-row"><button id="move" class="primary"><i data-lucide="navigation"></i>移動</button><button id="scan"><i data-lucide="scan-eye"></i>見渡し</button></div>
+          <h2>ブロック</h2><select id="object-select" aria-label="対象ブロック"></select>
+          <button id="approach-object" class="stop-robot"><i data-lucide="navigation"></i>選択したブロックへ移動</button>
+          <div class="command-grid"><button id="pickup"><i data-lucide="package-plus"></i>採集</button><button id="unload"><i data-lucide="package-check"></i>納品</button><button id="receive"><i data-lucide="hand"></i>受取</button><button id="place"><i data-lucide="layers"></i>配置</button><button id="flip"><i data-lucide="refresh-cw"></i>Sky反転</button><button id="enshrine"><i data-lucide="circle-dot"></i>奉納</button><button id="recover"><i data-lucide="package-minus"></i>自Earth回収</button><button id="retry"><i data-lucide="undo-2"></i>リトライ</button></div>
+          <div id="feedback" role="status" class="feedback">開始待ち</div>
+        </section>
+        <section id="tab-state" class="tab-content" hidden><h2>受け渡し区画</h2><div id="transfer-state"></div><h2>タワー</h2><div id="tower-state"></div><h2>供給元</h2><div id="source-state"></div></section>
+        <section id="tab-strategies" class="tab-content" hidden>
+          <h2>戦略の組み合わせ</h2>
+          <div id="strategy-selectors"></div>
+          <div class="strategy-apply"><span id="strategy-status" role="status">適用済み</span><button id="apply-strategies" class="primary"><i data-lucide="check"></i>この戦略で初期化</button><button id="revert-strategies" class="icon" title="未適用の戦略変更を戻す" aria-label="未適用の戦略変更を戻す"><i data-lucide="undo-2"></i></button></div>
+        </section>
+        <section id="tab-settings" class="tab-content" hidden>
+          <h2>走行・動作条件</h2>
+          <label>赤の速度・加速度倍率<select id="red-speed"><option value="1">同等</option><option value="0.75">3/4</option><option value="0.5">1/2</option><option value="0.25">1/4</option></select></label>
+          <label>青の速度・加速度倍率<select id="blue-speed"><option value="1">同等</option><option value="0.75">3/4</option><option value="0.5">1/2</option><option value="0.25">1/4</option></select></label>
+          <label>最高速度 (m/s)<input id="max-speed" type="number" min="0.2" max="10" step="0.1" value="7"></label>
+          <label>最高加速度 (m/s²)<input id="acceleration" type="number" min="0.1" max="10" step="0.1" value="3.5"></label>
+          <label>見渡し停止 (秒)<input id="scan-seconds" type="number" min="0.5" max="15" step="0.5" value="3"></label>
+          <label>坂の速度係数<input id="ramp-factor" type="number" min="0.1" max="1" step="0.05" value="0.55"></label>
+          <label>階段の移動速度 (m/s)<input id="stair-speed" type="number" min="0.05" max="1" step="0.05" value="0.25"></label>
+          <label>段ごとの停止 (秒)<input id="stair-pause" type="number" min="0.1" max="5" step="0.1" value="0.6"></label>
+          <button id="apply-settings" class="primary">適用して初期化</button>
+          <details><summary>モデルの前提・未対応</summary><ul><li>車体は500 mm角。姿勢変化・転倒は未計算。</li><li>受け渡しは2列×2段、最大4個の仮設定。</li><li>見渡し時の認識は誤差・遮蔽なし。</li><li>坂・階段・把持・配置の時間は仮の性能値。</li><li>直接手渡し、Mustika混載、荷物付きリトライ、規定外の積み方は未対応。</li><li>故意の妨害・失格は自動裁定しない。</li><li>速度比較は運動性能のみを変更。撮影時間は共通。</li></ul></details>
+        </section>
+        <section id="tab-log" class="tab-content" hidden><div class="heading-row"><h2>動作・ルール判定</h2><label><input id="errors-only" type="checkbox">注意のみ</label></div><ol id="event-log"></ol></section>
+      </aside>
+    </div>
+  </main>
+  <footer><span>ルール基準 v1-1 · CAD準拠 2D</span><span id="run-summary">基本動作モード</span><a href="tactical-replay.html">旧・戦術リプレイ</a></footer>
+  <script src="vendor/astar.js"></script><script src="vendor/lucide.min.js"></script><script src="sim/field.js"></script><script src="sim/engine.js"></script><script src="sim/score-planner.js"></script><script src="sim/controllers.js"></script><script src="sim/view.js"></script>
+</body>
+</html>

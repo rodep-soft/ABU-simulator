@@ -1,0 +1,8962 @@
+[
+  {
+    "caseId": 33504,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 69.62473406996018,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 45.99,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 55.1,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 69.62,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33518,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有上:E1 > L1共有上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 69.62473406996018,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 35.49,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.18,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.95,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 55.1,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 69.62,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33644,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 69.6319165601589,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 45.33,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 48.93,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 52.98,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 69.63,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33658,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有下:E1 > L1共有下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 69.6319165601589,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 34.04,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 45.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.33,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.72,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 69.63,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33503,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1上:E1 > 赤L1上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 70.03040230320637,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 45.99,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 55.1,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.03,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33517,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 70.03040230320637,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 35.49,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.18,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.95,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 55.1,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.03,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33643,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1下:E1 > 赤L1下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.03426631000814,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 45.33,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 48.93,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 52.98,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.03,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33657,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.03426631000814,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 34.04,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 45.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.33,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.72,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.03,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33655,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > 赤L1下:E2 > L1共有下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.1312193473586,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.13,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.82,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.18,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.53,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.93,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.62,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.38,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.13,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33649,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > 赤L1下:E2 > L1共有下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.19595541295946,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.25,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.6,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.45,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.2,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33653,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > L1共有下:E2 > 赤L1下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.19595541295946,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.13,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.82,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 46.58,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.93,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 55.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.45,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.2,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33647,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > L1共有下:E2 > 赤L1下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.26069147856033,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 46.65,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 56.06,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.75,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.51,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.26,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45538,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有下:E1 > L1共有下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.29784163550738,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.33,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 48.1,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.7,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 56.09,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.79,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.55,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.3,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45524,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有下:S",
+    "sanctuaryAt": 70.2978416355074,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.07,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 48.43,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.03,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 56.09,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.79,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.55,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.3,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33624,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有下:S",
+    "sanctuaryAt": 70.49112726807721,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 45.32,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 48.92,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 54.44,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 70.49,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33638,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有下:E1 > L1共有下:E2 > 赤L1上:S > L1共有下:S",
+    "sanctuaryAt": 70.49112726807721,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 35.49,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.18,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 45.95,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.95,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 70.49,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33524,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有上:S",
+    "sanctuaryAt": 70.49830975827592,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 45.99,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 53.65,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.5,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33538,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有上:E1 > L1共有上:E2 > 赤L1下:S > L1共有上:S",
+    "sanctuaryAt": 70.49830975827592,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 34.04,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.88,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 64.88,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 70.5,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33654,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > 赤L1下:E2 > L1共有下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.53356909720783,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.13,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.82,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.18,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.53,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.93,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.62,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.78,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.53,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33652,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > L1共有下:E2 > 赤L1下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.5983051628087,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.73,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.13,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.82,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 46.58,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.93,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 55.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.85,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.6,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33648,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > 赤L1下:E2 > L1共有下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.59830516280871,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.25,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.6,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.85,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.6,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44990,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 70.65445401990203,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.73,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 39.79,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 50.14,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 53.14,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 57.2,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 61.89,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 67.65,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 70.65,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44996,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 70.65445401990203,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.33,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 39.73,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 50.14,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 53.14,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 57.2,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 61.89,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 67.65,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 70.65,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33646,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > L1共有下:E2 > 赤L1下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.66304122840958,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 46.65,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 56.06,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.75,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.91,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.66,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45523,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1下:E1 > 赤L1下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.70019138535663,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.07,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 48.43,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.03,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 56.09,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.79,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.95,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.7,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45537,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1下:S",
+    "sanctuaryAt": 70.70019138535663,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.33,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 48.1,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.7,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 56.09,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.79,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.95,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.7,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33483,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > L1共有下:E1 > L1共有下:E2 > L1共有上:S > L1共有下:S",
+    "sanctuaryAt": 70.75488538787879,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.39,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.99,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 54.39,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.75,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33497,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > L1共有下:S",
+    "sanctuaryAt": 70.75488538787879,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.88,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.75,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33484,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > L1共有上:S",
+    "sanctuaryAt": 70.75874939468055,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 46.39,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.99,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 54.39,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.76,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33498,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > L1共有上:E1 > L1共有上:E2 > L1共有下:S > L1共有上:S",
+    "sanctuaryAt": 70.75874939468055,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.88,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.76,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33523,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1下:E1 > 赤L1下:E2 > L1共有上:S > 赤L1下:S",
+    "sanctuaryAt": 70.8967955013234,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 35.94,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.63,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 45.99,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 53.65,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.9,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33537,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1下:S",
+    "sanctuaryAt": 70.8967955013234,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 26.38,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 34.04,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 45.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.88,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 65.28,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 70.9,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33623,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1上:E1 > 赤L1上:E2 > L1共有下:S > 赤L1上:S",
+    "sanctuaryAt": 70.90065950812516,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 34.78,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 39.96,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 45.32,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 48.92,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 54.44,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.9,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33637,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1上:S",
+    "sanctuaryAt": 70.90065950812516,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 35.49,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 40.18,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 45.95,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.95,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 60.12,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 65.29,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 70.9,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44985,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > 赤L1下:E1 > L1共有下:E2 > L1共有下:S > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 70.99206770415041,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.73,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 39.79,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.54,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.54,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 57.94,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.63,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 67.99,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 70.99,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44991,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 70.99206770415041,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.33,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 39.73,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.54,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 53.54,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 57.94,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.63,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 67.99,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 70.99,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44870,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 71.22124288562173,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.6,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 40.65,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.35,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.71,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 53.71,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 57.77,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.46,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.22,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 71.22,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44971,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1上:E2 > 赤L1上:S",
+    "sanctuaryAt": 71.48748353747538,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 40.59,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.28,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.04,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 54.04,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 58.44,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.13,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.49,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 71.49,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44830,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有上:E1 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 72.15690989052314,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.45,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 40.85,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.54,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.31,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 54.31,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 58.7,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.39,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 69.16,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 72.16,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44876,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "赤L1下:E1 > L1共有上:E1 > 赤L1下:E2 > 赤L1下:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 72.32182598503914,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.2,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 41.75,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 46.45,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.81,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 54.81,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 58.87,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.56,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 69.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 72.32,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45404,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有上:S",
+    "sanctuaryAt": 72.32182598503915,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 44.23,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 53.19,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 57.25,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 61.94,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 66.71,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 72.32,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45418,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有上:E1 > L1共有上:E2 > 赤L1下:S > L1共有上:S",
+    "sanctuaryAt": 72.32182598503915,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.33,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 48.09,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.69,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.25,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 61.94,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 66.71,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 72.32,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44982,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1下:E1 > L1共有下:S > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 72.3387748430272,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1下:E1 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.14,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 54.89,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.28,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.98,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 69.34,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 72.34,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44981,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 72.40351090862806,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 S+E -> L1共有下:S / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 49.94,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 55.29,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.35,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.04,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 69.4,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 72.4,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33515,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > 赤L1上:E2 > L1共有上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 72.43258219319553,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.28,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 47.33,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.68,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.24,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.93,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 67.68,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.43,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44976,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有下:E1 > 赤L1上:E2 > 赤L1上:S > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 72.61003533881143,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.19,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 40.59,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.28,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.63,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 53.63,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.15,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.84,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 69.61,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 72.61,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45504,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有下:S",
+    "sanctuaryAt": 72.61003533881143,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.07,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 48.43,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.03,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.55,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.24,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 66.99,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.61,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45518,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有下:E1 > L1共有下:E2 > 赤L1上:S > L1共有下:S",
+    "sanctuaryAt": 72.61003533881143,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.57,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.09,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.78,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 53.15,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.55,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.24,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 66.99,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.61,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33635,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有下:E1 > 赤L1上:E2 > L1共有下:E2 > 赤L1上:S > L1共有下:S",
+    "sanctuaryAt": 72.70885147111355,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.59,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.99,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 41.68,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 47.03,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.25,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.65,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.34,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 67.09,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.71,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44865,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > 赤L1下:E1 > L1共有上:E2 > L1共有上:S > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 72.72031172808663,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.6,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 40.65,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.35,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.11,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.11,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.67,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.36,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 69.72,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 72.72,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45403,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1下:E1 > 赤L1下:E2 > L1共有上:S > 赤L1下:S",
+    "sanctuaryAt": 72.72031172808663,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 44.23,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 53.19,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 57.25,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 61.94,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 67.1,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 72.72,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45417,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1下:S",
+    "sanctuaryAt": 72.72031172808663,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.33,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 48.09,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 51.69,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.25,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 61.94,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 67.1,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 72.72,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45000,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > 赤L1下:S > L1共有下:E1 > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 72.74112459287646,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 S+E -> 赤L1下:S / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 49.54,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 54.89,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.28,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.98,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 69.74,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 72.74,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33509,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > 赤L1上:E1 > 赤L1上:E2 > L1共有上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 72.79934706956122,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.65,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.34,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 47.7,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.04,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.6,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.29,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.05,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.8,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33513,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > L1共有上:E2 > 赤L1上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 72.79934706956122,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.28,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E2 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 47.73,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.08,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.6,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.29,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.05,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.8,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44999,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1下:E1 / 赤L1下:E2",
+    "pairLabel": "L1共有下+赤L1下",
+    "orderLabel": "赤L1下:E1 > 赤L1下:E2 > L1共有下:E1 > 赤L1下:S > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 72.80586065847733,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1下:E1 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 29.98,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.58,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 37.64,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E1 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.54,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 55.29,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.35,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.04,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 69.81,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 72.81,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33514,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > 赤L1上:E2 > L1共有上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 72.8382504264417,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.28,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 47.33,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.68,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.24,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.93,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.09,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 72.84,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33527,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > 赤L1下:E1 > L1共有上:E2 > 赤L1下:E2 > 赤L1下:S > L1共有上:S",
+    "sanctuaryAt": 72.85214305930785,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 33,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 37.05,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 41.75,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 47.51,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.72,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.78,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.47,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1下:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 67.24,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      },
+      {
+        "time": 72.85,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44856,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 72.90123329210915,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.32,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.57,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 50.93,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 53.93,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.45,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.14,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 69.9,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 72.9,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45384,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 72.90123329210915,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 44.23,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 53.19,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.7,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.4,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.15,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.9,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45398,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有上:E1 > L1共有上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 72.90123329210915,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.57,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.09,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.78,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 53.15,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.7,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.4,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.15,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 72.9,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44851,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1上:E2 > 赤L1上:S",
+    "sanctuaryAt": 72.94013664898964,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.32,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 40.88,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.57,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.33,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.33,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.89,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.58,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 69.94,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 72.94,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44965,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > 赤L1上:E1 > L1共有下:E2 > L1共有下:S > 赤L1上:E2 > 赤L1上:S",
+    "sanctuaryAt": 73.01956757885938,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.6,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 42.12,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 46.81,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 52.58,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.58,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.97,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.66,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 70.02,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 73.02,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45503,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1上:E1 > 赤L1上:E2 > L1共有下:S > 赤L1上:S",
+    "sanctuaryAt": 73.01956757885938,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.07,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 48.43,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 52.03,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.55,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.24,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 67.4,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 73.02,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45517,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有下:E1 > L1共有下:E2 > L1共有下:S > 赤L1上:S",
+    "sanctuaryAt": 73.01956757885938,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.57,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.09,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.78,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 53.15,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.55,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.24,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 67.4,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 73.02,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33634,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有下:E1 > 赤L1上:E2 > L1共有下:E2 > L1共有下:S > 赤L1上:S",
+    "sanctuaryAt": 73.1183837111615,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.59,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 36.99,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 41.68,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 47.03,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.25,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.65,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.34,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有下:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 67.5,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 73.12,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33507,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > 赤L1上:E1 > L1共有上:E2 > 赤L1上:E2 > 赤L1上:S > L1共有上:S",
+    "sanctuaryAt": 73.16611194592693,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.65,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.34,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E2 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 48.1,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.45,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.97,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.66,
+        "actor": "BR",
+        "text": "3回目 S+S -> 赤L1上:S / L1共有上:S を受け取り"
+      },
+      {
+        "time": 68.42,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 73.17,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44962,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有下+赤L1上",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > 赤L1上:E1 > L1共有下:S > 赤L1上:E2 > 赤L1上:S",
+    "sanctuaryAt": 73.19080306074683,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1上:E1 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.13,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 55.75,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 60.14,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.83,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 70.19,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 73.19,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33508,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > 赤L1上:E1 > 赤L1上:E2 > L1共有上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 73.2050153028074,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 32.13,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.65,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 42.34,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E2 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 47.7,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.04,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.6,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.29,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.46,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.21,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33512,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > L1共有上:E1 > L1共有上:E2 > 赤L1上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 73.2050153028074,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 26.37,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 31.72,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 37.28,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E2 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 47.73,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.08,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.6,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.29,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.46,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.21,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 33526,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E2 | 2:E2 | 3:S2",
+    "firstTr": "E2",
+    "firstTrCounts": "E2",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1下:E1",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > 赤L1下:E1 > L1共有上:E2 > 赤L1下:E2 > L1共有上:S > 赤L1下:S",
+    "sanctuaryAt": 73.25062880235532,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 9.95,
+        "actor": "TR",
+        "text": "1便目 Earthを2個取得"
+      },
+      {
+        "time": 18.22,
+        "actor": "TR",
+        "text": "1便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 21.02,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 26.78,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 28.89,
+        "actor": "TR",
+        "text": "2便目 Earthを2個取得"
+      },
+      {
+        "time": 33,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 37.05,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E2 をTransferへ搬送"
+      },
+      {
+        "time": 41.75,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E2 / 赤L1下:E2 を受け取り"
+      },
+      {
+        "time": 47.51,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 53.72,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.78,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.47,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 67.64,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.25,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44861,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1下:E1 > 赤L1下:E2 > 赤L1下:S",
+    "sanctuaryAt": 73.26604009994331,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 44.77,
+        "actor": "BR",
+        "text": "2回目 S+E -> L1共有上:S / 赤L1下:E1 を受け取り"
+      },
+      {
+        "time": 49.94,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 56.15,
+        "actor": "BR",
+        "text": "赤L1下 1段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 60.21,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.9,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1下:E2 / 赤L1下:S を受け取り"
+      },
+      {
+        "time": 70.27,
+        "actor": "BR",
+        "text": "赤L1下 2段目Earth配置"
+      },
+      {
+        "time": 73.27,
+        "actor": "BR",
+        "text": "赤L1下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44850,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > 赤L1上:E1 > 赤L1上:E2 > 赤L1上:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 73.26799816847485,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.73,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 41.25,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.94,
+        "actor": "BR",
+        "text": "2回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.3,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 54.3,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.81,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.51,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 70.27,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 73.27,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45383,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > 赤L1上:E1 > 赤L1上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 73.30690152535533,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 44.23,
+        "actor": "BR",
+        "text": "2回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.59,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 53.19,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.7,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.4,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.56,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.31,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45397,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> 赤L1上:E1 / 赤L1上:E2",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "赤L1上:E1 > 赤L1上:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > 赤L1上:S",
+    "sanctuaryAt": 73.30690152535533,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> 赤L1上:E1 / 赤L1上:E2 を受け取り"
+      },
+      {
+        "time": 29.97,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 33.57,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.09,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.78,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.55,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 53.15,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 58.7,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 63.4,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 68.56,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.31,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44845,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / 赤L1上:E1",
+    "pairLabel": "L1共有上+赤L1上",
+    "orderLabel": "L1共有上:E1 > 赤L1上:E1 > L1共有上:E2 > L1共有上:S > 赤L1上:E2 > 赤L1上:S",
+    "sanctuaryAt": 73.30690152535534,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / 赤L1上:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 35.73,
+        "actor": "BR",
+        "text": "赤L1上 1段目Earth配置"
+      },
+      {
+        "time": 41.25,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.94,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.7,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.7,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 60.26,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.95,
+        "actor": "BR",
+        "text": "3回目 E+S -> 赤L1上:E2 / 赤L1上:S を受け取り"
+      },
+      {
+        "time": 70.31,
+        "actor": "BR",
+        "text": "赤L1上 2段目Earth配置"
+      },
+      {
+        "time": 73.31,
+        "actor": "BR",
+        "text": "赤L1上 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45363,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有上:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有上:E1 > L1共有上:E2 > L1共有下:E1 > L1共有下:E2 > L1共有上:S > L1共有下:S",
+    "sanctuaryAt": 73.31836504873965,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 39.54,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 44.23,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 49.99,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 53.59,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 67.84,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.32,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44825,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有上:E1 / L1共有下:E1",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有上:E1 > L1共有下:E1 > L1共有上:E2 > L1共有上:S > L1共有下:E2 > L1共有下:S",
+    "sanctuaryAt": 73.31836504873966,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有上:E1 / L1共有下:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.45,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 40.85,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 45.54,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 51.3,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 54.3,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.86,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.55,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 70.32,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 73.32,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 45377,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:E1 | 3:S2",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有下:E2",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有下:E1 > L1共有下:E2 > L1共有上:E1 > L1共有上:E2 > L1共有上:S > L1共有下:S",
+    "sanctuaryAt": 73.31836504873966,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有下:E2 を受け取り"
+      },
+      {
+        "time": 30.09,
+        "actor": "TR",
+        "text": "2便目 Earthを1個取得"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.98,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 37.16,
+        "actor": "TR",
+        "text": "2便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 38.38,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 43.07,
+        "actor": "BR",
+        "text": "2回目 E+E -> L1共有上:E1 / L1共有上:E2 を受け取り"
+      },
+      {
+        "time": 48.44,
+        "actor": "TR",
+        "text": "3便目 Skyを2個取得"
+      },
+      {
+        "time": 48.83,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 52.43,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 57.99,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 62.68,
+        "actor": "BR",
+        "text": "3回目 S+S -> L1共有上:S / L1共有下:S を受け取り"
+      },
+      {
+        "time": 67.84,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      },
+      {
+        "time": 73.32,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      }
+    ]
+  },
+  {
+    "caseId": 44836,
+    "speedLabel": "同等",
+    "speedFactor": 1,
+    "trScheduleLabel": "1:E3 | 2:S2 | 3:E1",
+    "firstTr": "E3",
+    "firstTrCounts": "E3",
+    "trips": 3,
+    "firstBrSortie": "E+E -> L1共有下:E1 / L1共有上:E1",
+    "pairLabel": "L1共有上+L1共有下",
+    "orderLabel": "L1共有下:E1 > L1共有上:E1 > L1共有下:E2 > L1共有下:S > L1共有上:E2 > L1共有上:S",
+    "sanctuaryAt": 73.32222905554143,
+    "completed": true,
+    "towerScore": 140,
+    "transferPoints": 30,
+    "openingScore": 170,
+    "towerScoreAt180": 140,
+    "transferPointsAt180": 30,
+    "scoreAt180": 170,
+    "events": [
+      {
+        "time": 8.4,
+        "actor": "BR",
+        "text": "1回目 ホームで認識停止"
+      },
+      {
+        "time": 12.35,
+        "actor": "TR",
+        "text": "1便目 Earthを3個取得"
+      },
+      {
+        "time": 21.82,
+        "actor": "TR",
+        "text": "1便目 E3 をTransferへ搬送"
+      },
+      {
+        "time": 24.62,
+        "actor": "BR",
+        "text": "1回目 E+E -> L1共有下:E1 / L1共有上:E1 を受け取り"
+      },
+      {
+        "time": 30.38,
+        "actor": "BR",
+        "text": "L1共有下 1段目Earth配置"
+      },
+      {
+        "time": 33.1,
+        "actor": "TR",
+        "text": "2便目 Skyを2個取得"
+      },
+      {
+        "time": 36.46,
+        "actor": "BR",
+        "text": "L1共有上 1段目Earth配置"
+      },
+      {
+        "time": 41.97,
+        "actor": "TR",
+        "text": "2便目 S2 をTransferへ搬送"
+      },
+      {
+        "time": 42.01,
+        "actor": "BR",
+        "text": "2回目 ホームで認識停止"
+      },
+      {
+        "time": 46.71,
+        "actor": "BR",
+        "text": "2回目 E+S -> L1共有下:E2 / L1共有下:S を受け取り"
+      },
+      {
+        "time": 50.25,
+        "actor": "TR",
+        "text": "3便目 Earthを1個取得"
+      },
+      {
+        "time": 52.47,
+        "actor": "BR",
+        "text": "L1共有下 2段目Earth配置"
+      },
+      {
+        "time": 55.47,
+        "actor": "BR",
+        "text": "L1共有下 Sky配置"
+      },
+      {
+        "time": 57.32,
+        "actor": "TR",
+        "text": "3便目 E1 をTransferへ搬送"
+      },
+      {
+        "time": 59.87,
+        "actor": "BR",
+        "text": "3回目 ホームで認識停止"
+      },
+      {
+        "time": 64.56,
+        "actor": "BR",
+        "text": "3回目 E+S -> L1共有上:E2 / L1共有上:S を受け取り"
+      },
+      {
+        "time": 70.32,
+        "actor": "BR",
+        "text": "L1共有上 2段目Earth配置"
+      },
+      {
+        "time": 73.32,
+        "actor": "BR",
+        "text": "L1共有上 Sky配置"
+      }
+    ]
+  }
+]

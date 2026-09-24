@@ -1,0 +1,157 @@
+{
+  "createdAt": "2026-09-23T15:23:33.472Z",
+  "purpose": "Policy diagnosis under the current engine including direct Mustika handoff; no exhaustive search or probabilistic win-rate estimate.",
+  "dt": 0.05,
+  "duration": 180,
+  "sourceHashes": {
+    "engine.js": "a36577134bec370441950a4b010baa5058db6cdf9bbfbfa1d4dc956e4934a776",
+    "field.js": "1aa21ce5b6897a26d14c680dface9b0ed29c1f27317a0b496e025561968d1136",
+    "controllers.js": "e656c8a79baf8870cadccd0ba2458bdaea701fadff61c913506785d9a6e9d803",
+    "score-planner.js": "411087355f542e913edadb2f6e29d748f9bd2799a98d8c4d63fa84e4daaee560",
+    "efficient-strategy.js": "5a472d6d2a2781cdad5f6537e09edcc8cf70a9171a988407812f5fa8b710be6a",
+    "match-strategies.js": "c9bf88fbfeb2cdccd202c067460864f0e7522573db132f6fde3c4ece53071dde"
+  },
+  "scenarios": [
+    {
+      "id": "mustika-fast-vs-mustika-fast-r1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "mustika-fast-vs-mustika-fast-r0.75",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "mustika-fast-vs-mustika-fast-r0.5",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "mustika-fast-vs-earth-late-r1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "earth-late"
+      }
+    },
+    {
+      "id": "mustika-fast-vs-earth-late-r0.75",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "earth-late"
+      }
+    },
+    {
+      "id": "mustika-fast-vs-earth-late-r0.5",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueBrPlan": "earth-late"
+      }
+    },
+    {
+      "id": "earth-late-vs-mustika-fast-r1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "earth-late-vs-mustika-fast-r0.75",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "earth-late-vs-mustika-fast-r0.5",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "mustika-fast"
+      }
+    },
+    {
+      "id": "earth-late-vs-earth-late-r1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "earth-late"
+      }
+    },
+    {
+      "id": "earth-late-vs-earth-late-r0.75",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "earth-late"
+      }
+    },
+    {
+      "id": "earth-late-vs-earth-late-r0.5",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "stock-e3",
+        "blueTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueBrPlan": "earth-late"
+      }
+    }
+  ],
+  "metricNotes": [
+    "Robot-time categories are sampled every 0.05 simulated seconds.",
+    "Construction departures contain at least one place instruction; flip-only and Mustika trips are excluded from one/two-block counts.",
+    "Diagnostics may inspect actual future arrivals, but that information is never passed to a controller.",
+    "One-step-to-sanctuary refers only to observed tower shape and ownership, not cargo availability or a guaranteed completion time.",
+    "All scenarios are deterministic. Color-swapped scenarios change both the slow side and physical initial positions.",
+    "Each step checks object IDs, cargo ownership/capacity, legal body position and typed stock. Mustika pickups require recorded two-tower/shared evidence.",
+    "Efficient ordinary construction departures must carry and place two blocks; local recovery is counted separately."
+  ]
+}

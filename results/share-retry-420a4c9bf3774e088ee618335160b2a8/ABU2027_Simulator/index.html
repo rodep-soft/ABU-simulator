@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ABU Robocon 2027 Strategy Simulator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>ABU Robocon 2027 戦略シミュレータ</h1>
+        <p class="subhead">TR/BRの搬送・認識停止・建設・反転・ムスティカを3分間で再生</p>
+        <p><a href="field-simulator.html">新しいフィールド検証アプリを開く</a></p>
+      </div>
+      <div class="clock-card" aria-live="polite">
+        <span id="match-time">3:00.0</span>
+        <div class="time-track" aria-hidden="true">
+          <div id="time-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="scoreboard" aria-live="polite">
+      <article class="team-summary red-team">
+        <div class="team-heading">
+          <span>赤チーム</span>
+          <strong id="red-score">0</strong>
+        </div>
+        <div class="score-detail" id="red-breakdown">搬送 0 / 建設 0 / ムスティカ 0</div>
+        <div class="team-flags">
+          <span id="red-sanctuary" class="flag">Sanctuary 未達</span>
+          <span id="red-action" class="flag quiet">待機</span>
+        </div>
+      </article>
+      <article class="team-summary blue-team">
+        <div class="team-heading">
+          <span>青チーム</span>
+          <strong id="blue-score">0</strong>
+        </div>
+        <div class="score-detail" id="blue-breakdown">搬送 0 / 建設 0 / ムスティカ 0</div>
+        <div class="team-flags">
+          <span id="blue-sanctuary" class="flag">Sanctuary 未達</span>
+          <span id="blue-action" class="flag quiet">待機</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <div class="field-wrap">
+        <svg id="field" viewBox="0 0 100 100" role="img" aria-labelledby="field-title field-desc">
+          <title id="field-title">Robocon 2027 simulation field</title>
+          <desc id="field-desc">SolidWorksモデル由来のフィールド画像を背景にし、ロボット、移動軌跡、建設スポット状態を重ねて表示します。</desc>
+          <image class="field-photo" href="assets/solidworks-field-top.png" x="0" y="0" width="100" height="100" preserveAspectRatio="none"></image>
+          <rect class="field-image-border" x="0.8" y="0.8" width="98.4" height="98.4" rx="0.5"></rect>
+          <g class="field-annotations">
+            <text x="17.5" y="71" text-anchor="middle">坂</text>
+            <text x="82.5" y="71" text-anchor="middle">坂</text>
+            <text x="35.3" y="49.6" text-anchor="middle">階段</text>
+            <text x="64.7" y="49.6" text-anchor="middle">階段</text>
+          </g>
+          <g id="spot-layer"></g>
+          <g id="path-layer"></g>
+          <g id="robot-layer"></g>
+        </svg>
+      </div>
+
+      <aside class="side-panel">
+        <section class="panel-section">
+          <h2>試合操作</h2>
+          <div class="button-row">
+            <button id="play-toggle" type="button" class="primary">開始</button>
+            <button id="step-button" type="button">+10秒</button>
+            <button id="finish-button" type="button">3分通す</button>
+            <button id="reset-button" type="button">リセット</button>
+          </div>
+          <label class="field-control">
+            <span>再生倍率</span>
+            <select id="playback-rate">
+              <option value="1">1x</option>
+              <option value="5">5x</option>
+              <option value="20" selected>20x</option>
+              <option value="60">60x</option>
+            </select>
+          </label>
+          <label class="field-control">
+            <span>自チーム速度</span>
+            <select id="red-speed">
+              <option value="1" selected>相手と同等</option>
+              <option value="0.5">相手の1/2</option>
+              <option value="0.25">相手の1/4</option>
+            </select>
+          </label>
+          <label class="field-control">
+            <span>BR認識停止</span>
+            <input id="scan-time" type="range" min="0" max="8" step="0.5" value="3">
+            <strong id="scan-label">3.0秒</strong>
+          </label>
+        </section>
+
+        <section class="panel-section">
+          <h2>戦略プリセット</h2>
+          <label class="field-control">
+            <span>赤TR</span>
+            <select id="red-tr-strategy"></select>
+          </label>
+          <label class="field-control">
+            <span>赤BR</span>
+            <select id="red-br-strategy"></select>
+          </label>
+          <label class="field-control">
+            <span>青TR</span>
+            <select id="blue-tr-strategy"></select>
+          </label>
+          <label class="field-control">
+            <span>青BR</span>
+            <select id="blue-br-strategy"></select>
+          </label>
+        </section>
+
+        <section class="panel-section compact">
+          <h2>速度比較</h2>
+          <div class="button-row">
+            <button id="compare-button" type="button">3条件を計算</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>赤速度</th>
+                  <th>赤</th>
+                  <th>青</th>
+                  <th>差</th>
+                </tr>
+              </thead>
+              <tbody id="comparison-table">
+                <tr><td colspan="4">未計算</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h2>スポット指定</h2>
+          <div class="selected-spot" id="selected-spot">L1共有A</div>
+          <div class="button-row">
+            <button id="red-add-tower" type="button">赤タワー予約</button>
+            <button id="blue-add-tower" type="button">青タワー予約</button>
+          </div>
+          <div class="button-row">
+            <button id="red-add-flip" type="button">赤反転予約</button>
+            <button id="blue-add-flip" type="button">青反転予約</button>
+            <button id="clear-custom" type="button">予約クリア</button>
+          </div>
+        </section>
+
+        <section class="panel-section compact">
+          <h2>フィールド状態</h2>
+          <div id="stock-line" class="stock-line">Sky残 12 / Mustika 未搬送</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Spot</th>
+                  <th>1段</th>
+                  <th>2段</th>
+                  <th>Sky</th>
+                </tr>
+              </thead>
+              <tbody id="tower-table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel-section compact">
+          <h2>ログ</h2>
+          <ol id="event-log" class="event-log" aria-live="polite"></ol>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

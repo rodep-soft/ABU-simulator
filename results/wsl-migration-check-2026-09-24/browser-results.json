@@ -1,0 +1,95 @@
+{
+  "checks": [
+    {
+      "name": "file_url_initial_render",
+      "passed": true,
+      "details": {
+        "url": "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/field-simulator.html",
+        "title": "ABU 2027 フィールドシミュレーター",
+        "robots": 4,
+        "objects": 53,
+        "rate": "3",
+        "disabled": true,
+        "l2Option": true,
+        "scripts": [
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/vendor/astar.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/vendor/lucide.min.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/field.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/engine.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/score-planner.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/efficient-strategy.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/match-strategies.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/competitive-strategies.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/controllers.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/post-match-review.js",
+          "file:///home/senag/M2/robocon/ABU/robocon-strategy-sim/sim/view.js"
+        ],
+        "font": "\"Yu Gothic UI\", Meiryo, system-ui, sans-serif",
+        "canvas": {
+          "width": 826,
+          "height": 826
+        },
+        "tr": 5,
+        "br": 10,
+        "l2": [
+          {
+            "id": "u1",
+            "label": "L2左上",
+            "x": 4.25,
+            "y": 4.25,
+            "level": 2
+          },
+          {
+            "id": "u2",
+            "label": "L2右上",
+            "x": 6.75,
+            "y": 4.25,
+            "level": 2
+          },
+          {
+            "id": "u3",
+            "label": "L2左下",
+            "x": 4.25,
+            "y": 6.75,
+            "level": 2
+          },
+          {
+            "id": "u4",
+            "label": "L2右下",
+            "x": 6.75,
+            "y": 6.75,
+            "level": 2
+          }
+        ],
+        "homes": {
+          "red": {
+            "x": 4.35,
+            "y": 5.5
+          },
+          "blue": {
+            "x": 6.65,
+            "y": 5.5
+          }
+        }
+      }
+    },
+    {
+      "name": "l2_destinations_and_review_guard",
+      "passed": true
+    },
+    {
+      "name": "half_second_step",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "runtime_exceptions": [],
+  "network_failures": [],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/152.0.7977.64",
+    "revision": "@506c834ecceaa943c5f41e6cfe7f68acb5c45346",
+    "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "jsVersion": "15.2.124.18"
+  }
+}

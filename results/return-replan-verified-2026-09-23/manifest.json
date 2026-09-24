@@ -1,0 +1,134 @@
+{
+  "createdAt": "2026-09-23T14:46:57.848Z",
+  "purpose": "Policy diagnosis under the current engine including direct Mustika handoff; no exhaustive search or probabilistic win-rate estimate.",
+  "dt": 0.05,
+  "duration": 180,
+  "sourceHashes": {
+    "engine.js": "854add3e14f4b96b813d470fb29e452d05743cf420bd3d62dcf0ddca1f079667",
+    "field.js": "9e7b55a75e1934c5ef2eb20ba3bdd1f6f2942bd1febee0c86fe9851c46b047e4",
+    "controllers.js": "2db436a048d54e3979c0d024a4fe1c369d5535fdece75e2f69b0d59edc6fc39a",
+    "score-planner.js": "a986ada807ea36a68d7db3b1168a2603d013df973efab4fd436acc10d619a04e",
+    "efficient-strategy.js": "f5ee65f87b7df4078a82bceb2e6aeb8ebd9f39b220e43adc0da6265ad37573f5"
+  },
+  "scenarios": [
+    {
+      "id": "adaptive-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    }
+  ],
+  "metricNotes": [
+    "Robot-time categories are sampled every 0.05 simulated seconds.",
+    "Construction departures contain at least one place instruction; flip-only and Mustika trips are excluded from one/two-block counts.",
+    "Diagnostics may inspect actual future arrivals, but that information is never passed to a controller.",
+    "One-step-to-sanctuary refers only to observed tower shape and ownership, not cargo availability or a guaranteed completion time.",
+    "All scenarios are deterministic. Color-swapped scenarios change both the slow side and physical initial positions.",
+    "Each step checks object IDs, cargo ownership/capacity, legal body position and typed stock. Mustika pickups require recorded two-tower/shared evidence.",
+    "Efficient ordinary construction departures must carry and place two blocks; local recovery is counted separately."
+  ]
+}

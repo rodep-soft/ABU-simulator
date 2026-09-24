@@ -1,0 +1,132 @@
+{
+  "createdAt": "2026-09-23T13:50:11.836Z",
+  "purpose": "Policy diagnosis under the current engine including direct Mustika handoff; no exhaustive search or probabilistic win-rate estimate.",
+  "dt": 0.05,
+  "duration": 180,
+  "sourceHashes": {
+    "engine.js": "86c145c56f2f7ef371f47e08c402e5df0d0b27c353ea14b767d9b9488308ac6b",
+    "field.js": "04585cbda96eb9efed32faa14c8273585ecce4fceabd31e1e62576442da6d7fd",
+    "controllers.js": "2ab36f7d7d3649fff7cad497d3d97c522a9eb9832a6cc35b15c00b1cfa3308c2",
+    "score-planner.js": "39498c8bba5e2f4da7fa2712dda855cb5f8eb8641b1371dd91f6a5b8f5e4416e",
+    "efficient-strategy.js": "a9593796c0ddcadcb63763d089ba4b975b9949345310d4d2c2d64b667621e664"
+  },
+  "scenarios": [
+    {
+      "id": "adaptive-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "adaptive",
+        "blueTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    },
+    {
+      "id": "adaptive-e3-e1s2-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "adaptive-e3-e1s2",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "efficient",
+        "blueBrPlan": "efficient"
+      }
+    }
+  ],
+  "metricNotes": [
+    "Robot-time categories are sampled every 0.05 simulated seconds.",
+    "Construction departures contain at least one place instruction; flip-only and Mustika trips are excluded from one/two-block counts.",
+    "Diagnostics may inspect actual future arrivals, but that information is never passed to a controller.",
+    "One-step-to-sanctuary refers only to observed tower shape and ownership, not cargo availability or a guaranteed completion time.",
+    "All scenarios are deterministic. Color-swapped scenarios change both the slow side and physical initial positions."
+  ]
+}

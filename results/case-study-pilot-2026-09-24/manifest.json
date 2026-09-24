@@ -1,0 +1,453 @@
+{
+  "createdAt": "2026-09-24T00:39:09.464Z",
+  "pilot": true,
+  "hashes": {
+    "sim/engine.js": "a36577134bec370441950a4b010baa5058db6cdf9bbfbfa1d4dc956e4934a776",
+    "sim/field.js": "1aa21ce5b6897a26d14c680dface9b0ed29c1f27317a0b496e025561968d1136",
+    "sim/controllers.js": "e656c8a79baf8870cadccd0ba2458bdaea701fadff61c913506785d9a6e9d803",
+    "sim/score-planner.js": "411087355f542e913edadb2f6e29d748f9bd2799a98d8c4d63fa84e4daaee560",
+    "sim/efficient-strategy.js": "5a472d6d2a2781cdad5f6537e09edcc8cf70a9171a988407812f5fa8b710be6a",
+    "sim/match-strategies.js": "c9bf88fbfeb2cdccd202c067460864f0e7522573db132f6fde3c4ece53071dde",
+    "tools/case-study-core.cjs": "10f6d5c12a7e426c41a6a2114a90bb07dbfd23d7299f25f6e8b3df1f66dba16e"
+  },
+  "scope": "All registered TR x BR pairs, ordered red/blue pairs, speed pairs 1:1, 3/4:1, 1:3/4, 1/2:1, 1:1/2. Not exhaustive action search.",
+  "total": 16,
+  "dt": 0.05,
+  "duration": 180,
+  "profiles": [
+    {
+      "id": "T1B1",
+      "tr": "balanced",
+      "br": "score-search",
+      "trName": "毎便 E2+S1",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T1B2",
+      "tr": "balanced",
+      "br": "basic",
+      "trName": "毎便 E2+S1",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T1B3",
+      "tr": "balanced",
+      "br": "split-seed",
+      "trName": "毎便 E2+S1",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T1B4",
+      "tr": "balanced",
+      "br": "efficient",
+      "trName": "毎便 E2+S1",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T1B5",
+      "tr": "balanced",
+      "br": "mustika-fast",
+      "trName": "毎便 E2+S1",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T1B6",
+      "tr": "balanced",
+      "br": "earth-late",
+      "trName": "毎便 E2+S1",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T2B1",
+      "tr": "e3-e1s2",
+      "br": "score-search",
+      "trName": "E3 → E1+S2",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T2B2",
+      "tr": "e3-e1s2",
+      "br": "basic",
+      "trName": "E3 → E1+S2",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T2B3",
+      "tr": "e3-e1s2",
+      "br": "split-seed",
+      "trName": "E3 → E1+S2",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T2B4",
+      "tr": "e3-e1s2",
+      "br": "efficient",
+      "trName": "E3 → E1+S2",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T2B5",
+      "tr": "e3-e1s2",
+      "br": "mustika-fast",
+      "trName": "E3 → E1+S2",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T2B6",
+      "tr": "e3-e1s2",
+      "br": "earth-late",
+      "trName": "E3 → E1+S2",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T3B1",
+      "tr": "adaptive",
+      "br": "score-search",
+      "trName": "必要量補給",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T3B2",
+      "tr": "adaptive",
+      "br": "basic",
+      "trName": "必要量補給",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T3B3",
+      "tr": "adaptive",
+      "br": "split-seed",
+      "trName": "必要量補給",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T3B4",
+      "tr": "adaptive",
+      "br": "efficient",
+      "trName": "必要量補給",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T3B5",
+      "tr": "adaptive",
+      "br": "mustika-fast",
+      "trName": "必要量補給",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T3B6",
+      "tr": "adaptive",
+      "br": "earth-late",
+      "trName": "必要量補給",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T4B1",
+      "tr": "adaptive-e3-e1s2",
+      "br": "score-search",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T4B2",
+      "tr": "adaptive-e3-e1s2",
+      "br": "basic",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T4B3",
+      "tr": "adaptive-e3-e1s2",
+      "br": "split-seed",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T4B4",
+      "tr": "adaptive-e3-e1s2",
+      "br": "efficient",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T4B5",
+      "tr": "adaptive-e3-e1s2",
+      "br": "mustika-fast",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T4B6",
+      "tr": "adaptive-e3-e1s2",
+      "br": "earth-late",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T5B1",
+      "tr": "stock-e3",
+      "br": "score-search",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T5B2",
+      "tr": "stock-e3",
+      "br": "basic",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T5B3",
+      "tr": "stock-e3",
+      "br": "split-seed",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T5B4",
+      "tr": "stock-e3",
+      "br": "efficient",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T5B5",
+      "tr": "stock-e3",
+      "br": "mustika-fast",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T5B6",
+      "tr": "stock-e3",
+      "br": "earth-late",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "L2 Earth → Sky"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "T1B1-T1B1-r1-b1",
+      "red": "T1B1",
+      "blue": "T1B1",
+      "config": {
+        "redTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueTrPlan": "balanced",
+        "blueBrPlan": "score-search",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T1B6-T1B6-r1-b1",
+      "red": "T1B6",
+      "blue": "T1B6",
+      "config": {
+        "redTrPlan": "balanced",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "balanced",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T2B5-T2B5-r1-b1",
+      "red": "T2B5",
+      "blue": "T2B5",
+      "config": {
+        "redTrPlan": "e3-e1s2",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "e3-e1s2",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T3B4-T3B4-r1-b1",
+      "red": "T3B4",
+      "blue": "T3B4",
+      "config": {
+        "redTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueTrPlan": "adaptive",
+        "blueBrPlan": "efficient",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T4B3-T4B3-r1-b1",
+      "red": "T4B3",
+      "blue": "T4B3",
+      "config": {
+        "redTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "split-seed",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "blueBrPlan": "split-seed",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B2-T5B2-r1-b1",
+      "red": "T5B2",
+      "blue": "T5B2",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "basic",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "basic",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B6-r1-b1",
+      "red": "T5B6",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T3B4-T2B2-r0.75-b1",
+      "red": "T3B4",
+      "blue": "T2B2",
+      "config": {
+        "redTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueTrPlan": "e3-e1s2",
+        "blueBrPlan": "basic",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B4-T1B1-r0.75-b1",
+      "red": "T5B4",
+      "blue": "T1B1",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "efficient",
+        "blueTrPlan": "balanced",
+        "blueBrPlan": "score-search",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T3B2-T2B5-r1-b0.75",
+      "red": "T3B2",
+      "blue": "T2B5",
+      "config": {
+        "redTrPlan": "adaptive",
+        "redBrPlan": "basic",
+        "blueTrPlan": "e3-e1s2",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B5-T2B5-r1-b0.75",
+      "red": "T5B5",
+      "blue": "T2B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "e3-e1s2",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T2B5-T2B5-r0.5-b1",
+      "red": "T2B5",
+      "blue": "T2B5",
+      "config": {
+        "redTrPlan": "e3-e1s2",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "e3-e1s2",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B3-T4B3-r0.5-b1",
+      "red": "T5B3",
+      "blue": "T4B3",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "split-seed",
+        "blueTrPlan": "adaptive-e3-e1s2",
+        "blueBrPlan": "split-seed",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T3B4-T1B1-r1-b0.5",
+      "red": "T3B4",
+      "blue": "T1B1",
+      "config": {
+        "redTrPlan": "adaptive",
+        "redBrPlan": "efficient",
+        "blueTrPlan": "balanced",
+        "blueBrPlan": "score-search",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T4B3-T1B1-r1-b0.5",
+      "red": "T4B3",
+      "blue": "T1B1",
+      "config": {
+        "redTrPlan": "adaptive-e3-e1s2",
+        "redBrPlan": "split-seed",
+        "blueTrPlan": "balanced",
+        "blueBrPlan": "score-search",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B6-T5B6-r1-b0.5",
+      "red": "T5B6",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    }
+  ],
+  "timelineColumns": [
+    "time",
+    "redScore",
+    "blueScore",
+    "redTransfer",
+    "blueTransfer",
+    "redMustika",
+    "blueMustika",
+    "redSecureFloor",
+    "blueOptimisticCeiling",
+    "blueSecureFloor",
+    "redOptimisticCeiling"
+  ],
+  "guaranteeAssumptions": "Model only; preserve own valid Earth, private Sky and enshrined Mustika. Shared Sky discarded. Opponent given unlimited material, zero travel/scan and a free ongoing action. Unsupported actions, interference, tipping and referee discretion excluded."
+}

@@ -1,0 +1,131 @@
+{
+  "createdAt": "2026-09-23T13:13:21.206Z",
+  "purpose": "Baseline diagnosis only; no policies changed; no exhaustive search or probabilistic win-rate estimate.",
+  "dt": 0.05,
+  "duration": 180,
+  "sourceHashes": {
+    "engine.js": "ecef7a23d18a9a2adf2caceb66dfd33228e88bc38d8451cd6afda0f704f3ad25",
+    "field.js": "04585cbda96eb9efed32faa14c8273585ecce4fceabd31e1e62576442da6d7fd",
+    "controllers.js": "ba7b53d0acfb2e3e143bea83dfe5cdb33eb8c4c3a8b1f33b88bec7ed204b6663",
+    "score-planner.js": "ea1500b0316ce1bc9b71d5629ee1f881d0c9df949d95d5f7f6e4128129847a38"
+  },
+  "scenarios": [
+    {
+      "id": "balanced-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "balanced",
+        "blueTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "balanced-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "balanced",
+        "blueTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "balanced-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "balanced",
+        "blueTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "balanced-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "balanced",
+        "blueTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "balanced-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "balanced",
+        "blueTrPlan": "balanced",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "e3-e1s2-r1-b1",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 1,
+        "redTrPlan": "e3-e1s2",
+        "blueTrPlan": "e3-e1s2",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "e3-e1s2-r0.75-b1",
+      "config": {
+        "redSpeed": 0.75,
+        "blueSpeed": 1,
+        "redTrPlan": "e3-e1s2",
+        "blueTrPlan": "e3-e1s2",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "e3-e1s2-r1-b0.75",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.75,
+        "redTrPlan": "e3-e1s2",
+        "blueTrPlan": "e3-e1s2",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "e3-e1s2-r0.5-b1",
+      "config": {
+        "redSpeed": 0.5,
+        "blueSpeed": 1,
+        "redTrPlan": "e3-e1s2",
+        "blueTrPlan": "e3-e1s2",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    },
+    {
+      "id": "e3-e1s2-r1-b0.5",
+      "config": {
+        "redSpeed": 1,
+        "blueSpeed": 0.5,
+        "redTrPlan": "e3-e1s2",
+        "blueTrPlan": "e3-e1s2",
+        "redBrPlan": "score-search",
+        "blueBrPlan": "score-search"
+      }
+    }
+  ],
+  "metricNotes": [
+    "Robot-time categories are sampled every 0.05 simulated seconds.",
+    "Construction departures contain at least one place instruction; flip-only and Mustika trips are excluded from one/two-block counts.",
+    "Diagnostics may inspect actual future arrivals, but that information is never passed to a controller.",
+    "One-step-to-sanctuary refers only to observed tower shape and ownership, not cargo availability or a guaranteed completion time.",
+    "All scenarios are deterministic. Color-swapped scenarios change both the slow side and physical initial positions."
+  ]
+}

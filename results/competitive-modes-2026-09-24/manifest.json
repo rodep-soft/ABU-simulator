@@ -1,0 +1,1133 @@
+{
+  "createdAt": "2026-09-24T01:18:06.356Z",
+  "pilot": false,
+  "competitive": true,
+  "hashes": {
+    "sim/engine.js": "f5ba09b1bff9a6fee458e056c2bf30e84ae3c0c2b206d9eb0385d9f58eeb3e7a",
+    "sim/field.js": "1aa21ce5b6897a26d14c680dface9b0ed29c1f27317a0b496e025561968d1136",
+    "sim/controllers.js": "4e071f09f94ce8486e179b840659c6c749f614ea2860c4a76d470e99a970b693",
+    "sim/score-planner.js": "a5a8c4cf9b6dd7871c39d671b9f06f6d33714c59ed8c12e3012ede34db463eaf",
+    "sim/efficient-strategy.js": "d8667b3390cc76f7747121b3f0513b3b5dbc789fbf78bbcc145ff8edeeb82634",
+    "sim/match-strategies.js": "c9bf88fbfeb2cdccd202c067460864f0e7522573db132f6fde3c4ece53071dde",
+    "sim/competitive-strategies.js": "96894b0022c7becd97bbb2cdc7b13c565cb7bfc51d3c866a68ef2bc5a78ae136",
+    "tools/case-study-core.cjs": "13932c9b42873db1119aff1c8c6e827ad42ad2c92e0f9212a8df2c8a69923009",
+    "tools/case-study-cache.cjs": "0187fd65e460cd0247cb75c5b2f25343cd5ea15c771ff459ace6641de2107b2f"
+  },
+  "scope": "Three new BR policies versus two previous modes; stock-e3 TR; ordered colors; five speed pairs. Not exhaustive action search.",
+  "total": 60,
+  "dt": 0.05,
+  "duration": 180,
+  "profiles": [
+    {
+      "id": "T1B1",
+      "tr": "balanced",
+      "br": "score-search",
+      "trName": "毎便 E2+S1",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T1B2",
+      "tr": "balanced",
+      "br": "basic",
+      "trName": "毎便 E2+S1",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T1B3",
+      "tr": "balanced",
+      "br": "split-seed",
+      "trName": "毎便 E2+S1",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T1B4",
+      "tr": "balanced",
+      "br": "efficient",
+      "trName": "毎便 E2+S1",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T1B5",
+      "tr": "balanced",
+      "br": "mustika-fast",
+      "trName": "毎便 E2+S1",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T1B6",
+      "tr": "balanced",
+      "br": "earth-late",
+      "trName": "毎便 E2+S1",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T1B7",
+      "tr": "balanced",
+      "br": "second-layer",
+      "trName": "毎便 E2+S1",
+      "brName": "2段目＋Sky"
+    },
+    {
+      "id": "T1B8",
+      "tr": "balanced",
+      "br": "score-adaptive",
+      "trName": "毎便 E2+S1",
+      "brName": "点差で専有／共有"
+    },
+    {
+      "id": "T1B9",
+      "tr": "balanced",
+      "br": "endgame",
+      "trName": "毎便 E2+S1",
+      "brName": "終盤反転・単体運搬"
+    },
+    {
+      "id": "T2B1",
+      "tr": "e3-e1s2",
+      "br": "score-search",
+      "trName": "E3 → E1+S2",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T2B2",
+      "tr": "e3-e1s2",
+      "br": "basic",
+      "trName": "E3 → E1+S2",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T2B3",
+      "tr": "e3-e1s2",
+      "br": "split-seed",
+      "trName": "E3 → E1+S2",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T2B4",
+      "tr": "e3-e1s2",
+      "br": "efficient",
+      "trName": "E3 → E1+S2",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T2B5",
+      "tr": "e3-e1s2",
+      "br": "mustika-fast",
+      "trName": "E3 → E1+S2",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T2B6",
+      "tr": "e3-e1s2",
+      "br": "earth-late",
+      "trName": "E3 → E1+S2",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T2B7",
+      "tr": "e3-e1s2",
+      "br": "second-layer",
+      "trName": "E3 → E1+S2",
+      "brName": "2段目＋Sky"
+    },
+    {
+      "id": "T2B8",
+      "tr": "e3-e1s2",
+      "br": "score-adaptive",
+      "trName": "E3 → E1+S2",
+      "brName": "点差で専有／共有"
+    },
+    {
+      "id": "T2B9",
+      "tr": "e3-e1s2",
+      "br": "endgame",
+      "trName": "E3 → E1+S2",
+      "brName": "終盤反転・単体運搬"
+    },
+    {
+      "id": "T3B1",
+      "tr": "adaptive",
+      "br": "score-search",
+      "trName": "必要量補給",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T3B2",
+      "tr": "adaptive",
+      "br": "basic",
+      "trName": "必要量補給",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T3B3",
+      "tr": "adaptive",
+      "br": "split-seed",
+      "trName": "必要量補給",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T3B4",
+      "tr": "adaptive",
+      "br": "efficient",
+      "trName": "必要量補給",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T3B5",
+      "tr": "adaptive",
+      "br": "mustika-fast",
+      "trName": "必要量補給",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T3B6",
+      "tr": "adaptive",
+      "br": "earth-late",
+      "trName": "必要量補給",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T3B7",
+      "tr": "adaptive",
+      "br": "second-layer",
+      "trName": "必要量補給",
+      "brName": "2段目＋Sky"
+    },
+    {
+      "id": "T3B8",
+      "tr": "adaptive",
+      "br": "score-adaptive",
+      "trName": "必要量補給",
+      "brName": "点差で専有／共有"
+    },
+    {
+      "id": "T3B9",
+      "tr": "adaptive",
+      "br": "endgame",
+      "trName": "必要量補給",
+      "brName": "終盤反転・単体運搬"
+    },
+    {
+      "id": "T4B1",
+      "tr": "adaptive-e3-e1s2",
+      "br": "score-search",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T4B2",
+      "tr": "adaptive-e3-e1s2",
+      "br": "basic",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T4B3",
+      "tr": "adaptive-e3-e1s2",
+      "br": "split-seed",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T4B4",
+      "tr": "adaptive-e3-e1s2",
+      "br": "efficient",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T4B5",
+      "tr": "adaptive-e3-e1s2",
+      "br": "mustika-fast",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T4B6",
+      "tr": "adaptive-e3-e1s2",
+      "br": "earth-late",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T4B7",
+      "tr": "adaptive-e3-e1s2",
+      "br": "second-layer",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "2段目＋Sky"
+    },
+    {
+      "id": "T4B8",
+      "tr": "adaptive-e3-e1s2",
+      "br": "score-adaptive",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "点差で専有／共有"
+    },
+    {
+      "id": "T4B9",
+      "tr": "adaptive-e3-e1s2",
+      "br": "endgame",
+      "trName": "E3 → E1+S2・適応",
+      "brName": "終盤反転・単体運搬"
+    },
+    {
+      "id": "T5B1",
+      "tr": "stock-e3",
+      "br": "score-search",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "得点探索"
+    },
+    {
+      "id": "T5B2",
+      "tr": "stock-e3",
+      "br": "basic",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "基本建設"
+    },
+    {
+      "id": "T5B3",
+      "tr": "stock-e3",
+      "br": "split-seed",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "共有1＋専有1"
+    },
+    {
+      "id": "T5B4",
+      "tr": "stock-e3",
+      "br": "efficient",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "まとめ運搬・M優先"
+    },
+    {
+      "id": "T5B5",
+      "tr": "stock-e3",
+      "br": "mustika-fast",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "Mustika最速案"
+    },
+    {
+      "id": "T5B6",
+      "tr": "stock-e3",
+      "br": "earth-late",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "L2 Earth → Sky"
+    },
+    {
+      "id": "T5B7",
+      "tr": "stock-e3",
+      "br": "second-layer",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "2段目＋Sky"
+    },
+    {
+      "id": "T5B8",
+      "tr": "stock-e3",
+      "br": "score-adaptive",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "点差で専有／共有"
+    },
+    {
+      "id": "T5B9",
+      "tr": "stock-e3",
+      "br": "endgame",
+      "trName": "E3 → 在庫E3/S4",
+      "brName": "終盤反転・単体運搬"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "T5B5-T5B7-r1-b1",
+      "red": "T5B5",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B8-r1-b1",
+      "red": "T5B5",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B9-r1-b1",
+      "red": "T5B5",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B7-r1-b1",
+      "red": "T5B6",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B8-r1-b1",
+      "red": "T5B6",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B9-r1-b1",
+      "red": "T5B6",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B5-r1-b1",
+      "red": "T5B7",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B6-r1-b1",
+      "red": "T5B7",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B5-r1-b1",
+      "red": "T5B8",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B6-r1-b1",
+      "red": "T5B8",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B5-r1-b1",
+      "red": "T5B9",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B6-r1-b1",
+      "red": "T5B9",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B7-r0.75-b1",
+      "red": "T5B5",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B8-r0.75-b1",
+      "red": "T5B5",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B9-r0.75-b1",
+      "red": "T5B5",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B7-r0.75-b1",
+      "red": "T5B6",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B8-r0.75-b1",
+      "red": "T5B6",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B9-r0.75-b1",
+      "red": "T5B6",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B5-r0.75-b1",
+      "red": "T5B7",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B6-r0.75-b1",
+      "red": "T5B7",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B5-r0.75-b1",
+      "red": "T5B8",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B6-r0.75-b1",
+      "red": "T5B8",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B5-r0.75-b1",
+      "red": "T5B9",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B6-r0.75-b1",
+      "red": "T5B9",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.75,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B7-r1-b0.75",
+      "red": "T5B5",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B5-T5B8-r1-b0.75",
+      "red": "T5B5",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B5-T5B9-r1-b0.75",
+      "red": "T5B5",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B6-T5B7-r1-b0.75",
+      "red": "T5B6",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B6-T5B8-r1-b0.75",
+      "red": "T5B6",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B6-T5B9-r1-b0.75",
+      "red": "T5B6",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B7-T5B5-r1-b0.75",
+      "red": "T5B7",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B7-T5B6-r1-b0.75",
+      "red": "T5B7",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B8-T5B5-r1-b0.75",
+      "red": "T5B8",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B8-T5B6-r1-b0.75",
+      "red": "T5B8",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B9-T5B5-r1-b0.75",
+      "red": "T5B9",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B9-T5B6-r1-b0.75",
+      "red": "T5B9",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.75
+      }
+    },
+    {
+      "id": "T5B5-T5B7-r0.5-b1",
+      "red": "T5B5",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B8-r0.5-b1",
+      "red": "T5B5",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B9-r0.5-b1",
+      "red": "T5B5",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B7-r0.5-b1",
+      "red": "T5B6",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B8-r0.5-b1",
+      "red": "T5B6",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B6-T5B9-r0.5-b1",
+      "red": "T5B6",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B5-r0.5-b1",
+      "red": "T5B7",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B7-T5B6-r0.5-b1",
+      "red": "T5B7",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B5-r0.5-b1",
+      "red": "T5B8",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B8-T5B6-r0.5-b1",
+      "red": "T5B8",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B5-r0.5-b1",
+      "red": "T5B9",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B9-T5B6-r0.5-b1",
+      "red": "T5B9",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 0.5,
+        "blueSpeed": 1
+      }
+    },
+    {
+      "id": "T5B5-T5B7-r1-b0.5",
+      "red": "T5B5",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B5-T5B8-r1-b0.5",
+      "red": "T5B5",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B5-T5B9-r1-b0.5",
+      "red": "T5B5",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "mustika-fast",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B6-T5B7-r1-b0.5",
+      "red": "T5B6",
+      "blue": "T5B7",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "second-layer",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B6-T5B8-r1-b0.5",
+      "red": "T5B6",
+      "blue": "T5B8",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "score-adaptive",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B6-T5B9-r1-b0.5",
+      "red": "T5B6",
+      "blue": "T5B9",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "earth-late",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "endgame",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B7-T5B5-r1-b0.5",
+      "red": "T5B7",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B7-T5B6-r1-b0.5",
+      "red": "T5B7",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "second-layer",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B8-T5B5-r1-b0.5",
+      "red": "T5B8",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B8-T5B6-r1-b0.5",
+      "red": "T5B8",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "score-adaptive",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B9-T5B5-r1-b0.5",
+      "red": "T5B9",
+      "blue": "T5B5",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "mustika-fast",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    },
+    {
+      "id": "T5B9-T5B6-r1-b0.5",
+      "red": "T5B9",
+      "blue": "T5B6",
+      "config": {
+        "redTrPlan": "stock-e3",
+        "redBrPlan": "endgame",
+        "blueTrPlan": "stock-e3",
+        "blueBrPlan": "earth-late",
+        "redSpeed": 1,
+        "blueSpeed": 0.5
+      }
+    }
+  ],
+  "timelineColumns": [
+    "time",
+    "redScore",
+    "blueScore",
+    "redTransfer",
+    "blueTransfer",
+    "redMustika",
+    "blueMustika",
+    "redSecureFloor",
+    "blueOptimisticCeiling",
+    "blueSecureFloor",
+    "redOptimisticCeiling"
+  ],
+  "guaranteeAssumptions": "Model only; preserve own valid Earth, private Sky and enshrined Mustika. Shared Sky discarded. Opponent given unlimited material, zero travel/scan and a free ongoing action. Unsupported actions, interference, tipping and referee discretion excluded."
+}
