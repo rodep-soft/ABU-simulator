@@ -28,6 +28,14 @@
   const DEFAULTS = { maxSpeed: 7, acceleration: 3.5, redSpeed: 1, blueSpeed: 1, redTrPlan: 'adaptive', blueTrPlan: 'adaptive', redBrPlan: 'efficient', blueBrPlan: 'efficient', bodySize: .5, rampFactor: .55, stairSpeed: .25, stairPause: .6, scanSeconds: 1, pickupSeconds: 1.5, placeSeconds: 2.5, brAutoRetrySeconds: 5 };
   const labels = { earth: 'Earth', sky: 'Sky', mustika: 'Mustika', scan: '停止・見渡し', unload: '受け渡しへ配置', receive: 'ブロック受取', return: '種類別置場へ返却', place: 'タワーへ配置', flip: 'Sky反転', enshrine: 'Mustika奉納', pickup: '採集', move: '移動', retry: 'リトライ', recover: '自Earth回収' };
   const mandateHeld = (state, team, time = Infinity) => Number.isFinite(state[team]) && state[team] >= 0 && state[team] <= time;
+  const transportTripIndex = transport => (transport?.completed || []).filter(d => d.items.some(o => o.type !== 'mustika')).length + (transport?.skippedTrips?.length || 0);
+  function normalizeTrTrips(trips = []) {
+    if (!Array.isArray(trips)) throw new TypeError('TR便指定は配列で指定してください');
+    return trips.map(slots => {
+      if (!Array.isArray(slots) || slots.length !== 3 || slots.some(type => !['earth', 'sky', 'none'].includes(type)) || slots.every(type => type === 'none')) throw new TypeError('TR各便はEarth / Sky / なしの3枠で、最低1個を指定してください');
+      return [...slots];
+    });
+  }
   const scanBudget = r => Math.max(1, r.cargo.length + Object.values(r.observation?.towers || {}).filter(t => t.at(-1)?.type === 'sky' && t.at(-1).color !== r.team && t.every(o => !o.touchedBy)).length);
   function completedTowers(tower, team) {
     return F.spots.filter(spot => {
@@ -53,17 +61,21 @@
   class Simulation {
     constructor(config = {}) {
       this.config = { ...DEFAULTS, ...config };
+      this.config.supplyMode = config.supplyMode ?? 'normal';
+      if (!['normal', 'ideal'].includes(this.config.supplyMode)) throw new TypeError('不明な補給モードです');
       for (const team of ['red', 'blue']) {
         const key = `${team}BrTurns`;
         this.config[key] = Array.isArray(config[key]) ? config[key].filter(id => typeof id === 'string' && id.length) : [];
+        this.config[`${team}TrTrips`] = normalizeTrTrips(config[`${team}TrTrips`]);
       }
       this.time = 0; this.ended = false; this.events = []; this.history = []; this.lastFrame = -1; this.version = 0; this.graphs = new Map();
       this.objects = initialObjects(); this.sanctuary = { red: null, blue: null }; this.sanctuaryEvidence = { red: null, blue: null }; this.transferPoints = { red: 0, blue: 0 };
+      if (this.config.supplyMode === 'ideal') for (const o of this.objects.filter(o => o.type === 'sky')) o.supplyTeam = o.x < 5.49 || o.id === 'S2' ? 'red' : 'blue';
       this.robots = [];
       for (const team of ['red', 'blue']) for (const role of ['TR', 'BR']) {
         this.robots.push({ id: `${team}${role}`, team, role, ...F.points[team][`start${role}`], z: 0, enteredL1: false, cargo: [], queue: [], job: null, auto: true, velocity: 0, wait: 0, blocked: 0, stall: null, retryPending: null, status: '開始待ち', observation: null, scanLoaded: false, batchRemaining: 0, brain: { stage: 'start' }, transport: { completed: [], pending: [] }, failure: null });
       }
-      this.log(null, '開始', '初期配置を確認しました', 'setup'); this.capture();
+      this.log(null, '開始', this.config.supplyMode === 'ideal' ? '箱の補給待ちなし · 有限在庫 / 自動補給の搬送点なし / TRはMustika担当' : '初期配置を確認しました', 'setup'); this.capture();
     }
     robot(id) { return this.robots.find(r => r.id === id); }
     brStrategy(team) { return this.config[`${team}BrTurns`][this.robot(`${team}BR`)?.brTurn?.completed || 0] || this.config[`${team}BrPlan`]; }
@@ -187,7 +199,7 @@
     view(robot) {
       const motion = Object.fromEntries(['maxSpeed', 'acceleration', 'bodySize', 'rampFactor', 'stairSpeed', 'stairPause', 'scanSeconds', 'pickupSeconds', 'placeSeconds'].map(key => [key, this.config[key]]));
       motion.speedFactor = this.config[`${robot.team}Speed`];
-      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], brPlan: this.brStrategy(robot.team) });
+      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], trTrips: this.config[`${robot.team}TrTrips`], supplyMode: this.config.supplyMode, brPlan: this.brStrategy(robot.team) });
     }
     changed() { this.version++; this.graphs.clear(); }
     mustikaOffer(team) {
@@ -307,6 +319,35 @@
         if (stack.length + reserved < slot.maxLayers && !stack.some(o => o.touchedBy) && (!stack.length || stack.at(-1).size >= object.size)) return { ...slot, layer: stack.length, z: .6 + stack.reduce((sum, o) => sum + o.height, 0) };
       }
       return null;
+    }
+    replenishIdealSupply() {
+      if (this.config.supplyMode !== 'ideal' || this.ended || this.time >= 180) return;
+      for (const team of ['red', 'blue']) {
+        const br = this.robot(`${team}BR`);
+        // The transfer strip is also the BR entry route. Do not fill it under a robot
+        // or change the top of a stack already selected for a receive sequence.
+        if (!br.enteredL1 || distance(br, F.points[team].transferBR) <= .75 || [br.job, ...br.queue].some(a => a?.type === 'receive')) continue;
+        for (const type of ['earth', 'sky']) {
+          let slot;
+          while (true) {
+            const o = this.availableSource(br, type).find(o => type === 'earth' ? o.team === team : o.supplyTeam === team);
+            if (!o || !(slot = this.freeSlot(team, o))) break;
+            if (this.robots.some(r => o.height + slot.z > r.z + .03 && slot.z < r.z + 1.2 && overlap(box(slot, o.size), box(r, this.config.bodySize + .015)))) break;
+            Object.assign(o, { location: 'transfer', transferTeam: team, holder: null, touchedBy: null, slot: slot.id, x: slot.x, y: slot.y, z: slot.z, layer: slot.layer });
+            // Record the first supply without inventing a physical TR delivery or points.
+            if (!o.deliveries.includes(team)) o.deliveries.push(team);
+            this.changed();
+            this.log(null, 'ideal-supply', `${team === 'red' ? '赤' : '青'}受渡へ自動補給 · ${o.id}`, 'supply', '', { team, objectId: o.id, objectType: type, transferPoints: 0 });
+          }
+        }
+      }
+    }
+    skipExhaustedTrip(r) {
+      if (this.ended || this.time >= 180 || r.role !== 'TR' || r.cargo.length || r.transport.pending.length || this.config.supplyMode !== 'normal') return;
+      const index = transportTripIndex(r.transport), slots = this.config[`${r.team}TrTrips`][index];
+      if (!slots || this.objects.some(o => o.location === 'source' && slots.includes(o.type) && (!o.team || o.team === r.team) && (o.type !== 'sky' || (r.team === 'red' ? o.x <= 5.51 : o.x >= 5.49)))) return;
+      (r.transport.skippedTrips ||= []).push({ index, time: this.time }); r.brain = { stage: 'start' };
+      this.log(r, 'trip-skipped', `指定${index + 1}便目 · 対象の供給元が枯渇`, 'supply', '', { index });
     }
     enqueue(id, actions, manual = false) {
       const r = this.robot(id); if (!r || this.ended) return false;
@@ -469,6 +510,7 @@
     step(dt = .05, controllers) {
       if (this.ended) return;
       dt = Math.min(.05, dt, 180 - this.time);
+      this.replenishIdealSupply();
       for (const r of this.robots) {
         if (!r.auto) { r.stall = null; r.retryPending = null; }
         if (r.retryPending) continue;
@@ -476,6 +518,7 @@
         if (!r.job && !r.queue.length && r.auto && controllers) {
           if (r.role === 'TR') this.observe(r);
           const response = controllers.next(this.view(r)); r.brain = response.brain;
+          if (response.skipTrip) this.skipExhaustedTrip(r);
           if (response.status) r.status = response.status;
           if (response.decision) {
             r.decision = clone(response.decision);
@@ -571,5 +614,5 @@
     capture(force = false) { if (force || Math.floor(this.time * 2) !== this.lastFrame) { this.lastFrame = Math.floor(this.time * 2); this.history.push(this.snapshot()); } }
     export() { return { format: 'robocon-field-sim-v1', config: this.config, assumptions: ['axis-aligned square body', 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo', 'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points', 'TR unloading reserves capacity for BR held blocks; any held Earth/Sky may be selected for unloading', 'efficient BR defaults to two useful normal blocks; endgame and l2-earth allow single-block fallbacks; Mustika, empty-handed flips and local recovery are exceptions', 'distinct observed Sky flips may be queued on one scan; this does not increase carry capacity', 'phase policies switch at the next planning decision on or after 150 seconds; l2-earth keeps Earth priority throughout', 'optional BR strategy sequence advances after successful work, empty cargo and a normal scan; not on supply waits, local scans or Retry itself', 'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo', 'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence', 'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source', 'manual retry carrying Earth/Sky unsupported', 'no rigid-body tipping physics'], events: this.events, history: this.history, final: this.snapshot() }; }
   }
-  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget };
+  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, normalizeTrTrips, transportTripIndex };
 });

@@ -2,17 +2,40 @@
 
 初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。`Reference/` 同梱とEarth/Sky反転に加え、その後のL2 Earth最優先・BR作業回の順番指定の実装を反映しています。
 
+## 2026-09-25 Windows GUI追加
+
+今回の作業対象は **`ABU-simulator-git` 内のWindows GUI版だけ** です。ユーザーは別のWSL作業ツリーで探索を実行中です。WSLのファイル・プロセス・探索結果は読み書き・停止・再開していません。下記に残る「WSL移行予定」「API未実装」はこのWindowsコピーの履歴・構成を指します。進展したWSLコピーへこの古い本体を上書きしないでください。
+
+- `field-simulator.html` / `sim/view.js` / `sim/style.css`: 戦略タブに両チーム共通の補給モードと、赤青独立のTR便別エディタを追加。各便3枠をEarth/Sky/なしで設定し、追加・並べ替え・削除・適用・取消が可能。全枠なしは適用不可。試合中の設定変更は初期化時に反映し、既存のキャッシュ・分析状態もクリアします。
+- `sim/engine.js`: `supplyMode` (normal/ideal、既定normal)、`redTrTrips` / `blueTrTrips` (3枠配列の配列、既定空) を検証・コピー・export。`transportTripIndex` は箱の全数納品と枯渇スキップを数え、Mustika便は除きます。`skipExhaustedTrip` は全対象枯渇を検証した場合のみ記録して進めます。
+- `sim/controllers.js`: `specifiedCourier` が指定便の構成を共通の `Efficient.courier` へ渡します。Earth優先の採集、BR返却予約、満杯/受取中の待機、既存の物理制約を維持。指定終了後は選択したTR戦略の通常補給へ移行し、開幕指定を再実行しません。空手の便境界ではMustikaを優先できます。供給元枯渇は部分便またはログ付きスキップ、一時的な採集競合は待機です。
+- `replenishIdealSupply` は環境側の実験条件として、有限Earth各20/Sky各6を既存物体IDのまま自動補充。置場E3/S4、BR手持ちの返却枠、受取動作の予約、ロボット外形を守ります。開始経路を塞がないようBRのL1入場・受取位置退出後に補充します。観測スナップショットを勝手に更新しません。
+- `idealCourier` は通常の開始枠から実移動してMustika前で待機。資格成立、排他取得、把持・搬送・直接手渡しは既存engineで検証します。箱のTR便指定はideal中に保存されますが無効です。正常なMustika奉納でも180秒まで試合は続きます。
+- **自動補給には搬送点を付けません。** `ideal-supply` イベントと `config.supplyMode`、GUI上部の表示で試行条件を区別します。配置/反転/奉納の採点は既存 `scores()` を使い、試合結果と分析用状態の分離はそのまま。通常供給とidealの総得点を同条件として比較しないでください。
+- 有限資材、返却予約、受取中の補充抑止があるため、「常に無限に全種類が7個ある」モードではありません。認識誤差・遮蔽などをモデル化したものでもありません。完全同時のMustika取得要求は既存の競合待ち処理が適用されます。
+- 設定・運用の詳細は `README.md` と `STRATEGY_GUIDE.md` の新節。依存追加・ビルド手順変更なし。現在のHTMLを直接開けば動きます。GitHubへのcommit/pushと既存配布ZIP更新は今回行っていません。
+
+変更開始時は `main...origin/main`、未コミット変更なし。今回のソース5ファイル、ドキュメント3ファイル、新規 `sim/tests/supply-trips.test.cjs` / `sim/tests/supply-trips-browser.cjs`、日時付きQA結果だけを追加・変更しました。最新差分はこのGitルートで確認してください。
+
+### 今回の確認結果
+
+- Windows / 同梱Node v24.19.0で `node --test --test-concurrency=2 sim/tests/*.test.cjs` を最終コードに対して実行: **183件成功、失敗0件** (約201秒)。指定3枠の全26非空構成、独立設定、実納品、枯渇/競合、Mustika割込、有限補給、返却予約、古い観測の不変、180秒試合を含みます。
+- Playwright / Edgeで `sim/tests/supply-trips-browser.cjs` 成功。1440/390/320px、追加/変更/並替/削除/取消/適用、無効入力、モード往復での設定保持、180秒試合、試合後反転と元export不変、リセットを確認。JavaScriptエラー0、横はみ出しなし、canvas描画あり。最終PC/320px画像も目視確認しました。
+- 最終GUI記録は `results/supply-trips-qa-1790315891359/verification.json` と同階層PNG。途中確認の `results/supply-trips-qa-1790315404172/` / `results/supply-trips-qa-1790315665886/` は上書きせず残しています。
+- 既存の `sim/tests/l2-earth-turns-browser.cjs` も成功し、`results/l2-earth-turns-qa-1790315677565/` に別保存。BR順番指定・通常試合・リプレイ・PC/狭幅表示が維持されることを確認しました。
+- 戦略の優劣を決める探索、WSL版との数値一致、GitHub Pages上の更新確認、実機スマホでの確認は未実施。Windowsブラウザの狭幅表示テストをスマホ実機試験とは扱わないでください。
+
 ## 最初に読むこと
 
 - 現行アプリの入口は **`field-simulator.html`**。`index.html` と `tactical-replay.html` は旧版です。
 - HTML、`sim/`、`vendor/` を一緒に置けば、Windowsではファイルを直接開いて動かせる構成です。本体にビルド・npm install・常駐サーバーは不要です。
 - 初回引継ぎ作業は資料のみでしたが、その後の依頼で **L2 Earth最優先戦略とBR作業回の順番設定** を実装しました。WSL移行やBR用APIは未実装です。`Reference/` はユーザーが追加した資料です。
-- 現行の本体テストはWindowsで171件成功。初回引継ぎ時は158件でした。WSLでの動作は未確認です。既存ブラウザテストには移植が必要なWindows固定パスがあります。
+- 現行の本体テストはWindowsで183件成功。BR作業回追加時は171件、初回引継ぎ時は158件でした。この変更のWSLでの動作は未確認です。既存ブラウザテストには移植が必要なWindows固定パスがあります。
 - **Git管理用フォルダーは `ABU-simulator-git`** です。`https://github.com/rodep-soft/ABU-simulator.git` をcloneし、`main` を追跡しています。元の `robocon-strategy-sim` には `.git` がなく、そこでGitを実行すると上位の `C:/Users/sasah` のリポジトリを拾います。作業前にリポジトリルートを確認してください。
 - ルールブック原文・日本語訳、注意点PPTX、フィールドモデルは **`Reference/` に同梱済み**。プロジェクトを丸ごとコピーすれば参照資料も移行できます。
 - 試合終了後の分析では、配置済みEarthの各段と各配置先のSkyを選択して反転できます。
 
-次の順序は、`AGENTS.md` を読む、`Reference/` を含む現在のフォルダーをWSLへコピーする、本体テストとGUIの移行確認をする、です。API化はその後の別作業です。
+次の作業では `AGENTS.md` と本節を読み、Windows GUI版と別途進展中のWSL版を区別してください。以降の移行手順は初回時点の参考です。既存のWSL作業ツリーへコピー・上書きせず、差分を把握して個別に統合してください。
 
 ## プロジェクト概要
 
@@ -420,7 +443,7 @@ chromium.launch({ channel: 'msedge', headless: true })
 
 移行後の受入確認:
 
-1. 本体依存の構築、現行Nodeテスト171件の成功、画面なし180秒の完走。
+1. 本体依存の構築、現行Nodeテスト183件の成功、画面なし180秒の完走。
 2. 現行GUIの起動、両チームTR/BR、L2 Earth戦略・BR順番指定、3倍速、3分計算、リプレイ、書き出し。
 3. L1/L2の見渡し表示、L2作業後のL2再観測、補給時のL1帰還、地形に沿う移動。
 4. 元の得点、サンクチュアリの履歴、Mustika後も180秒まで継続すること。

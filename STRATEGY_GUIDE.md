@@ -18,7 +18,37 @@
 メニューへ追加しただけでは適用されません。ブラウザを再読み込みし、戦略を選んで
 「この戦略で初期化」を押してください。TRとBRの選択は独立しています。
 
-## 効率化版の初期設定
+## TR便別指定と補給待ちなし
+
+Windows GUIにも実験条件と便別設定を追加しました。WSLの進化探索実装を移植したものではなく、このディレクトリの `Simulation` と `controllers.next(view)` を使用します。
+
+```js
+const { Simulation } = require('./sim/engine.js');
+const controllers = require('./sim/controllers.js');
+const sim = new Simulation({
+  supplyMode: 'normal', // 'ideal': finite automatic Earth/Sky supply for both teams
+  redTrTrips: [['earth', 'earth', 'earth'], ['earth', 'sky', 'sky']],
+  blueTrTrips: [['earth', 'sky', 'none']],
+  redTrPlan: 'stock-e3', // normal replenishment after the specified trips
+  blueTrPlan: 'adaptive',
+  redBrPlan: 'mustika-fast',
+  blueBrPlan: 'l2-earth',
+});
+while (!sim.ended) sim.step(.05, controllers);
+```
+
+- `normalizeTrTrips` が3枠と値を検証し独立コピーを作成。全枠noneの便は拒否します。各枠は採集順でなく種類の個数です。
+- `controllers.transportPlan(id, index, trips)` / `specifiedCourier` が指定中の構成を `Efficient.courier` の開幕固定処理へ渡します。最大3個、種類別容量、返却予約、受取中の待機は共通処理を使用します。
+- 指定便は途中でMustikaのために積載を短縮しません。空手の便境界では資格達成済みMustikaを優先できます。進捗 `transportTripIndex(transport)` は箱を含む納品完了数と `skippedTrips` 数から求め、Mustika納品を除きます。観測・待機・部分納品・brainの初期化では進めません。
+- 源泉不足は未取得分を別の種類に置換せず、取得済み分だけを納品します。対象の源泉が全枯渇して空手の場合、controllerの `skipTrip` 要求をengineの `skipExhaustedTrip` が再検証して記録します。単なる満杯や競合ではスキップしません。
+- `replenishIdealSupply` は環境側の明示的な実験処理。既存物体を移動するだけで無限生成しません。Skyを左側5個+S2と右側5個+S11の各6個に分け、Earthは各自20個。BRが入場して受取動線を空けた後、`freeSlot` の返却予約を使いE3/S4まで補充します。受取列が予約済みの間と終了後は補充しません。
+- 自動補給は `ideal-supply` として記録し、TRの納品履歴・搬送点は増やしません。`idealCourier` は箱の通常収集を行わず、開始枠からMustika前へ通常の経路で移動します。資格、排他取得、搬送、直接受渡はengineの既存検証を通します。
+- BRへの観測更新を追加しません。内部状態へ補充しても、過去の観測スナップショットは変化しません。理想供給と通常供給の結果を同じ試行条件として混ぜないでください。
+- TRの通常設定・便指定はideal中も保存されますが実行対象外。GUIの初期化でキャッシュ・試合・検討状態を更新します。プリセット再選択ではそのチームのTR/BR順番指定を解除します。
+
+重点検証: `node --test sim/tests/supply-trips.test.cjs`。GUI検証: Playwrightを利用可能な環境で `node sim/tests/supply-trips-browser.cjs` (`ROBO_BROWSER_CHANNEL=msedge` はWindowsの例)。`ROBO_QA_DIR` で出力先を指定できます。
+
+## 従来の効率化版の初期設定
 
 初期選択はTR `adaptive`、BR `efficient`。従来の `balanced`、`e3-e1s2`、`score-search` 等も比較用に残しています。
 初便E3・次便E1+S2から始める効率化版はTR `adaptive-e3-e1s2` を選びます。

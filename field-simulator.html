@@ -14,7 +14,7 @@
       <div class="team-score blue"><span>青チーム</span><strong id="blue-score">0</strong><small id="blue-detail"></small><span id="blue-mandate" class="mandate">条件未達</span></div>
     </section>
     <section class="strategy-bar" aria-label="採用中の戦略">
-      <strong class="strategy-bar-title">採用中の戦略</strong>
+      <strong class="strategy-bar-title">採用中の戦略<small id="supply-summary">通常補給</small></strong>
       <div class="strategy-current"><strong class="team-red">赤チーム</strong><span id="red-strategy-summary"></span></div>
       <div class="strategy-current"><strong class="team-blue">青チーム</strong><span id="blue-strategy-summary"></span></div>
       <button id="edit-strategies" class="icon" title="戦略を選択" aria-label="戦略を選択"><i data-lucide="sliders-horizontal"></i></button>
@@ -67,6 +67,8 @@
         <section id="tab-state" class="tab-content" hidden><h2>受け渡し区画</h2><div id="transfer-state"></div><h2>サンクチュアリ達成履歴</h2><div id="sanctuary-state"></div><h2>タワー</h2><div id="tower-state"></div><h2>供給元</h2><div id="source-state"></div></section>
         <section id="tab-strategies" class="tab-content" hidden>
           <h2>戦略の組み合わせ</h2>
+          <label class="supply-choice" for="supply-mode">両チームの箱補給<select id="supply-mode"><option value="normal">通常 · TRが箱を運搬</option><option value="ideal">補給待ちなし · TRはMustika担当</option></select></label>
+          <dl class="strategy-details" id="supply-details" hidden><div><dt>有限供給</dt><dd>各チーム Earth20 / Sky6</dd></div><div><dt>置場上限</dt><dd>Earth3 / Sky4 · 手持ち返却枠を確保</dd></div><div><dt>補充開始</dt><dd>BRがL1に入場し、受取位置を離れた後</dd></div><div><dt>自動補給点</dt><dd>搬送点 0 · 配置点は通常通り</dd></div><div><dt>Mustika</dt><dd>通常の資格・移動・直接手渡し</dd></div></dl>
           <div id="strategy-selectors"></div>
           <div class="strategy-apply"><span id="strategy-status" role="status">適用済み</span><button id="apply-strategies" class="primary"><i data-lucide="check"></i>この戦略で初期化</button><button id="revert-strategies" class="icon" title="未適用の戦略変更を戻す" aria-label="未適用の戦略変更を戻す"><i data-lucide="undo-2"></i></button></div>
         </section>

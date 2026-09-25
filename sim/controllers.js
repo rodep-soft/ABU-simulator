@@ -3,10 +3,11 @@
     typeof module === 'object' ? require('./score-planner.js') : root.RoboScorePlanner,
     typeof module === 'object' ? require('./efficient-strategy.js') : root.RoboEfficient,
     typeof module === 'object' ? require('./match-strategies.js') : root.RoboMatchStrategies,
-    typeof module === 'object' ? require('./competitive-strategies.js') : root.RoboCompetitive);
+    typeof module === 'object' ? require('./competitive-strategies.js') : root.RoboCompetitive,
+    typeof module === 'object' ? require('./engine.js') : root.RoboSim);
   if (typeof module === 'object') module.exports = api;
   else root.RoboControllers = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive, S) {
   'use strict';
   const copy = x => JSON.parse(JSON.stringify(x));
   const go = (target, label) => ({ type: 'move', target, label });
@@ -22,13 +23,49 @@
     if (o.type === 'mustika') return F.points[team].mustika;
     return { x: o.x + (team === 'red' ? -.65 : .65), y: o.y };
   }
-  function transportPlan(id, completed = 0) {
+  function transportPlan(id, completed = 0, trips = []) {
+    if (trips.length) {
+      const slots = trips[completed];
+      if (!slots) return { ...resolveStrategy('TR', id).repeat, opening: false };
+      const earth = slots.filter(type => type === 'earth').length, sky = slots.filter(type => type === 'sky').length;
+      return { earth, sky, opening: true, custom: true, label: [earth && `E${earth}`, sky && `S${sky}`].filter(Boolean).join('+') };
+    }
     const strategy = resolveStrategy('TR', id), opening = completed < strategy.opening.length;
     return { ...(opening ? strategy.opening[completed] : strategy.repeat), opening };
   }
+  function transportForView(v) {
+    return transportPlan(v.trPlan, v.trTrips?.length ? S.transportTripIndex(v.transport) : v.transport?.completed.length || 0, v.trTrips);
+  }
+  function specifiedCourier(v) {
+    const plan = transportForView(v), source = v.observation?.source || [];
+    if (plan.custom) {
+      // Mustika can interrupt between box trips, but never consumes a specified box trip.
+      if (!v.cargo.length && v.observation?.sanctuary && source.some(o => o.id === 'M')) return Efficient.courier(v, { opening: false }, { stockTarget: true });
+      const remaining = source.some(o => plan[o.type] && (!o.team || o.team === v.team) && (o.type !== 'sky' || (v.team === 'red' ? o.x <= 5.51 : o.x >= 5.49)));
+      if (!v.cargo.length && !v.transport?.pending.length && !remaining) return { brain: v.brain, skipTrip: true, wait: .05 };
+      const response = Efficient.courier(v, plan, { stockTarget: true, lockOpening: true });
+      const awaitingSource = source.some(o => plan[o.type] > v.cargo.filter(held => held.type === o.type).length
+        && (!o.team || o.team === v.team) && (o.type !== 'sky' || (v.team === 'red' ? o.x <= 5.51 : o.x >= 5.49)));
+      if (response.brain.stage === 'deliver' && !v.transport?.pending.length && v.cargo.length < plan.earth + plan.sky && awaitingSource) {
+        return { brain: { ...response.brain, stage: 'collect' }, wait: .5, status: '指定便の採集待ち · 競合中の箱を確認' };
+      }
+      return response;
+    }
+    return resolveStrategy('TR', v.trPlan).run(v);
+  }
+  function idealCourier(v) {
+    const p = F.points[v.team], mustika = v.observation?.source.find(o => o.id === 'M');
+    if (v.cargo.length) return Efficient.courier(v, { opening: false }, { stockTarget: true });
+    if (!mustika) return S.distance(v, p.startTR) > .14
+      ? { brain: v.brain, actions: [go(p.startTR, 'Mustika取得済 · 開始枠へ退避')] }
+      : { brain: v.brain, wait: 1, status: '箱は自動補給 · Mustika取得済' };
+    if (v.observation.sanctuary && !mustika.touchedBy) return { brain: v.brain, actions: [go(p.mustika, 'Mustika取得へ'), { type: 'pickup', objectId: 'M' }] };
+    return S.distance(v, p.mustika) > .14 ? { brain: v.brain, actions: [go(p.mustika, '箱は自動補給 · Mustika前へ')] }
+      : { brain: v.brain, wait: .5, status: 'Mustika前待機 · 条件達成待ち' };
+  }
   function courier(v) {
     const brain = { ...v.brain }, p = F.points[v.team];
-    const plan = transportPlan(v.trPlan, v.transport?.completed.length || 0);
+    const plan = transportForView(v);
     const targetCount = plan.earth + plan.sky;
     if (brain.stage === 'start') brain.stage = v.transport?.pending.length || v.cargo.length >= targetCount || v.cargo.some(o => o.type === 'mustika') ? 'deliver' : 'collect';
     if (v.failure) return { brain, wait: 1.5 };
@@ -169,10 +206,10 @@
     TR: [
       { id: 'balanced', name: '基本補給 · E2+S1', shortName: '毎便 E2+S1', opening: [], repeat: { earth: 2, sky: 1, label: 'E2+S1' }, run: courier },
       { id: 'e3-e1s2', name: 'Earth先行 · E3 → E1+S2', shortName: 'E3 → E1+S2', opening: [{ earth: 3, sky: 0, label: 'E3' }, { earth: 1, sky: 2, label: 'E1+S2' }], repeat: { earth: 2, sky: 1, label: 'E2+S1' }, run: courier },
-      { id: 'adaptive', name: '効率化 · 必要量補給＋Mustika先回り', shortName: '必要量補給', opening: [], repeat: { earth: 2, sky: 1, label: '必要量に応じて変更' }, adaptive: true, run: v => Efficient.courier(v, transportPlan(v.trPlan, v.transport?.completed.length || 0)) },
-      { id: 'adaptive-e3-e1s2', name: '効率化 · E3 → E1+S2＋必要量補給', shortName: 'E3 → E1+S2・適応', opening: [{ earth: 3, sky: 0, label: 'E3' }, { earth: 1, sky: 2, label: 'E1+S2' }], repeat: { earth: 2, sky: 1, label: '必要量に応じて変更' }, adaptive: true, run: v => Efficient.courier(v, transportPlan(v.trPlan, v.transport?.completed.length || 0)) },
+      { id: 'adaptive', name: '効率化 · 必要量補給＋Mustika先回り', shortName: '必要量補給', opening: [], repeat: { earth: 2, sky: 1, label: '必要量に応じて変更' }, adaptive: true, run: v => Efficient.courier(v, transportForView(v)) },
+      { id: 'adaptive-e3-e1s2', name: '効率化 · E3 → E1+S2＋必要量補給', shortName: 'E3 → E1+S2・適応', opening: [{ earth: 3, sky: 0, label: 'E3' }, { earth: 1, sky: 2, label: 'E1+S2' }], repeat: { earth: 2, sky: 1, label: '必要量に応じて変更' }, adaptive: true, run: v => Efficient.courier(v, transportForView(v)) },
       { id: 'stock-e3', name: '初便E3 → Earth3・Sky4在庫補給', shortName: 'E3 → 在庫E3/S4', opening: [{ earth: 3, sky: 0, label: 'E3' }], repeat: { earth: 2, sky: 1, label: '在庫 E3 / S4' }, adaptive: true, stockTarget: true,
-        run: v => Efficient.courier(v, transportPlan(v.trPlan, v.transport?.completed.length || 0), { stockTarget: true, lockOpening: true }) },
+        run: v => Efficient.courier(v, transportForView(v), { stockTarget: true, lockOpening: true }) },
     ],
     BR: [
       { id: 'score-search', name: '得点探索 · 2往復先読み', shortName: '得点探索', run: Planner.next,
@@ -223,7 +260,10 @@
   }
   function next(view) {
     const handoff = view.role === 'TR' ? Efficient.mustikaDelivery(view) : Efficient.handoffNext(view);
-    return handoff || resolveStrategy(view.role, view.role === 'TR' ? view.trPlan : view.brPlan).run(view);
+    if (handoff) return handoff;
+    if (view.role === 'TR' && view.supplyMode === 'ideal') return idealCourier(view);
+    if (view.role === 'TR' && view.trTrips?.length) return specifiedCourier(view);
+    return resolveStrategy(view.role, view.role === 'TR' ? view.trPlan : view.brPlan).run(view);
   }
   return { next, sourceApproach, spotOrder, transportPlan, listStrategies, strategyDetails,
     listPresets: () => [...Match.presets(), ...Competitive.presets()],

@@ -1,0 +1,73 @@
+{
+  "result": {
+    "time": 180,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 450,
+        "mustika": 250,
+        "total": 700,
+        "sky": 6
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 490,
+        "mustika": 0,
+        "total": 490,
+        "sky": 3
+      }
+    },
+    "config": {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "stock-e3",
+      "blueTrPlan": "stock-e3",
+      "redBrPlan": "mustika-fast",
+      "blueBrPlan": "l2-earth",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "supplyMode": "ideal",
+      "redBrTurns": [],
+      "redTrTrips": [
+        [
+          "earth",
+          "earth",
+          "earth"
+        ],
+        [
+          "earth",
+          "sky",
+          "sky"
+        ]
+      ],
+      "blueBrTurns": [],
+      "blueTrTrips": [
+        [
+          "earth",
+          "sky",
+          "none"
+        ]
+      ]
+    },
+    "supplyCount": 38,
+    "placedBy": [
+      "blueBR",
+      "redBR"
+    ]
+  },
+  "pixels": 537,
+  "errors": [],
+  "viewports": [
+    1440,
+    390,
+    320
+  ]
+}

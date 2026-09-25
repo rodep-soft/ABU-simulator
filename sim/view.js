@@ -10,6 +10,7 @@ let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;
 const strategyFields = ['red', 'blue'].flatMap(team => ['TR', 'BR'].map(role => ({ team, role, key: `${team}${role === 'TR' ? 'Tr' : 'Br'}Plan`, id: `${team}-${role.toLowerCase()}-plan` })));
 const strategyTurns = { red: [], blue: [] };
+const transportTrips = { red: [], blue: [] };
 function displayedBrPlan(team) {
   const completed = snapshot.robots.find(r => r.id === `${team}BR`)?.brTurn?.completed || 0;
   return sim.config[`${team}BrTurns`][completed] || sim.config[`${team}BrPlan`];
@@ -26,7 +27,7 @@ function initStrategyMenus() {
     preset.replaceChildren(new Option('個別設定', ''), ...RoboControllers.listPresets().map(p => new Option(p.name, p.id)));
     preset.onchange = () => {
       const chosen = RoboControllers.listPresets().find(p => p.id === preset.value);
-      if (chosen) { $(`${team}-tr-plan`).value = chosen.tr; $(`${team}-br-plan`).value = chosen.br; strategyTurns[team] = []; renderTurnEditor(team); }
+      if (chosen) { $(`${team}-tr-plan`).value = chosen.tr; $(`${team}-br-plan`).value = chosen.br; strategyTurns[team] = []; transportTrips[team] = []; renderTurnEditor(team); renderTripEditor(team); }
       renderStrategyPreviews(); renderStrategyState();
     };
     presetLabel.append(preset); group.append(presetLabel);
@@ -38,6 +39,13 @@ function initStrategyMenus() {
       select.onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
       details.id = `${field.id}-details`; details.className = 'strategy-details';
       label.append(select); group.append(label, details);
+      if (field.role === 'TR') {
+        const trips = document.createElement('div'), heading = document.createElement('div'), title = document.createElement('strong'), add = document.createElement('button'), rows = document.createElement('div');
+        trips.className = 'tr-trips'; heading.className = 'turn-heading'; title.textContent = 'TRの便別内訳';
+        add.id = `${team}-add-trip`; add.className = 'icon'; add.title = '搬送便を追加'; add.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}TRの搬送便を追加`); add.innerHTML = '<i data-lucide="plus"></i>';
+        add.onclick = () => { transportTrips[team].push(['earth', 'earth', 'earth']); renderTripEditor(team); renderStrategyPreviews(); renderStrategyState(); };
+        rows.id = `${team}-tr-trips`; heading.append(title, add); trips.append(heading, rows); group.append(trips);
+      }
     }
     const turns = document.createElement('div'), heading = document.createElement('div'), title = document.createElement('strong'), add = document.createElement('button'), rows = document.createElement('div');
     turns.className = 'br-turns'; heading.className = 'turn-heading'; title.textContent = 'BRの順番';
@@ -47,6 +55,35 @@ function initStrategyMenus() {
     $('strategy-selectors').append(group);
   }
   syncStrategyMenus();
+}
+function renderTripEditor(team) {
+  const rows = $(`${team}-tr-trips`);
+  rows.replaceChildren(...transportTrips[team].map((slots, index) => {
+    const row = document.createElement('div'), heading = document.createElement('div'), name = document.createElement('strong'), controls = document.createElement('div'), cargo = document.createElement('div');
+    row.className = 'tr-trip-row'; heading.className = 'turn-heading'; name.textContent = `${index + 1}便目`; controls.className = 'turn-controls'; cargo.className = 'trip-cargo';
+    for (const [action, icon, title] of [['up', 'arrow-up', '前へ'], ['down', 'arrow-down', '後へ'], ['remove', 'trash-2', '削除']]) {
+      const button = document.createElement('button'); button.className = 'icon'; button.dataset.tripAction = action; button.title = title;
+      button.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}TR ${index + 1}便目を${title}`); button.innerHTML = `<i data-lucide="${icon}"></i>`;
+      button.onclick = () => {
+        const trips = transportTrips[team], next = index + (action === 'up' ? -1 : 1);
+        if (action === 'remove') trips.splice(index, 1);
+        else if (next >= 0 && next < trips.length) [trips[index], trips[next]] = [trips[next], trips[index]];
+        renderTripEditor(team); renderStrategyPreviews(); renderStrategyState();
+      };
+      controls.append(button);
+    }
+    slots.forEach((type, slot) => {
+      const label = document.createElement('label'), select = document.createElement('select'); label.textContent = `${slot + 1}枠目`;
+      select.id = `${team}-tr-trip-${index}-${slot}`; select.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}TR ${index + 1}便目 ${slot + 1}枠目`);
+      select.replaceChildren(new Option('Earth', 'earth'), new Option('Sky', 'sky'), new Option('なし', 'none')); select.value = type; select.dataset.cargo = type;
+      select.onchange = () => { slots[slot] = select.value; select.dataset.cargo = select.value; renderStrategyPreviews(); renderStrategyState(); };
+      label.append(select); cargo.append(label);
+    });
+    heading.append(name, controls); row.append(heading, cargo); return row;
+  }));
+  const after = document.createElement('div'); after.className = 'turn-fallback';
+  after.textContent = transportTrips[team].length ? `${transportTrips[team].length + 1}便目以降: 通常補給 / 採集はEarth優先 / Mustika便は別枠` : '全便: 選択した搬送戦略';
+  rows.append(after); icons();
 }
 function renderTurnEditor(team) {
   const entries = RoboControllers.listStrategies('BR');
@@ -77,32 +114,54 @@ function syncStrategyMenus() {
     const entries = RoboControllers.listStrategies(field.role);
     $(field.id).value = entries.some(entry => entry.id === sim.config[field.key]) ? sim.config[field.key] : entries[0].id;
   }
-  for (const team of ['red', 'blue']) { strategyTurns[team] = [...sim.config[`${team}BrTurns`]]; renderTurnEditor(team); }
+  $('supply-mode').value = sim.config.supplyMode;
+  for (const team of ['red', 'blue']) { strategyTurns[team] = [...sim.config[`${team}BrTurns`]]; transportTrips[team] = sim.config[`${team}TrTrips`].map(slots => [...slots]); renderTurnEditor(team); renderTripEditor(team); }
   renderStrategyPreviews();
 }
 function renderStrategyPreviews() {
-  for (const team of ['red', 'blue']) $(`${team}-mode`).value = strategyTurns[team].length ? '' : RoboControllers.listPresets().find(p => p.tr === $(`${team}-tr-plan`).value && p.br === $(`${team}-br-plan`).value)?.id || '';
+  $('supply-details').hidden = $('supply-mode').value !== 'ideal';
+  for (const team of ['red', 'blue']) $(`${team}-mode`).value = strategyTurns[team].length || transportTrips[team].length ? '' : RoboControllers.listPresets().find(p => p.tr === $(`${team}-tr-plan`).value && p.br === $(`${team}-br-plan`).value)?.id || '';
   for (const field of strategyFields) {
-    $(`${field.id}-details`).replaceChildren(...RoboControllers.strategyDetails(field.role, $(field.id).value, field.team).map(([name, value]) => {
+    const details = field.role === 'TR' && $('supply-mode').value === 'ideal'
+      ? [['現在の担当', 'Mustika先回り・取得・直接手渡し'], ['便別指定', '適用対象外 (通常補給のみ)']]
+      : field.role === 'TR' && transportTrips[field.team].length
+        ? [['指定終了後', '選択戦略の通常補給'], ['Mustika', '条件達成後、箱便の合間に取得']]
+        : RoboControllers.strategyDetails(field.role, $(field.id).value, field.team);
+    $(`${field.id}-details`).replaceChildren(...details.map(([name, value]) => {
       const row = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
       dt.textContent = name; dd.textContent = value; row.append(dt, dd); return row;
     }));
   }
 }
 function renderStrategyState() {
-  const dirty = strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]));
-  $('strategy-status').textContent = dirty ? '変更あり · 未適用' : '適用済み';
+  const ideal = $('supply-mode').value === 'ideal';
+  const invalid = ['red', 'blue'].flatMap(team => transportTrips[team].map((slots, index) => slots.every(type => type === 'none') ? `${team === 'red' ? '赤' : '青'}TR ${index + 1}便目: 最低1個を選択` : '')).filter(Boolean);
+  const dirty = $('supply-mode').value !== sim.config.supplyMode || strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]) || JSON.stringify(transportTrips[team]) !== JSON.stringify(sim.config[`${team}TrTrips`]));
+  $('strategy-status').textContent = invalid.length ? invalid.join(' / ') : dirty ? '変更あり · 未適用' : '適用済み';
   $('strategy-status').classList.toggle('pending', dirty);
-  $('apply-strategies').disabled = computing; $('revert-strategies').disabled = computing || !dirty;
-  for (const field of strategyFields) $(field.id).disabled = computing;
+  $('apply-strategies').disabled = computing || !!invalid.length; $('revert-strategies').disabled = computing || !dirty;
+  $('supply-mode').disabled = computing;
+  $('supply-summary').textContent = sim.config.supplyMode === 'ideal' ? '箱の補給待ちなし' : '通常補給';
+  for (const field of strategyFields) $(field.id).disabled = computing || ideal && field.role === 'TR';
   for (const team of ['red', 'blue']) {
     $(`${team}-mode`).disabled = computing;
     $(`${team}-add-turn`).disabled = computing;
+    $(`${team}-add-trip`).disabled = computing || ideal;
+    $(`${team}-tr-trips`).querySelectorAll('select').forEach(select => { select.disabled = computing || ideal; });
+    $(`${team}-tr-trips`).querySelectorAll('.tr-trip-row').forEach((row, index) => {
+      row.classList.toggle('invalid', transportTrips[team][index].every(type => type === 'none'));
+      for (const button of row.querySelectorAll('button')) button.disabled = computing || ideal || button.dataset.tripAction === 'up' && index === 0 || button.dataset.tripAction === 'down' && index === transportTrips[team].length - 1;
+    });
     $(`${team}-br-turns`).querySelectorAll('select').forEach(select => { select.disabled = computing; });
     $(`${team}-br-turns`).querySelectorAll('.br-turn-row').forEach((row, index) => {
       for (const button of row.querySelectorAll('button')) button.disabled = computing || button.dataset.turnAction === 'up' && index === 0 || button.dataset.turnAction === 'down' && index === strategyTurns[team].length - 1;
     });
     $(`${team}-strategy-summary`).textContent = strategyFields.filter(f => f.team === team).map(field => {
+      if (field.role === 'TR' && sim.config.supplyMode === 'ideal') return 'TR Mustika担当';
+      if (field.role === 'TR' && sim.config[`${team}TrTrips`].length) {
+        const index = S.transportTripIndex(snapshot.robots.find(r => r.id === `${team}TR`)?.transport), plan = RoboControllers.transportPlan(sim.config[field.key], index, sim.config[`${team}TrTrips`]);
+        if (plan.custom) return `TR 指定${index + 1}便目 ${plan.label}`;
+      }
       const entries = RoboControllers.listStrategies(field.role), entry = entries.find(e => e.id === (field.role === 'BR' ? displayedBrPlan(team) : sim.config[field.key])) || entries[0];
       const number = field.role === 'BR' && sim.config[`${team}BrTurns`].length ? `${(snapshot.robots.find(r => r.id === `${team}BR`)?.brTurn?.completed || 0) + 1}回目 ` : '';
       return `${field.role} ${number}${entry.shortName}`;
@@ -321,8 +380,9 @@ function render() {
     const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotById[a.spotId].label + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
   }));
   $('transport-data').hidden = r.role !== 'TR';
-  const plan = RoboControllers.transportPlan(sim.config[`${r.team}TrPlan`], r.transport.completed.length);
-  $('robot-plan').textContent = `${r.transport.completed.length + 1}便目 · ${r.cargo.includes('M') ? 'M1' : plan.label}`;
+  const trips = sim.config[`${r.team}TrTrips`], tripIndex = trips.length ? S.transportTripIndex(r.transport) : r.transport.completed.length;
+  const plan = RoboControllers.transportPlan(sim.config[`${r.team}TrPlan`], tripIndex, trips);
+  $('robot-plan').textContent = sim.config.supplyMode === 'ideal' ? '箱は自動補給 · Mustika担当' : `${plan.custom ? '指定' : ''}${tripIndex + 1}便目 · ${r.cargo.includes('M') ? 'M1 (別枠)' : plan.label}`;
   $('robot-deliveries').textContent = r.transport.completed.map(d => `${d.number}便目 ${cargoText(d.items.map(o => o.id), snapshot.objects)}`).join(' / ') || 'なし';
   if (r.failure) feedback(`${r.failure.reason} [${r.failure.rule}]`, r.failure.kind === 'rule' ? 'error' : 'warn');
   const direct = r.role === 'BR' && handoffReady(snapshot, r.team);
@@ -403,9 +463,11 @@ $('apply-strategies').onclick = () => {
   if (computing) return;
   const config = { ...sim.config };
   for (const field of strategyFields) config[field.key] = $(field.id).value;
-  for (const team of ['red', 'blue']) config[`${team}BrTurns`] = [...strategyTurns[team]];
+  config.supplyMode = $('supply-mode').value;
+  for (const team of ['red', 'blue']) { config[`${team}BrTurns`] = [...strategyTurns[team]]; config[`${team}TrTrips`] = transportTrips[team].map(slots => [...slots]); }
   reset(config);
 };
+$('supply-mode').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
 $('revert-strategies').onclick = () => { syncStrategyMenus(); renderStrategyState(); };
 $('destination').onchange = () => { clickedPoint = null; if (F.spotById[$('destination').value]) selectedSpot = $('destination').value; render(); };
 $('move').onclick = () => send({ type: 'move', target: clickedPoint || targetList.find(([id]) => id === $('destination').value)[2], label: '指定位置へ移動' });
