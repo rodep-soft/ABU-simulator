@@ -28,6 +28,7 @@
     startTR: { x: .35, y: 10.65 }, startBR: { x: 1.15, y: 10.65 },
     home: { x: 3.05, y: 5.5 }, homeL2: { x: 4.35, y: 5.5 }, transferTR: { x: 1.8, y: 6.75 },
     stockStandby: { x: 1.8, y: 5.65 },
+    brStandby: { x: 3.7, y: 6.8 },
     transferBR: { x: 2.9, y: 6.8 }, storage: { x: 1.05, y: 1.35 },
     sky: { x: 4.55, y: 9.75 }, mustika: { x: 4.9, y: 1.25 },
     retry: { x: 3.65, y: 2.9 }, l2: { x: 4.65, y: 5.5 },
@@ -47,6 +48,8 @@
     { id: 'u4', label: 'L2右下', x: 6.75, y: 6.75, level: 2 },
   ];
   const spotById = Object.fromEntries(spots.map(s => [s.id, s]));
+  const spotNumbers = { s2: 1, r2: 2, r1: 3, s1: 4, b1: 5, b2: 6, u3: 7, u1: 8, u2: 9, u4: 10 };
+  const spotName = id => `${spotNumbers[id]} · ${spotById[id].label}`;
   function surface(p) {
     if (!inside(p, regions.ground)) return { type: 'outside', z: 0 };
     if (inside(p, regions.l2)) return { type: 'l2', z: .9 };
@@ -64,7 +67,15 @@
     if (inside(p, regions.l2) || inside(p, regions.sharedTop) || inside(p, regions.sharedBottom) || inside(p, regions.sky) || inside(p, regions.mustika)) return 'shared';
     return p.x < 5.5 ? 'red' : 'blue';
   }
-  function scanPoint(team, from) { return points[team][surface(from).type === 'l2' ? 'homeL2' : 'home']; }
+  function scanPoint(team, from, mode) {
+    if (mode === 'stopped') return ['l1', 'l2'].includes(surface(from).type) ? { x: from.x, y: from.y } : points[team].brStandby;
+    return points[team][surface(from).type === 'l2' ? 'homeL2' : 'home'];
+  }
+  function scanActions(v, from = v) {
+    const target = scanPoint(v.team, from, v.brObservationMode);
+    return [...(v.brObservationMode !== 'stopped' || Math.hypot(target.x - from.x, target.y - from.y) > .02
+      ? [{ type: 'move', target, label: v.brObservationMode === 'stopped' ? '受渡そばの待機点へ' : '見渡し場所へ' }] : []), { type: 'scan' }];
+  }
   function atScanPoint(team, p) {
     return ['home', 'homeL2'].some(key => Math.hypot(p.x - points[team][key].x, p.y - points[team][key].y) <= .12);
   }
@@ -100,5 +111,5 @@
   function slots(team) {
     return [6.55, 7.05].map((y, i) => ({ id: `${team}-${i}`, team, type: i === 0 ? 'earth' : 'sky', x: team === 'red' ? 2.275 : 8.725, y, maxLayers: i === 0 ? stockLimits.earth : stockLimits.sky }));
   }
-  return { rect, inside, mirror, regions, zones, points, spots, spotById, surface, territory, transition, walls, spotApproaches, slots, stockLimits, scanPoint, atScanPoint };
+  return { rect, inside, mirror, regions, zones, points, spots, spotById, spotNumbers, spotName, surface, territory, transition, walls, spotApproaches, slots, stockLimits, scanPoint, scanActions, atScanPoint };
 });

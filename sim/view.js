@@ -4,17 +4,20 @@ const F = RoboField, S = RoboSim;
 const $ = id => document.getElementById(id);
 const canvas = $('field'), ctx = canvas.getContext('2d');
 const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
-let sim = new S.Simulation(), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
+let sim = new S.Simulation({ brObservationMode: 'stopped' }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;
 const strategyFields = ['red', 'blue'].flatMap(team => ['TR', 'BR'].map(role => ({ team, role, key: `${team}${role === 'TR' ? 'Tr' : 'Br'}Plan`, id: `${team}-${role.toLowerCase()}-plan` })));
 const strategyTurns = { red: [], blue: [] };
 const transportTrips = { red: [], blue: [] };
+const defaultBrTurn = team => ({ slots: [{ type: 'earth', spotId: team === 'red' ? 's2' : 's1' }, { type: 'earth', spotId: team === 'red' ? 'r2' : 'b2' }] });
 function displayedBrPlan(team) {
   const completed = snapshot.robots.find(r => r.id === `${team}BR`)?.brTurn?.completed || 0;
-  return sim.config[`${team}BrTurns`][completed] || sim.config[`${team}BrPlan`];
+  const turn = sim.config[`${team}BrTurns`][completed];
+  return typeof turn === 'string' ? turn : sim.config[`${team}BrPlan`];
 }
+const turnManifest = turn => turn.slots.filter(s => s.type !== 'none').map(s => `${s.type === 'earth' ? 'E' : 'S'} → ${F.spotName(s.spotId)}`).join(' / ');
 const currentRobot = () => sim.robot(selected);
 function icons() { lucide.createIcons(); }
 function initStrategyMenus() {
@@ -48,9 +51,9 @@ function initStrategyMenus() {
       }
     }
     const turns = document.createElement('div'), heading = document.createElement('div'), title = document.createElement('strong'), add = document.createElement('button'), rows = document.createElement('div');
-    turns.className = 'br-turns'; heading.className = 'turn-heading'; title.textContent = 'BRの順番';
-    add.id = `${team}-add-turn`; add.className = 'icon'; add.title = '作業回を追加'; add.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BRの作業回を追加`); add.innerHTML = '<i data-lucide="plus"></i>';
-    add.onclick = () => { strategyTurns[team].push($(`${team}-br-plan`).value); renderTurnEditor(team); renderStrategyPreviews(); renderStrategyState(); };
+    turns.className = 'br-turns'; heading.className = 'turn-heading'; title.textContent = 'BRの箱・配置先（ターン別）';
+    add.id = `${team}-add-turn`; add.className = 'icon'; add.title = '箱・配置先のターンを追加'; add.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BRの箱・配置先のターンを追加`); add.innerHTML = '<i data-lucide="plus"></i>';
+    add.onclick = () => { strategyTurns[team].push(defaultBrTurn(team)); renderTurnEditor(team); renderStrategyPreviews(); renderStrategyState(); };
     rows.id = `${team}-br-turns`; heading.append(title, add); turns.append(heading, rows); group.append(turns);
     $('strategy-selectors').append(group);
   }
@@ -87,15 +90,19 @@ function renderTripEditor(team) {
 }
 function renderTurnEditor(team) {
   const entries = RoboControllers.listStrategies('BR');
-  $(`${team}-br-turns`).replaceChildren(...strategyTurns[team].map((id, index) => {
-    const row = document.createElement('div'), label = document.createElement('label'), select = document.createElement('select'), controls = document.createElement('div');
-    row.className = 'br-turn-row'; label.textContent = `${index + 1}回目`; select.id = `${team}-br-turn-${index}`; select.title = `${index + 1}回目のBR戦略`;
-    select.replaceChildren(...entries.map(entry => new Option(entry.shortName, entry.id))); select.value = id;
-    select.onchange = () => { strategyTurns[team][index] = select.value; renderStrategyPreviews(); renderStrategyState(); };
+  $(`${team}-br-turns`).replaceChildren(...strategyTurns[team].map((turn, index) => {
+    const row = document.createElement('div'), heading = document.createElement('div'), name = document.createElement('strong'), label = document.createElement('label'), select = document.createElement('select'), controls = document.createElement('div');
+    row.className = 'br-turn-row'; heading.className = 'turn-heading'; name.textContent = `${index + 1}ターン目`;
+    label.textContent = '動作'; select.id = `${team}-br-turn-${index}`; select.title = `${index + 1}ターン目のBR動作`;
+    select.replaceChildren(new Option('箱・配置先を指定', 'specified'), ...entries.map(entry => new Option(entry.shortName, entry.id))); select.value = turn.slots ? 'specified' : turn;
+    select.onchange = () => {
+      strategyTurns[team][index] = select.value === 'specified' ? defaultBrTurn(team) : select.value;
+      renderTurnEditor(team); renderStrategyPreviews(); renderStrategyState();
+    };
     label.append(select); controls.className = 'turn-controls';
     for (const [action, icon, title] of [['up', 'arrow-up', '前へ'], ['down', 'arrow-down', '後へ'], ['remove', 'trash-2', '削除']]) {
       const button = document.createElement('button'); button.className = 'icon'; button.dataset.turnAction = action;
-      button.title = title; button.setAttribute('aria-label', `${index + 1}回目を${title}`); button.innerHTML = `<i data-lucide="${icon}"></i>`;
+      button.title = title; button.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BR ${index + 1}ターン目を${title}`); button.innerHTML = `<i data-lucide="${icon}"></i>`;
       button.onclick = () => {
         const turns = strategyTurns[team], next = index + (action === 'up' ? -1 : 1);
         if (action === 'remove') turns.splice(index, 1);
@@ -104,9 +111,27 @@ function renderTurnEditor(team) {
       };
       controls.append(button);
     }
-    row.append(label, controls); return row;
+    heading.append(name, controls); row.append(heading, label);
+    if (turn.slots) {
+      const cargo = document.createElement('div'); cargo.className = 'br-turn-cargo';
+      turn.slots.forEach((slot, slotIndex) => {
+        const item = document.createElement('div'), typeLabel = document.createElement('label'), type = document.createElement('select'), targetLabel = document.createElement('label'), target = document.createElement('select');
+        item.className = 'br-slot'; typeLabel.textContent = `${slotIndex + 1}個目`; targetLabel.textContent = '配置先';
+        type.id = `${team}-br-box-${index}-${slotIndex}`; target.id = `${team}-br-target-${index}-${slotIndex}`;
+        type.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BR ${index + 1}回目 ${slotIndex + 1}個目の箱`);
+        target.setAttribute('aria-label', `${team === 'red' ? '赤' : '青'}BR ${index + 1}回目 ${slotIndex + 1}個目の配置先`);
+        type.replaceChildren(new Option('Earth', 'earth'), new Option('Sky', 'sky'), new Option('なし', 'none')); type.value = slot.type; type.dataset.cargo = slot.type;
+        target.replaceChildren(...F.spots.filter(s => !s.team || s.team === team).sort((a, b) => F.spotNumbers[a.id] - F.spotNumbers[b.id]).map(s => new Option(F.spotName(s.id), s.id)));
+        target.value = slot.spotId || (team === 'red' ? 's2' : 's1'); target.disabled = slot.type === 'none';
+        type.onchange = () => { slot.type = type.value; type.dataset.cargo = slot.type; slot.spotId = slot.type === 'none' ? null : target.value; target.disabled = slot.type === 'none'; renderStrategyState(); };
+        target.onchange = () => { slot.spotId = target.value; renderStrategyState(); };
+        typeLabel.append(type); targetLabel.append(target); item.append(typeLabel, targetLabel); cargo.append(item);
+      });
+      row.append(cargo);
+    }
+    return row;
   }));
-  const after = document.createElement('div'); after.className = 'turn-fallback'; after.textContent = strategyTurns[team].length ? `${strategyTurns[team].length + 1}回目以降: 通常の配置戦略` : '全作業: 通常の配置戦略';
+  const after = document.createElement('div'); after.className = 'turn-fallback'; after.textContent = strategyTurns[team].length ? `${strategyTurns[team].length + 1}ターン目以降: 通常の配置戦略` : '全ターン: 通常の配置戦略';
   $(`${team}-br-turns`).append(after); icons();
 }
 function syncStrategyMenus() {
@@ -115,7 +140,8 @@ function syncStrategyMenus() {
     $(field.id).value = entries.some(entry => entry.id === sim.config[field.key]) ? sim.config[field.key] : entries[0].id;
   }
   $('supply-mode').value = sim.config.supplyMode;
-  for (const team of ['red', 'blue']) { strategyTurns[team] = [...sim.config[`${team}BrTurns`]]; transportTrips[team] = sim.config[`${team}TrTrips`].map(slots => [...slots]); renderTurnEditor(team); renderTripEditor(team); }
+  $('br-observation-mode').value = sim.config.brObservationMode;
+  for (const team of ['red', 'blue']) { strategyTurns[team] = JSON.parse(JSON.stringify(sim.config[`${team}BrTurns`])); transportTrips[team] = sim.config[`${team}TrTrips`].map(slots => [...slots]); renderTurnEditor(team); renderTripEditor(team); }
   renderStrategyPreviews();
 }
 function renderStrategyPreviews() {
@@ -136,11 +162,13 @@ function renderStrategyPreviews() {
 function renderStrategyState() {
   const ideal = $('supply-mode').value === 'ideal';
   const invalid = ['red', 'blue'].flatMap(team => transportTrips[team].map((slots, index) => slots.every(type => type === 'none') ? `${team === 'red' ? '赤' : '青'}TR ${index + 1}便目: 最低1個を選択` : '')).filter(Boolean);
-  const dirty = $('supply-mode').value !== sim.config.supplyMode || strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]) || JSON.stringify(transportTrips[team]) !== JSON.stringify(sim.config[`${team}TrTrips`]));
+  for (const team of ['red', 'blue']) strategyTurns[team].forEach((turn, i) => { if (turn.slots?.every(s => s.type === 'none')) invalid.push(`${team === 'red' ? '赤' : '青'}BR ${i + 1}回目: 最低1個を選択`); });
+  const dirty = $('br-observation-mode').value !== sim.config.brObservationMode || $('supply-mode').value !== sim.config.supplyMode || strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]) || JSON.stringify(transportTrips[team]) !== JSON.stringify(sim.config[`${team}TrTrips`]));
   $('strategy-status').textContent = invalid.length ? invalid.join(' / ') : dirty ? '変更あり · 未適用' : '適用済み';
   $('strategy-status').classList.toggle('pending', dirty);
   $('apply-strategies').disabled = computing || !!invalid.length; $('revert-strategies').disabled = computing || !dirty;
   $('supply-mode').disabled = computing;
+  $('br-observation-mode').disabled = computing;
   $('supply-summary').textContent = sim.config.supplyMode === 'ideal' ? '箱の補給待ちなし' : '通常補給';
   for (const field of strategyFields) $(field.id).disabled = computing || ideal && field.role === 'TR';
   for (const team of ['red', 'blue']) {
@@ -154,9 +182,15 @@ function renderStrategyState() {
     });
     $(`${team}-br-turns`).querySelectorAll('select').forEach(select => { select.disabled = computing; });
     $(`${team}-br-turns`).querySelectorAll('.br-turn-row').forEach((row, index) => {
+      row.classList.toggle('invalid', !!strategyTurns[team][index].slots?.every(s => s.type === 'none'));
+      strategyTurns[team][index].slots?.forEach((s, i) => { $(`${team}-br-target-${index}-${i}`).disabled = computing || s.type === 'none'; });
       for (const button of row.querySelectorAll('button')) button.disabled = computing || button.dataset.turnAction === 'up' && index === 0 || button.dataset.turnAction === 'down' && index === strategyTurns[team].length - 1;
     });
     $(`${team}-strategy-summary`).textContent = strategyFields.filter(f => f.team === team).map(field => {
+      if (field.role === 'BR') {
+        const br = snapshot.robots.find(r => r.id === `${team}BR`), turn = sim.config[`${team}BrTurns`][br?.brTurn?.completed || 0];
+        if (turn?.slots) return `BR 指定${(br?.brTurn?.completed || 0) + 1}回目 ${turnManifest(turn)}${br?.brTurn?.fallback ? ' (代替中)' : ''}`;
+      }
       if (field.role === 'TR' && sim.config.supplyMode === 'ideal') return 'TR Mustika担当';
       if (field.role === 'TR' && sim.config[`${team}TrTrips`].length) {
         const index = S.transportTripIndex(snapshot.robots.find(r => r.id === `${team}TR`)?.transport), plan = RoboControllers.transportPlan(sim.config[field.key], index, sim.config[`${team}TrTrips`]);
@@ -243,15 +277,15 @@ function feedback(text, kind = '') { $('feedback').textContent = text; $('feedba
 function destinations() {
   const team = currentRobot().team, role = currentRobot().role;
   const list = [
-    ['home', 'BR見渡し場所 L1', F.points[team].home], ['homeL2', 'BR見渡し場所 L2', F.points[team].homeL2], ['transfer', '受け渡し区画', F.points[team][role === 'TR' ? 'transferTR' : 'transferBR']],
+    ...(sim.config.brObservationMode === 'stopped' ? [['standby', 'BR受渡そばの待機点', F.points[team].brStandby]] : [['home', 'BR見渡し場所 L1', F.points[team].home], ['homeL2', 'BR見渡し場所 L2', F.points[team].homeL2]]), ['transfer', '受け渡し区画', F.points[team][role === 'TR' ? 'transferTR' : 'transferBR']],
     ['storage', 'Earth保管場所の手前', F.points[team].storage], ['sky', 'Sky共有区画の手前', F.points[team].sky],
     ['mustika', 'Mustika初期柱の手前', F.points[team].mustika], ['pillar', 'L2中央柱の手前', F.points[team].pillar],
-    ...F.spots.map(s => [s.id, s.label, F.spotApproaches(s, team)[0]]),
+    ...F.spots.map(s => [s.id, F.spotName(s.id), F.spotApproaches(s, team)[0]]),
   ];
   const old = $('destination').value;
   $('destination').replaceChildren(...list.map(([id, label]) => new Option(label, id)));
   if (list.some(([id]) => id === old)) $('destination').value = old;
-  else $('destination').value = role === 'TR' ? 'storage' : 'home';
+  else $('destination').value = role === 'TR' ? 'storage' : sim.config.brObservationMode === 'stopped' ? 'standby' : 'home';
   return list;
 }
 let targetList = destinations();
@@ -293,10 +327,10 @@ function draw(state) {
     for (const role of ['TR', 'BR']) { const p = F.points[team][`start${role}`]; rect(S.box(p, .7), team === 'red' ? '#e8c4c8' : '#c2d7ef', c); text(role, p.x, 10.13, .18, c, 'center', true); }
   }
   rect(F.regions.l2, '#e5e9e1', '#75846f', .025);
-  for (const team of ['red', 'blue']) for (const key of ['home', 'homeL2']) {
+  for (const team of ['red', 'blue']) for (const key of sim.config.brObservationMode === 'stopped' ? ['brStandby'] : ['home', 'homeL2']) {
     const home = F.points[team][key], c = colors[team];
     circle(home, .23, '#ffffffcc', c); line({ x: home.x - .12, y: home.y }, { x: home.x + .12, y: home.y }, c); line({ x: home.x, y: home.y - .12 }, { x: home.x, y: home.y + .12 }, c);
-    text(key === 'homeL2' ? 'L2見渡し' : 'L1見渡し', home.x, home.y + .46, small ? .17 : .14, c);
+    text(key === 'brStandby' ? '待機' : key === 'homeL2' ? 'L2見渡し' : 'L1見渡し', home.x, home.y + .46, small ? .17 : .14, c);
   }
   for (const s of F.spots) rect(S.box(s, .5), '#bdd5b9', '#477148');
   for (const wall of F.walls) rect(wall, '#6c7868');
@@ -318,7 +352,7 @@ function draw(state) {
   }
   for (const s of F.spots) {
     const tower = state.objects.filter(o => o.location === 'spot' && o.spotId === s.id).sort((a, b) => a.layer - b.layer);
-    if (!small) text(s.label, s.x, s.y + .47, .13, '#4b6152');
+    text(small ? String(F.spotNumbers[s.id]) : F.spotName(s.id), s.x, s.y + .47, small ? .2 : .13, '#4b6152', 'center', true);
     if (tower.length) text(tower.map(o => o.type === 'earth' ? 'E' : 'S').join('·'), s.x, s.y - .48, small ? .19 : .15, '#293d30', 'center', true);
   }
   if (reviewActive) {
@@ -375,9 +409,11 @@ function render() {
   $('robot-scan').textContent = r.observation ? `${r.observation.local ? '現地 ' : r.observation.origin ? (F.surface(r.observation.origin).type === 'l2' ? 'L2 ' : 'L1 ') : ''}${r.observation.at.toFixed(1)} s (${(snapshot.time - r.observation.at).toFixed(1)}秒前)` : '未認識';
   $('br-work').hidden = r.role !== 'BR';
   const brPlan = displayedBrPlan(r.team);
+  const turn = sim.config[`${r.team}BrTurns`][r.brTurn?.completed || 0];
+  $('br-manifest').textContent = turn?.slots ? `${(r.brTurn?.completed || 0) + 1}回目: ${turnManifest(turn)}${r.brTurn?.fallback ? ' / 代替配置・返却' : ''}` : '配置戦略に任せる';
   $('robot-phase').textContent = ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
   $('pending-work').replaceChildren(...(r.pendingWork?.length ? r.pendingWork : [null]).map(a => {
-    const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotById[a.spotId].label + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
+    const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotName(a.spotId) + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
   }));
   $('transport-data').hidden = r.role !== 'TR';
   const trips = sim.config[`${r.team}TrTrips`], tripIndex = trips.length ? S.transportTripIndex(r.transport) : r.transport.completed.length;
@@ -405,7 +441,7 @@ function render() {
   }));
   $('tower-state').innerHTML = F.spots.map(s => {
     const t = snapshot.objects.filter(o => o.location === 'spot' && o.spotId === s.id).sort((a, b) => a.layer - b.layer);
-    return `<div class="tower-row"><span>${s.label}</span>${[0, 1, 2].map(i => { const o = t[i], team = o && (o.type === 'sky' ? o.color : o.placedBy); return `<span class="block-chip ${team || ''}">${o ? `${team === 'red' ? '赤' : '青'}${o.type === 'earth' ? 'E' : 'S'}` : '―'}</span>`; }).join('')}</div>`;
+    return `<div class="tower-row"><span>${F.spotName(s.id)}</span>${[0, 1, 2].map(i => { const o = t[i], team = o && (o.type === 'sky' ? o.color : o.placedBy); return `<span class="block-chip ${team || ''}">${o ? `${team === 'red' ? '赤' : '青'}${o.type === 'earth' ? 'E' : 'S'}` : '―'}</span>`; }).join('')}</div>`;
   }).join('');
   const m = snapshot.objects.find(o => o.id === 'M');
   $('source-state').innerHTML = `<div class="stock-row">赤Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'red').length} / 青Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'blue').length}<br>共有Sky ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'sky').length}<br>Mustika: ${m.location === 'cargo' ? `${m.holder.replace('red', '赤 ').replace('blue', '青 ')}が保持` : ({ source: '初期柱・未取得', transfer: '受け渡し区画', pillar: '中央柱' })[m.location]}</div>`;
@@ -464,10 +500,13 @@ $('apply-strategies').onclick = () => {
   const config = { ...sim.config };
   for (const field of strategyFields) config[field.key] = $(field.id).value;
   config.supplyMode = $('supply-mode').value;
+  config.brObservationMode = $('br-observation-mode').value;
   for (const team of ['red', 'blue']) { config[`${team}BrTurns`] = [...strategyTurns[team]]; config[`${team}TrTrips`] = transportTrips[team].map(slots => [...slots]); }
   reset(config);
+  targetList = destinations();
 };
 $('supply-mode').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
+$('br-observation-mode').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
 $('revert-strategies').onclick = () => { syncStrategyMenus(); renderStrategyState(); };
 $('destination').onchange = () => { clickedPoint = null; if (F.spotById[$('destination').value]) selectedSpot = $('destination').value; render(); };
 $('move').onclick = () => send({ type: 'move', target: clickedPoint || targetList.find(([id]) => id === $('destination').value)[2], label: '指定位置へ移動' });

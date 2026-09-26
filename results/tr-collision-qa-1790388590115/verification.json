@@ -1,0 +1,99 @@
+{
+  "recovery": {
+    "robot": {
+      "id": "redTR",
+      "team": "red",
+      "role": "TR",
+      "x": 0.35,
+      "y": 10.65,
+      "z": 0,
+      "enteredL1": false,
+      "cargo": [
+        "red-E1"
+      ],
+      "job": null,
+      "auto": true,
+      "velocity": 0,
+      "wait": 0,
+      "blocked": 0,
+      "stall": null,
+      "retryPending": null,
+      "status": "TR競合復帰 · 開始枠から再開",
+      "observation": null,
+      "scanLoaded": false,
+      "batchRemaining": 0,
+      "transport": {
+        "completed": [],
+        "pending": []
+      },
+      "failure": null,
+      "trCollisionStall": null,
+      "trRestartPending": null,
+      "decision": null,
+      "queueLength": 1,
+      "pendingWork": []
+    },
+    "events": [
+      {
+        "time": 1,
+        "robot": "redTR",
+        "action": "tr-restart-request",
+        "text": "相手TRによる移動停止 1秒 · 開始枠へ復帰",
+        "kind": "recovery",
+        "rule": "シミュレーション指定",
+        "blockedSince": 0,
+        "opponent": "blueTR",
+        "requestedAt": 1,
+        "cargo": [
+          "red-E1"
+        ]
+      },
+      {
+        "time": 1,
+        "robot": "redTR",
+        "action": "tr-restart",
+        "text": "TR競合復帰 · 開始枠から再開",
+        "kind": "recovery",
+        "rule": "シミュレーション指定",
+        "blockedSince": 0,
+        "opponent": "blueTR",
+        "requestedAt": 1,
+        "automatic": true,
+        "cargoPolicy": "keep-all",
+        "cargo": [
+          "red-E1"
+        ],
+        "target": {
+          "x": 0.35,
+          "y": 10.65
+        },
+        "resumeTarget": {
+          "x": 5.5,
+          "y": 9.75
+        }
+      }
+    ]
+  },
+  "match": {
+    "time": 180,
+    "scores": {
+      "red": {
+        "transfer": 55,
+        "tower": 210,
+        "mustika": 250,
+        "total": 515,
+        "sky": 2
+      },
+      "blue": {
+        "transfer": 65,
+        "tower": 420,
+        "mustika": 0,
+        "total": 485,
+        "sky": 3
+      }
+    },
+    "restarts": [],
+    "afterBuzzer": false
+  },
+  "errors": []
+}

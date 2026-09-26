@@ -10,9 +10,10 @@
   const go = (target, label) => ({ type: 'move', target, label });
   const count = (items, type) => items.filter(o => o.type === type).length;
   const near = (a, b, radius = .14) => a && S.distance(a, b) <= radius;
-  const homeScan = (v, from = v) => [go(F.scanPoint(v.team, from), '見渡し場所へ'), { type: 'scan' }];
-  const waitAtHome = (v, response) => F.surface(v).type === 'l2'
-    ? { ...response, brain: { ...response.brain, stage: 'choose' }, actions: homeScan(v, F.points[v.team].home) } : response;
+  const homeScan = F.scanActions;
+  const waitAtHome = (v, response) => v.brObservationMode === 'stopped'
+    ? { ...response, brain: { ...response.brain, stage: 'choose' }, actions: [...(near(v, F.points[v.team].brStandby) ? [] : [go(F.points[v.team].brStandby, '受渡そばで動作待ち')]), { type: 'scan' }] }
+    : F.surface(v).type === 'l2' ? { ...response, brain: { ...response.brain, stage: 'choose' }, actions: homeScan(v, F.points[v.team].home) } : response;
 
   function canStore(team, stock, cargo, reserved = []) {
     const state = copy(stock);
@@ -137,7 +138,7 @@
       actions: [go(F.points[v.team].transferBR, 'まとめ受取へ'), ...selected.picked.map(objectId => ({ type: 'receive', objectId })), ...homeScan(v, F.points[v.team].transferBR)] };
     return { brain: { stage: 'return' }, decision, actions: selected.tasks.flatMap(a => [go(a.type === 'enshrine' ? F.points[v.team].pillar : F.spotApproaches(F.spotById[a.spotId], v.team)[0], a.type === 'enshrine' ? 'Mustika奉納へ' : '効率化計画の作業先へ'), a]) };
   }
-  function needsScan(v) { return v.failure || !v.observation || ['start', 'return'].includes(v.brain.stage) || !F.atScanPoint(v.team, v); }
+  function needsScan(v) { return v.failure || !v.observation || ['start', 'return'].includes(v.brain.stage) || v.brObservationMode !== 'stopped' && !F.atScanPoint(v.team, v); }
   function returnCargo(v, note = '置けない荷物を種類別置場へ返却') {
     const cargo = v.cargo.filter(o => o.type !== 'mustika');
     if (!cargo.length || !canStore(v.team, v.observation.stock, cargo)) return null;
@@ -159,7 +160,7 @@
     return selected;
   }
   function builder(v, selectPlan = defaultPlan, options = {}) {
-    if (v.failure && ['place', 'flip'].includes(v.failure.action) && v.enteredL1 && ['l1', 'l2'].includes(F.surface(v).type)) {
+    if (v.brObservationMode !== 'stopped' && v.failure && ['place', 'flip'].includes(v.failure.action) && v.enteredL1 && ['l1', 'l2'].includes(F.surface(v).type)) {
       return { brain: { stage: 'local-plan' }, actions: [{ type: 'scan', local: true }], status: '配置先変更 · その場で再認識' };
     }
     if (v.brain.stage === 'local-plan' && !v.failure && v.observation?.local) {
@@ -201,5 +202,5 @@
     }
     return waitAtHome(v, { brain: { stage: 'return' }, wait: 2, status: '配置計画待ち · 補給・盤面を再確認' });
   }
-  return { courier, builder, mustikaDelivery, handoffNext, oneActionAway, demand, stockDemand, canStore, returnCargo, execute };
+  return { courier, builder, mustikaDelivery, handoffNext, oneActionAway, demand, stockDemand, canStore, returnCargo, execute, waitAtHome, needsScan };
 });

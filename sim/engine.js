@@ -25,7 +25,7 @@
   const fail = (reason, rule, kind = 'rule') => ({ ok: false, reason, rule, kind });
   const success = { ok: true };
   const claimKey = a => ['place', 'flip', 'recover'].includes(a.type) ? `spot:${a.spotId}` : ['pickup', 'receive', 'return'].includes(a.type) ? `object:${a.objectId}` : null;
-  const DEFAULTS = { maxSpeed: 7, acceleration: 3.5, redSpeed: 1, blueSpeed: 1, redTrPlan: 'adaptive', blueTrPlan: 'adaptive', redBrPlan: 'efficient', blueBrPlan: 'efficient', bodySize: .5, rampFactor: .55, stairSpeed: .25, stairPause: .6, scanSeconds: 1, pickupSeconds: 1.5, placeSeconds: 2.5, brAutoRetrySeconds: 5 };
+  const DEFAULTS = { maxSpeed: 7, acceleration: 3.5, redSpeed: 1, blueSpeed: 1, redTrPlan: 'adaptive', blueTrPlan: 'adaptive', redBrPlan: 'efficient', blueBrPlan: 'efficient', bodySize: .5, rampFactor: .55, stairSpeed: .25, stairPause: .6, scanSeconds: 1, pickupSeconds: 1.5, placeSeconds: 2.5, brAutoRetrySeconds: 5, trAutoRestartSeconds: 1 };
   const labels = { earth: 'Earth', sky: 'Sky', mustika: 'Mustika', scan: '停止・見渡し', unload: '受け渡しへ配置', receive: 'ブロック受取', return: '種類別置場へ返却', place: 'タワーへ配置', flip: 'Sky反転', enshrine: 'Mustika奉納', pickup: '採集', move: '移動', retry: 'リトライ', recover: '自Earth回収' };
   const mandateHeld = (state, team, time = Infinity) => Number.isFinite(state[team]) && state[team] >= 0 && state[team] <= time;
   const transportTripIndex = transport => (transport?.completed || []).filter(d => d.items.some(o => o.type !== 'mustika')).length + (transport?.skippedTrips?.length || 0);
@@ -34,6 +34,22 @@
     return trips.map(slots => {
       if (!Array.isArray(slots) || slots.length !== 3 || slots.some(type => !['earth', 'sky', 'none'].includes(type)) || slots.every(type => type === 'none')) throw new TypeError('TR各便はEarth / Sky / なしの3枠で、最低1個を指定してください');
       return [...slots];
+    });
+  }
+  function normalizeBrTurns(turns = [], team) {
+    if (!Array.isArray(turns)) throw new TypeError('BR作業回は配列で指定してください');
+    return turns.map(turn => {
+      if (typeof turn === 'string' && turn.length) return turn;
+      if (!turn || !Array.isArray(turn.slots) || turn.slots.length !== 2) throw new TypeError('BR各回は2枠で指定してください');
+      const slots = turn.slots.map(slot => {
+        if (!slot || !['earth', 'sky', 'none'].includes(slot.type)) throw new TypeError('BRの箱はEarth / Sky / なしから選択してください');
+        if (slot.type === 'none') return { type: 'none', spotId: null };
+        const spot = F.spotById[slot.spotId];
+        if (!spot || spot.team && spot.team !== team) throw new TypeError('自専有または共有の配置先を選択してください');
+        return { type: slot.type, spotId: spot.id };
+      });
+      if (slots.every(slot => slot.type === 'none')) throw new TypeError('BR各回は最低1個を指定してください');
+      return { slots };
     });
   }
   const scanBudget = r => Math.max(1, r.cargo.length + Object.values(r.observation?.towers || {}).filter(t => t.at(-1)?.type === 'sky' && t.at(-1).color !== r.team && t.every(o => !o.touchedBy)).length);
@@ -63,9 +79,12 @@
       this.config = { ...DEFAULTS, ...config };
       this.config.supplyMode = config.supplyMode ?? 'normal';
       if (!['normal', 'ideal'].includes(this.config.supplyMode)) throw new TypeError('不明な補給モードです');
+      this.config.brObservationMode = config.brObservationMode ?? 'fixed';
+      if (!['fixed', 'stopped'].includes(this.config.brObservationMode)) throw new TypeError('不明なBR観測モードです');
+      if (!Number.isFinite(this.config.trAutoRestartSeconds) || this.config.trAutoRestartSeconds < 0) throw new TypeError('TR競合復帰時間は0以上の秒数で指定してください');
       for (const team of ['red', 'blue']) {
         const key = `${team}BrTurns`;
-        this.config[key] = Array.isArray(config[key]) ? config[key].filter(id => typeof id === 'string' && id.length) : [];
+        this.config[key] = normalizeBrTurns(config[key], team);
         this.config[`${team}TrTrips`] = normalizeTrTrips(config[`${team}TrTrips`]);
       }
       this.time = 0; this.ended = false; this.events = []; this.history = []; this.lastFrame = -1; this.version = 0; this.graphs = new Map();
@@ -78,7 +97,8 @@
       this.log(null, '開始', this.config.supplyMode === 'ideal' ? '箱の補給待ちなし · 有限在庫 / 自動補給の搬送点なし / TRはMustika担当' : '初期配置を確認しました', 'setup'); this.capture();
     }
     robot(id) { return this.robots.find(r => r.id === id); }
-    brStrategy(team) { return this.config[`${team}BrTurns`][this.robot(`${team}BR`)?.brTurn?.completed || 0] || this.config[`${team}BrPlan`]; }
+    brTurnPlan(team) { return this.config[`${team}BrTurns`][this.robot(`${team}BR`)?.brTurn?.completed || 0]; }
+    brStrategy(team) { const turn = this.brTurnPlan(team); return typeof turn === 'string' ? turn : this.config[`${team}BrPlan`]; }
     object(id) { return this.objects.find(o => o.id === id); }
     stock(team) { return this.objects.filter(o => o.location === 'transfer' && o.transferTeam === team); }
     tower(id) { return this.objects.filter(o => o.location === 'spot' && o.spotId === id).sort((a, b) => a.layer - b.layer); }
@@ -199,7 +219,7 @@
     view(robot) {
       const motion = Object.fromEntries(['maxSpeed', 'acceleration', 'bodySize', 'rampFactor', 'stairSpeed', 'stairPause', 'scanSeconds', 'pickupSeconds', 'placeSeconds'].map(key => [key, this.config[key]]));
       motion.speedFactor = this.config[`${robot.team}Speed`];
-      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], trTrips: this.config[`${robot.team}TrTrips`], supplyMode: this.config.supplyMode, brPlan: this.brStrategy(robot.team) });
+      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, brTurnPlan: this.brTurnPlan(robot.team), brObservationMode: this.config.brObservationMode, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], trTrips: this.config[`${robot.team}TrTrips`], supplyMode: this.config.supplyMode, brPlan: this.brStrategy(robot.team) });
     }
     changed() { this.version++; this.graphs.clear(); }
     mustikaOffer(team) {
@@ -215,6 +235,8 @@
         return this.footprintAllowed(robot, action.target) ? success : fail('その位置には車体を置けません。活動域・壁・段差を確認してください', 'MOVE-01～09', 'physical');
       }
       if (action.type === 'scan') {
+        if (robot.role === 'BR' && this.config.brObservationMode === 'stopped') return robot.enteredL1 && ['l1', 'l2'].includes(F.surface(robot).type) && !robot.velocity
+          ? success : fail('L1またはL2の平面で停止して観測してください', '観測モデル', 'perception');
         if (action.local) return robot.role === 'BR' && robot.localRescanAllowed && robot.enteredL1 && ['l1', 'l2'].includes(F.surface(robot).type)
           ? success : fail('その場での再認識は配置・反転失敗後に行います', 'ユーザー指定', 'perception');
         return robot.role === 'BR' && !F.atScanPoint(robot.team, robot) ? fail('L1またはL2の自チーム見渡し場所で停止する必要があります', 'ユーザー指定', 'perception') : success;
@@ -299,7 +321,7 @@
         if (!mandateHeld(this.sanctuary, robot.team, this.time)) return fail('サンクチュアリ条件が未達成です', '4.5.1');
         if (!robot.cargo.includes('M')) return fail('Mustikaを保持していません', 'OBJ-11', 'physical');
         if (F.surface(robot).type !== 'l2') return fail('L2に上がってください', '4.5.2');
-        if (!robot.scanLoaded) return fail('受け取り後に見渡し場所で認識してください', 'ユーザー指定', 'perception');
+        if (!robot.scanLoaded) return fail('受け取り後に停止して認識してください', 'ユーザー指定', 'perception');
         return this.touchCheck(robot, { x: 5.5, y: 5.5 });
       }
       if (action.type === 'retry') {
@@ -352,7 +374,7 @@
     enqueue(id, actions, manual = false) {
       const r = this.robot(id); if (!r || this.ended) return false;
       if (manual && r.job) return false;
-      if (manual) { r.auto = false; r.queue = []; r.failure = null; r.stall = null; r.retryPending = null; }
+      if (manual) { r.auto = false; r.queue = []; r.failure = null; r.stall = null; r.retryPending = null; r.trCollisionStall = null; r.trRestartPending = null; }
       r.queue.push(...clone(Array.isArray(actions) ? actions : [actions])); return true;
     }
     reject(r, a, result) {
@@ -379,6 +401,9 @@
       if (!result.ok) { this.reject(r, job, result); return; }
       if (job.type === 'scan') {
         this.observe(r); r.observation.local = !!job.local; r.localRescanAllowed = false; r.scanLoaded = true; r.batchRemaining = scanBudget(r); r.batchFlips = [];
+        if (job.arrival && ['place', 'flip', 'enshrine', 'recover'].includes(r.queue[0]?.type)) {
+          r.queue = []; r.brain.stage = r.cargo.length ? 'loaded' : 'choose';
+        }
       } else if (['pickup', 'receive', 'recover'].includes(job.type)) {
         const o = job.type === 'recover' ? this.tower(job.spotId).at(-1) : this.object(job.objectId);
         if (job.type === 'receive' && o.type === 'mustika' && o.location === 'cargo') {
@@ -414,19 +439,36 @@
         if (!result.ok) { this.reject(r, job, result); return; }
       }
       r.job = null; r.status = '待機'; r.failure = null;
+      // Finish work at this destination, then replan locally before travelling elsewhere.
+      if (r.role === 'BR' && r.auto && this.config.brObservationMode === 'stopped' && ['place', 'flip', 'enshrine', 'recover'].includes(job.type)) {
+        if (r.queue[0]?.type === 'move' && distance(r, r.queue[0].target) > .12) r.queue = [];
+        if (!r.queue.length) r.brain.stage = 'return';
+      }
       this.recordBrTurn(r, job);
       this.updateSanctuary(); this.log(r, job.type, `${job.type === 'scan' && job.local ? 'その場で停止・再認識' : labels[job.type]}${job.spotId ? ' · ' + F.spotById[job.spotId].label : ''}${job.objectId ? ' · ' + job.objectId : ''}`, 'action', '', { cargo: [...r.cargo], observationAt: r.observation?.at ?? null, objectId: job.objectId, objectType: this.object(job.objectId)?.type, spotId: job.spotId,
-        ...(job.type === 'scan' ? { local: !!job.local, level: F.surface(r).type, origin: { x: r.x, y: r.y } } : {}),
+        ...(job.type === 'scan' ? { local: !!job.local, arrival: !!job.arrival, observationMode: this.config.brObservationMode, level: F.surface(r).type, origin: { x: r.x, y: r.y } } : {}),
         ...(job.type === 'pickup' && job.objectId === 'M' ? { sanctuaryAt: this.sanctuary[r.team], sanctuaryEvidence: clone(this.sanctuaryEvidence[r.team]) } : {}) });
     }
     recordBrTurn(r, job) {
       if (r.role !== 'BR' || !this.config[`${r.team}BrTurns`].length) return;
       r.brTurn ||= { completed: 0, worked: false };
+      const specified = this.brTurnPlan(r.team)?.slots;
+      if (specified) {
+        const progress = r.brTurn;
+        progress.assigned ||= [null, null]; progress.settled ||= [];
+        if (job.type === 'receive' && this.object(job.objectId)?.type !== 'mustika') {
+          const slot = specified.findIndex((s, i) => !progress.assigned[i] && s.type === this.object(job.objectId).type);
+          if (slot >= 0) progress.assigned[slot] = job.objectId;
+        }
+        if (['place', 'return'].includes(job.type) && progress.assigned.includes(job.objectId)) progress.settled.push(job.objectId);
+        const done = progress.fallback || specified.every((s, i) => s.type === 'none' || progress.assigned[i] && progress.settled.includes(progress.assigned[i]));
+        if (job.type !== 'scan' || job.arrival || r.cargo.length || !done) return;
+      }
       if (['place', 'flip', 'enshrine'].includes(job.type)) r.brTurn.worked = true;
       // Supply scans, failures and local replans stay in the same sortie, even after partial work.
-      if (job.type !== 'scan' || job.local || r.cargo.length || !r.brTurn.worked) return;
+      if (job.type !== 'scan' || job.arrival || job.local || r.cargo.length || !specified && !r.brTurn.worked) return;
       const strategy = this.brStrategy(r.team);
-      r.brTurn.completed++; r.brTurn.worked = false; r.brain = { stage: 'choose' }; r.decision = null;
+      r.brTurn = { completed: r.brTurn.completed + 1, worked: false }; r.brain = { stage: 'choose' }; r.decision = null;
       this.log(r, 'br-turn-complete', `BR ${r.brTurn.completed}回目の作業完了`, 'action', '', { turn: r.brTurn.completed, strategy, nextStrategy: this.brStrategy(r.team) });
     }
     recordDelivery(r, o) {
@@ -482,6 +524,42 @@
       }
       if (relocated) this.capture(true);
     }
+    updateTrCollisionRestarts(dt, collisions) {
+      const delay = this.config.trAutoRestartSeconds; let relocated = false;
+      for (const r of this.robots) {
+        if (r.role !== 'TR') continue;
+        if (!r.auto || !(delay > 0) || r.job?.type !== 'move') { r.trCollisionStall = null; r.trRestartPending = null; continue; }
+        if (!r.trRestartPending) {
+          const opponent = collisions.get(r.id);
+          if (!opponent) { r.trCollisionStall = null; continue; }
+          r.trCollisionStall ||= { since: this.time - dt, opponent };
+          const elapsed = this.time - r.trCollisionStall.since;
+          r.status = `相手TRと競合 · 開始枠へ復帰まで ${Math.max(0, delay - elapsed).toFixed(1)}秒`;
+          if (elapsed < delay - 1e-8) continue;
+          r.trRestartPending = { blockedSince: r.trCollisionStall.since, opponent, requestedAt: this.time };
+          r.velocity = 0; r.wait = 0;
+          this.log(r, 'tr-restart-request', `相手TRによる移動停止 ${delay}秒 · 開始枠へ復帰`, 'recovery', 'シミュレーション指定', { ...r.trRestartPending, cargo: [...r.cargo] });
+        }
+        const pending = r.trRestartPending, target = F.points[r.team].startTR, z = F.surface(target).z;
+        const clear = this.footprintAllowed(r, target) && this.obstacleFree(r, target)
+          && !this.robots.some(other => other !== r && Math.abs(other.z - z) <= .65 && overlap(box(other, this.config.bodySize + .015), box(target, this.config.bodySize + .015)));
+        if (!clear) {
+          r.status = 'TR復帰待機 · 開始枠が使用中';
+          if (!pending.waitLogged) this.log(r, 'tr-restart-wait', r.status, 'recovery', 'シミュレーション指定');
+          pending.waitLogged = true; continue;
+        }
+        // Rebuild only the route from the start; cargo, the trip and the remaining plan survive.
+        const move = { type: 'move', target: clone(r.job.destination || r.job.target), label: r.job.label };
+        r.queue.unshift(move);
+        Object.assign(r, target, { z, enteredL1: false, job: null, observation: null, decision: null, velocity: 0, wait: 0, blocked: 0,
+          failure: null, trCollisionStall: null, trRestartPending: null, status: 'TR競合復帰 · 開始枠から再開' });
+        for (const id of r.cargo) Object.assign(this.object(id), { x: r.x, y: r.y, z, location: 'cargo', holder: r.id, touchedBy: r.id });
+        this.changed();
+        this.log(r, 'tr-restart', r.status, 'recovery', 'シミュレーション指定', { ...pending, automatic: true, cargoPolicy: 'keep-all', cargo: [...r.cargo], target: clone(target), resumeTarget: move.target });
+        relocated = true;
+      }
+      if (relocated) this.capture(true);
+    }
     updateSanctuary() {
       for (const team of ['red', 'blue']) {
         const towers = completedTowers(id => this.tower(id), team);
@@ -512,12 +590,17 @@
       dt = Math.min(.05, dt, 180 - this.time);
       this.replenishIdealSupply();
       for (const r of this.robots) {
-        if (!r.auto) { r.stall = null; r.retryPending = null; }
-        if (r.retryPending) continue;
+        if (!r.auto) { r.stall = null; r.retryPending = null; r.trCollisionStall = null; r.trRestartPending = null; }
+        if (r.retryPending || r.trRestartPending) continue;
         if (r.wait > 0) { r.wait = Math.max(0, r.wait - dt); continue; }
         if (!r.job && !r.queue.length && r.auto && controllers) {
           if (r.role === 'TR') this.observe(r);
           const response = controllers.next(this.view(r)); r.brain = response.brain;
+          if (response.fallbackTurn && this.brTurnPlan(r.team)?.slots) {
+            r.brTurn ||= { completed: 0, worked: false };
+            if (!r.brTurn.fallback) this.log(r, 'br-turn-fallback', response.fallbackTurn, 'plan');
+            r.brTurn.fallback = true;
+          }
           if (response.skipTrip) this.skipExhaustedTrip(r);
           if (response.status) r.status = response.status;
           if (response.decision) {
@@ -529,7 +612,7 @@
         }
       }
       // Lock conflicting manipulations before starting any job, independent of array order.
-      const pending = this.robots.filter(r => !r.retryPending && !r.job && r.queue.length && r.wait <= 0);
+      const pending = this.robots.filter(r => !r.retryPending && !r.trRestartPending && !r.job && r.queue.length && r.wait <= 0);
       const claims = new Map();
       for (const r of pending) { const key = claimKey(r.queue[0]); if (key) claims.set(key, (claims.get(key) || 0) + 1); }
       for (const r of pending) {
@@ -539,8 +622,13 @@
       }
       const proposed = new Map();
       for (const r of this.robots) {
-        const job = r.job; if (!job || job.type !== 'move' || r.wait > 0) continue;
-        if (!job.route.length) { r.job = null; r.velocity = 0; r.status = '到着'; continue; }
+        const job = r.job; if (!job || job.type !== 'move' || r.wait > 0 || r.trRestartPending) continue;
+        if (!job.route.length) {
+          r.job = null; r.velocity = 0; r.status = '到着';
+          if (r.role === 'BR' && r.auto && this.config.brObservationMode === 'stopped' && r.enteredL1 && ['l1', 'l2'].includes(F.surface(r).type)
+            && r.queue[0]?.type !== 'scan' && (!r.observation || distance(r, r.observation.origin) > .12)) r.queue.unshift({ type: 'scan', arrival: true });
+          continue;
+        }
         const target = job.route[0], d = distance(r, target), surface = F.surface(r), speed = this.config[`${r.team}Speed`];
         const stairs = ['stairs', 'upperStairs'].includes(surface.type);
         const cap = stairs ? this.config.stairSpeed * speed : this.config.maxSpeed * speed * (surface.type === 'ramp' ? this.config.rampFactor : 1);
@@ -554,6 +642,11 @@
         const p = proposed.get(r.id); if (!p) continue;
         if (!this.segmentAllowed(r, r, p)) blocked.add(r.id);
       }
+      const terrainBlocked = new Set(blocked), trCollisions = new Map();
+      const blockByRobot = (r, other) => {
+        blocked.add(r.id);
+        if (proposed.has(r.id) && !terrainBlocked.has(r.id) && r.role === 'TR' && other.role === 'TR' && r.team !== other.team) trCollisions.set(r.id, other.id);
+      };
       const conflicts = (a, pa, b, pb) => {
         if (Math.abs(F.surface(pa).z - F.surface(pb).z) > .65) return false;
         for (let t = 0; t <= 1; t += .2) {
@@ -573,9 +666,9 @@
           if (!conflicts(a, pa, b, pb)) continue;
           const aCanClear = pa !== a && !conflicts(a, pa, b, b);
           const bCanClear = pb !== b && !conflicts(a, a, b, pb);
-          if (aCanClear && (!bCanClear || distance(pa, b) > distance(a, pb))) blocked.add(b.id);
-          else if (bCanClear) blocked.add(a.id);
-          else { if (proposed.has(a.id)) blocked.add(a.id); if (proposed.has(b.id)) blocked.add(b.id); }
+          if (aCanClear && (!bCanClear || distance(pa, b) > distance(a, pb))) blockByRobot(b, a);
+          else if (bCanClear) blockByRobot(a, b);
+          else { if (proposed.has(a.id)) blockByRobot(a, b); if (proposed.has(b.id)) blockByRobot(b, a); }
         }
       } while (blocked.size !== previousBlocked);
       for (const r of this.robots) {
@@ -608,11 +701,31 @@
       }
       for (const r of this.robots) if (r.job && r.job.type !== 'move') { r.job.remaining -= dt; if (r.job.remaining <= 1e-8) this.complete(r, r.job); }
       this.updateAutoRetries(dt, blocked);
+      this.updateTrCollisionRestarts(dt, trCollisions);
       this.capture();
     }
     snapshot() { return clone({ time: this.time, ended: this.ended, robots: this.robots.map(({ queue, brain, ...r }) => ({ ...r, queueLength: queue.length, pendingWork: [r.job, ...queue].filter(a => a && ['place', 'flip', 'enshrine', 'return'].includes(a.type)).map(({ type, spotId, objectId }) => ({ type, spotId, objectId })) })), objects: this.objects, scores: this.scores(), sanctuary: this.sanctuary, sanctuaryEvidence: this.sanctuaryEvidence }); }
     capture(force = false) { if (force || Math.floor(this.time * 2) !== this.lastFrame) { this.lastFrame = Math.floor(this.time * 2); this.history.push(this.snapshot()); } }
-    export() { return { format: 'robocon-field-sim-v1', config: this.config, assumptions: ['axis-aligned square body', 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo', 'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points', 'TR unloading reserves capacity for BR held blocks; any held Earth/Sky may be selected for unloading', 'efficient BR defaults to two useful normal blocks; endgame and l2-earth allow single-block fallbacks; Mustika, empty-handed flips and local recovery are exceptions', 'distinct observed Sky flips may be queued on one scan; this does not increase carry capacity', 'phase policies switch at the next planning decision on or after 150 seconds; l2-earth keeps Earth priority throughout', 'optional BR strategy sequence advances after successful work, empty cargo and a normal scan; not on supply waits, local scans or Retry itself', 'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo', 'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence', 'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source', 'manual retry carrying Earth/Sky unsupported', 'no rigid-body tipping physics'], events: this.events, history: this.history, final: this.snapshot() }; }
+    export() {
+      return { format: 'robocon-field-sim-v1', config: this.config, assumptions: [
+        'axis-aligned square body',
+        this.config.brObservationMode === 'stopped'
+          ? 'ideal full-board snapshot after timed stationary scan on L1/L2; replan at work arrival and after each destination; no occlusion or recognition error; idle near transfer'
+          : 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo',
+        'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points',
+        'TR unloading reserves capacity for BR held blocks; any held Earth/Sky may be selected for unloading',
+        'efficient BR defaults to two useful normal blocks; endgame and l2-earth allow single-block fallbacks; Mustika, empty-handed flips and local recovery are exceptions',
+        'distinct observed Sky flips may be queued on one scan in fixed mode; stopped mode replans between destinations; neither increases carry capacity',
+        'phase policies switch at the next planning decision on or after 150 seconds; l2-earth keeps Earth priority throughout',
+        'named BR turns advance after successful work, empty cargo and a non-arrival normal scan; specified turns retain assigned object IDs through scans and Retry until placed/returned, or fall back with an explicit log',
+        'specified BR box turns wait for the requested set and take priority over unheld Mustika; invalid targets fall back to the selected normal BR policy',
+        'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo',
+        'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence',
+        'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source',
+        'automatic TR restart after continuous opponent-TR movement collision (default 1 second); wait for a clear start; retain all cargo and trip plan; exclude handling, terrain pauses, idle waits and object claims',
+        'manual retry carrying Earth/Sky unsupported', 'no rigid-body tipping physics',
+      ], events: this.events, history: this.history, final: this.snapshot() };
+    }
   }
-  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, normalizeTrTrips, transportTripIndex };
+  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, normalizeTrTrips, normalizeBrTurns, transportTripIndex };
 });

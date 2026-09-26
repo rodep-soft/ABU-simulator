@@ -18,6 +18,7 @@ fs.mkdirSync(output, { recursive: true });
     assert.equal(await page.locator('#red-tr-plan').inputValue(), 'stock-e3');
     assert.equal(await page.locator('#red-br-plan').inputValue(), 'l2-earth');
     await page.locator('#red-add-turn').click(); await page.locator('#red-add-turn').click();
+    await page.locator('#red-br-turn-0').selectOption('l2-earth');
     await page.locator('#red-br-turn-1').selectOption('mustika-fast');
     await page.locator('#red-br-plan').selectOption('earth-late');
     assert.equal(await page.locator('#red-br-turns [data-turn-action="up"]').first().isDisabled(), true);

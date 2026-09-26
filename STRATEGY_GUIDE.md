@@ -93,7 +93,7 @@ Mustikaの取得・受取・奉納は共通の効率化手順を使います。M
 
 プリセットのTRは `stock-e3`。`stockDemand` はこのBR戦略の間、150秒以降もEarth不足を先に補います。在庫上限、返却予約、初便E3、Mustikaの共通優先は維持します。
 
-GUIの「BRの順番」は、追加コードなしで既存のBR戦略を順番に呼ぶ設定です。Nodeでも同じ設定を指定できます:
+GUIの「BRの順番」は、既存BR戦略のIDと、箱2枠・配置先の指定を混在できる設定です。従来の戦略IDだけの例:
 
 ```js
 const { Simulation } = require('./sim/engine.js');
@@ -112,7 +112,31 @@ while (!sim.ended) sim.step(0.05, controllers);
 
 回数の正本はBRの `brTurn.completed` / `worked`。`recordBrTurn` は成功した `place` / `flip` / `enshrine` を記録し、空手で通常のscanを完了したときに1回進めます。受取・待機・局所scan・失敗・Retry自体では進めません。Retryでbrainを消しても回数は残り、手持ちを置く/返すまで同じ回です。何も実行できなければ、その回の方策で待機・再認識します。
 
-複数配置・連続反転の途中で戦略を切り替えず、次回の通常見渡しを境に切り替えます。指定終了後は通常BR戦略へ戻ります。進捗はスナップショットにも含むため、リプレイ表示はその時刻の戦略になります。TRは現在のBR方針を補給選択に使いますが、相手の計画や新しい盤面情報をBRへ渡す処理は追加していません。Mustikaの共通優先処理は順番指定時にも働き、奉納も1回の成功作業に含みます。
+従来の `fixed` モードでは複数配置・連続反転の途中で戦略を切り替えず、次回の通常見渡しを境に切り替えます。`stopped` では配置先ごとに再計画し、空手反転も次の通常scanで名前付き戦略の回を進めます。指定終了後は通常BR戦略へ戻ります。進捗はスナップショットにも含むため、リプレイ表示はその時刻の戦略になります。TRは現在のBR方針を補給選択に使いますが、相手の計画や新しい盤面情報をBRへ渡す処理は追加していません。名前付き戦略ではMustika共通優先が働き、奉納も成功作業に含みます。箱・配置先の明示指定は次節の優先順です。
+
+### 停止位置での観測と明示的なBR配置プログラム
+
+```js
+const sim = new Simulation({
+  brObservationMode: 'stopped', // GUI既定。Node省略時は従来のfixed
+  redBrPlan: 'mustika-fast',
+  redBrTurns: [
+    { slots: [{ type: 'earth', spotId: 's2' }, { type: 'earth', spotId: 'r2' }] },
+    { slots: [{ type: 'earth', spotId: 's2' }, { type: 'sky', spotId: 's2' }] },
+    'l2-earth',
+    { slots: [{ type: 'earth', spotId: 'u1' }, { type: 'none', spotId: null }] },
+  ],
+});
+```
+
+- `normalizeBrTurns` は2枠、箱種類、相手専有の除外、最低1個を検証して深いコピーを作ります。`Simulation.brTurnPlan(team)` / `view.brTurnPlan` が今の設定、`brStrategy` は箱指定中も通常BR戦略IDを返します。
+- `controllers.specifiedBuilder` と `score-planner.specifiedPlan` は観測から組と配置順を組み立て、engineの既存合法性検査・得点関数・地形移動時間を再利用します。箱指定中は未保持Mustikaの割込より箱を優先。保持済みMustikaは奉納します。
+- `brTurn.assigned` は枠に対応する物体ID、`settled` は配置/返却済みID、`fallback` は通常戦略への代替フラグ。brainとは別に保持するため、1個目の作業後の現地認識やRetryで指定をやり直しません。供給不足は組が揃うまで待機。配置不可や枯渇は `br-turn-fallback` を記録し、残った荷物は通常BR戦略か返却で処理します。
+- `stopped` のscanはL1/L2の停止位置で有効。`F.scanActions` は初期入場以外は帰還を挿入しません。自動BRが作業先へ到着すると `arrival: true` のscanを挿入し、古い作業列を破棄してcontrollerを呼び直します。受取場所への到着では在庫を再観測した後に合法性を検証して受け取ります。
+- 同一地点の2個配置は1組で実行し、別地点へ移る前には残りの列を取り消して現地scan・再計画します。保持中の残り1個は補給を要求せず候補評価できるため、2個出発条件で帰還しません。待機は `F.points[team].brStandby` で行います。
+- Plannerの停止モードは受取後の見渡し帰還を含めず、作業先での到着scan・作業間のscan時間を評価に含めます。相手の将来行動を予測する完全探索ではありません。
+- 計測条件は `config.brObservationMode`、scanログの `observationMode` / `origin` / `arrival`、exportの `assumptions` に残します。理想全盤面観測であり実機センサの視野・遮蔽は未モデル化です。
+- この節が以下の旧「見渡し点へ帰還」の記述に対する停止モードの差分です。固定モードは従来条件を維持します。検証: `sim/tests/br-stops.test.cjs` / `sim/tests/br-stops-browser.cjs`。
 
 検証は `sim/tests/l2-earth.test.cjs`, `sim/tests/br-turns.test.cjs`, `sim/tests/l2-earth-turns-browser.cjs`。新しいブラウザテストは `require('playwright')` を使い、任意の `ROBO_BROWSER_CHANNEL` と結果保存先 `ROBO_QA_DIR` に対応します。既存のWindows専用ブラウザテストとは依存解決方法が異なります。
 

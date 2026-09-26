@@ -2,6 +2,62 @@
 
 初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。`Reference/` 同梱とEarth/Sky反転に加え、その後のL2 Earth最優先・BR作業回の順番指定の実装を反映しています。
 
+## 2026-09-26 GitHub反映対象
+
+ユーザーのcommit/push依頼により、BR停止位置での観測・受渡そば待機、BR各ターンの箱/番号付き配置先、TR同士の1秒競合復帰、関連テストと確認記録をまとめて `origin/main` へ反映する対象としました。実行先はWindowsの `ABU-simulator-git`、接続先は `https://github.com/rodep-soft/ABU-simulator.git` です。WSL側は変更していません。
+
+下記の「未コミット・未push」は各実装完了時点の履歴です。現在の同期状態は `git status -sb` と `git log -1` を確認してください。GitHubへのpush完了とPagesの配信更新完了は別です。公開入口は `https://rodep-soft.github.io/ABU-simulator/field-simulator.html`。
+
+## 2026-09-26 BR指定欄の見つけやすさを修正
+
+- 従来は「BRの順番」の追加直後が名前付き戦略で、さらに「箱・配置先を指定」へ切り替えないと箱の欄が出ませんでした。`sim/view.js` の追加ボタンは最初から箱2枠を作るよう変更。見出しも「BRの箱・配置先（ターン別）」へ変更し、TRの便別設定と同様に直接入力できます。
+- `sim/style.css` でターン番号・並替/削除、動作選択、箱と配置先2行を整理。赤青独立、Earth/Sky/なし、通常戦略との混在、適用/取消、無効入力の扱いは維持。配置先番号はユーザー画像の1〜10と同じで、今回変更していません。本体・得点・合法性・観測処理は今回未変更。
+- `br-stops-browser.cjs` を更新し、追加直後の箱欄表示と番号対応も検証。1440/390/320px・180秒実行・試合後分析・リプレイまで成功。記録は `results/br-stops-qa-1790389553895/verification.json`、編集欄画像は同階層 `editor-320.png` など。320px画像を目視確認。
+- 既存戦略を明示選択するよう調整した `l2-earth-turns-browser.cjs` も成功。記録は `results/l2-earth-turns-qa-1790389577029/`。JavaScriptエラー0、横はみ出しなし。本体全210件の確認は直前のTR競合修正時の記録を参照。
+- 前2件の実装を含め、依然として未コミット・未pushです。GitHub Pagesの旧画面とこのローカル版を取り違えないでください。WSL側は変更していません。
+
+## 2026-09-26 TR同士の競合救済
+
+Windows GUI版の `sim/engine.js` に `updateTrCollisionRestarts` を追加。既定 `trAutoRestartSeconds: 1` (0で無効) で、自動TRが相手TRとの車体衝突により連続1秒移動できなかった場合だけ、元の `startTR` へ復帰します。`step` の車体衝突判定で原因を記録し、壁/箱による停止やBR衝突から区別します。採集・荷下ろし・手渡し・待機・階段停止・同時物体取得要求は対象外。少しでも実移動または衝突以外の待機があれば連続時計を解除します。
+
+- 開始枠が塞がっていれば復帰待ち。作業・移動を凍結し、空いてから復帰します。手動化で取消。180秒以降には実行しません。
+- 全荷物 (Mustikaを含む)、`transport` の途中/完了納品、指定便、`brain`、未完了の移動先と後続 `queue` を保持。移動先への経路だけを開始枠から作り直します。採点・配置済み物体・資格には変更なし。
+- `trCollisionStall` と `trRestartPending` はBR用 `stall` / `retryPending` と別。`tr-restart-request` / `tr-restart-wait` / `tr-restart` をイベントに記録し、復帰直後のsnapshotも保存。既存の状態欄・ログ・リプレイで確認可能です。
+- 公式Retryと別のシミュレーション仮定。BRの5秒Retry、BRのMustika返却、競技中の通常の禁止事項はそのまま。
+- 新規 `sim/tests/tr-collision-restart.test.cjs` は10件。既存BR Retryと合わせ27件成功。最終コードで本体全210件成功、失敗0件 (約193.77秒)。Playwright / Edgeの `sim/tests/tr-collision-browser.cjs` も成功。衝突再現の復帰表示・荷物保持・リプレイと、通常180秒試合・390px表示を確認。記録は `results/tr-collision-qa-1790388590115/REPORT.md`。
+- 直前のBR観測/箱指定の未コミット変更を保全。WSL側には触れていません。今回もcommit/push・配布ZIP更新は未実施。
+
+## 2026-09-26 BR停止観測・箱と配置先の指定
+
+今回も変更対象は `ABU-simulator-git` のWindows GUI版のみです。WSL側のコード・探索・結果は変更していません。依存追加・ビルド方式変更なし、`field-simulator.html` を直接開けます。今回の変更はローカルで未コミット・未pushです。以下は9月25日の記録に優先します。
+
+- **観測モデル**: `brObservationMode: 'stopped' | 'fixed'` を追加。GUI既定は `stopped`、Nodeで設定省略時は既存互換の `fixed`。設定・export・再初期化でモードを保持します。GUI「戦略」で切り替え、設定適用時に試合を初期化します。
+- `sim/field.js`: `scanPoint` / `scanActions` が停止モードでは現在のL1/L2位置を使います。開始直後と手待ちは新しい `brStandby` (赤3.7,6.8 / 青7.3,6.8) へ。受取点から0.8m離し、TRの納品・ideal補給を妨げない位置です。スポット番号は 1=s2、2=r2、3=r1、4=s1、5=b1、6=b2、7=u3、8=u1、9=u2、10=u4。
+- `sim/engine.js`: 自動BRの移動先到着時に停止scanを挿入。配置/反転などの直前なら、scan完了後に旧計画を破棄して現地再計画。同じ配置先の連続作業は一連で処理し、次の配置先への移動前に現地scan。経路の中継点、階段の段ごとの停止、衝突待ちではscanを乱発しません。観測は既定1秒を消費して更新し、走行中・scan未完了時に新しい盤面は見せません。
+- `sim/controllers.js` / `sim/efficient-strategy.js` / `sim/score-planner.js`: 通常戦略の観測帰還をモードに応じて現地観測に変更。候補の移動・観測時間も現地観測に対応。出発後に1個だけ残っても2個必須条件で足止めせず配置を続行し、行動候補がなければ受渡そばへ戻ります。固定モードは既存テストで維持します。
+- **知覚の仮定**: 停止位置から全盤面の正確な状態を認識できるモデルです。実機での可視性、遮蔽、視野、認識誤差は未検証・未実装。`observe` / `view` のスナップショット境界は維持しており、相手の未来計画などを追加提供したものではありません。公式ルールや実機で実現可能な知覚と混同しないでください。
+- **BR順番設定**: `redBrTurns` / `blueBrTurns` に既存の戦略IDと `{ slots: [{type, spotId}, {type, spotId}] }` を混在可能。`type` は `earth` / `sky` / `none`。2枠ともなしは不可、相手専有の配置先も不可。`normalizeBrTurns` が検証・コピーします。単体指定は1個で出発、2個指定は組が揃うまで待機します。
+- `specifiedBuilder` / `Planner.specifiedPlan`: 指定順に受取り、1枠目・2枠目の順に配置。合法性・経路・残り時間は既存engine/plannerを再利用。指定先が埋まった場合は観測後に通常BR戦略へ切替し、代替配置できなければ返却します。有限資材が指定数未満の場合もログ付きで解除します。一時的な補給待ちと枯渇を区別します。
+- `Simulation.recordBrTurn`: `brTurn.assigned` (物体ID) / `settled` / `fallback` で進捗を保存。受取途中、2個の間の現地観測、Retryでは回を進めません。両枠が配置/返却済み、または代替解除後に空手となり通常scanを終えた時点で次の回へ進みます。指定終了後は選択中の通常BR戦略へ。箱指定中は指定を優先し、未受領Mustikaへの割込は行いませんが、既に保持しているMustikaの奉納は優先します。
+- `field-simulator.html` / `sim/view.js` / `sim/style.css`: 既存BR順番エディタに「箱・配置先を指定」を追加。赤青独立、Earth/Sky/なし×2、番号付き配置先、追加・並替・削除・適用・取消に対応。実行中/リプレイの現在回と指定箱・配置先を表示。固定見渡しマーカーを停止モードでは受渡そばの待機マーカーへ変更。試合後分析のコピー分離・得点処理は変更していません。
+
+### この追加の確認方法
+
+プロジェクトルートで実行:
+
+```sh
+node --test --test-concurrency=2 sim/tests/*.test.cjs
+node --test sim/tests/br-stops.test.cjs
+node sim/tests/br-stops-browser.cjs
+```
+
+ブラウザ検証にはPlaywrightと利用可能なブラウザが必要です。Windowsでは同梱ランタイムの `NODE_PATH` と `ROBO_BROWSER_CHANNEL=msedge` を指定して実行しました。本体のGUI起動にはこれらは不要です。
+
+- 新規本体テスト `br-stops.test.cjs` は17件成功。E/S/なしの全8非空構成、在庫待ち・有限不足、相手による配置先変更、Sky返却、全既存BR戦略への荷物引継ぎ、Retry中の部分受取、L2現地観測、通常/idealの180秒試合を確認。
+- 最終コードで `node --test --test-concurrency=2 sim/tests/*.test.cjs` は200件成功、失敗0件 (約193秒)。GUI記録と詳細は `results/br-stops-qa-1790387844064/REPORT.md` に記載。途中確認の `results/br-stops-qa-1790387000850/` も保全。
+- Playwright / Edgeで1440/390/320pxの設定操作・実行・リプレイ・モード往復を確認。3分終了後の盤面反転でも元の試合exportは不変。横はみ出し・JavaScriptエラーなし、canvas描画あり。PC/320px画像も目視確認。
+- 未確認: GitHub Pages上への反映、スマホ実機、WSLでの動作、実機カメラからの観測、戦略の強さの比較。長時間探索・commit/push・配布ZIP更新は実施していません。
+
 ## 2026-09-25 Windows GUI追加
 
 今回の作業対象は **`ABU-simulator-git` 内のWindows GUI版だけ** です。ユーザーは別のWSL作業ツリーで探索を実行中です。WSLのファイル・プロセス・探索結果は読み書き・停止・再開していません。下記に残る「WSL移行予定」「API未実装」はこのWindowsコピーの履歴・構成を指します。進展したWSLコピーへこの古い本体を上書きしないでください。
@@ -30,7 +86,7 @@
 - 現行アプリの入口は **`field-simulator.html`**。`index.html` と `tactical-replay.html` は旧版です。
 - HTML、`sim/`、`vendor/` を一緒に置けば、Windowsではファイルを直接開いて動かせる構成です。本体にビルド・npm install・常駐サーバーは不要です。
 - 初回引継ぎ作業は資料のみでしたが、その後の依頼で **L2 Earth最優先戦略とBR作業回の順番設定** を実装しました。WSL移行やBR用APIは未実装です。`Reference/` はユーザーが追加した資料です。
-- 現行の本体テストはWindowsで183件成功。BR作業回追加時は171件、初回引継ぎ時は158件でした。この変更のWSLでの動作は未確認です。既存ブラウザテストには移植が必要なWindows固定パスがあります。
+- 現行の確認結果は冒頭の2026-09-26節を参照。9月25日は183件、BR作業回追加時は171件、初回引継ぎ時は158件でした。この変更のWSLでの動作は未確認です。既存ブラウザテストには移植が必要なWindows固定パスがあります。
 - **Git管理用フォルダーは `ABU-simulator-git`** です。`https://github.com/rodep-soft/ABU-simulator.git` をcloneし、`main` を追跡しています。元の `robocon-strategy-sim` には `.git` がなく、そこでGitを実行すると上位の `C:/Users/sasah` のリポジトリを拾います。作業前にリポジトリルートを確認してください。
 - ルールブック原文・日本語訳、注意点PPTX、フィールドモデルは **`Reference/` に同梱済み**。プロジェクトを丸ごとコピーすれば参照資料も移行できます。
 - 試合終了後の分析では、配置済みEarthの各段と各配置先のSkyを選択して反転できます。

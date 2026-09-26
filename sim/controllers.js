@@ -89,7 +89,7 @@
     return { brain, actions: [go(sourceApproach(o, v.team), `${o.type === 'earth' ? 'Earth' : 'Sky'}採集へ`), { type: 'pickup', objectId: o.id }] };
   }
   function builder(v) {
-    const brain = { ...v.brain }, p = F.points[v.team], scan = (from = v) => [go(F.scanPoint(v.team, from), '見渡し場所へ'), { type: 'scan' }];
+    const brain = { ...v.brain }, p = F.points[v.team], scan = (from = v) => F.scanActions(v, from);
     if (v.failure || brain.stage === 'start' || brain.stage === 'return') return { brain: { stage: v.cargo.length ? 'loaded' : 'choose' }, actions: scan() };
     if (brain.stage === 'loaded') {
       const towers = copy(v.observation?.towers || {}), actions = [];
@@ -183,7 +183,7 @@
     visit(stock, []); return best?.picked || [];
   }
   function splitBuilder(v) {
-    const p = F.points[v.team], scan = (from = v) => [go(F.scanPoint(v.team, from), '見渡し場所へ'), { type: 'scan' }];
+    const p = F.points[v.team], scan = (from = v) => F.scanActions(v, from);
     const execute = tasks => ({ brain: { stage: 'return' }, actions: tasks.flatMap(task => [go(F.spotApproaches(F.spotById[task.spotId], v.team)[0], `${F.spotById[task.spotId].label}へ`), task]) });
     const receive = picked => ({ brain: { stage: 'loaded' }, actions: [go(p.transferBR, '受け渡しへ'), ...picked.map(o => ({ type: 'receive', objectId: o.id })), ...scan(p.transferBR)] });
     if (v.failure || !v.observation || v.brain.stage === 'start' || v.brain.stage === 'return') return { brain: { stage: v.cargo.length ? 'loaded' : 'choose' }, actions: scan() };
@@ -258,12 +258,56 @@
     }
     return strategy.details(team);
   }
-  function next(view) {
+  function specifiedBuilder(v) {
+    if (Efficient.needsScan(v)) return { brain: { stage: 'choose' }, actions: F.scanActions(v) };
+    if (v.cargo.some(o => o.type === 'mustika')) return Efficient.builder(v);
+    if (v.brTurn?.fallback) {
+      if (!v.cargo.length) return { brain: { stage: 'choose' }, actions: F.scanActions(v) };
+      const response = resolveStrategy('BR', v.brPlan).run({ ...v, brain: { ...v.brain, stage: 'loaded' } });
+      return response.actions?.length ? response : Efficient.returnCargo(v) || Efficient.waitAtHome(v, response);
+    }
+    const slots = v.brTurnPlan.slots, assigned = v.brTurn?.assigned || [null, null];
+    const pending = slots.map((s, i) => ({ ...s, objectId: assigned[i] })).filter(s => s.type !== 'none' && !(v.brTurn?.settled || []).includes(s.objectId));
+    const missing = pending.filter(s => !s.objectId), stock = copy(v.observation.stock), picked = [];
+    for (const slot of missing) {
+      const o = stock.find(o => o.type === slot.type && !o.touchedBy && !stock.some(t => t.slot === o.slot && t.layer > o.layer));
+      if (!o) break;
+      picked.push(o); slot.objectId = o.id; stock.splice(stock.indexOf(o), 1);
+    }
+    const fallback = reason => ({ brain: { stage: 'choose' }, fallbackTurn: reason, wait: .05, status: reason });
+    if (picked.length < missing.length) {
+      const source = v.observation.source.filter(o => o.type === 'earth' ? o.team === v.team
+        : o.type === 'sky' && (v.supplyMode === 'ideal' ? o.supplyTeam === v.team : v.team === 'red' ? o.x <= 5.51 : o.x >= 5.49));
+      const available = [...v.observation.stock, ...source, ...(v.observation.partner?.cargo || [])];
+      const unavailable = ['earth', 'sky'].some(type => available.filter(o => o.type === type).length < missing.filter(s => s.type === type).length);
+      if (unavailable) return fallback('指定箱が枯渇 · 通常戦略へ切替');
+      return Efficient.waitAtHome(v, { brain: { stage: 'return' }, wait: .5, status: '指定した箱の組が揃うまで待機' });
+    }
+    const tasks = pending.map(s => ({ type: 'place', objectId: s.objectId, spotId: s.spotId }));
+    const plan = Planner.specifiedPlan(v, picked, tasks);
+    if (!plan) return fallback('指定先へ配置不可 · 通常戦略で代替配置・返却');
+    const summary = pending.map(s => `${s.type === 'earth' ? 'E' : 'S'} → ${F.spotName(s.spotId)}`).join(' / ');
+    return Efficient.execute(v, plan, `指定${(v.brTurn?.completed || 0) + 1}回目 · ${summary}`);
+  }
+  function dispatch(view) {
+    if (view.role === 'BR' && view.brTurnPlan?.slots) return specifiedBuilder(view);
     const handoff = view.role === 'TR' ? Efficient.mustikaDelivery(view) : Efficient.handoffNext(view);
     if (handoff) return handoff;
     if (view.role === 'TR' && view.supplyMode === 'ideal') return idealCourier(view);
     if (view.role === 'TR' && view.trTrips?.length) return specifiedCourier(view);
     return resolveStrategy(view.role, view.role === 'TR' ? view.trPlan : view.brPlan).run(view);
+  }
+  function next(view) {
+    const response = dispatch(view);
+    if (view.role !== 'BR' || view.brObservationMode !== 'stopped') return response;
+    if (!response.actions?.length && response.wait && !response.fallbackTurn) return Efficient.waitAtHome(view, response);
+    // Remove zero-length approach moves so a two-box operation at one spot remains a single stop.
+    let point = view;
+    response.actions = (response.actions || []).filter(a => {
+      if (a.type !== 'move') return true;
+      const redundant = S.distance(point, a.target) < .02; point = a.target; return !redundant;
+    });
+    return response;
   }
   return { next, sourceApproach, spotOrder, transportPlan, listStrategies, strategyDetails,
     listPresets: () => [...Match.presets(), ...Competitive.presets()],

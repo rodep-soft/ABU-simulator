@@ -53,7 +53,8 @@
   }
   function context(v, options = {}) {
     const motion = { ...S.DEFAULTS, speedFactor: 1, ...v.motion };
-    const home = F.scanPoint(v.team, v), supplyHome = F.points[v.team].home;
+    const stopped = v.brObservationMode === 'stopped';
+    const home = F.scanPoint(v.team, v, v.brObservationMode), supplyHome = stopped ? F.points[v.team].transferBR : F.points[v.team].home;
     const observedObstacles = [...v.observation.stock, ...(v.observation.source || [])];
     const key = JSON.stringify([v.id, motion, observedObstacles.map(o => [o.id, o.location, o.x, o.y, o.z, o.size, o.height])]);
     let geometry = geometryCache.get(key);
@@ -71,6 +72,7 @@
     const { model, robot, routes } = geometry, spots = F.spots.filter(spot => !spot.team || spot.team === v.team);
     const target = action => action.type === 'enshrine' ? F.points[v.team].pillar : F.spotApproaches(F.spotById[action.spotId], v.team)[0];
     const travel = (from, to) => {
+      if (stopped && S.distance(from, to) < .02) return 0;
       const key = `${from.x},${from.y}:${to.x},${to.y}`;
       if (!routes.has(key)) {
         Object.assign(robot, from, { z: F.surface(from).z });
@@ -87,7 +89,8 @@
         touchCheck: (r, point) => model.touchCheck(r, point) };
       return S.Simulation.prototype.validate.call(judge, actor, action).ok;
     };
-    return { motion, home, supplyHome, origin: options.origin || { x: v.x, y: v.y }, spots, target, travel, legal, options, remaining: Math.max(0, 180 - (v.time ?? v.observation.at) - (options.efficient ? 1 : 0)), candidates: 0 };
+    const arrivalScan = (from, to) => stopped && S.distance(from, to) > .12 ? motion.scanSeconds : 0;
+    return { motion, home, supplyHome, stopped, arrivalScan, origin: options.origin || { x: v.x, y: v.y }, spots, target, travel, legal, options, remaining: Math.max(0, 180 - (v.time ?? v.observation.at) - (options.efficient ? 1 : 0)), candidates: 0 };
   }
   function apply(state, action, team) {
     const result = copy(state), t = action.spotId ? (result.towers[action.spotId] ||= []) : null;
@@ -128,7 +131,7 @@
         if (!ctx.legal(current, { type: 'receive', objectId: o.id }, transfer, 0)) continue;
         const next = copy(current), index = next.stock.findIndex(item => item.id === o.id), item = next.stock.splice(index, 1)[0];
         next.cargo.push({ ...item, location: 'cargo', holder: `${ctx.team}BR`, touchedBy: `${ctx.team}BR` });
-        const ids = [...picked, o.id], prep = ctx.travel(origin, transfer) + ctx.travel(transfer, ctx.supplyHome) + ids.length * ctx.motion.pickupSeconds + ctx.motion.scanSeconds;
+        const ids = [...picked, o.id], prep = ctx.travel(origin, transfer) + ctx.arrivalScan(origin, transfer) + ctx.travel(transfer, ctx.supplyHome) + ids.length * ctx.motion.pickupSeconds + ctx.motion.scanSeconds;
         if (prep < ctx.remaining) options.push({ state: next, picked: ids, prep });
         visit(next, ids);
       }
@@ -141,11 +144,11 @@
       if (ctx.options.requirePair && option.state.cargo.length === 1 && option.state.cargo[0].type !== 'mustika') continue;
       function visit(current, position, tasks, taskTimes, seconds, budget) {
         for (const action of choices(current, ctx, budget)) {
-          const point = ctx.target(action), completeSeconds = seconds + ctx.travel(position, point) + ctx.motion.placeSeconds;
+          const point = ctx.target(action), completeSeconds = seconds + ctx.travel(position, point) + ctx.arrivalScan(position, point) * (tasks.length ? 2 : 1) + ctx.motion.placeSeconds;
           if (!Number.isFinite(completeSeconds) || completeSeconds >= ctx.remaining - 1e-6) continue;
           const next = apply(current, action, ctx.team), sequence = [...tasks, action], after = score(next, ctx.team);
           const times = [...taskTimes, completeSeconds];
-          const returnPoint = F.scanPoint(ctx.team, point);
+          const returnPoint = F.scanPoint(ctx.team, point, ctx.stopped ? 'stopped' : 'fixed');
           const candidate = { state: next, tasks: sequence, taskTimes: times, picked: option.picked, completeSeconds, returnPoint,
             cycleSeconds: completeSeconds + ctx.travel(point, returnPoint) + ctx.motion.scanSeconds,
             gain: after[ctx.team].total - before[ctx.team].total, opponentGain: after[other].total - before[other].total };
@@ -163,6 +166,7 @@
     return [...frontiers.values()].flat();
   }
   function plan(v, options = {}) {
+    if (v.brObservationMode === 'stopped' && v.cargo.length) options = { ...options, requirePair: false, noPickup: true };
     const ctx = context(v, options); ctx.team = v.team;
     const initial = initialState(v), first = sorties(initial, ctx, ctx.origin), memo = new Map();
     let best = null;
@@ -208,13 +212,13 @@
         const from = old.last < 0 ? ctx.origin : ctx.target(actions[old.last]);
         for (let i = 0; i < actions.length; i++) {
           if (old.mask & (1 << i)) continue;
-          const a = actions[i], to = ctx.target(a), seconds = old.completeSeconds + ctx.travel(from, to) + ctx.motion.placeSeconds;
+          const a = actions[i], to = ctx.target(a), seconds = old.completeSeconds + ctx.travel(from, to) + ctx.arrivalScan(from, to) * (old.tasks.length ? 2 : 1) + ctx.motion.placeSeconds;
           if (!Number.isFinite(seconds) || seconds >= ctx.remaining) continue;
           const mask = old.mask | (1 << i), sequence = [...old.tasks, a];
           const key = options.orderSensitive ? sequence.map(a => a.spotId).join(':') : `${mask}:${i}`;
           if (paths.get(key)?.completeSeconds <= seconds) continue;
           const state = apply(old.state, a, v.team), after = score(state, v.team);
-          const returnPoint = F.scanPoint(v.team, to);
+          const returnPoint = F.scanPoint(v.team, to, v.brObservationMode);
           const candidate = { mask, last: i, state, tasks: sequence, taskTimes: [...old.taskTimes, seconds], picked: [], completeSeconds: seconds, returnPoint,
             cycleSeconds: seconds + ctx.travel(to, returnPoint) + ctx.motion.scanSeconds,
             gain: after[v.team].total - before[v.team].total, opponentGain: after[other].total - before[other].total };
@@ -231,12 +235,12 @@
     return { ...best.candidate, horizonGain: best.candidate.gain, horizonSeconds: best.candidate.completeSeconds, candidates: examined };
   }
   function next(v) {
-    const scan = (from = v) => [go(F.scanPoint(v.team, from), '見渡し場所へ'), { type: 'scan' }];
-    if (v.failure || !v.observation || v.brain.stage === 'start' || v.brain.stage === 'return' || !F.atScanPoint(v.team, v)) {
+    const scan = (from = v) => F.scanActions(v, from);
+    if (v.failure || !v.observation || v.brain.stage === 'start' || v.brain.stage === 'return' || v.brObservationMode !== 'stopped' && !F.atScanPoint(v.team, v)) {
       return { brain: { stage: 'choose' }, actions: scan() };
     }
     const selected = plan(v);
-    if (!selected) return { brain: { stage: 'return' }, wait: 1, ...(F.surface(v).type === 'l2' ? { actions: scan(F.points[v.team].home) } : {}), decision: { at: v.observation.at, strategy: 'score-search', summary: '実行可能な加点候補なし', gain: 0, horizonGain: 0, seconds: 0, horizonSeconds: 0 } };
+    if (!selected) return { brain: { stage: 'return' }, wait: 1, ...(v.brObservationMode !== 'stopped' && F.surface(v).type === 'l2' ? { actions: scan(F.points[v.team].home) } : {}), decision: { at: v.observation.at, strategy: 'score-search', summary: '実行可能な加点候補なし', gain: 0, horizonGain: 0, seconds: 0, horizonSeconds: 0 } };
     const summary = selected.tasks.map(a => {
       if (a.type === 'enshrine') return 'Mustika奉納';
       const type = [...v.cargo, ...v.observation.stock].find(o => o.id === a.objectId)?.type;
@@ -249,5 +253,31 @@
     return { brain: { stage: 'return' }, decision, actions: selected.tasks.flatMap(action => [go(action.type === 'enshrine' ? F.points[v.team].pillar : F.spotApproaches(F.spotById[action.spotId], v.team)[0], '探索計画の作業先へ'), action]) };
   }
   function travelTo(v, target) { return context(v).travel(v, target); }
-  return { next, plan, flipBatch, travelSeconds, travelTo, clearCache, cacheInfo: () => ({ geometries: geometryCache.size, routes: [...geometryCache.values()].reduce((n, g) => n + g.routes.size, 0) }) };
+  function specifiedPlan(v, picked, tasks) {
+    const ctx = context(v); ctx.team = v.team;
+    let state = initialState(v), position = ctx.origin, seconds = 0;
+    const before = score(state, v.team), other = v.team === 'red' ? 'blue' : 'red';
+    if (picked.length) {
+      const transfer = F.points[v.team].transferBR;
+      seconds = ctx.travel(position, transfer) + ctx.arrivalScan(position, transfer) + ctx.travel(transfer, ctx.supplyHome) + picked.length * ctx.motion.pickupSeconds + ctx.motion.scanSeconds;
+      position = ctx.supplyHome;
+      for (const o of picked) {
+        if (!ctx.legal(state, { type: 'receive', objectId: o.id }, transfer, 0)) return null;
+        state.stock = state.stock.filter(item => item.id !== o.id);
+        state.cargo.push({ ...o, location: 'cargo', holder: v.id, touchedBy: v.id });
+      }
+    }
+    const taskTimes = [];
+    for (const action of tasks) {
+      const target = ctx.target(action);
+      if (!ctx.legal(state, action, target, 2)) return null;
+      seconds += ctx.travel(position, target) + ctx.arrivalScan(position, target) * (taskTimes.length ? 2 : 1) + ctx.motion.placeSeconds;
+      if (!Number.isFinite(seconds) || seconds >= ctx.remaining) return null;
+      state = apply(state, action, v.team); position = target; taskTimes.push(seconds);
+    }
+    const after = score(state, v.team), gain = after[v.team].total - before[v.team].total;
+    return { state, tasks, taskTimes, picked: picked.map(o => o.id), completeSeconds: seconds, cycleSeconds: seconds + ctx.motion.scanSeconds,
+      gain, opponentGain: after[other].total - before[other].total, horizonGain: gain, horizonSeconds: seconds, candidates: 1 };
+  }
+  return { next, plan, specifiedPlan, flipBatch, travelSeconds, travelTo, clearCache, cacheInfo: () => ({ geometries: geometryCache.size, routes: [...geometryCache.values()].reduce((n, g) => n + g.routes.size, 0) }) };
 });

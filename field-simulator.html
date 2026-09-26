@@ -55,7 +55,7 @@
           <button id="stop-robot" class="stop-robot" title="移動を停止して自動運転を解除"><i data-lucide="square"></i>このロボットの移動を停止</button>
           <dl class="robot-data"><div><dt>現在の動作</dt><dd id="robot-status"></dd></div><div><dt>手持ち</dt><dd id="robot-cargo"></dd></div><div><dt>接地面 / 高さ</dt><dd id="robot-ground"></dd></div><div><dt>最後の見渡し</dt><dd id="robot-scan"></dd></div></dl>
           <dl id="br-decision" class="robot-data" hidden><div><dt>選択した作業</dt><dd id="decision-summary"></dd></div><div><dt>今回の予測加点</dt><dd id="decision-gain"></dd></div><div><dt>計画全体の予測</dt><dd id="decision-horizon"></dd></div><div id="decision-assessment" hidden><dt>選択の理由</dt><dd id="decision-reason"></dd></div></dl>
-          <dl id="br-work" class="robot-data" hidden><div><dt>現在の方針</dt><dd id="robot-phase"></dd></div><div><dt>作業予定</dt><dd><ol id="pending-work"></ol></dd></div></dl>
+          <dl id="br-work" class="robot-data" hidden><div><dt>現在の方針</dt><dd id="robot-phase"></dd></div><div><dt>今回の箱・配置先</dt><dd id="br-manifest"></dd></div><div><dt>作業予定</dt><dd><ol id="pending-work"></ol></dd></div></dl>
           <dl class="robot-data" id="transport-data"><div><dt>今回の搬送目標</dt><dd id="robot-plan"></dd></div><div><dt>納品済み</dt><dd id="robot-deliveries"></dd></div></dl>
           <h2>移動先</h2><select id="destination" aria-label="移動先"></select>
           <div class="command-row"><button id="move" class="primary"><i data-lucide="navigation"></i>移動</button><button id="scan"><i data-lucide="scan-eye"></i>見渡し</button></div>
@@ -67,6 +67,8 @@
         <section id="tab-state" class="tab-content" hidden><h2>受け渡し区画</h2><div id="transfer-state"></div><h2>サンクチュアリ達成履歴</h2><div id="sanctuary-state"></div><h2>タワー</h2><div id="tower-state"></div><h2>供給元</h2><div id="source-state"></div></section>
         <section id="tab-strategies" class="tab-content" hidden>
           <h2>戦略の組み合わせ</h2>
+          <label class="supply-choice" for="br-observation-mode">BRの停止・観測<select id="br-observation-mode"><option value="stopped">停止した場所で観測・再計画</option><option value="fixed">従来のL1 / L2見渡し場所</option></select></label>
+          <div class="observation-assumption">観測モデル: 停止中に全盤面を認識 · 遮蔽・認識誤差なし</div>
           <label class="supply-choice" for="supply-mode">両チームの箱補給<select id="supply-mode"><option value="normal">通常 · TRが箱を運搬</option><option value="ideal">補給待ちなし · TRはMustika担当</option></select></label>
           <dl class="strategy-details" id="supply-details" hidden><div><dt>有限供給</dt><dd>各チーム Earth20 / Sky6</dd></div><div><dt>置場上限</dt><dd>Earth3 / Sky4 · 手持ち返却枠を確保</dd></div><div><dt>補充開始</dt><dd>BRがL1に入場し、受取位置を離れた後</dd></div><div><dt>自動補給点</dt><dd>搬送点 0 · 配置点は通常通り</dd></div><div><dt>Mustika</dt><dd>通常の資格・移動・直接手渡し</dd></div></dl>
           <div id="strategy-selectors"></div>
