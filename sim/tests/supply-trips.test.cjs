@@ -148,7 +148,7 @@ test('real match executes different specified trips for both teams without excee
   const s = new Simulation({ redTrTrips: [E, ES], blueTrTrips: [['earth', 'earth', 'sky'], ['earth', 'none', 'none']], redBrPlan: 'basic', blueBrPlan: 'basic' });
   while (!s.ended && s.robots.filter(r => r.role === 'TR').some(r => transportTripIndex(r.transport) < 2)) {
     s.step(.05, C);
-    for (const r of s.robots) assert.ok(r.cargo.length <= (r.role === 'TR' ? 3 : 2));
+    for (const r of s.robots) assert.ok(r.cargo.filter(id => s.object(id).type !== 'mustika').length <= (r.role === 'TR' ? 3 : 2));
   }
   for (const team of ['red', 'blue']) {
     const deliveries = s.robot(`${team}TR`).transport.completed.filter(d => d.items.every(o => o.type !== 'mustika'));
@@ -161,7 +161,7 @@ test('ideal full match enters L1, places blocks, and keeps qualification checks 
   const s = new Simulation({ supplyMode: 'ideal', redBrPlan: 'mustika-fast', blueBrPlan: 'l2-earth' });
   while (!s.ended) {
     s.step(.05, C);
-    for (const r of s.robots) assert.ok(r.cargo.length <= (r.role === 'TR' ? 3 : 2));
+    for (const r of s.robots) assert.ok(r.cargo.filter(id => s.object(id).type !== 'mustika').length <= (r.role === 'TR' ? 3 : 2));
     for (const team of ['red', 'blue']) assert.ok(s.stock(team).length <= 7);
   }
   for (const team of ['red', 'blue']) {

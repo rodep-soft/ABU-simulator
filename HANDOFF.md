@@ -2,6 +2,42 @@
 
 初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。`Reference/` 同梱とEarth/Sky反転に加え、その後のL2 Earth最優先・BR作業回の順番指定の実装を反映しています。
 
+## 2026-09-27 GitHub反映対象
+
+ユーザーのcommit/push依頼により、BR Mustika別枠、tactical-baseline-v2統合、理想供給・青v2のGUI初期設定をまとめてmainへの反映対象としました。アプリ・テスト・資料と検証要約JSONを含め、大きな試合詳細JSON・画像・途中実行の成果物はローカルに保全してコミット対象から除外します。以下の「未commit・未push」は実装時点の履歴です。実際の同期状態はGitで確認し、push完了とPages配信完了は区別してください。
+
+## 2026-09-27 GUI初期対戦設定
+
+BRの戦略検討用として、`sim/view.js` の初回生成を `supplyMode: 'ideal'`, `blueBrPlan: 'tactical-baseline-v2'` に変更。赤BRは従来のefficient、観測はstopped、取得通知はOFFのまま。通常供給/別戦略への切替と選択設定を保持するリセットは維持。Nodeエンジンの既定値や競技ロジックは変更していません。ブラウザテストは初期値検証を更新し、通常補給を必要とする既存ケースは明示指定にしました。
+
+今回のGUI確認は `baseline-v2-browser.cjs`、`supply-trips-browser.cjs`、`browser-smoke.cjs` が成功。初期値/リセット、通常供給への切替、通常/理想180秒、TR便・BRターン指定、分析・リプレイを確認。記録は `results/baseline-v2-qa-1790486574945/`、`results/supply-trips-qa-1790486593278/`、`results/gui-defaults-20260927-final/`。`gui-defaults-20260927/` は旧テストが理想供給のTR欄を操作しようとして停止した途中記録で、成功扱いしません。Node全体の241件は直前の移植確認の記録で、この初期値だけの変更では再実行していません。未commit・未pushです。
+
+## 2026-09-27 tactical-baseline-v2のWindows GUI統合
+
+ユーザー指定 `br-baseline-v2-handoff-01.zip` のREADME_WINDOWSとreferenceコードを確認し、既存Windows版へ差分で統合しました。詳細は [BR_BASELINE_V2_PORTING.md](BR_BASELINE_V2_PORTING.md)。WSLファイル・探索結果は未変更、commit/push/公開も未実施です。直前の未コミットMustika変更は保持しています。
+
+- `sim/ideal-baseline.js` (v2)、`sim/tactical-baseline.js` (v1評価器)、`sim/br-observation.js` を追加。v1/v2はBRカタログ末尾へ追加し旧T/B戦略番号を維持。GUI赤青独立選択・BRターン指定で使用可能。通常戦略だけを試す場合はBRターン指定を空にする。
+- v2は専有2番/6番完成→共有1番の資格形成、即資格の観測済み共有反転、110秒等で資格レース見切り、150秒以降の有用な現地作業優先。1箱追加受取も比較。共通dispatcherのMustika直接受取・保持中の優先奉納を残す。
+- `engine` / `field` / `score-planner` / `efficient-strategy` / `controllers` は共通処理をマージ。BR2箱＋Mustika、TR便指定、BR箱と配置先指定、Retry、採点を維持。旧ケーススタディの容量検証もMustika別枠へ適応。採点は `Simulation.scores()` を再利用。
+- 従来の観測既定(GUI stopped、Node fixed)は不変。任意選択で `brObservation: {model:'level-radius', crossLevelRadius:3, replan:'after-work'}` または全盤面after-workを追加。各作業後の1秒scan、未知/古い観測、全体得点を渡さない部分参考得点に対応。旧到着scanとの二重計上なし。遮蔽・誤認識は未対応。
+- 取得通知は `trMustikaPickupSignal: 'global-instant'` をGUIで明示ONにした場合だけ。相手取得完了の履歴であり、現在保持/位置の追跡ではない。`brOpening` の実験制限もコードから任意指定できるがGUIには強制しない。戦略選択だけでは条件を変えない。
+- 理想供給のWindows仕様(有限在庫、搬送点0、TR準備実移動、L1進入＋受取点から0.75m超離れた後に補充)を維持。TR混載は未対応のまま。WSLの勝率を再現したとは扱わない。
+- 最終Node回帰は **241件成功・失敗0、約51.50秒**。同梱20件を参考コピー/移植先それぞれで確認し、Windows統合7件を追加。従来214件を含む。旧API依存3ケースはWindows本体/便指定へ適応。
+- GUI: `baseline-v2-browser.cjs`、`br-stops-browser.cjs`、`supply-trips-browser.cjs`、`browser-smoke.cjs` が成功。通常/理想180秒、TR便・BRターン・初期化/取消・リプレイ・盤面検討/原試合保護、1440/390/320pxの表示、JSエラー0。新v2の320px画像を目視確認。記録パスは移植記録参照。
+- 全体smokeの画像は `results/baseline-v2-full-gui-20260927/` へ保存コピーし、このテストが上書きした旧 `results/field-sim-qa` は作業開始時のGit内容へ復元。元々このフォルダーには未コミット変更なし。先行するMustikaの成果物は一切戻していない。
+- 短い比較は等速/部分観測/通知ON/vs既存Mustika最速、通常両色でv2点差 -110/+180、理想両色 +610/+510。`results/baseline-v2-comparison-1790479487667/`。4試合だけで一般勝率ではなく、WSLの36勝4敗の再現でもない。長時間探索は未実施。
+
+## 2026-09-26 BRのMustika別枠保持
+
+最新のユーザー指定に合わせ、Windows GUI版でBRのEarth/Sky合計2個とMustikaの同時保持に対応しました。以下の過去記録にある「空手で受取」「受取前に通常荷物を返却」はこの変更で置き換えます。TRの混載禁止、資格・直接受渡・位置・観測・時間・得点の制約は維持し、WSL側は変更していません。今回の変更は未commit・未pushです。
+
+- `sim/engine.js`: BRの受取・Earth回収・Sky反転の容量はEarth/Skyだけを数える。箱を持ったBRへのMustika直接受渡を許可し、床からのMustika受取は禁止のまま。奉納はMustikaだけを荷物から除去し、箱を保持する既存処理を利用。
+- `sim/efficient-strategy.js` / `sim/controllers.js`: 通常戦略は箱を返却せずMustikaを受取り、全BR戦略で保持済みMustikaの奉納を優先。箱指定ターンの未受領Mustikaへの割込禁止と、割当済み箱の進捗は維持。奉納後に残った箱の作業へ戻る。
+- `sim/score-planner.js`: 受取候補の箱数からMustikaを除外。奉納優先の計画は `onlyEnshrine` で箱配置と分離し、箱を置けない場合もMustikaを奉納できる。
+- GUIの手持ち表示は既存のEarth/Sky/Mustika別集計を利用。戦略説明の「通常荷物を返却」を更新。原資料の再解釈ではなく、今回のユーザー確認を仕様へ反映した変更。
+- Windows / Node v24.19.0で `node --test sim/tests/*.test.cjs` は214件成功・失敗0件 (約97.49秒)。既存の総荷物数テストは箱数のみの判定へ更新。赤青・固定/停止観測・E2/E1S1/S2混載、3個目の拒否、箱1個＋MustikaでのSky反転/自Earth回収、奉納後の通常/指定配置再開を検証。
+- Playwright / Edgeの `node sim/tests/mustika-cargo-browser.cjs` も成功。ローカルHTMLで手動受取からE1/S1/M1表示、奉納後のE1/S1保持と250点、1440/390/320pxの横はみ出しなし、JavaScriptエラー0を確認。320px画像を目視確認。成功記録は `results/mustika-cargo-qa-1790424053302/verification.json`。その前の `1790423986710` はテスト側の自動制御引数漏れで奉納確認に失敗した途中画像であり、成功記録ではありません。
+
 ## 2026-09-26 GitHub反映対象
 
 ユーザーのcommit/push依頼により、BR停止位置での観測・受渡そば待機、BR各ターンの箱/番号付き配置先、TR同士の1秒競合復帰、関連テストと確認記録をまとめて `origin/main` へ反映する対象としました。実行先はWindowsの `ABU-simulator-git`、接続先は `https://github.com/rodep-soft/ABU-simulator.git` です。WSL側は変更していません。

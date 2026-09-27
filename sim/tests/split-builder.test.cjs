@@ -170,7 +170,7 @@ test('four speeds run 180 seconds with actual shared/private opening and all cap
     const sim = new Simulation({ redTrPlan: 'e3-e1s2', redBrPlan: 'split-seed', redSpeed: speed });
     while (!sim.ended) {
       sim.step(.05, controllers);
-      for (const r of sim.robots) { assert.ok(r.cargo.length <= (r.role === 'TR' ? 3 : 2)); assert.ok(sim.footprintAllowed(r, r)); }
+      for (const r of sim.robots) { assert.ok(r.cargo.filter(id => sim.object(id).type !== 'mustika').length <= (r.role === 'TR' ? 3 : 2)); assert.ok(sim.footprintAllowed(r, r)); }
     }
     const opening = sim.events.filter(e => e.robot === 'redBR' && e.action === 'place' && e.kind === 'action').slice(0, 2);
     assert.deepEqual(opening.map(e => e.spotId), ['s2', 'r2']);

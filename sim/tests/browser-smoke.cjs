@@ -24,10 +24,14 @@ const server = http.createServer((request, response) => {
     assert.equal(await page.locator('#red-score').textContent(), '0');
     assert.ok(await page.locator('svg.lucide').count() > 10);
     assert.equal(await page.locator('#red-tr-plan option').count(), 5);
-    assert.equal(await page.locator('#red-br-plan option').count(), 10);
+    assert.equal(await page.locator('#red-br-plan option').count(), 12);
     assert.equal(await page.locator('#rate').inputValue(), '3');
     assert.equal(await page.locator('#scan-seconds').inputValue(), '1');
-    for (const team of ['red', 'blue']) assert.equal(await page.locator(`#${team}-br-plan`).inputValue(), 'efficient');
+    assert.equal(await page.locator('#red-br-plan').inputValue(), 'efficient');
+    assert.equal(await page.locator('#blue-br-plan').inputValue(), 'tactical-baseline-v2');
+    assert.equal(await page.locator('#supply-mode').inputValue(), 'ideal');
+    // The remaining legacy regression scenario explicitly uses normal supply.
+    await page.evaluate(() => fieldApp.reset({ ...fieldApp.sim.config, supplyMode: 'normal', blueBrPlan: 'efficient' }));
     assert.match(await page.locator('#red-strategy-summary').textContent(), /TR 必要量補給/);
     await page.screenshot({ path: path.join(output, 'desktop-start.png'), fullPage: true });
     await page.locator('#auto').uncheck();
@@ -144,6 +148,7 @@ const server = http.createServer((request, response) => {
     await page.goto(require('node:url').pathToFileURL(path.join(root, 'field-simulator.html')).href);
     await page.waitForFunction(() => window.fieldApp?.sim.robots.length === 4);
     await page.locator('#edit-strategies').click();
+    await page.locator('#supply-mode').selectOption('normal');
     await page.locator('#blue-tr-plan').selectOption('e3-e1s2');
     await page.locator('#blue-br-plan').selectOption('split-seed');
     await page.locator('#apply-strategies').click();
@@ -198,7 +203,7 @@ const server = http.createServer((request, response) => {
     });
     assert.deepEqual(cancelledRun, { time: 0, cache: { geometries: 0, routes: 0 } });
     await page.evaluate(() => {
-      fieldApp.reset();
+      fieldApp.reset({ ...fieldApp.sim.config, brObservationMode: 'fixed' });
       const s = fieldApp.sim, r = s.robot('redBR'), other = s.robot('blueBR');
       for (const robot of s.robots) robot.auto = false;
       Object.assign(r, { x: 5.1, y: 4.9, z: .9, enteredL1: true, auto: true });

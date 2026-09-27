@@ -157,7 +157,7 @@ test('180-second continuous runs: all four speeds preserve objects, zones and ca
     const s=new Simulation({redSpeed:speed});
     for(let i=0;i<3600;i++){
       s.step(.05,controllers);
-      for(const r of s.robots){assert.ok(r.cargo.length<=(r.role==='TR'?3:2));assert.ok(s.footprintAllowed(r,r),`${r.id} invalid at ${s.time}`);}
+      for(const r of s.robots){assert.ok(r.cargo.filter(id=>s.object(id).type!=='mustika').length<=(r.role==='TR'?3:2));assert.ok(s.footprintAllowed(r,r),`${r.id} invalid at ${s.time}`);}
     }
     assert.equal(s.time,180);assert.equal(new Set(s.objects.map(o=>o.id)).size,53);
     const held=s.robots.flatMap(r=>r.cargo);assert.equal(new Set(held).size,held.length);

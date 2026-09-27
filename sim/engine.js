@@ -1,12 +1,14 @@
 (function (root, factory) {
   const api = factory(typeof module === 'object' ? require('./field.js') : root.RoboField,
-    typeof module === 'object' ? require('../vendor/astar.js') : { Graph: root.Graph, astar: root.astar });
+    typeof module === 'object' ? require('../vendor/astar.js') : { Graph: root.Graph, astar: root.astar },
+    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation);
   if (typeof module === 'object') module.exports = api;
   else root.RoboSim = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, A) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, A, Perception) {
   'use strict';
   const clone = x => JSON.parse(JSON.stringify(x));
   const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  const blockCount = (cargo, object = o => o) => cargo.filter(value => ['earth', 'sky'].includes(object(value)?.type)).length;
   const overlap = (a, b) => a.x < b.x + b.w - 1e-7 && a.x + a.w > b.x + 1e-7 && a.y < b.y + b.h - 1e-7 && a.y + a.h > b.y + 1e-7;
   const box = (p, side) => F.rect(p.x - side / 2, p.y - side / 2, side, side);
   function sweptContact(from, to, obstacle, half) {
@@ -77,6 +79,9 @@
   class Simulation {
     constructor(config = {}) {
       this.config = { ...DEFAULTS, ...config };
+      if (config.brObservation !== undefined) this.config.brObservation = Perception.normalize(config.brObservation);
+      if (config.brOpening !== undefined) this.config.brOpening = Perception.normalizeOpening(config.brOpening);
+      Perception.normalizeSignal(config.trMustikaPickupSignal);
       this.config.supplyMode = config.supplyMode ?? 'normal';
       if (!['normal', 'ideal'].includes(this.config.supplyMode)) throw new TypeError('不明な補給モードです');
       this.config.brObservationMode = config.brObservationMode ?? 'fixed';
@@ -89,6 +94,7 @@
       }
       this.time = 0; this.ended = false; this.events = []; this.history = []; this.lastFrame = -1; this.version = 0; this.graphs = new Map();
       this.objects = initialObjects(); this.sanctuary = { red: null, blue: null }; this.sanctuaryEvidence = { red: null, blue: null }; this.transferPoints = { red: 0, blue: 0 };
+      this.brSourceSites = this.objects.filter(o => o.location === 'source').map(({ id, x, y, team }) => ({ id, x, y, team }));
       if (this.config.supplyMode === 'ideal') for (const o of this.objects.filter(o => o.type === 'sky')) o.supplyTeam = o.x < 5.49 || o.id === 'S2' ? 'red' : 'blue';
       this.robots = [];
       for (const team of ['red', 'blue']) for (const role of ['TR', 'BR']) {
@@ -206,6 +212,14 @@
       return this.objects.filter(o => o.type === type && o.location === 'source' && (!o.team || o.team === robot.team) && !o.touchedBy && !this.objects.some(t => t !== o && t.location === 'source' && t.column && t.column === o.column && t.layer > o.layer));
     }
     observe(robot) {
+      if (robot.role === 'BR' && this.config.brObservation?.model === 'level-radius') {
+        robot.observation = Perception.project(this, robot, completedTowers, k => Simulation.prototype.scores.call({
+          transferPoints: Object.fromEntries(['red', 'blue'].map(t => [t, this.config.supplyMode === 'ideal' ? 0 : Object.values(k.delivered).filter(x => x === t).length * 5])),
+          tower: id => k.towers[id] || [], object: () => k.pillar || { location: 'unknown' },
+          sanctuary: { red: k.pillar?.placedBy === 'red' ? 0 : null, blue: k.pillar?.placedBy === 'blue' ? 0 : null },
+        }));
+        return;
+      }
       robot.observation = { at: this.time, origin: { x: robot.x, y: robot.y }, stock: clone(this.stock(robot.team)), towers: Object.fromEntries(F.spots.filter(s => !s.team || s.team === robot.team).map(s => [s.id, clone(this.tower(s.id))])), source: clone(this.objects.filter(o => o.location === 'source' && (!o.team || o.team === robot.team))), sanctuary: mandateHeld(this.sanctuary, robot.team, this.time), sanctuaryEvidence: clone(this.sanctuaryEvidence[robot.team]), pillar: this.object('M').location === 'pillar' ? clone(this.object('M')) : null };
       // Visible pose/cargo only: no partner plan, destination, messages or future arrival time.
       const partner = this.robot(`${robot.team}${robot.role === 'BR' ? 'TR' : 'BR'}`);
@@ -219,7 +233,18 @@
     view(robot) {
       const motion = Object.fromEntries(['maxSpeed', 'acceleration', 'bodySize', 'rampFactor', 'stairSpeed', 'stairPause', 'scanSeconds', 'pickupSeconds', 'placeSeconds'].map(key => [key, this.config[key]]));
       motion.speedFactor = this.config[`${robot.team}Speed`];
-      return clone({ id: robot.id, role: robot.role, team: robot.team, x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, brTurnPlan: this.brTurnPlan(robot.team), brObservationMode: this.config.brObservationMode, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], trTrips: this.config[`${robot.team}TrTrips`], supplyMode: this.config.supplyMode, brPlan: this.brStrategy(robot.team) });
+      return clone({ id: robot.id, role: robot.role, team: robot.team,
+        ...(this.config.trMustikaPickupSignal === 'global-instant' ? { trMustikaPickupSignal: 'global-instant', opponentMustikaPickup: robot.opponentMustikaPickup || null } : {}),
+        ...(robot.role === 'BR' && (this.config.brObservation || this.config.brOpening) ? { brObservation: this.config.brObservation,
+          brOpeningActive: !!this.config.brOpening?.[robot.team] && !robot.openingReleased, needsWorkScan: !!robot.needsWorkScan, scanLoaded: robot.scanLoaded } : {}),
+        x: robot.x, y: robot.y, enteredL1: robot.enteredL1, cargo: robot.cargo.map(id => this.object(id)), observation: robot.observation, failure: robot.failure, brain: robot.brain, transport: robot.transport, brTurn: robot.brTurn, brTurnPlan: this.brTurnPlan(robot.team), brObservationMode: this.config.brObservationMode, time: this.time, motion, trPlan: this.config[`${robot.team}TrPlan`], trTrips: this.config[`${robot.team}TrTrips`], supplyMode: this.config.supplyMode, brPlan: this.brStrategy(robot.team) });
+    }
+    notifyMustikaPickup(actor) {
+      if (this.config.trMustikaPickupSignal !== 'global-instant' || actor.role !== 'TR') return;
+      const team = actor.team === 'red' ? 'blue' : 'red', br = this.robot(team + 'BR');
+      const signal = { acquiredAt: this.time, receivedAt: this.time, sender: team + 'TR', opponent: actor.id };
+      br.opponentMustikaPickup = signal; br.openingReleased = true;
+      this.log(this.robot(team + 'TR'), 'mustika-pickup-signal', '相手TRのMustika取得履歴をBRへ通知', 'signal', 'シミュレーション仮定', { receiver: br.id, ...signal });
     }
     changed() { this.version++; this.graphs.clear(); }
     mustikaOffer(team) {
@@ -235,12 +260,16 @@
         return this.footprintAllowed(robot, action.target) ? success : fail('その位置には車体を置けません。活動域・壁・段差を確認してください', 'MOVE-01～09', 'physical');
       }
       if (action.type === 'scan') {
+        if (robot.role === 'BR' && this.config.brObservation?.replan === 'after-work') return robot.enteredL1 && ['l1', 'l2'].includes(F.surface(robot).type) && !robot.velocity
+          ? success : fail('L1またはL2で停止して観測してください', '観測モデル', 'perception');
         if (robot.role === 'BR' && this.config.brObservationMode === 'stopped') return robot.enteredL1 && ['l1', 'l2'].includes(F.surface(robot).type) && !robot.velocity
           ? success : fail('L1またはL2の平面で停止して観測してください', '観測モデル', 'perception');
         if (action.local) return robot.role === 'BR' && robot.localRescanAllowed && robot.enteredL1 && ['l1', 'l2'].includes(F.surface(robot).type)
           ? success : fail('その場での再認識は配置・反転失敗後に行います', 'ユーザー指定', 'perception');
         return robot.role === 'BR' && !F.atScanPoint(robot.team, robot) ? fail('L1またはL2の自チーム見渡し場所で停止する必要があります', 'ユーザー指定', 'perception') : success;
       }
+      if (robot.role === 'BR' && this.config.brObservation?.replan === 'after-work' && robot.needsWorkScan && Perception.WORK.includes(action.type)) return fail('作業後に停止して再観測してください', '観測モデル', 'perception');
+      const heldBlocks = blockCount(robot.cargo, id => this.object(id));
       if (action.type === 'pickup') {
         if (robot.role !== 'TR') return fail('供給元から採集できるのはTRです', '3.4.1 / 4.5.2');
         const o = this.object(action.objectId);
@@ -267,7 +296,6 @@
           const offer = this.mustikaOffer?.(robot.team);
           if (!offer || o.touchedBy && ![offer.holder, robot.id].includes(o.touchedBy)) return fail('自チームTRが受け渡し位置でMustikaを保持していません', 'OBJ-06', 'physical');
           if (!mandateHeld(this.sanctuary, robot.team, this.time)) return fail('サンクチュアリ条件が未達成です', '4.5.1');
-          if (robot.cargo.length) return fail('Mustika受取前にBRの手持ちを空にしてください', 'OPEN-02', 'unsupported');
           if (distance(robot, F.points[robot.team].transferBR) > .14) return fail('BRは受け渡し位置で直接受け取ります', 'OBJ-06', 'physical');
           const zone = F.zones[robot.team].transfer;
           if (!F.inside({ x: offer.x - o.size / 2, y: offer.y - o.size / 2 }, zone) || !F.inside({ x: offer.x + o.size / 2, y: offer.y + o.size / 2 }, zone)) return fail('直接受け渡す物体が区画外です', '6.3');
@@ -277,8 +305,8 @@
         if (!o || o.location !== 'transfer' || o.transferTeam !== robot.team || o.touchedBy) return fail('受け渡し区画に対象物がありません', '4.4.3', 'physical');
         if (!F.inside({ x: o.x - o.size / 2, y: o.y - o.size / 2 }, F.zones[robot.team].transfer) || !F.inside({ x: o.x + o.size / 2, y: o.y + o.size / 2 }, F.zones[robot.team].transfer)) return fail('物体が受け渡し区画からはみ出しています', '6.3');
         if (this.stock(robot.team).some(t => t.slot === o.slot && t.layer > o.layer)) return fail('上の物体から受け取ってください', '支持関係', 'physical');
-        if (robot.cargo.length >= 2) return fail('BRは最大2個までです', '4.4.2');
-        if ((o.type === 'mustika' && robot.cargo.length) || robot.cargo.some(id => this.object(id).type === 'mustika')) return fail('Mustikaとの混載は未確定です', 'OPEN-02', 'unsupported');
+        if (o.type === 'mustika') return fail('MustikaはTRから直接受け取ります', 'シミュレーション指定', 'unsupported');
+        if (heldBlocks >= 2) return fail('BRのEarth・Skyは合計最大2個までです', '4.4.2');
         return this.touchCheck(robot, o);
       }
       if (action.type === 'return') {
@@ -295,19 +323,20 @@
         const spot = F.spotById[action.spotId];
         if (!spot) return fail('建設スポットを選んでください', '3.5.1');
         if (spot.team && spot.team !== robot.team) return fail('相手専有スポットでは作業できません', '6.2.2');
+        if (this.config.brOpening?.[robot.team] && !robot.openingReleased && !Perception.openingSpots(robot.team).includes(action.spotId)) return fail('取得競争中の作業対象は初動指定エリアのみです', '実験条件', 'policy');
         const reach = this.touchCheck(robot, spot); if (!reach.ok) return reach;
         if (spot.level === 2 && F.surface(robot).type !== 'l2') return fail('L2へ上がってから操作してください', action.type === 'place' ? '3.5.4' : 'OPEN-03', action.type === 'place' ? 'rule' : 'unsupported');
         const tower = this.tower(spot.id), top = tower.at(-1);
         if (tower.some(o => o.touchedBy && o.touchedBy !== robot.id)) return fail('他のロボットが操作中です', '6.6', 'physical');
         if (action.type === 'recover') {
           if (!top || top.type !== 'earth' || top.placedBy !== robot.team) return fail('相手Earthや上にブロックのあるEarthは回収できません', '3.5.5 / 7.2');
-          if (robot.cargo.length >= 2) return fail('BRは最大2個までです', '4.4.2');
+          if (heldBlocks >= 2) return fail('BRのEarth・Skyは合計最大2個までです', '4.4.2');
           return success;
         }
         if (!robot.observation || !robot.scanLoaded || robot.batchRemaining <= 0) return fail('停止・見渡しを行い配置計画を更新してください', 'ユーザー指定', 'perception');
         if (action.type === 'flip') {
           if (robot.batchFlips?.includes(spot.id)) return fail('同じ認識で同じSkyを繰り返し反転できません', 'ユーザー指定', 'perception');
-          if (robot.cargo.length >= 2) return fail('Skyを持ち上げて反転するための空きがありません', '4.4.2');
+          if (heldBlocks >= 2) return fail('Skyを持ち上げて反転するための空きがありません', '4.4.2');
           return top?.type === 'sky' ? success : fail('反転できるSkyがありません', '3.5.8', 'physical');
         }
         const o = this.object(action.objectId);
@@ -413,6 +442,7 @@
           this.log(tr, 'handoff', 'Mustikaを保持したままBRへ直接受け渡し', 'action', 'シミュレーション指定', { objectId: o.id, objectType: o.type, receiver: r.id });
         }
         o.location = 'cargo'; o.holder = r.id; o.touchedBy = r.id; r.cargo.push(o.id); r.scanLoaded = false; r.batchRemaining = 0; this.changed();
+        if (job.type === 'pickup' && o.id === 'M') this.notifyMustikaPickup(r);
       } else if (job.type === 'return') {
         const o = this.object(job.objectId), slot = this.freeSlot(r.team, o, true);
         r.cargo.splice(r.cargo.indexOf(o.id), 1);
@@ -439,8 +469,15 @@
         if (!result.ok) { this.reject(r, job, result); return; }
       }
       r.job = null; r.status = '待機'; r.failure = null;
+      if (r.role === 'BR') {
+        Perception.ownWork(this, r, job);
+        if (job.type === 'scan') { r.needsWorkScan = false; if (r.observation?.sanctuary) r.openingReleased = true; }
+        else if (this.config.brObservation?.replan === 'after-work' && Perception.WORK.includes(job.type)) {
+          r.needsWorkScan = true; r.scanLoaded = false; r.batchRemaining = 0; r.queue = [];
+        }
+      }
       // Finish work at this destination, then replan locally before travelling elsewhere.
-      if (r.role === 'BR' && r.auto && this.config.brObservationMode === 'stopped' && ['place', 'flip', 'enshrine', 'recover'].includes(job.type)) {
+      if (r.role === 'BR' && r.auto && this.config.brObservation?.replan !== 'after-work' && this.config.brObservationMode === 'stopped' && ['place', 'flip', 'enshrine', 'recover'].includes(job.type)) {
         if (r.queue[0]?.type === 'move' && distance(r, r.queue[0].target) > .12) r.queue = [];
         if (!r.queue.length) r.brain.stage = 'return';
       }
@@ -466,7 +503,7 @@
       }
       if (['place', 'flip', 'enshrine'].includes(job.type)) r.brTurn.worked = true;
       // Supply scans, failures and local replans stay in the same sortie, even after partial work.
-      if (job.type !== 'scan' || job.arrival || job.local || r.cargo.length || !specified && !r.brTurn.worked) return;
+      if (job.type !== 'scan' || job.arrival || job.local && this.config.brObservation?.replan !== 'after-work' || r.cargo.length || !specified && !r.brTurn.worked) return;
       const strategy = this.brStrategy(r.team);
       r.brTurn = { completed: r.brTurn.completed + 1, worked: false }; r.brain = { stage: 'choose' }; r.decision = null;
       this.log(r, 'br-turn-complete', `BR ${r.brTurn.completed}回目の作業完了`, 'action', '', { turn: r.brTurn.completed, strategy, nextStrategy: this.brStrategy(r.team) });
@@ -625,7 +662,7 @@
         const job = r.job; if (!job || job.type !== 'move' || r.wait > 0 || r.trRestartPending) continue;
         if (!job.route.length) {
           r.job = null; r.velocity = 0; r.status = '到着';
-          if (r.role === 'BR' && r.auto && this.config.brObservationMode === 'stopped' && r.enteredL1 && ['l1', 'l2'].includes(F.surface(r).type)
+          if (r.role === 'BR' && r.auto && this.config.brObservation?.replan !== 'after-work' && this.config.brObservationMode === 'stopped' && r.enteredL1 && ['l1', 'l2'].includes(F.surface(r).type)
             && r.queue[0]?.type !== 'scan' && (!r.observation || distance(r, r.observation.origin) > .12)) r.queue.unshift({ type: 'scan', arrival: true });
           continue;
         }
@@ -709,7 +746,11 @@
     export() {
       return { format: 'robocon-field-sim-v1', config: this.config, assumptions: [
         'axis-aligned square body',
-        this.config.brObservationMode === 'stopped'
+        ...(this.config.brObservation ? [`BR observation ${this.config.brObservation.model}; cross-level radius ${this.config.brObservation.crossLevelRadius}; replanning ${this.config.brObservation.replan}; partial scores are last-known estimates`] : []),
+        ...(this.config.trMustikaPickupSignal === 'global-instant' ? ['Own TR signals opponent Mustika pickup completion globally and instantly; acquisition history only, not current possession'] : []),
+        this.config.brObservation?.model === 'level-radius' ? 'same-level and cross-level radius snapshots; unknown/stale information retained; no occlusion model; global scores unavailable'
+          : this.config.brObservation?.replan === 'after-work' ? 'full-board snapshot after each timed stationary work-completion scan'
+          : this.config.brObservationMode === 'stopped'
           ? 'ideal full-board snapshot after timed stationary scan on L1/L2; replan at work arrival and after each destination; no occlusion or recognition error; idle near transfer'
           : 'ideal snapshot at BR home or after failed work while stopped locally; includes visible partner pose/cargo',
         'Earth-only transfer column: 3 layers; Sky-only: 4 layers; BR returns without extra points',
@@ -719,7 +760,7 @@
         'phase policies switch at the next planning decision on or after 150 seconds; l2-earth keeps Earth priority throughout',
         'named BR turns advance after successful work, empty cargo and a non-arrival normal scan; specified turns retain assigned object IDs through scans and Retry until placed/returned, or fall back with an explicit log',
         'specified BR box turns wait for the requested set and take priority over unheld Mustika; invalid targets fall back to the selected normal BR policy',
-        'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; no mixed cargo',
+        'Mustika direct TR-to-BR handoff inside transfer area; no floor unloading; BR may hold two Earth/Sky blocks plus Mustika; TR mixed cargo remains unsupported',
         'sanctuary latches after simultaneous two-tower completion including a shared tower, with timestamp and tower evidence',
         'automatic BR retry after blocked movement: retain Earth/Sky, return Mustika to source',
         'automatic TR restart after continuous opponent-TR movement collision (default 1 second); wait for a clear start; retain all cargo and trip plan; exclude handling, terrain pauses, idle waits and object claims',
@@ -727,5 +768,5 @@
       ], events: this.events, history: this.history, final: this.snapshot() };
     }
   }
-  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, normalizeTrTrips, normalizeBrTurns, transportTripIndex };
+  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, blockCount, normalizeTrTrips, normalizeBrTurns, transportTripIndex };
 });

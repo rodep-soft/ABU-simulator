@@ -72,6 +72,8 @@
     return points[team][surface(from).type === 'l2' ? 'homeL2' : 'home'];
   }
   function scanActions(v, from = v) {
+    if (v.brObservation?.replan === 'after-work') return v.enteredL1 ? [{ type: 'scan', local: true }]
+      : [{ type: 'move', target: points[v.team].brStandby, label: '受渡そばの待機点へ' }, { type: 'scan', local: true }];
     const target = scanPoint(v.team, from, v.brObservationMode);
     return [...(v.brObservationMode !== 'stopped' || Math.hypot(target.x - from.x, target.y - from.y) > .02
       ? [{ type: 'move', target, label: v.brObservationMode === 'stopped' ? '受渡そばの待機点へ' : '見渡し場所へ' }] : []), { type: 'scan' }];

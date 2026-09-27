@@ -4,10 +4,13 @@
     typeof module === 'object' ? require('./efficient-strategy.js') : root.RoboEfficient,
     typeof module === 'object' ? require('./match-strategies.js') : root.RoboMatchStrategies,
     typeof module === 'object' ? require('./competitive-strategies.js') : root.RoboCompetitive,
-    typeof module === 'object' ? require('./engine.js') : root.RoboSim);
+    typeof module === 'object' ? require('./engine.js') : root.RoboSim,
+    typeof module === 'object' ? require('./tactical-baseline.js') : root.RoboTacticalBaseline,
+    typeof module === 'object' ? require('./ideal-baseline.js') : root.RoboIdealBaseline,
+    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation);
   if (typeof module === 'object') module.exports = api;
   else root.RoboControllers = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive, S) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive, S, TacticalBaseline, IdealBaseline, Perception) {
   'use strict';
   const copy = x => JSON.parse(JSON.stringify(x));
   const go = (target, label) => ({ type: 'move', target, label });
@@ -219,7 +222,7 @@
       { id: 'split-seed', name: '分散先置き · 共有1＋専有1', shortName: '共有1＋専有1', run: splitBuilder,
         details: team => [['初動', splitTargets(team).map(id => `${F.spotById[id].label}にE1`).join(' / ')], ['相手が完成', '共有のSkyを自色へ反転'], ['共有が未完成', 'Earth1段: E1+S1 / 2段: S1'], ['見渡し', '受取前・受取後 / 最大2個を計画']] },
       { id: 'efficient', name: '効率化 · まとめ運搬＋Mustika最優先', shortName: 'まとめ運搬・M優先', run: Efficient.builder,
-        details: () => [['評価', '150秒まで新規配置優先 / 以後は点差・時間'], ['通常出発', '2個とも置ける計画がある場合のみ'], ['反転', '認識済みの複数箇所をまとめて実行'], ['Mustika', '通常荷物を返却 → 直接受取 → 最優先奉納'], ['配置失敗', '現地停止・再認識 → 別配置先または返却']] },
+        details: () => [['評価', '150秒まで新規配置優先 / 以後は点差・時間'], ['通常出発', '2個とも置ける計画がある場合のみ'], ['反転', '認識済みの複数箇所をまとめて実行'], ['Mustika', '箱は保持したまま直接受取 → 最優先奉納 → 配置再開'], ['配置失敗', '現地停止・再認識 → 別配置先または返却']] },
       { id: 'mustika-fast', name: 'Mustika最速案 · 共有＋専有から条件形成', shortName: 'Mustika最速案', run: v => Match.builder(v, 'mustika-fast'),
         details: team => [['初動', Match.seedSpots(team).map(id => `${F.spotById[id].label}にE1`).join(' / ')], ['条件形成', '相手完成は反転 / 未完成は自力で完成'], ['条件達成後', 'Mustika直接受取・奉納を最優先'], ['150秒まで', '新規配置・専有を優先'], ['150秒以降', 'Sky配置・複数箇所の連続反転']] },
       { id: 'earth-late', name: 'Earth固定点 → 終盤Sky', shortName: 'L2 Earth → Sky', run: v => Match.builder(v, 'earth-late'),
@@ -232,6 +235,10 @@
         details: () => [['150秒まで', 'Mustika最速案と同じ共有＋専有の条件形成'], ['150秒以降', '単体運搬も比較 / 間に合う反転順序を列挙'], ['反撃試算', '観測した相手位置からSkyの再反転を試算'], ['評価', 'Sky応答後もリード → 逆転候補 → 点差改善'], ['注意', '相手の新規建設・Mustikaは予測せず、勝利保証ではない']] },
       { id: 'l2-earth', name: 'L2 Earth最優先 · 終盤もEarth', shortName: 'L2 Earth最優先', run: v => Match.builder(v, 'l2-earth'),
         details: () => [['配置優先', 'L2 Earth → L1専有Earth → L1共有Earth'], ['終盤', '150秒以降もEarth優先を継続'], ['Earth候補なし', 'Sky新規配置 → 連続反転'], ['運搬', '有効な2個組を優先 / 組めない場合は1個も使用'], ['Mustika', '直接受取・奉納の共通優先処理は維持']] },
+      { id: TacticalBaseline.ID, name: '戦術ベースライン v1 · 点差と固定点', shortName: '戦術基準 v1', run: TacticalBaseline.builder,
+        details: () => [['初配置', '赤1・2・7 / 青1・6・10'], ['評価', '点差・Earth固定点・資格進捗・再反転リスク'], ['Mustika', '共通の直接受取・優先奉納']] },
+      { id: IdealBaseline.ID, name: '戦術ベースライン v2 · 資格完成と終盤の点差', shortName: '戦術基準 v2', run: IdealBaseline.builder,
+        details: team => [['資格形成', `${team === 'red' ? '2' : '6'}番の完成 → 1番 / 即資格の共有反転も比較`], ['運搬', '受渡では有用な2個組 / 出発後は手持ちの資格形成を優先'], ['110秒以降', '点差・Earth固定点・再反転リスク'], ['150秒以降', '有用な現地配置・反転を補給より優先'], ['Mustika', '届くまでは作業継続 / 直接受取・奉納は優先']] },
     ],
   };
   function resolveStrategy(role, id) {
@@ -290,6 +297,8 @@
     return Efficient.execute(v, plan, `指定${(v.brTurn?.completed || 0) + 1}回目 · ${summary}`);
   }
   function dispatch(view) {
+    if (view.role === 'BR' && view.brObservation?.replan === 'after-work' && view.enteredL1 && Efficient.needsScan(view)) return { brain: { ...view.brain, stage: 'choose' }, actions: F.scanActions(view) };
+    if (view.role === 'BR' && view.cargo.some(o => o.type === 'mustika')) return Efficient.builder(view);
     if (view.role === 'BR' && view.brTurnPlan?.slots) return specifiedBuilder(view);
     const handoff = view.role === 'TR' ? Efficient.mustikaDelivery(view) : Efficient.handoffNext(view);
     if (handoff) return handoff;
@@ -299,6 +308,11 @@
   }
   function next(view) {
     const response = dispatch(view);
+    if (view.role === 'BR' && view.brObservation?.replan === 'after-work') {
+      const work = response.actions?.findIndex(a => Perception.WORK.includes(a.type));
+      if (work >= 0) response.actions = response.actions.slice(0, work + 1);
+      return response;
+    }
     if (view.role !== 'BR' || view.brObservationMode !== 'stopped') return response;
     if (!response.actions?.length && response.wait && !response.fallbackTurn) return Efficient.waitAtHome(view, response);
     // Remove zero-length approach moves so a two-box operation at one spot remains a single stop.

@@ -4,7 +4,7 @@ const F = RoboField, S = RoboSim;
 const $ = id => document.getElementById(id);
 const canvas = $('field'), ctx = canvas.getContext('2d');
 const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
-let sim = new S.Simulation({ brObservationMode: 'stopped' }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
+let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'ideal', blueBrPlan: 'tactical-baseline-v2' }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;
@@ -134,17 +134,24 @@ function renderTurnEditor(team) {
   const after = document.createElement('div'); after.className = 'turn-fallback'; after.textContent = strategyTurns[team].length ? `${strategyTurns[team].length + 1}ターン目以降: 通常の配置戦略` : '全ターン: 通常の配置戦略';
   $(`${team}-br-turns`).append(after); icons();
 }
+function observationChoice(config) {
+  return config.brObservation?.replan === 'after-work' ? config.brObservation.model === 'level-radius' ? 'level-radius' : 'after-work' : config.brObservationMode;
+}
 function syncStrategyMenus() {
   for (const field of strategyFields) {
     const entries = RoboControllers.listStrategies(field.role);
     $(field.id).value = entries.some(entry => entry.id === sim.config[field.key]) ? sim.config[field.key] : entries[0].id;
   }
   $('supply-mode').value = sim.config.supplyMode;
-  $('br-observation-mode').value = sim.config.brObservationMode;
+  $('br-observation-mode').value = observationChoice(sim.config);
+  $('mustika-pickup-signal').value = sim.config.trMustikaPickupSignal || 'off';
   for (const team of ['red', 'blue']) { strategyTurns[team] = JSON.parse(JSON.stringify(sim.config[`${team}BrTurns`])); transportTrips[team] = sim.config[`${team}TrTrips`].map(slots => [...slots]); renderTurnEditor(team); renderTripEditor(team); }
   renderStrategyPreviews();
 }
 function renderStrategyPreviews() {
+  $('observation-details').textContent = $('br-observation-mode').value === 'level-radius'
+    ? '同レベル全域＋異レベル3m · 未知/前回情報を保持 · 全体得点は未観測 · 遮蔽・認識誤差なし'
+    : $('br-observation-mode').value === 'after-work' ? '全盤面 · 各作業後に停止観測 · 遮蔽・認識誤差なし' : '観測モデル: 停止中に全盤面を認識 · 遮蔽・認識誤差なし';
   $('supply-details').hidden = $('supply-mode').value !== 'ideal';
   for (const team of ['red', 'blue']) $(`${team}-mode`).value = strategyTurns[team].length || transportTrips[team].length ? '' : RoboControllers.listPresets().find(p => p.tr === $(`${team}-tr-plan`).value && p.br === $(`${team}-br-plan`).value)?.id || '';
   for (const field of strategyFields) {
@@ -163,12 +170,13 @@ function renderStrategyState() {
   const ideal = $('supply-mode').value === 'ideal';
   const invalid = ['red', 'blue'].flatMap(team => transportTrips[team].map((slots, index) => slots.every(type => type === 'none') ? `${team === 'red' ? '赤' : '青'}TR ${index + 1}便目: 最低1個を選択` : '')).filter(Boolean);
   for (const team of ['red', 'blue']) strategyTurns[team].forEach((turn, i) => { if (turn.slots?.every(s => s.type === 'none')) invalid.push(`${team === 'red' ? '赤' : '青'}BR ${i + 1}回目: 最低1個を選択`); });
-  const dirty = $('br-observation-mode').value !== sim.config.brObservationMode || $('supply-mode').value !== sim.config.supplyMode || strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]) || JSON.stringify(transportTrips[team]) !== JSON.stringify(sim.config[`${team}TrTrips`]));
+  const dirty = $('mustika-pickup-signal').value !== (sim.config.trMustikaPickupSignal || 'off') || $('br-observation-mode').value !== observationChoice(sim.config) || $('supply-mode').value !== sim.config.supplyMode || strategyFields.some(field => $(field.id).value !== sim.config[field.key]) || ['red', 'blue'].some(team => JSON.stringify(strategyTurns[team]) !== JSON.stringify(sim.config[`${team}BrTurns`]) || JSON.stringify(transportTrips[team]) !== JSON.stringify(sim.config[`${team}TrTrips`]));
   $('strategy-status').textContent = invalid.length ? invalid.join(' / ') : dirty ? '変更あり · 未適用' : '適用済み';
   $('strategy-status').classList.toggle('pending', dirty);
   $('apply-strategies').disabled = computing || !!invalid.length; $('revert-strategies').disabled = computing || !dirty;
   $('supply-mode').disabled = computing;
   $('br-observation-mode').disabled = computing;
+  $('mustika-pickup-signal').disabled = computing;
   $('supply-summary').textContent = sim.config.supplyMode === 'ideal' ? '箱の補給待ちなし' : '通常補給';
   for (const field of strategyFields) $(field.id).disabled = computing || ideal && field.role === 'TR';
   for (const team of ['red', 'blue']) {
@@ -500,13 +508,18 @@ $('apply-strategies').onclick = () => {
   const config = { ...sim.config };
   for (const field of strategyFields) config[field.key] = $(field.id).value;
   config.supplyMode = $('supply-mode').value;
-  config.brObservationMode = $('br-observation-mode').value;
+  const observation = $('br-observation-mode').value;
+  config.brObservationMode = observation === 'fixed' ? 'fixed' : 'stopped';
+  if (['after-work', 'level-radius'].includes(observation)) config.brObservation = { model: observation === 'level-radius' ? 'level-radius' : 'ideal', crossLevelRadius: 3, replan: 'after-work' };
+  else delete config.brObservation;
+  config.trMustikaPickupSignal = $('mustika-pickup-signal').value;
   for (const team of ['red', 'blue']) { config[`${team}BrTurns`] = [...strategyTurns[team]]; config[`${team}TrTrips`] = transportTrips[team].map(slots => [...slots]); }
   reset(config);
   targetList = destinations();
 };
 $('supply-mode').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
 $('br-observation-mode').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
+$('mustika-pickup-signal').onchange = () => { renderStrategyPreviews(); renderStrategyState(); };
 $('revert-strategies').onclick = () => { syncStrategyMenus(); renderStrategyState(); };
 $('destination').onchange = () => { clickedPoint = null; if (F.spotById[$('destination').value]) selectedSpot = $('destination').value; render(); };
 $('move').onclick = () => send({ type: 'move', target: clickedPoint || targetList.find(([id]) => id === $('destination').value)[2], label: '指定位置へ移動' });

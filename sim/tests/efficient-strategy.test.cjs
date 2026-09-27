@@ -52,14 +52,14 @@ test('Mustika direct handoff works on both sides with a completely full stock; n
     assert.equal(s.events.filter(e => e.action === 'handoff').length, 1);
   }
 });
-test('direct handoff rejects wrong position, opposite team, mixed cargo, missing mandate and moving TR', () => {
+test('direct handoff rejects wrong position, opposite team, missing mandate and moving TR even with blocks', () => {
   const { s, tr, br } = world(); hold(s, tr, 'M'); s.sanctuary.red = 0;
   const receive = { type: 'receive', objectId: 'M' };
   assert.equal(s.validate(br, receive).ok, false);
   Object.assign(br, F.points.red.transferBR); assert.equal(s.validate(br, receive).ok, true);
   assert.equal(s.validate(s.robot('blueBR'), receive).ok, false);
-  hold(s, br, 'red-E1'); assert.equal(s.validate(br, receive).ok, false);
-  br.cargo = []; s.sanctuary.red = null; assert.equal(s.validate(br, receive).ok, false);
+  hold(s, br, 'red-E1'); assert.equal(s.validate(br, receive).ok, true);
+  s.sanctuary.red = null; assert.equal(s.validate(br, receive).ok, false);
   s.sanctuary.red = 0; tr.job = { type: 'move' }; assert.equal(s.validate(br, receive).ok, false);
   tr.job = null; tr.x -= .5; assert.equal(s.validate(br, receive).ok, false);
 });
@@ -94,12 +94,79 @@ test('a single Sky completion waits for a useful second block', () => {
   const decision = C.next(scan(s, br)); assert.equal((decision.actions || []).filter(a => a.type === 'receive').length, 0);
   assert.ok(decision.wait > 0);
 });
-test('Mustika preparation returns held Sky before receiving the ball', () => {
+test('Mustika preparation preserves held Sky while receiving the ball', () => {
   const { s, tr, br } = world(); seed(s, 'r2', 1); hold(s, br, 'S1'); stock(s, 'red', 'earth');
   hold(s, tr, 'M'); s.sanctuary.red = 0;
-  const response = C.next(scan(s, br)); assert.ok(response.actions.some(a => a.type === 'return' && a.objectId === 'S1'));
-  run(s, br, response); assert.equal(br.cargo.length, 0);
-  run(s, br, C.next(s.view(br))); assert.deepEqual(br.cargo, ['M']);
+  const response = C.next(scan(s, br)); assert.ok(response.actions.some(a => a.type === 'receive' && a.objectId === 'M'));
+  assert.equal(response.actions.some(a => a.type === 'return'), false);
+  run(s, br, response); assert.deepEqual(br.cargo, ['S1', 'M']);
+});
+
+test('BR holds E2, E1S1 or S2 plus Mustika through handoff and priority enshrinement in both observation modes', () => {
+  for (const team of ['red', 'blue']) for (const mode of ['fixed', 'stopped']) for (const types of [['earth', 'earth'], ['earth', 'sky'], ['sky', 'sky']]) {
+    const { s, tr, br } = world(team); s.config.brObservationMode = mode;
+    const ids = types.map(type => hold(s, br, source(s, type, team).id).id);
+    hold(s, tr, 'M'); s.sanctuary[team] = 0;
+    run(s, br, C.next(scan(s, br)));
+    assert.deepEqual(br.cargo, [...ids, 'M']); assert.deepEqual(tr.cargo, []);
+    const response = C.next(s.view(br));
+    assert.deepEqual(response.actions.filter(a => a.type !== 'move').map(a => a.type), ['enshrine']);
+    run(s, br, response);
+    assert.deepEqual(br.cargo, ids); assert.equal(s.scores()[team].mustika, 250);
+    assert.equal(s.transferPoints[team], 0); assert.equal(s.ended, false);
+    assert.equal(s.events.some(e => e.action === 'return'), false);
+  }
+});
+
+test('Mustika does not consume a receive, recover or flip block slot; a third block remains illegal', () => {
+  const { s, br } = world(); hold(s, br, 'M'); s.sanctuary.red = 0;
+  Object.assign(br, F.points.red.transferBR);
+  for (const type of ['earth', 'sky']) {
+    const o = stock(s, 'red', type);
+    assert.equal(s.validate(br, { type: 'receive', objectId: o.id }).ok, true);
+    run(s, br, { brain: { stage: 'loaded' }, actions: [{ type: 'receive', objectId: o.id }] });
+  }
+  assert.equal(br.cargo.length, 3);
+  const extra = stock(s, 'red', 'earth');
+  assert.equal(s.validate(br, { type: 'receive', objectId: extra.id }).ok, false);
+  seed(s, 's2', 3, 'blue'); seed(s, 'r2', 1);
+  Object.assign(br, F.spotApproaches(F.spotById.s2, 'red')[0]); scan(s, br);
+  assert.equal(s.validate(br, { type: 'flip', spotId: 's2' }).ok, false);
+  Object.assign(br, F.spotApproaches(F.spotById.r2, 'red')[0]);
+  assert.equal(s.validate(br, { type: 'recover', spotId: 'r2' }).ok, false);
+  Object.assign(br, F.points.red.transferBR);
+  run(s, br, { brain: { stage: 'choose' }, actions: [{ type: 'return', objectId: br.cargo[2] }] });
+  assert.equal(br.cargo.length, 2); assert.ok(br.cargo.includes('M'));
+  Object.assign(br, F.spotApproaches(F.spotById.s2, 'red')[0]); scan(s, br);
+  assert.equal(s.validate(br, { type: 'flip', spotId: 's2' }).ok, true);
+  Object.assign(br, F.spotApproaches(F.spotById.r2, 'red')[0]);
+  assert.equal(s.validate(br, { type: 'recover', spotId: 'r2' }).ok, true);
+});
+
+test('normal box placement resumes after enshrining Mustika without returning the held pair', () => {
+  const { s, tr, br } = world();
+  hold(s, br, 'red-E1'); hold(s, br, 'red-E2'); hold(s, tr, 'M'); s.sanctuary.red = 0;
+  run(s, br, C.next(scan(s, br)));
+  run(s, br, C.next(s.view(br)));
+  run(s, br, C.next(s.view(br)));
+  const placement = C.next(s.view(br));
+  assert.equal(placement.actions.filter(a => a.type === 'place').length, 2);
+  run(s, br, placement); assert.equal(br.cargo.length, 0);
+  assert.equal(s.scores().red.mustika, 250);
+});
+
+test('enshrining with assigned boxes preserves the specified turn and its original destinations', () => {
+  const { s, br } = world();
+  s.config.redBrTurns = [{ slots: [{ type: 'earth', spotId: 's2' }, { type: 'earth', spotId: 'r2' }] }];
+  hold(s, br, 'red-E1'); hold(s, br, 'red-E2'); hold(s, br, 'M'); s.sanctuary.red = 0;
+  br.brTurn = { completed: 0, worked: false, assigned: ['red-E1', 'red-E2'], settled: [] };
+  run(s, br, C.next(scan(s, br)));
+  run(s, br, C.next(s.view(br)));
+  assert.equal(br.brTurn.completed, 0); assert.deepEqual(br.brTurn.settled, []);
+  const placement = C.next(s.view(br));
+  assert.deepEqual(placement.actions.filter(a => a.type === 'place').map(a => [a.objectId, a.spotId]), [['red-E1', 's2'], ['red-E2', 'r2']]);
+  run(s, br, placement); run(s, br, C.next(s.view(br)));
+  assert.equal(br.brTurn.completed, 1);
 });
 test('TR prioritizes achieved Mustika even while BR has returnable Sky cargo', () => {
   const { s, tr, br } = world(); seed(s, 'r2', 1); hold(s, br, 'S1'); s.sanctuary.red = 0;

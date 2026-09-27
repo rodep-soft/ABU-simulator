@@ -10,8 +10,9 @@
   const go = (target, label) => ({ type: 'move', target, label });
   const count = (items, type) => items.filter(o => o.type === type).length;
   const near = (a, b, radius = .14) => a && S.distance(a, b) <= radius;
+  const localMode = v => v.brObservation?.replan === 'after-work';
   const homeScan = F.scanActions;
-  const waitAtHome = (v, response) => v.brObservationMode === 'stopped'
+  const waitAtHome = (v, response) => localMode(v) ? response : v.brObservationMode === 'stopped'
     ? { ...response, brain: { ...response.brain, stage: 'choose' }, actions: [...(near(v, F.points[v.team].brStandby) ? [] : [go(F.points[v.team].brStandby, '受渡そばで動作待ち')]), { type: 'scan' }] }
     : F.surface(v).type === 'l2' ? { ...response, brain: { ...response.brain, stage: 'choose' }, actions: homeScan(v, F.points[v.team].home) } : response;
 
@@ -135,18 +136,21 @@
       seconds: +selected.completeSeconds.toFixed(2), horizonSeconds: +selected.horizonSeconds.toFixed(2), candidates: selected.candidates,
       tasks: copy(selected.tasks), receive: [...selected.picked], ...(selected.assessment ? { assessment: copy(selected.assessment) } : {}) };
     if (selected.picked.length) return { brain: { stage: 'choose' }, decision,
-      actions: [go(F.points[v.team].transferBR, 'まとめ受取へ'), ...selected.picked.map(objectId => ({ type: 'receive', objectId })), ...homeScan(v, F.points[v.team].transferBR)] };
-    return { brain: { stage: 'return' }, decision, actions: selected.tasks.flatMap(a => [go(a.type === 'enshrine' ? F.points[v.team].pillar : F.spotApproaches(F.spotById[a.spotId], v.team)[0], a.type === 'enshrine' ? 'Mustika奉納へ' : '効率化計画の作業先へ'), a]) };
+      actions: [go(F.points[v.team].transferBR, 'まとめ受取へ'), ...(localMode(v) ? selected.picked.slice(0, 1) : selected.picked).map(objectId => ({ type: 'receive', objectId })), ...(localMode(v) ? [] : homeScan(v, F.points[v.team].transferBR))] };
+    return { brain: { stage: 'return' }, decision, actions: (localMode(v) ? selected.tasks.slice(0, 1) : selected.tasks).flatMap(a => [go(a.type === 'enshrine' ? F.points[v.team].pillar : F.spotApproaches(F.spotById[a.spotId], v.team)[0], a.type === 'enshrine' ? 'Mustika奉納へ' : '効率化計画の作業先へ'), a]) };
   }
-  function needsScan(v) { return v.failure || !v.observation || ['start', 'return'].includes(v.brain.stage) || v.brObservationMode !== 'stopped' && !F.atScanPoint(v.team, v); }
+  function needsScan(v) {
+    if (localMode(v)) return v.failure || !v.observation || v.needsWorkScan || !v.scanLoaded || v.brain.stage === 'return';
+    return v.failure || !v.observation || ['start', 'return'].includes(v.brain.stage) || v.brObservationMode !== 'stopped' && !F.atScanPoint(v.team, v);
+  }
   function returnCargo(v, note = '置けない荷物を種類別置場へ返却') {
     const cargo = v.cargo.filter(o => o.type !== 'mustika');
     if (!cargo.length || !canStore(v.team, v.observation.stock, cargo)) return null;
-    return { brain: { stage: 'choose' }, status: note, actions: [go(F.points[v.team].transferBR, note), ...cargo.map(o => ({ type: 'return', objectId: o.id })), ...homeScan(v, F.points[v.team].transferBR)] };
+    return { brain: { stage: 'choose' }, status: note, actions: [go(F.points[v.team].transferBR, note), ...(localMode(v) ? cargo.slice(0, 1) : cargo).map(o => ({ type: 'return', objectId: o.id })), ...(localMode(v) ? [] : homeScan(v, F.points[v.team].transferBR))] };
   }
   function handoffNext(v) {
     if (needsScan(v)) return null;
-    if (!v.cargo.length && v.observation.sanctuary && v.observation.handoff) return {
+    if (!v.cargo.some(o => o.type === 'mustika') && v.observation.sanctuary && v.observation.handoff) return {
       brain: { stage: 'loaded' }, actions: [go(F.points[v.team].transferBR, 'MustikaをTRから直接受取'), { type: 'receive', objectId: 'M' }, ...homeScan(v, F.points[v.team].transferBR)],
     };
     return null;
@@ -160,7 +164,10 @@
     return selected;
   }
   function builder(v, selectPlan = defaultPlan, options = {}) {
-    if (v.brObservationMode !== 'stopped' && v.failure && ['place', 'flip'].includes(v.failure.action) && v.enteredL1 && ['l1', 'l2'].includes(F.surface(v).type)) {
+    if (localMode(v) && !v.enteredL1) return { brain: { ...v.brain, stage: 'choose', initialSupplyWait: true }, actions: homeScan(v) };
+    if (v.observation && !v.observation.partner) v = { ...v, observation: { ...v.observation, partner: { x: Infinity, y: Infinity, cargo: [] } } };
+    if (localMode(v) && needsScan(v)) return { brain: { ...v.brain, stage: 'choose' }, actions: homeScan(v) };
+    if (!localMode(v) && v.brObservationMode !== 'stopped' && v.failure && ['place', 'flip'].includes(v.failure.action) && v.enteredL1 && ['l1', 'l2'].includes(F.surface(v).type)) {
       return { brain: { stage: 'local-plan' }, actions: [{ type: 'scan', local: true }], status: '配置先変更 · その場で再認識' };
     }
     if (v.brain.stage === 'local-plan' && !v.failure && v.observation?.local) {
@@ -171,21 +178,21 @@
       return { brain: { stage: 'choose' }, actions: homeScan(v) };
     }
     if (needsScan(v)) return { brain: { ...v.brain, stage: 'choose' }, actions: homeScan(v) };
-    const obs = v.observation, partner = obs.partner, p = F.points[v.team];
+    const obs = v.observation, partner = obs.partner, p = F.points[v.team], pursueMustika = options.pursueMustika !== false;
     const incoming = partner?.cargo.some(o => o.type === 'mustika');
     if (v.cargo.some(o => o.type === 'mustika')) {
-      const plan = Planner.plan(v, { efficient: true, clearCargo: true });
+      const plan = Planner.plan(v, { efficient: true, noPickup: true, oneSortie: true, onlyEnshrine: true });
       return plan ? execute(v, plan) : { brain: { ...v.brain, stage: 'return' }, wait: 1, status: 'Mustika奉納の残り時間不足' };
     }
-    const handoff = handoffNext(v); if (handoff) return handoff;
-    if (obs.sanctuary && (incoming || obs.source.some(o => o.id === 'M') && !partner?.cargo.length) && v.cargo.length) {
-      const back = returnCargo(v, 'Mustika受取準備 · 通常ブロックを返却');
-      if (back) return back;
-    }
-    const sourceMustika = obs.source.some(o => o.id === 'M');
-    if (obs.sanctuary && !v.cargo.length && (incoming || sourceMustika && !partner?.cargo.length)) {
+    const handoff = pursueMustika ? handoffNext(v) : null; if (handoff) return handoff;
+    const sourceMustika = pursueMustika && obs.source.some(o => o.id === 'M');
+    if (pursueMustika && obs.sanctuary && !v.cargo.length && (incoming || sourceMustika && !partner?.cargo.length)) {
       const since = v.brain.mustikaWaitSince ?? v.time;
       if (v.time - since < 18 && v.time < 163) return waitAtHome(v, { brain: { ...v.brain, stage: 'return', mustikaWaitSince: since }, wait: 1, status: 'Mustika受取準備 · 空手で待機' });
+    }
+    if (options.preferLocalWork) {
+      const local = selectPlan(v, { noPickup: true, oneSortie: true, requirePair: false, noRecover: true });
+      if (local && !local.picked.length) return execute(v, local, '現地の作業を優先');
     }
     const normalDelivery = partner?.cargo.filter(o => o.type !== 'mustika') || [];
     const loading = v.cargo.length < 2 && near(partner, p.transferTR, .3) && normalDelivery.length && canStore(v.team, obs.stock, [normalDelivery[0]], v.cargo);
@@ -195,12 +202,30 @@
       if (v.time - since < 6) return waitAtHome(v, { brain: { ...v.brain, stage: 'return', supplyWaitSince: since }, wait: 1, status: '補給待ち · まとめ受取の準備' });
     }
     const clearSupply = obs.sanctuary && sourceMustika && normalDelivery.length && !canStore(v.team, obs.stock, [normalDelivery[0]], v.cargo);
+    if (obs.visibility && !v.cargo.length && obs.visibility.entries.stock?.status !== 'current') {
+      return { brain: { stage: 'choose' }, actions: [go(p.transferBR, '在庫を確認へ'), ...homeScan(v, p.transferBR)] };
+    }
     const selected = selectPlan(v, { onlyPlace: !!clearSupply });
     if (selected) return execute(v, selected);
     if (v.cargo.length) {
       const back = returnCargo(v); if (back) return back;
     }
+    if (localMode(v) && v.brain.initialSupplyWait && !v.cargo.length) return { brain: { ...v.brain, stage: 'return' }, wait: 1, status: '受渡そばで初回補給待ち' };
+    const scout = scoutNext(v); if (scout) return scout;
     return waitAtHome(v, { brain: { stage: 'return' }, wait: 2, status: '配置計画待ち · 補給・盤面を再確認' });
+  }
+  function scoutNext(v) {
+    if (!v.observation?.visibility) return null;
+    const allowed = v.brOpeningActive ? (v.team === 'red' ? ['s2', 'r2', 'u3'] : ['s2', 'b2', 'u4']) : F.spots.filter(s => !s.team || s.team === v.team).map(s => s.id);
+    const candidates = localMode(v) ? allowed.map(id => F.spotApproaches(F.spotById[id], v.team)[0]) : [F.points[v.team].home, F.points[v.team].homeL2];
+    const entries = v.observation.visibility.entries, radius = v.brObservation.crossLevelRadius;
+    const value = point => allowed.reduce((sum, id) => {
+      const s = F.spotById[id], m = entries[`tower:${id}`], seen = (F.surface(point).type === 'l2' ? 2 : 1) === s.level || S.distance(point, s) <= radius;
+      return sum + (seen && m?.status !== 'current' ? (m?.status === 'unknown' ? 1000 : Math.min(180, v.time - (m?.observedAt ?? 0))) : 0);
+    }, 0);
+    const target = candidates.filter(p => S.distance(v, p) > .15).sort((a, b) => value(b) - value(a) || S.distance(v, a) - S.distance(v, b))[0];
+    if (!target || value(target) <= 0 || !Number.isFinite(Planner.travelTo(v, target))) return null;
+    return { brain: { ...v.brain, stage: 'choose' }, actions: [go(target, '未確認の盤面を観測へ'), { type: 'scan', ...(localMode(v) ? { local: true } : {}) }], status: '情報不足のため観測移動' };
   }
   return { courier, builder, mustikaDelivery, handoffNext, oneActionAway, demand, stockDemand, canStore, returnCargo, execute, waitAtHome, needsScan };
 });

@@ -67,8 +67,9 @@
         <section id="tab-state" class="tab-content" hidden><h2>受け渡し区画</h2><div id="transfer-state"></div><h2>サンクチュアリ達成履歴</h2><div id="sanctuary-state"></div><h2>タワー</h2><div id="tower-state"></div><h2>供給元</h2><div id="source-state"></div></section>
         <section id="tab-strategies" class="tab-content" hidden>
           <h2>戦略の組み合わせ</h2>
-          <label class="supply-choice" for="br-observation-mode">BRの停止・観測<select id="br-observation-mode"><option value="stopped">停止した場所で観測・再計画</option><option value="fixed">従来のL1 / L2見渡し場所</option></select></label>
-          <div class="observation-assumption">観測モデル: 停止中に全盤面を認識 · 遮蔽・認識誤差なし</div>
+          <label class="supply-choice" for="br-observation-mode">BRの停止・観測<select id="br-observation-mode"><option value="stopped">停止した場所で観測・再計画</option><option value="fixed">従来のL1 / L2見渡し場所</option><option value="after-work">作業ごとに観測 · 全盤面</option><option value="level-radius">作業ごとに観測 · 同レベル＋異レベル3m</option></select></label>
+          <div class="observation-assumption" id="observation-details">観測モデル: 停止中に全盤面を認識 · 遮蔽・認識誤差なし</div>
+          <label class="supply-choice" for="mustika-pickup-signal">相手TRのMustika取得通知<select id="mustika-pickup-signal"><option value="off">なし</option><option value="global-instant">取得完了を即時通知（位置に依存しない仮定）</option></select></label>
           <label class="supply-choice" for="supply-mode">両チームの箱補給<select id="supply-mode"><option value="normal">通常 · TRが箱を運搬</option><option value="ideal">補給待ちなし · TRはMustika担当</option></select></label>
           <dl class="strategy-details" id="supply-details" hidden><div><dt>有限供給</dt><dd>各チーム Earth20 / Sky6</dd></div><div><dt>置場上限</dt><dd>Earth3 / Sky4 · 手持ち返却枠を確保</dd></div><div><dt>補充開始</dt><dd>BRがL1に入場し、受取位置を離れた後</dd></div><div><dt>自動補給点</dt><dd>搬送点 0 · 配置点は通常通り</dd></div><div><dt>Mustika</dt><dd>通常の資格・移動・直接手渡し</dd></div></dl>
           <div id="strategy-selectors"></div>
@@ -92,6 +93,6 @@
     </div>
   </main>
   <footer><span>ルール基準 v1-1 · CAD準拠 2D</span><span id="run-summary">基本動作モード</span><a href="tactical-replay.html">旧・戦術リプレイ</a></footer>
-  <script src="vendor/astar.js"></script><script src="vendor/lucide.min.js"></script><script src="sim/field.js"></script><script src="sim/engine.js"></script><script src="sim/score-planner.js"></script><script src="sim/efficient-strategy.js"></script><script src="sim/match-strategies.js"></script><script src="sim/competitive-strategies.js"></script><script src="sim/controllers.js"></script><script src="sim/post-match-review.js"></script><script src="sim/view.js"></script>
+  <script src="vendor/astar.js"></script><script src="vendor/lucide.min.js"></script><script src="sim/field.js"></script><script src="sim/br-observation.js"></script><script src="sim/engine.js"></script><script src="sim/score-planner.js"></script><script src="sim/efficient-strategy.js"></script><script src="sim/match-strategies.js"></script><script src="sim/competitive-strategies.js"></script><script src="sim/tactical-baseline.js"></script><script src="sim/ideal-baseline.js"></script><script src="sim/controllers.js"></script><script src="sim/post-match-review.js"></script><script src="sim/view.js"></script>
 </body>
 </html>

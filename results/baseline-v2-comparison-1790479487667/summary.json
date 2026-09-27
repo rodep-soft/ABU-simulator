@@ -1,0 +1,1009 @@
+{
+  "timeStep": 0.05,
+  "note": "Four finite Windows conditions, not a general win-rate estimate.",
+  "results": [
+    {
+      "supplyMode": "normal",
+      "candidateTeam": "red",
+      "scores": {
+        "red": {
+          "transfer": 75,
+          "tower": 300,
+          "mustika": 0,
+          "total": 375,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 65,
+          "tower": 170,
+          "mustika": 250,
+          "total": 485,
+          "sky": 2
+        }
+      },
+      "difference": -110,
+      "sanctuary": {
+        "red": 84.6,
+        "blue": 94.55
+      },
+      "mustika": [
+        {
+          "time": 96.4,
+          "robot": "blueTR",
+          "action": "pickup",
+          "text": "採集 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 94.85,
+          "objectId": "M",
+          "objectType": "mustika",
+          "sanctuaryAt": 94.55,
+          "sanctuaryEvidence": {
+            "at": 94.55,
+            "towers": [
+              {
+                "id": "b1",
+                "label": "青L1上",
+                "objects": [
+                  {
+                    "id": "blue-E19",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 2.8,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-9",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b1",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E20",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 2.8,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-9",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b1",
+                    "color": null
+                  },
+                  {
+                    "id": "S11",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 2.8,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "b1"
+                  }
+                ]
+              },
+              {
+                "id": "b2",
+                "label": "青L1下",
+                "objects": [
+                  {
+                    "id": "blue-E11",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-5",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E12",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-5",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "S12",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "b2"
+                  }
+                ]
+              },
+              {
+                "id": "s2",
+                "label": "L1共有下",
+                "objects": [
+                  {
+                    "id": "red-E20",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "red-9",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "holder": null,
+                    "transferTeam": "red",
+                    "slot": "red-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "red-E19",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "red-9",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "holder": null,
+                    "transferTeam": "red",
+                    "slot": "red-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "S8",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "holder": null,
+                    "transferTeam": "red",
+                    "slot": "red-1",
+                    "layer": 2,
+                    "spotId": "s2"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 106.85,
+          "robot": "blueTR",
+          "action": "handoff",
+          "text": "Mustikaを保持したままBRへ直接受け渡し",
+          "kind": "action",
+          "rule": "シミュレーション指定",
+          "objectId": "M",
+          "objectType": "mustika",
+          "receiver": "blueBR"
+        },
+        {
+          "time": 106.85,
+          "robot": "blueBR",
+          "action": "receive",
+          "text": "ブロック受取 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 103.75,
+          "objectId": "M",
+          "objectType": "mustika"
+        },
+        {
+          "time": 115.3,
+          "robot": "blueBR",
+          "action": "enshrine",
+          "text": "Mustika奉納",
+          "kind": "action",
+          "rule": "",
+          "cargo": [],
+          "observationAt": 107.85
+        }
+      ],
+      "elapsedMs": 6159.7068
+    },
+    {
+      "supplyMode": "normal",
+      "candidateTeam": "blue",
+      "scores": {
+        "red": {
+          "transfer": 80,
+          "tower": 280,
+          "mustika": 0,
+          "total": 360,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 70,
+          "tower": 220,
+          "mustika": 250,
+          "total": 540,
+          "sky": 2
+        }
+      },
+      "difference": 180,
+      "sanctuary": {
+        "red": 117.95,
+        "blue": 84.75
+      },
+      "mustika": [
+        {
+          "time": 96.35,
+          "robot": "blueTR",
+          "action": "pickup",
+          "text": "採集 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 89.25,
+          "objectId": "M",
+          "objectType": "mustika",
+          "sanctuaryAt": 84.75,
+          "sanctuaryEvidence": {
+            "at": 84.75,
+            "towers": [
+              {
+                "id": "b2",
+                "label": "青L1下",
+                "objects": [
+                  {
+                    "id": "blue-E11",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-5",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E12",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-5",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "S12",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "b2"
+                  }
+                ]
+              },
+              {
+                "id": "s2",
+                "label": "L1共有下",
+                "objects": [
+                  {
+                    "id": "blue-E19",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-9",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E20",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-9",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "S11",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "holder": null,
+                    "transferTeam": "blue",
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "s2"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 116.4,
+          "robot": "blueTR",
+          "action": "handoff",
+          "text": "Mustikaを保持したままBRへ直接受け渡し",
+          "kind": "action",
+          "rule": "シミュレーション指定",
+          "objectId": "M",
+          "objectType": "mustika",
+          "receiver": "blueBR"
+        },
+        {
+          "time": 116.4,
+          "robot": "blueBR",
+          "action": "receive",
+          "text": "ブロック受取 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 114.85,
+          "objectId": "M",
+          "objectType": "mustika"
+        },
+        {
+          "time": 124.95,
+          "robot": "blueBR",
+          "action": "enshrine",
+          "text": "Mustika奉納",
+          "kind": "action",
+          "rule": "",
+          "cargo": [],
+          "observationAt": 117.4
+        }
+      ],
+      "elapsedMs": 6976.5134
+    },
+    {
+      "supplyMode": "ideal",
+      "candidateTeam": "red",
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 600,
+          "mustika": 250,
+          "total": 850,
+          "sky": 6
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 240,
+          "mustika": 0,
+          "total": 240,
+          "sky": 2
+        }
+      },
+      "difference": 610,
+      "sanctuary": {
+        "red": 56.35,
+        "blue": 142.15
+      },
+      "mustika": [
+        {
+          "time": 58.15,
+          "robot": "redTR",
+          "action": "pickup",
+          "text": "採集 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 56.6,
+          "objectId": "M",
+          "objectType": "mustika",
+          "sanctuaryAt": 56.35,
+          "sanctuaryEvidence": {
+            "at": 56.35,
+            "towers": [
+              {
+                "id": "r2",
+                "label": "赤L1下",
+                "objects": [
+                  {
+                    "id": "red-E4",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "red-1",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-0",
+                    "spotId": "r2",
+                    "color": null
+                  },
+                  {
+                    "id": "red-E1",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "red-0",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-0",
+                    "spotId": "r2",
+                    "color": null
+                  },
+                  {
+                    "id": "S6",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "red",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "supplyTeam": "red",
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-1",
+                    "layer": 2,
+                    "spotId": "r2"
+                  }
+                ]
+              },
+              {
+                "id": "s2",
+                "label": "L1共有下",
+                "objects": [
+                  {
+                    "id": "red-E6",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "red-2",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "red-E5",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "red-2",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "S8",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "red",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "red"
+                    ],
+                    "supplyTeam": "red",
+                    "transferTeam": "red",
+                    "holder": null,
+                    "slot": "red-1",
+                    "layer": 2,
+                    "spotId": "s2"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 65.55,
+          "robot": "redTR",
+          "action": "handoff",
+          "text": "Mustikaを保持したままBRへ直接受け渡し",
+          "kind": "action",
+          "rule": "シミュレーション指定",
+          "objectId": "M",
+          "objectType": "mustika",
+          "receiver": "redBR"
+        },
+        {
+          "time": 65.55,
+          "robot": "redBR",
+          "action": "receive",
+          "text": "ブロック受取 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "red-E8",
+            "red-E3",
+            "M"
+          ],
+          "observationAt": 64,
+          "objectId": "M",
+          "objectType": "mustika"
+        },
+        {
+          "time": 74.05,
+          "robot": "redBR",
+          "action": "enshrine",
+          "text": "Mustika奉納",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "red-E8",
+            "red-E3"
+          ],
+          "observationAt": 66.55
+        }
+      ],
+      "elapsedMs": 7454.722300000001
+    },
+    {
+      "supplyMode": "ideal",
+      "candidateTeam": "blue",
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 310,
+          "mustika": 0,
+          "total": 310,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 570,
+          "mustika": 250,
+          "total": 820,
+          "sky": 5
+        }
+      },
+      "difference": 510,
+      "sanctuary": {
+        "red": 115.45,
+        "blue": 57.1
+      },
+      "mustika": [
+        {
+          "time": 58.85,
+          "robot": "blueTR",
+          "action": "pickup",
+          "text": "採集 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "M"
+          ],
+          "observationAt": 57.3,
+          "objectId": "M",
+          "objectType": "mustika",
+          "sanctuaryAt": 57.1,
+          "sanctuaryEvidence": {
+            "at": 57.1,
+            "towers": [
+              {
+                "id": "b2",
+                "label": "青L1下",
+                "objects": [
+                  {
+                    "id": "blue-E4",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-1",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E1",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-0",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-0",
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "S9",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "supplyTeam": "blue",
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "b2"
+                  }
+                ]
+              },
+              {
+                "id": "s2",
+                "label": "L1共有下",
+                "objects": [
+                  {
+                    "id": "blue-E6",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-2",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E5",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-2",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-0",
+                    "spotId": "s2",
+                    "color": null
+                  },
+                  {
+                    "id": "S11",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [
+                      "blue"
+                    ],
+                    "supplyTeam": "blue",
+                    "transferTeam": "blue",
+                    "holder": null,
+                    "slot": "blue-1",
+                    "layer": 2,
+                    "spotId": "s2"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 66.3,
+          "robot": "blueTR",
+          "action": "handoff",
+          "text": "Mustikaを保持したままBRへ直接受け渡し",
+          "kind": "action",
+          "rule": "シミュレーション指定",
+          "objectId": "M",
+          "objectType": "mustika",
+          "receiver": "blueBR"
+        },
+        {
+          "time": 66.3,
+          "robot": "blueBR",
+          "action": "receive",
+          "text": "ブロック受取 · M",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "blue-E8",
+            "blue-E3",
+            "M"
+          ],
+          "observationAt": 64.75,
+          "objectId": "M",
+          "objectType": "mustika"
+        },
+        {
+          "time": 74.75,
+          "robot": "blueBR",
+          "action": "enshrine",
+          "text": "Mustika奉納",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "blue-E8",
+            "blue-E3"
+          ],
+          "observationAt": 67.3
+        }
+      ],
+      "elapsedMs": 7445.292099999999
+    }
+  ]
+}

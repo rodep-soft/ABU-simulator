@@ -1,0 +1,107 @@
+{
+  "matches": [
+    {
+      "supply": "normal",
+      "time": 180,
+      "scores": {
+        "red": {
+          "transfer": 60,
+          "tower": 180,
+          "mustika": 0,
+          "total": 240,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 55,
+          "tower": 260,
+          "mustika": 250,
+          "total": 565,
+          "sky": 3
+        }
+      },
+      "transferPoints": {
+        "red": 60,
+        "blue": 55
+      },
+      "placements": [
+        [
+          "r2",
+          "r2",
+          "r2",
+          "s2",
+          "s2",
+          "s2",
+          "u1",
+          "u2",
+          "u1"
+        ],
+        [
+          "b2",
+          "b2",
+          "b2",
+          "b1",
+          "b1",
+          "b1",
+          "u1"
+        ]
+      ],
+      "policyErrors": [],
+      "scans": 77,
+      "capacityOK": true
+    },
+    {
+      "supply": "ideal",
+      "time": 180,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 280,
+          "mustika": 250,
+          "total": 530,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 300,
+          "mustika": 0,
+          "total": 300,
+          "sky": 3
+        }
+      },
+      "transferPoints": {
+        "red": 0,
+        "blue": 0
+      },
+      "placements": [
+        [
+          "r2",
+          "r2",
+          "r2",
+          "s2",
+          "s2",
+          "u3",
+          "u3",
+          "u3",
+          "u1"
+        ],
+        [
+          "b2",
+          "b2",
+          "b2",
+          "s2",
+          "b1",
+          "b1",
+          "b1",
+          "u2",
+          "u2",
+          "u2"
+        ]
+      ],
+      "policyErrors": [],
+      "scans": 63,
+      "capacityOK": true
+    }
+  ],
+  "pixels": 506,
+  "errors": []
+}

@@ -72,8 +72,8 @@ function run(spec, options = {}) {
     const response = options.cache !== false ? Cache.next(C, v) : C.next(v), m = metrics[v.team], work = response.actions || [];
     if (v.role === 'BR') {
       if (work.some(a => a.type === 'place')) {
-        if (v.cargo.length === 1) m[v.brain.stage === 'local-plan' ? 'localOne' : 'normalOne']++;
-        if (v.cargo.length === 2) m.two++;
+        if (S.blockCount(v.cargo) === 1) m[v.brain.stage === 'local-plan' ? 'localOne' : 'normalOne']++;
+        if (S.blockCount(v.cargo) === 2) m.two++;
       }
       const flips = work.filter(a => a.type === 'flip');
       if (flips.length >= 2) m.flipPlans.push({ at: v.time, spots: flips.map(a => a.spotId) });
@@ -103,7 +103,8 @@ function run(spec, options = {}) {
         : ['place', 'flip', 'enshrine', 'pickup', 'unload', 'receive', 'return', 'recover'].includes(job) ? 'handling'
           : r.stall || r.status === '障害物待ち' ? 'blocked' : b.status === '段差で姿勢合わせ' && b.wait ? 'stairs' : 'idle';
       const bucket = metrics[r.team].phaseTime[phase][r.role]; bucket[category] = (bucket[category] || 0) + .05;
-      assert.ok(r.cargo.length <= (r.role === 'TR' ? 3 : 2), 'cargo capacity');
+      assert.ok(S.blockCount(r.cargo, id => s.object(id)) <= (r.role === 'TR' ? 3 : 2), 'block cargo capacity');
+      assert.ok(r.cargo.filter(id => s.object(id).type === 'mustika').length <= 1, 'Mustika capacity');
     }
     for (const e of s.events.slice(eventStart)) {
       if (e.kind !== 'action' || !e.robot) continue;

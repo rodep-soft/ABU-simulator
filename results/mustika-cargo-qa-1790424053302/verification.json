@@ -1,0 +1,17 @@
+{
+  "result": {
+    "location": "pillar",
+    "cargo": [
+      "red-E1",
+      "S1"
+    ],
+    "score": 250,
+    "ended": false
+  },
+  "errors": [],
+  "widths": [
+    1440,
+    390,
+    320
+  ]
+}

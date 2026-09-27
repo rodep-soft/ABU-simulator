@@ -5,10 +5,12 @@ const Cache = require('../../tools/case-study-cache.cjs');
 const S = require('../engine.js');
 const F = require('../field.js');
 
-test('finite study covers all fifty profiles and all ordered pairs at five speed conditions', () => {
-  assert.equal(Core.profiles().length, 50);
-  const cases = Core.scenarios(); assert.equal(cases.length, 12500); assert.equal(new Set(cases.map(s => s.id)).size, 12500);
-  for (const [r, b] of [[1, 1], [.75, 1], [1, .75], [.5, 1], [1, .5]]) assert.equal(cases.filter(s => s.config.redSpeed === r && s.config.blueSpeed === b).length, 2500);
+test('finite study covers all sixty profiles and preserves old profile IDs at five speed conditions', () => {
+  assert.equal(Core.profiles().length, 60);
+  assert.equal(Core.profiles().find(p => p.id === 'T5B5').br, 'mustika-fast');
+  assert.equal(Core.profiles().find(p => p.id === 'T5B6').br, 'earth-late');
+  const cases = Core.scenarios(); assert.equal(cases.length, 18000); assert.equal(new Set(cases.map(s => s.id)).size, 18000);
+  for (const [r, b] of [[1, 1], [.75, 1], [1, .75], [.5, 1], [1, .5]]) assert.equal(cases.filter(s => s.config.redSpeed === r && s.config.blueSpeed === b).length, 3600);
 });
 test('victory uses score then Mustika then Sky, and never invents a referee tiebreak', () => {
   const red = { total: 400, mustika: 0, sky: 2 }, blue = { total: 395, mustika: 250, sky: 3 };

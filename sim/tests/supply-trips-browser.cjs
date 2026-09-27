@@ -14,6 +14,7 @@ fs.mkdirSync(output, { recursive: true });
     await page.goto(pathToFileURL(path.join(root, 'field-simulator.html')).href);
     await page.waitForFunction(() => window.fieldApp?.sim);
     await page.locator('[data-tab="strategies"]').click();
+    await page.locator('#supply-mode').selectOption('normal');
     await page.locator('#red-mode').selectOption('mustika-fast');
     await page.locator('#blue-mode').selectOption('l2-earth');
     await page.locator('#red-add-trip').click(); await page.locator('#red-add-trip').click();

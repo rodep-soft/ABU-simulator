@@ -26,7 +26,7 @@ function types(delivery) { return delivery.items.map(o => o.type); }
 test('strategy catalog separates roles and returns isolated menu metadata', () => {
   const tr = controllers.listStrategies('TR'), br = controllers.listStrategies('BR');
   assert.deepEqual(tr.map(s => s.id), ['balanced', 'e3-e1s2', 'adaptive', 'adaptive-e3-e1s2', 'stock-e3']);
-  assert.deepEqual(br.map(s => s.id), ['score-search', 'basic', 'split-seed', 'efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth']);
+  assert.deepEqual(br.map(s => s.id), ['score-search', 'basic', 'split-seed', 'efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth', 'tactical-baseline-v1', 'tactical-baseline-v2']);
   for (const entry of [...tr, ...br]) {
     assert.ok(entry.name); assert.ok(entry.shortName); assert.equal(entry.run, undefined);
   }
@@ -142,7 +142,7 @@ test('both TRs actually deliver E3 and E1+S2 at all four relative speeds', () =>
     const trs = sim.robots.filter(r => r.role === 'TR');
     while (!sim.ended && trs.some(r => r.transport.completed.length < 2)) {
       sim.step(.05, controllers);
-      for (const r of sim.robots) assert.ok(r.cargo.length <= (r.role === 'TR' ? 3 : 2));
+      for (const r of sim.robots) assert.ok(r.cargo.filter(id => sim.object(id).type !== 'mustika').length <= (r.role === 'TR' ? 3 : 2));
     }
     for (const tr of trs) {
       assert.ok(tr.transport.completed.length >= 2, `${tr.id} speed ${speed}: no second delivery`);
