@@ -58,6 +58,7 @@ fs.mkdirSync(output, { recursive: true });
     assert.equal(await page.locator('#red-br-box-1-1').inputValue(), 'sky');
     for (const width of [1440, 390, 320]) {
       await page.setViewportSize({ width, height: 1100 });
+      await page.locator('[data-tab="strategies"]').click();
       const layout = await page.evaluate(() => ({ page: document.documentElement.scrollWidth, width: innerWidth,
         rows: [...document.querySelectorAll('.br-turn-row,.br-slot')].every(e => e.scrollWidth <= e.clientWidth + 1) }));
       assert.ok(layout.page <= width + 1 && layout.rows, JSON.stringify(layout));

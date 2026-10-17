@@ -3,7 +3,7 @@
 const F = RoboField, S = RoboSim;
 const $ = id => document.getElementById(id);
 const canvas = $('field'), ctx = canvas.getContext('2d');
-let scene3d = null, displayMode = '2d', sequenceUI = null;
+let scene3d = null, displayMode = '2d', sequenceUI = null, workspaceUI = null;
 const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
 let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'ideal', blueBrPlan: 'tactical-baseline-v2', recordActions: true }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
@@ -215,6 +215,7 @@ function selectTab(tab) {
   if (tab === 'review' && !reviewActive) { startReview(); return; }
   document.querySelectorAll('[data-tab]').forEach(button => button.classList.toggle('active', button.dataset.tab === tab));
   document.querySelectorAll('.tab-content').forEach(section => section.hidden = section.id !== `tab-${tab}`);
+  workspaceUI?.open();
   render();
 }
 function startReview() {
@@ -474,6 +475,7 @@ function render() {
   renderReview();
   $('next-action').disabled = computing || sim.ended || replayTime !== null || reviewActive;
   sequenceUI?.render(snapshot, { running, computing, replayTime, reviewActive });
+  workspaceUI?.render(snapshot, sim, { reviewActive, reviewBase: review?.original.scores, replay: replayTime !== null });
 }
 function reset(config = sim.config, { preserveStrategyDraft = false } = {}) { generation++; RoboScorePlanner.clearCache(); sim.graphs.clear(); sim = new S.Simulation({ ...config, recordActions: true }); review = null; reviewActive = false; reviewObject = null; if (!$('tab-review').hidden) selectTab('operate'); running = false; computing = false; replayTime = null; playback = false; accumulator = 0; lastLog = -1; objectKey = ''; paintAt = 0; if (!preserveStrategyDraft) syncStrategyMenus(); sequenceUI?.sync(); $('action-step-status').textContent = ''; feedback('初期配置に戻しました · 計算キャッシュを更新'); render(); }
 function actionBoundary(from, target) {
@@ -534,7 +536,7 @@ $('stop-robot').onclick = () => {
 };
 function zoomBy(delta) {
   if (displayMode === '3d') { if (delta) scene3d.zoom(-delta * .4); $('zoom-out').disabled = $('zoom-in').disabled = false; return; }
-  zoom = Math.max(1, Math.min(2.5, zoom + delta)); canvas.style.width = `${zoom * 100}%`; canvas.parentElement.classList.toggle('zoomed', zoom > 1); $('zoom-out').disabled = zoom === 1; $('zoom-in').disabled = zoom === 2.5;
+  zoom = Math.max(1, Math.min(2.5, zoom + delta)); canvas.style.setProperty('--field-zoom', zoom); canvas.parentElement.classList.toggle('zoomed', zoom > 1); $('zoom-out').disabled = zoom === 1; $('zoom-in').disabled = zoom === 2.5;
 }
 function setDisplayMode(mode) {
   if (mode === '3d' && !scene3d) {
@@ -558,7 +560,7 @@ document.querySelectorAll('[data-camera]').forEach(button => button.onclick = ()
 $('camera-fit').onclick = () => { scene3d?.preset('iso'); $('camera-follow').setAttribute('aria-pressed', 'false'); document.querySelector('[data-camera="iso"]').click(); };
 $('camera-follow').onclick = () => $('camera-follow').setAttribute('aria-pressed', String(scene3d?.focus()));
 $('camera-fullscreen').onclick = async () => {
-  try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.querySelector('.field-panel').requestFullscreen(); }
+  try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); }
   catch { feedback('このブラウザでは全画面表示を利用できません', 'warn'); }
 };
 $('zoom-in').onclick = () => zoomBy(.5);
@@ -639,6 +641,7 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 window.fieldApp = { get sim() { return sim; }, reset, render, selectRobot: chooseRobot, setDisplayMode, get displayMode() { return displayMode; }, get scene3d() { return scene3d; } };
+workspaceUI = RoboWorkspaceUI.create();
 initStrategyMenus(); zoomBy(0); icons(); render(); requestAnimationFrame(tick);
 sequenceUI = RoboSequenceUI.create({ getSim: () => sim, reset, render, chooseRobot, icons, download: downloadJson }); render();
 if (new URLSearchParams(location.search).get('view') === '3d') setDisplayMode('3d');

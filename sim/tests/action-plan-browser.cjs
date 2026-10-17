@@ -42,6 +42,7 @@ fs.mkdirSync(output, { recursive: true });
     assert.equal(await page.evaluate(() => fieldApp.sim.time), 2);
     await page.locator('#next-action').click();
     await page.waitForFunction(() => fieldApp.sim.time === 2.5 && !document.getElementById('next-action').disabled);
+    await page.locator('#action-options-toggle').click();
     await page.locator('#pause-each-action').check();
     await page.locator('#play').click();
     await page.waitForFunction(() => fieldApp.sim.robot('redTR').program.index === 3);
@@ -64,6 +65,7 @@ fs.mkdirSync(output, { recursive: true });
     assert.ok(await page.evaluate(() => fieldApp.sim.events.some(e => e.robot === 'redBR' && e.kind === 'timing' && e.action === 'move')));
     for (const width of [1440, 390, 320]) {
       await page.setViewportSize({ width, height: 1000 });
+      await page.locator('[data-tab="sequence"]').click();
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
       await page.locator('#tab-sequence').screenshot({ path: path.join(output, `editor-${width}.png`) });
       await page.locator('.action-row[data-index="10"]').screenshot({ path: path.join(output, `placement-${width}.png`) });

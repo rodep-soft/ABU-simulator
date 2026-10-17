@@ -4,23 +4,28 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ABU 2027 フィールドシミュレーター</title>
   <link rel="stylesheet" href="sim/style.css">
+  <link rel="stylesheet" href="sim/workspace.css">
+  <script src="sim/workspace-ui.js"></script>
 </head>
 <body>
-  <header class="topbar"><div><span class="brand-mark">R27</span><h1>ABU 2027 <span>フィールドシミュレーター</span></h1></div><a href="SIMULATION_RULES.md" target="_blank">競技仕様 <i data-lucide="arrow-up-right"></i></a></header>
+  <header class="topbar"><div><span class="brand-mark">R27</span><h1>ABU 2027 <span>フィールドシミュレーター</span></h1></div><div class="app-tools"><a href="SIMULATION_RULES.md" target="_blank" title="競技仕様を開く" aria-label="競技仕様を開く"><i data-lucide="book-open"></i></a><button id="panel-toggle" title="編集パネルを開閉" aria-label="編集パネルを開閉" aria-controls="inspector" aria-expanded="true"><i data-lucide="panel-right"></i><span>編集</span></button></div></header>
   <main>
     <section class="matchbar" aria-label="試合状況">
-      <div class="team-score red"><span>赤チーム</span><strong id="red-score">0</strong><small id="red-detail"></small><span id="red-mandate" class="mandate">条件未達</span></div>
-      <div class="clock"><span id="match-state">開始前</span><strong id="clock">3:00.0</strong><progress id="progress" max="180" value="0"></progress></div>
-      <div class="team-score blue"><span>青チーム</span><strong id="blue-score">0</strong><small id="blue-detail"></small><span id="blue-mandate" class="mandate">条件未達</span></div>
-    </section>
-    <section class="strategy-bar" aria-label="採用中の戦略">
-      <strong class="strategy-bar-title">採用中の戦略<small id="supply-summary">通常補給</small></strong>
-      <div class="strategy-current"><strong class="team-red">赤チーム</strong><span id="red-strategy-summary"></span></div>
-      <div class="strategy-current"><strong class="team-blue">青チーム</strong><span id="blue-strategy-summary"></span></div>
-      <button id="edit-strategies" class="icon" title="戦略を選択" aria-label="戦略を選択"><i data-lucide="sliders-horizontal"></i></button>
+      <div class="team-score red"><span>赤チーム <span id="red-score-change" class="score-change"></span></span><strong id="red-score">0</strong><small id="red-detail"></small><span id="red-mandate" class="mandate">条件未達</span></div>
+      <div class="clock"><span id="match-state">開始前</span><strong id="clock">3:00.0</strong><span id="score-gap" aria-label="得点差">同点</span><progress id="progress" max="180" value="0"></progress></div>
+      <div class="team-score blue"><span>青チーム <span id="blue-score-change" class="score-change"></span></span><strong id="blue-score">0</strong><small id="blue-detail"></small><span id="blue-mandate" class="mandate">条件未達</span></div>
     </section>
     <div class="workspace">
       <section class="field-panel">
+        <div class="field-wrap"><canvas id="field" width="1000" height="1000" aria-label="競技フィールド。タップして移動先を指定"></canvas><div id="scene-3d" hidden></div>
+          <div id="camera-tools" class="camera-tools" hidden>
+            <div class="camera-presets" role="group" aria-label="カメラ視点"><button data-camera="iso" aria-pressed="true" title="斜め上から全体を見る"><i data-lucide="orbit"></i>斜め</button><button data-camera="top" aria-pressed="false" title="真上から見る"><i data-lucide="scan"></i>真上</button><button data-camera="red" aria-pressed="false" title="赤チーム側から見る">赤側</button><button data-camera="blue" aria-pressed="false" title="青チーム側から見る">青側</button></div>
+            <button id="camera-follow" class="icon" title="選択したロボットを追従" aria-label="選択したロボットを追従" aria-pressed="false"><i data-lucide="focus"></i></button>
+            <button id="camera-fit" class="icon" title="フィールド全体に戻す" aria-label="フィールド全体に戻す"><i data-lucide="maximize"></i></button>
+            <button id="camera-fullscreen" class="icon" title="シミュレーターを全画面表示" aria-label="シミュレーターを全画面表示"><i data-lucide="expand"></i></button>
+          </div>
+        </div>
+        <div id="view-error" class="feedback warn" role="status" hidden></div>
         <div class="toolbar">
           <div class="view-modes" role="group" aria-label="フィールド表示"><button id="view-2d" aria-pressed="true" title="2D俯瞰"><i data-lucide="map"></i><span>2D</span></button><button id="view-3d" aria-pressed="false" title="3Dフィールド"><i data-lucide="box"></i><span>3D</span></button></div>
           <button id="play" class="icon primary" title="開始・一時停止" aria-label="開始・一時停止"><i data-lucide="play"></i></button>
@@ -30,29 +35,22 @@
           <button id="reset" class="icon" title="初期状態に戻す" aria-label="初期状態に戻す"><i data-lucide="rotate-ccw"></i></button>
           <label class="rate-label">再生<select id="rate"><option value="1">1倍</option><option value="3" selected>3倍</option><option value="5">5倍</option><option value="20">20倍</option><option value="60">60倍</option></select></label>
           <div class="zoom-tools"><button id="zoom-out" class="icon" title="フィールドを縮小" aria-label="フィールドを縮小"><i data-lucide="zoom-out"></i></button><button id="zoom-in" class="icon" title="フィールドを拡大" aria-label="フィールドを拡大"><i data-lucide="zoom-in"></i></button></div>
+          <button id="display-options-toggle" class="icon" title="表示オプション" aria-label="表示オプション" aria-controls="display-options" aria-expanded="false"><i data-lucide="eye"></i></button>
           <button id="download" class="icon push" title="試合ログを保存" aria-label="試合ログを保存"><i data-lucide="download"></i></button>
         </div>
         <div class="step-control-bar">
           <button id="next-action" title="次の動作完了まで全ロボットを同時に進める"><i data-lucide="step-forward"></i>一手進める</button>
           <select id="action-step-scope" aria-label="動作完了を待つ対象"><option value="selected">選択ロボット</option><option value="all">全ロボット</option></select>
-          <label><input id="pause-each-action" type="checkbox">完了ごとに停止</label>
-          <label>確認上限<select id="action-step-limit" aria-label="一手確認の上限秒数"><option value="5">5秒</option><option value="15" selected>15秒</option><option value="60">60秒</option></select></label>
+          <button id="action-options-toggle" class="icon" title="一手送りの設定" aria-label="一手送りの設定" aria-controls="action-options" aria-expanded="false"><i data-lucide="settings-2"></i></button>
+          <div id="action-options" class="action-options" hidden><label><input id="pause-each-action" type="checkbox">完了ごとに停止</label><label>確認上限<select id="action-step-limit" aria-label="一手確認の上限秒数"><option value="5">5秒</option><option value="15" selected>15秒</option><option value="60">60秒</option></select></label></div>
           <span id="action-step-status" role="status"></span>
         </div>
-        <div id="camera-tools" class="camera-tools" hidden>
-          <div class="camera-presets" role="group" aria-label="カメラ視点"><button data-camera="iso" aria-pressed="true" title="斜め上から全体を見る"><i data-lucide="orbit"></i>斜め</button><button data-camera="top" aria-pressed="false" title="真上から見る"><i data-lucide="scan"></i>真上</button><button data-camera="red" aria-pressed="false" title="赤チーム側から見る">赤側</button><button data-camera="blue" aria-pressed="false" title="青チーム側から見る">青側</button></div>
-          <button id="camera-follow" class="icon" title="選択したロボットを追従" aria-label="選択したロボットを追従" aria-pressed="false"><i data-lucide="focus"></i></button>
-          <button id="camera-fit" class="icon" title="フィールド全体に戻す" aria-label="フィールド全体に戻す"><i data-lucide="maximize"></i></button>
-          <button id="camera-fullscreen" class="icon" title="フィールドを全画面表示" aria-label="フィールドを全画面表示"><i data-lucide="expand"></i></button>
-        </div>
-        <div class="field-wrap"><canvas id="field" width="1000" height="1000" aria-label="競技フィールド。タップして移動先を指定"></canvas><div id="scene-3d" hidden></div></div>
-        <div id="view-error" class="feedback warn" role="status" hidden></div>
         <div class="timeline"><span id="elapsed">0.0 s</span><input id="timeline" type="range" min="0" max="180" step="0.5" value="0" aria-label="リプレイ時刻"><span>180 s</span></div>
-        <div class="legend"><span><b class="earth-symbol">E</b> Earth</span><span><b class="sky-symbol">S</b> Sky</span><span><b class="mustika-symbol">M</b> Mustika</span><label><input id="show-path" type="checkbox" checked>経路</label><label><input id="show-body" type="checkbox" checked>車体外形</label></div>
+        <div class="legend" id="display-options" hidden><span><b class="earth-symbol">E</b> Earth</span><span><b class="sky-symbol">S</b> Sky</span><span><b class="mustika-symbol">M</b> Mustika</span><label><input id="show-path" type="checkbox" checked>経路</label><label><input id="show-body" type="checkbox" checked>車体外形</label></div>
         <div class="robot-strip" id="robots"></div>
       </section>
-      <aside>
-        <nav class="tabs" aria-label="表示切替"><button class="active" data-tab="operate">操作</button><button data-tab="sequence">手順</button><button data-tab="strategies">戦略</button><button data-tab="state">盤面</button><button id="review-tab" data-tab="review" disabled>検討</button><button data-tab="settings">設定</button><button data-tab="log">ログ</button></nav>
+      <aside id="inspector" class="inspector" aria-label="編集パネル">
+        <nav class="tabs" aria-label="表示切替"><button class="active" data-tab="operate" title="ロボット操作" aria-controls="tab-operate"><i data-lucide="gamepad-2"></i><span>操作</span></button><button data-tab="sequence" title="一手ずつの手順" aria-controls="tab-sequence"><i data-lucide="list-ordered"></i><span>手順</span></button><button data-tab="strategies" title="戦略の編集" aria-controls="tab-strategies"><i data-lucide="route"></i><span>戦略</span></button><button data-tab="state" title="盤面の状態" aria-controls="tab-state"><i data-lucide="layers"></i><span>盤面</span></button><button id="review-tab" data-tab="review" title="終了後の得点検討" aria-controls="tab-review" disabled><i data-lucide="notebook-pen"></i><span>検討</span></button><button data-tab="settings" title="走行・動作設定" aria-controls="tab-settings"><i data-lucide="settings-2"></i><span>設定</span></button><button data-tab="log" title="動作ログ" aria-controls="tab-log"><i data-lucide="scroll-text"></i><span>ログ</span></button><button id="panel-close" title="編集パネルを畳む" aria-label="編集パネルを畳む"><i data-lucide="chevron-down"></i></button></nav>
         <section id="tab-sequence" class="tab-content" hidden>
           <div class="heading-row"><h2>ロボット別の手順</h2><div class="action-row-controls"><button id="program-import" class="icon" title="手順JSONを読み込み" aria-label="手順JSONを読み込み"><i data-lucide="upload"></i></button><button id="program-export" class="icon" title="手順と動作時間を保存" aria-label="手順と動作時間を保存"><i data-lucide="download"></i></button></div></div>
           <input id="program-file" type="file" accept=".json,application/json" hidden>
@@ -97,6 +95,12 @@
         </section>
         <section id="tab-state" class="tab-content" hidden><h2>受け渡し区画</h2><div id="transfer-state"></div><h2>サンクチュアリ達成履歴</h2><div id="sanctuary-state"></div><h2>タワー</h2><div id="tower-state"></div><h2>供給元</h2><div id="source-state"></div></section>
         <section id="tab-strategies" class="tab-content" hidden>
+          <section class="strategy-bar" aria-label="採用中の戦略">
+            <strong class="strategy-bar-title">採用中<small id="supply-summary">通常補給</small></strong>
+            <div class="strategy-current"><strong class="team-red">赤チーム</strong><span id="red-strategy-summary"></span></div>
+            <div class="strategy-current"><strong class="team-blue">青チーム</strong><span id="blue-strategy-summary"></span></div>
+            <button id="edit-strategies" class="icon" title="戦略を選択" aria-label="戦略を選択"><i data-lucide="sliders-horizontal"></i></button>
+          </section>
           <h2>戦略の組み合わせ</h2>
           <label class="supply-choice" for="br-observation-mode">BRの停止・観測<select id="br-observation-mode"><option value="stopped">停止した場所で観測・再計画</option><option value="fixed">従来のL1 / L2見渡し場所</option><option value="after-work">作業ごとに観測 · 全盤面</option><option value="level-radius">作業ごとに観測 · 同レベル＋異レベル3m</option></select></label>
           <div class="observation-assumption" id="observation-details">観測モデル: 停止中に全盤面を認識 · 遮蔽・認識誤差なし</div>
