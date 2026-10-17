@@ -1,0 +1,123 @@
+{
+  "result": {
+    "time": 180,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 360,
+        "mustika": 0,
+        "total": 360,
+        "sky": 4
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 340,
+        "mustika": 250,
+        "total": 590,
+        "sky": 2
+      }
+    },
+    "config": {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "adaptive",
+      "blueTrPlan": "adaptive",
+      "redBrPlan": "efficient",
+      "blueBrPlan": "tactical-baseline-v2",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "trAutoRestartSeconds": 1,
+      "brObservationMode": "stopped",
+      "supplyMode": "ideal",
+      "redBrTurns": [
+        {
+          "slots": [
+            {
+              "type": "earth",
+              "spotId": "s2"
+            },
+            {
+              "type": "earth",
+              "spotId": "r2"
+            }
+          ]
+        }
+      ],
+      "redTrTrips": [],
+      "blueBrTurns": [],
+      "blueTrTrips": [],
+      "trMustikaPickupSignal": "off"
+    },
+    "diagnostics": {
+      "active": true,
+      "objects": 53,
+      "robots": 4,
+      "calls": 462,
+      "camera": [
+        7.585078815381063,
+        18.59380369297602,
+        12.653827108782952
+      ],
+      "follow": false,
+      "positions": {
+        "redTR": [
+          -5.15,
+          0,
+          5.15
+        ],
+        "redBR": [
+          -2.6,
+          0.6,
+          1.2999999999999998
+        ],
+        "blueTR": [
+          5.15,
+          0,
+          5.15
+        ],
+        "blueBR": [
+          1.2256231204535153,
+          0.9,
+          0.2551319746413654
+        ]
+      }
+    },
+    "places": 21
+  },
+  "normal": {
+    "time": 180,
+    "supplyMode": "normal",
+    "shipments": 7,
+    "scores": {
+      "red": {
+        "transfer": 65,
+        "tower": 400,
+        "mustika": 0,
+        "total": 465,
+        "sky": 4
+      },
+      "blue": {
+        "transfer": 65,
+        "tower": 250,
+        "mustika": 250,
+        "total": 565,
+        "sky": 2
+      }
+    }
+  },
+  "pixels": 1029,
+  "parity": {
+    "scores": true,
+    "events": true,
+    "state": true
+  },
+  "errors": []
+}

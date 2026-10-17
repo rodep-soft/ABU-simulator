@@ -3,8 +3,9 @@
 const F = RoboField, S = RoboSim;
 const $ = id => document.getElementById(id);
 const canvas = $('field'), ctx = canvas.getContext('2d');
+let scene3d = null, displayMode = '2d', sequenceUI = null;
 const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
-let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'ideal', blueBrPlan: 'tactical-baseline-v2' }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
+let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'ideal', blueBrPlan: 'tactical-baseline-v2', recordActions: true }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;
@@ -310,6 +311,10 @@ function text(value, x, y, size = .14, color = '#4d5d52', align = 'center', bold
 function line(a, b, color, width = .025) { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.stroke(); }
 function circle(p, radius, fill, stroke) { ctx.beginPath(); ctx.arc(p.x, p.y, radius, 0, Math.PI * 2); ctx.fillStyle = fill; ctx.fill(); if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = .02; ctx.stroke(); } }
 function draw(state) {
+  if (displayMode === '3d') {
+    scene3d.draw(state, { selected, bodySize: sim.config.bodySize, showPath: $('show-path').checked, showBody: $('show-body').checked, clickedPoint, reviewObject: reviewActive ? reviewObject : null });
+    return;
+  }
   const size = canvas.width, pad = size * .035, scale = (size - 2 * pad) / 11;
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, size, size); ctx.translate(pad, pad); ctx.scale(scale, scale);
   const small = cssSize < 500;
@@ -467,8 +472,38 @@ function render() {
   $('run-summary').textContent = reviewActive ? '仮想盤面 · 元の試合結果は保持' : sim.ended ? `${sim.events.length}件の記録 · 試合終了` : replayTime !== null ? '記録済み軌跡' : '基本動作モード';
   renderStrategyState();
   renderReview();
+  $('next-action').disabled = computing || sim.ended || replayTime !== null || reviewActive;
+  sequenceUI?.render(snapshot, { running, computing, replayTime, reviewActive });
 }
-function reset(config = sim.config, { preserveStrategyDraft = false } = {}) { generation++; RoboScorePlanner.clearCache(); sim.graphs.clear(); sim = new S.Simulation(config); review = null; reviewActive = false; reviewObject = null; if (!$('tab-review').hidden) selectTab('operate'); running = false; computing = false; replayTime = null; playback = false; accumulator = 0; lastLog = -1; objectKey = ''; paintAt = 0; if (!preserveStrategyDraft) syncStrategyMenus(); feedback('初期配置に戻しました · 計算キャッシュを更新'); render(); }
+function reset(config = sim.config, { preserveStrategyDraft = false } = {}) { generation++; RoboScorePlanner.clearCache(); sim.graphs.clear(); sim = new S.Simulation({ ...config, recordActions: true }); review = null; reviewActive = false; reviewObject = null; if (!$('tab-review').hidden) selectTab('operate'); running = false; computing = false; replayTime = null; playback = false; accumulator = 0; lastLog = -1; objectKey = ''; paintAt = 0; if (!preserveStrategyDraft) syncStrategyMenus(); sequenceUI?.sync(); $('action-step-status').textContent = ''; feedback('初期配置に戻しました · 計算キャッシュを更新'); render(); }
+function actionBoundary(from, target) {
+  const events = sim.events.slice(from), chosen = e => !target || e.robot === target;
+  const error = events.find(e => chosen(e) && ['physical', 'perception', 'rule', 'unsupported', 'unscored', 'policy'].includes(e.kind));
+  const done = events.find(e => chosen(e) && e.kind === 'timing');
+  const event = error || done;
+  if (event) { $('action-step-status').textContent = `${event.time.toFixed(2)}秒 · ${event.robot || ''} · ${event.text}`; return true; }
+  return false;
+}
+$('next-action').onclick = () => {
+  if (computing || sim.ended || replayTime !== null || reviewActive) return;
+  if ($('action-step-scope').value === 'selected' && sim.robot(selected).program?.error) {
+    $('action-step-status').textContent = `手順停止中 · ${sim.robot(selected).program.error.reason}`; return;
+  }
+  running = playback = false; accumulator = 0; computing = true;
+  const target = $('action-step-scope').value === 'selected' ? selected : null, from = sim.events.length, until = Math.min(180, Math.round((sim.time + Number($('action-step-limit').value)) * 1e9) / 1e9), run = generation;
+  render();
+  function chunk() {
+    if (run !== generation) return;
+    const stop = performance.now() + 35; let boundary = false;
+    while (!sim.ended && sim.time < until && performance.now() < stop) { sim.step(.05, RoboControllers); if (actionBoundary(from, target)) { boundary = true; break; } }
+    if (boundary || sim.ended || sim.time >= until) {
+      computing = false;
+      if (!boundary) $('action-step-status').textContent = sim.ended ? '180秒 · 競技終了' : `${sim.time.toFixed(2)}秒 · 確認上限に到達 · 対象動作の完了なし`;
+      render();
+    } else { render(); requestAnimationFrame(chunk); }
+  }
+  requestAnimationFrame(chunk);
+};
 $('play').onclick = () => {
   if (computing) return;
   if (reviewActive) exitReview();
@@ -497,7 +532,35 @@ $('stop-robot').onclick = () => {
   else { r.job = null; r.velocity = 0; r.wait = 0; r.status = '手動停止'; feedback('移動と自動運転を停止しました'); }
   sim.log(r, 'stop', '移動停止・後続動作解除'); render();
 };
-function zoomBy(delta) { zoom = Math.max(1, Math.min(2.5, zoom + delta)); canvas.style.width = `${zoom * 100}%`; canvas.parentElement.classList.toggle('zoomed', zoom > 1); $('zoom-out').disabled = zoom === 1; $('zoom-in').disabled = zoom === 2.5; }
+function zoomBy(delta) {
+  if (displayMode === '3d') { if (delta) scene3d.zoom(-delta * .4); $('zoom-out').disabled = $('zoom-in').disabled = false; return; }
+  zoom = Math.max(1, Math.min(2.5, zoom + delta)); canvas.style.width = `${zoom * 100}%`; canvas.parentElement.classList.toggle('zoomed', zoom > 1); $('zoom-out').disabled = zoom === 1; $('zoom-in').disabled = zoom === 2.5;
+}
+function setDisplayMode(mode) {
+  if (mode === '3d' && !scene3d) {
+    try { scene3d = RoboField3D.create($('scene-3d'), pickField); }
+    catch (error) { $('view-error').hidden = false; $('view-error').textContent = `3D表示を開始できません。2D表示をご利用ください。${error.message}`; return; }
+  }
+  displayMode = mode; $('field').hidden = mode === '3d'; $('scene-3d').hidden = mode !== '3d'; $('camera-tools').hidden = mode !== '3d';
+  document.querySelector('.field-panel').classList.toggle('is-3d', mode === '3d');
+  canvas.parentElement.classList.toggle('zoomed', mode === '2d' && zoom > 1);
+  $('view-2d').setAttribute('aria-pressed', String(mode === '2d')); $('view-3d').setAttribute('aria-pressed', String(mode === '3d'));
+  scene3d?.setActive(mode === '3d');
+  document.querySelector('footer>span').textContent = `ルール基準 v1-1 · CAD準拠 ${mode.toUpperCase()}`;
+  zoomBy(0); draw(snapshot);
+}
+$('view-2d').onclick = () => setDisplayMode('2d'); $('view-3d').onclick = () => setDisplayMode('3d');
+$('scene-3d').addEventListener('camera-change', e => $('camera-follow').setAttribute('aria-pressed', String(e.detail.follow)));
+document.querySelectorAll('[data-camera]').forEach(button => button.onclick = () => {
+  scene3d?.preset(button.dataset.camera); $('camera-follow').setAttribute('aria-pressed', 'false');
+  document.querySelectorAll('[data-camera]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+});
+$('camera-fit').onclick = () => { scene3d?.preset('iso'); $('camera-follow').setAttribute('aria-pressed', 'false'); document.querySelector('[data-camera="iso"]').click(); };
+$('camera-follow').onclick = () => $('camera-follow').setAttribute('aria-pressed', String(scene3d?.focus()));
+$('camera-fullscreen').onclick = async () => {
+  try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.querySelector('.field-panel').requestFullscreen(); }
+  catch { feedback('このブラウザでは全画面表示を利用できません', 'warn'); }
+};
 $('zoom-in').onclick = () => zoomBy(.5);
 $('zoom-out').onclick = () => zoomBy(-.5);
 document.querySelectorAll('[data-robot]').forEach(b => b.onclick = () => chooseRobot(b.dataset.robot));
@@ -541,9 +604,11 @@ $('apply-settings').onclick = () => {
 function downloadJson(value, prefix) { const data = new Blob([JSON.stringify(value)], { type: 'application/json' }), url = URL.createObjectURL(data), a = document.createElement('a'); a.href = url; a.download = `${prefix}-${new Date().toISOString().replace(/[:.]/g, '-')}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
 $('download').onclick = () => downloadJson(sim.export(), 'ABU2027-field');
 $('review-download').onclick = () => { if (reviewActive) downloadJson(review.export(), 'ABU2027-review'); };
-canvas.addEventListener('pointerdown', e => {
-  const bounds = canvas.getBoundingClientRect(), p = { x: ((e.clientX - bounds.left) / bounds.width - .035) * 11 / .93, y: ((e.clientY - bounds.top) / bounds.height - .035) * 11 / .93 };
+function pickField(p, hit = null) {
   if (reviewActive) {
+    if (hit?.kind === 'object' && RoboReview.editable(snapshot.objects.find(o => o.id === hit.id))) {
+      reviewObject = hit.id; selectTab('review'); return;
+    }
     const spot = F.spots.find(s => S.distance(s, p) < .5);
     if (spot) {
       const tower = snapshot.objects.filter(o => RoboReview.editable(o) && o.spotId === spot.id).sort((a, b) => b.layer - a.layer);
@@ -552,22 +617,28 @@ canvas.addEventListener('pointerdown', e => {
     }
     return;
   }
-  const robot = snapshot.robots.find(r => S.distance(r, p) < .38); if (robot) { chooseRobot(robot.id); return; }
-  const spot = F.spots.find(s => S.distance(s, p) < .42);
+  const robot = hit?.kind === 'robot' ? snapshot.robots.find(r => r.id === hit.id) : snapshot.robots.find(r => S.distance(r, p) < .38); if (robot) { chooseRobot(robot.id); return; }
+  const spot = hit?.kind === 'spot' ? F.spotById[hit.id] : F.spots.find(s => S.distance(s, p) < .42);
   if (spot) { selectedSpot = spot.id; $('destination').value = spot.id; clickedPoint = null; feedback(`配置先: ${spot.label}`); }
   else {
-    const object = snapshot.objects.filter(o => ['source', 'transfer'].includes(o.location) && S.distance(o, p) < o.size * .7).sort((a, b) => b.z - a.z)[0];
+    const object = hit?.kind === 'object' ? snapshot.objects.find(o => o.id === hit.id) : snapshot.objects.filter(o => ['source', 'transfer'].includes(o.location) && S.distance(o, p) < o.size * .7).sort((a, b) => b.z - a.z)[0];
     if (object && [...$('object-select').options].some(option => option.value === object.id)) { $('object-select').value = object.id; clickedPoint = null; feedback(`選択: ${object.id} · ${object.type}`); }
     else { clickedPoint = p; feedback(`移動先: x ${p.x.toFixed(2)} m / y ${p.y.toFixed(2)} m`); }
   }
   draw(snapshot);
+}
+canvas.addEventListener('pointerdown', e => {
+  const bounds = canvas.getBoundingClientRect(), p = { x: ((e.clientX - bounds.left) / bounds.width - .035) * 11 / .93, y: ((e.clientY - bounds.top) / bounds.height - .035) * 11 / .93 };
+  pickField(p);
 });
-const observer = new ResizeObserver(() => { cssSize = canvas.getBoundingClientRect().width; canvas.width = canvas.height = Math.round(cssSize * Math.min(2, devicePixelRatio || 1)); draw(snapshot); }); observer.observe(canvas);
+const observer = new ResizeObserver(() => { cssSize = canvas.getBoundingClientRect().width; if (cssSize > 0) { canvas.width = canvas.height = Math.round(cssSize * Math.min(2, devicePixelRatio || 1)); draw(snapshot); } }); observer.observe(canvas);
 function tick(now) {
   const dt = previous ? Math.min(.15, (now - previous) / 1000) : 0; previous = now;
   if (playback && replayTime !== null) { replayTime += dt * Number($('rate').value); if (replayTime >= sim.time) { replayTime = null; playback = false; } if (now - paintAt >= 50 || !playback) { render(); paintAt = now; } }
-  else if (running && !computing && !sim.ended) { accumulator += dt * Number($('rate').value); const stop = performance.now() + 30; while (accumulator >= .05 && performance.now() < stop) { sim.step(.05, RoboControllers); accumulator -= .05; } if (sim.ended) running = false; if (now - paintAt >= 50 || sim.ended) { render(); paintAt = now; } }
+  else if (running && !computing && !sim.ended) { accumulator += dt * Number($('rate').value); const stop = performance.now() + 30; while (accumulator >= .05 && performance.now() < stop) { const from = sim.events.length; sim.step(.05, RoboControllers); accumulator -= .05; if ($('pause-each-action').checked && actionBoundary(from, $('action-step-scope').value === 'selected' ? selected : null)) { running = false; accumulator = 0; break; } } if (sim.ended) running = false; if (now - paintAt >= 50 || sim.ended || !running) { render(); paintAt = now; } }
   requestAnimationFrame(tick);
 }
-window.fieldApp = { get sim() { return sim; }, reset, render, selectRobot: chooseRobot };
+window.fieldApp = { get sim() { return sim; }, reset, render, selectRobot: chooseRobot, setDisplayMode, get displayMode() { return displayMode; }, get scene3d() { return scene3d; } };
 initStrategyMenus(); zoomBy(0); icons(); render(); requestAnimationFrame(tick);
+sequenceUI = RoboSequenceUI.create({ getSim: () => sim, reset, render, chooseRobot, icons, download: downloadJson }); render();
+if (new URLSearchParams(location.search).get('view') === '3d') setDisplayMode('3d');

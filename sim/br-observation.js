@@ -76,7 +76,7 @@
       if (sees(actor)) {
         k[key] = { x: actor.x, y: actor.y, z: actor.z,
           ...(key === 'partner' ? { cargo: actor.cargo.map(id => cleanObject(sim.object(id))) }
-            : { maxSpeed: sim.config.maxSpeed * sim.config[`${actor.team}Speed`], placeSeconds: sim.config.placeSeconds }) };
+            : { maxSpeed: (sim.motionFor?.(actor)?.maxSpeed ?? sim.config.maxSpeed) * sim.config[`${actor.team}Speed`], placeSeconds: sim.motionFor?.(actor)?.actionSeconds?.flip ?? sim.config.placeSeconds }) };
         mark(key);
       }
     }

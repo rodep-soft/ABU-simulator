@@ -172,7 +172,7 @@
     }
     if (v.brain.stage === 'local-plan' && !v.failure && v.observation?.local) {
       const selected = selectPlan(v, { noPickup: true, oneSortie: true, origin: { x: v.x, y: v.y }, clearCargo: !!v.cargo.length, requirePair: false });
-      const back = returnCargo(v), returnSeconds = Planner.travelTo(v, F.points[v.team].transferBR) + v.cargo.length * v.motion.pickupSeconds;
+      const back = returnCargo(v), returnSeconds = Planner.travelTo(v, F.points[v.team].transferBR) + v.cargo.length * S.actionSeconds(v.motion, 'return');
       if (selected && (!back || selected.completeSeconds <= returnSeconds + v.motion.scanSeconds + 4)) return execute(v, selected, '現地再計画 · 別の配置先へ');
       if (back) return back;
       return { brain: { stage: 'choose' }, actions: homeScan(v) };

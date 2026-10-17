@@ -133,7 +133,7 @@
         if (!ctx.legal(current, { type: 'receive', objectId: o.id }, transfer, 0)) continue;
         const next = copy(current), index = next.stock.findIndex(item => item.id === o.id), item = next.stock.splice(index, 1)[0];
         next.cargo.push({ ...item, location: 'cargo', holder: `${ctx.team}BR`, touchedBy: `${ctx.team}BR` });
-        const ids = [...picked, o.id], prep = ctx.travel(origin, transfer) + ctx.arrivalScan(origin, transfer) + ctx.travel(transfer, ctx.supplyHome) + ids.length * ctx.motion.pickupSeconds + (ctx.local ? ids.length : 1) * ctx.motion.scanSeconds;
+        const ids = [...picked, o.id], prep = ctx.travel(origin, transfer) + ctx.arrivalScan(origin, transfer) + ctx.travel(transfer, ctx.supplyHome) + ids.length * S.actionSeconds(ctx.motion, 'receive') + (ctx.local ? ids.length : 1) * ctx.motion.scanSeconds;
         if (prep < ctx.remaining) options.push({ state: next, picked: ids, prep });
         visit(next, ids);
       }
@@ -146,7 +146,7 @@
       if (ctx.options.requirePair && option.state.cargo.length === 1 && option.state.cargo[0].type !== 'mustika') continue;
       function visit(current, position, tasks, taskTimes, seconds, budget) {
         for (const action of choices(current, ctx, budget)) {
-          const point = ctx.target(action), completeSeconds = seconds + (ctx.local && tasks.length ? ctx.motion.scanSeconds : 0) + ctx.travel(position, point) + ctx.arrivalScan(position, point) * (tasks.length ? 2 : 1) + ctx.motion.placeSeconds;
+          const point = ctx.target(action), completeSeconds = seconds + (ctx.local && tasks.length ? ctx.motion.scanSeconds : 0) + ctx.travel(position, point) + ctx.arrivalScan(position, point) * (tasks.length ? 2 : 1) + S.actionSeconds(ctx.motion, action.type);
           if (!Number.isFinite(completeSeconds) || completeSeconds >= ctx.remaining - 1e-6) continue;
           const next = apply(current, action, ctx.team), sequence = [...tasks, action], after = score(next, ctx.team);
           const times = [...taskTimes, completeSeconds];
@@ -215,7 +215,7 @@
         const from = old.last < 0 ? ctx.origin : ctx.target(actions[old.last]);
         for (let i = 0; i < actions.length; i++) {
           if (old.mask & (1 << i)) continue;
-          const a = actions[i], to = ctx.target(a), seconds = old.completeSeconds + (ctx.local && old.tasks.length ? ctx.motion.scanSeconds : 0) + ctx.travel(from, to) + ctx.arrivalScan(from, to) * (old.tasks.length ? 2 : 1) + ctx.motion.placeSeconds;
+          const a = actions[i], to = ctx.target(a), seconds = old.completeSeconds + (ctx.local && old.tasks.length ? ctx.motion.scanSeconds : 0) + ctx.travel(from, to) + ctx.arrivalScan(from, to) * (old.tasks.length ? 2 : 1) + S.actionSeconds(ctx.motion, a.type);
           if (!Number.isFinite(seconds) || seconds >= ctx.remaining) continue;
           const mask = old.mask | (1 << i), sequence = [...old.tasks, a];
           const key = options.orderSensitive ? sequence.map(a => a.spotId).join(':') : `${mask}:${i}`;
@@ -262,7 +262,7 @@
     const before = score(state, v.team), other = v.team === 'red' ? 'blue' : 'red';
     if (picked.length) {
       const transfer = F.points[v.team].transferBR;
-      seconds = ctx.travel(position, transfer) + ctx.arrivalScan(position, transfer) + ctx.travel(transfer, ctx.supplyHome) + picked.length * ctx.motion.pickupSeconds + (ctx.local ? picked.length : 1) * ctx.motion.scanSeconds;
+      seconds = ctx.travel(position, transfer) + ctx.arrivalScan(position, transfer) + ctx.travel(transfer, ctx.supplyHome) + picked.length * S.actionSeconds(ctx.motion, 'receive') + (ctx.local ? picked.length : 1) * ctx.motion.scanSeconds;
       position = ctx.supplyHome;
       for (const o of picked) {
         if (!ctx.legal(state, { type: 'receive', objectId: o.id }, transfer, 0)) return null;
@@ -274,7 +274,7 @@
     for (const action of tasks) {
       const target = ctx.target(action);
       if (!ctx.legal(state, action, target, 2)) return null;
-      seconds += (ctx.local && taskTimes.length ? ctx.motion.scanSeconds : 0) + ctx.travel(position, target) + ctx.arrivalScan(position, target) * (taskTimes.length ? 2 : 1) + ctx.motion.placeSeconds;
+      seconds += (ctx.local && taskTimes.length ? ctx.motion.scanSeconds : 0) + ctx.travel(position, target) + ctx.arrivalScan(position, target) * (taskTimes.length ? 2 : 1) + S.actionSeconds(ctx.motion, action.type);
       if (!Number.isFinite(seconds) || seconds >= ctx.remaining) return null;
       state = apply(state, action, v.team); position = target; taskTimes.push(seconds);
     }

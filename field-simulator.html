@@ -22,6 +22,7 @@
     <div class="workspace">
       <section class="field-panel">
         <div class="toolbar">
+          <div class="view-modes" role="group" aria-label="フィールド表示"><button id="view-2d" aria-pressed="true" title="2D俯瞰"><i data-lucide="map"></i><span>2D</span></button><button id="view-3d" aria-pressed="false" title="3Dフィールド"><i data-lucide="box"></i><span>3D</span></button></div>
           <button id="play" class="icon primary" title="開始・一時停止" aria-label="開始・一時停止"><i data-lucide="play"></i></button>
           <button id="step" class="icon" title="0.5秒進める" aria-label="0.5秒進める"><i data-lucide="step-forward"></i></button>
           <button id="finish" title="180秒まで計算"><i data-lucide="fast-forward"></i><span>3分計算</span></button>
@@ -31,13 +32,43 @@
           <div class="zoom-tools"><button id="zoom-out" class="icon" title="フィールドを縮小" aria-label="フィールドを縮小"><i data-lucide="zoom-out"></i></button><button id="zoom-in" class="icon" title="フィールドを拡大" aria-label="フィールドを拡大"><i data-lucide="zoom-in"></i></button></div>
           <button id="download" class="icon push" title="試合ログを保存" aria-label="試合ログを保存"><i data-lucide="download"></i></button>
         </div>
-        <div class="field-wrap"><canvas id="field" width="1000" height="1000" aria-label="競技フィールド。タップして移動先を指定"></canvas></div>
+        <div class="step-control-bar">
+          <button id="next-action" title="次の動作完了まで全ロボットを同時に進める"><i data-lucide="step-forward"></i>一手進める</button>
+          <select id="action-step-scope" aria-label="動作完了を待つ対象"><option value="selected">選択ロボット</option><option value="all">全ロボット</option></select>
+          <label><input id="pause-each-action" type="checkbox">完了ごとに停止</label>
+          <label>確認上限<select id="action-step-limit" aria-label="一手確認の上限秒数"><option value="5">5秒</option><option value="15" selected>15秒</option><option value="60">60秒</option></select></label>
+          <span id="action-step-status" role="status"></span>
+        </div>
+        <div id="camera-tools" class="camera-tools" hidden>
+          <div class="camera-presets" role="group" aria-label="カメラ視点"><button data-camera="iso" aria-pressed="true" title="斜め上から全体を見る"><i data-lucide="orbit"></i>斜め</button><button data-camera="top" aria-pressed="false" title="真上から見る"><i data-lucide="scan"></i>真上</button><button data-camera="red" aria-pressed="false" title="赤チーム側から見る">赤側</button><button data-camera="blue" aria-pressed="false" title="青チーム側から見る">青側</button></div>
+          <button id="camera-follow" class="icon" title="選択したロボットを追従" aria-label="選択したロボットを追従" aria-pressed="false"><i data-lucide="focus"></i></button>
+          <button id="camera-fit" class="icon" title="フィールド全体に戻す" aria-label="フィールド全体に戻す"><i data-lucide="maximize"></i></button>
+          <button id="camera-fullscreen" class="icon" title="フィールドを全画面表示" aria-label="フィールドを全画面表示"><i data-lucide="expand"></i></button>
+        </div>
+        <div class="field-wrap"><canvas id="field" width="1000" height="1000" aria-label="競技フィールド。タップして移動先を指定"></canvas><div id="scene-3d" hidden></div></div>
+        <div id="view-error" class="feedback warn" role="status" hidden></div>
         <div class="timeline"><span id="elapsed">0.0 s</span><input id="timeline" type="range" min="0" max="180" step="0.5" value="0" aria-label="リプレイ時刻"><span>180 s</span></div>
         <div class="legend"><span><b class="earth-symbol">E</b> Earth</span><span><b class="sky-symbol">S</b> Sky</span><span><b class="mustika-symbol">M</b> Mustika</span><label><input id="show-path" type="checkbox" checked>経路</label><label><input id="show-body" type="checkbox" checked>車体外形</label></div>
         <div class="robot-strip" id="robots"></div>
       </section>
       <aside>
-        <nav class="tabs" aria-label="表示切替"><button class="active" data-tab="operate">操作</button><button data-tab="strategies">戦略</button><button data-tab="state">盤面</button><button id="review-tab" data-tab="review" disabled>検討</button><button data-tab="settings">設定</button><button data-tab="log">ログ</button></nav>
+        <nav class="tabs" aria-label="表示切替"><button class="active" data-tab="operate">操作</button><button data-tab="sequence">手順</button><button data-tab="strategies">戦略</button><button data-tab="state">盤面</button><button id="review-tab" data-tab="review" disabled>検討</button><button data-tab="settings">設定</button><button data-tab="log">ログ</button></nav>
+        <section id="tab-sequence" class="tab-content" hidden>
+          <div class="heading-row"><h2>ロボット別の手順</h2><div class="action-row-controls"><button id="program-import" class="icon" title="手順JSONを読み込み" aria-label="手順JSONを読み込み"><i data-lucide="upload"></i></button><button id="program-export" class="icon" title="手順と動作時間を保存" aria-label="手順と動作時間を保存"><i data-lucide="download"></i></button></div></div>
+          <input id="program-file" type="file" accept=".json,application/json" hidden>
+          <label class="supply-choice">対象ロボット<select id="program-robot"></select></label>
+          <label class="toggle-row"><span>この手順を実行</span><input id="program-enabled" type="checkbox"></label>
+          <div id="program-progress" class="action-progress" role="status"></div>
+          <div class="heading-row"><h2>動作順</h2><div class="action-row-controls"><button id="program-template" title="Earth初動の手順を追加"><i data-lucide="package-plus"></i>Earth初動</button><button id="program-add" class="icon" title="一手追加" aria-label="一手追加"><i data-lucide="plus"></i></button></div></div>
+          <div id="program-rows"></div>
+          <label class="supply-choice">手順の終了後<select id="program-end"><option value="wait">待機</option><option value="strategy">通常戦略へ移行</option></select></label>
+          <details class="robot-timing" open><summary>動作時間・走行性能</summary><div id="robot-timing-fields" class="robot-timing-grid"></div></details>
+          <div class="program-apply"><button id="program-apply" class="primary"><i data-lucide="rotate-ccw"></i>適用して初期化</button><button id="program-update"><i data-lucide="check"></i>残りを更新</button></div>
+          <div id="program-message" class="action-progress" role="status"></div>
+          <div class="program-apply"><button id="program-retry"><i data-lucide="redo-2"></i>同じ手を再試行</button><button id="program-skip"><i data-lucide="skip-forward"></i>この手をスキップ</button></div>
+          <h2>現在の動作</h2><div id="action-current" class="action-progress"></div>
+          <h2>動作時間の実績</h2><table class="action-history"><thead><tr><th>完了秒</th><th>ロボット</th><th>動作</th><th>所要秒</th></tr></thead><tbody id="action-history"></tbody></table>
+        </section>
         <section id="tab-review" class="tab-content" hidden>
           <div class="heading-row"><h2>仮想盤面</h2><button id="review-exit" title="元の試合結果へ"><i data-lucide="arrow-left"></i>試合結果へ</button></div>
           <table class="review-scores"><thead><tr><th>得点</th><th>試合結果</th><th>検討後</th><th>増減</th></tr></thead><tbody id="review-scores"></tbody></table>
@@ -93,6 +124,6 @@
     </div>
   </main>
   <footer><span>ルール基準 v1-1 · CAD準拠 2D</span><span id="run-summary">基本動作モード</span><a href="tactical-replay.html">旧・戦術リプレイ</a></footer>
-  <script src="vendor/astar.js"></script><script src="vendor/lucide.min.js"></script><script src="sim/field.js"></script><script src="sim/br-observation.js"></script><script src="sim/engine.js"></script><script src="sim/score-planner.js"></script><script src="sim/efficient-strategy.js"></script><script src="sim/match-strategies.js"></script><script src="sim/competitive-strategies.js"></script><script src="sim/tactical-baseline.js"></script><script src="sim/ideal-baseline.js"></script><script src="sim/controllers.js"></script><script src="sim/post-match-review.js"></script><script src="sim/view.js"></script>
+  <script src="vendor/astar.js"></script><script src="vendor/lucide.min.js"></script><script src="sim/field.js"></script><script src="sim/action-plan.js"></script><script src="sim/br-observation.js"></script><script src="sim/engine.js"></script><script src="sim/score-planner.js"></script><script src="sim/efficient-strategy.js"></script><script src="sim/match-strategies.js"></script><script src="sim/competitive-strategies.js"></script><script src="sim/tactical-baseline.js"></script><script src="sim/ideal-baseline.js"></script><script src="sim/controllers.js"></script><script src="sim/post-match-review.js"></script><script src="vendor/three.min.js"></script><script src="sim/field-3d.js"></script><script src="sim/sequence-ui.js"></script><script src="sim/view.js"></script>
 </body>
 </html>

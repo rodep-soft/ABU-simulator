@@ -307,6 +307,7 @@
     return resolveStrategy(view.role, view.role === 'TR' ? view.trPlan : view.brPlan).run(view);
   }
   function next(view) {
+    const program = S.programNext(view, sourceApproach); if (program) return program;
     const response = dispatch(view);
     if (view.role === 'BR' && view.brObservation?.replan === 'after-work') {
       const work = response.actions?.findIndex(a => Perception.WORK.includes(a.type));

@@ -1,0 +1,77 @@
+{
+  "result": {
+    "time": 180,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 310,
+        "mustika": 250,
+        "total": 560,
+        "sky": 4
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 470,
+        "mustika": 0,
+        "total": 470,
+        "sky": 2
+      }
+    },
+    "redPlaces": [
+      "s2",
+      "r2",
+      "s2",
+      "s2",
+      "r2",
+      "r2",
+      "r1",
+      "r1",
+      "r1",
+      "u1",
+      "u3",
+      "u4",
+      "s1"
+    ],
+    "initialScans": [
+      {
+        "time": 11.4,
+        "robot": "redBR",
+        "action": "scan",
+        "text": "停止・見渡し",
+        "kind": "action",
+        "rule": "",
+        "cargo": [],
+        "observationAt": 11.4,
+        "local": false,
+        "arrival": false,
+        "observationMode": "stopped",
+        "level": "l1",
+        "origin": {
+          "x": 3.7,
+          "y": 6.8
+        }
+      },
+      {
+        "time": 11.3,
+        "robot": "blueBR",
+        "action": "scan",
+        "text": "停止・見渡し",
+        "kind": "action",
+        "rule": "",
+        "cargo": [],
+        "observationAt": 11.3,
+        "local": false,
+        "arrival": false,
+        "observationMode": "stopped",
+        "level": "l1",
+        "origin": {
+          "x": 7.3,
+          "y": 6.8
+        }
+      }
+    ],
+    "scans": 83
+  },
+  "pixels": 509,
+  "errors": []
+}

@@ -70,7 +70,7 @@ fs.mkdirSync(output, { recursive: true });
     await page.waitForFunction(() => fieldApp.sim.ended, null, { timeout: 240000 });
     const result = await page.evaluate(() => ({ time: fieldApp.sim.time, scores: fieldApp.sim.scores(),
       redPlaces: fieldApp.sim.events.filter(e => e.robot === 'redBR' && e.action === 'place' && e.kind === 'action').map(e => e.spotId),
-      initialScans: ['red', 'blue'].map(team => fieldApp.sim.events.find(e => e.robot === `${team}BR` && e.action === 'scan')),
+      initialScans: ['red', 'blue'].map(team => fieldApp.sim.events.find(e => e.robot === `${team}BR` && e.action === 'scan' && e.kind === 'action')),
       scans: fieldApp.sim.events.filter(e => e.action === 'scan' && e.kind === 'action').length }));
     assert.equal(result.time, 180); assert.deepEqual(result.redPlaces.slice(0, 4), ['s2', 'r2', 's2', 's2']);
     assert.deepEqual(result.initialScans.map(e => e.origin), [{ x: 3.7, y: 6.8 }, { x: 7.3, y: 6.8 }]);

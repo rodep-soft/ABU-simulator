@@ -1,10 +1,11 @@
 (function (root, factory) {
   const api = factory(typeof module === 'object' ? require('./field.js') : root.RoboField,
     typeof module === 'object' ? require('../vendor/astar.js') : { Graph: root.Graph, astar: root.astar },
-    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation);
+    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation,
+    typeof module === 'object' ? require('./action-plan.js') : root.RoboActionPlan);
   if (typeof module === 'object') module.exports = api;
   else root.RoboSim = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, A, Perception) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, A, Perception, Plan) {
   'use strict';
   const clone = x => JSON.parse(JSON.stringify(x));
   const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -79,6 +80,8 @@
   class Simulation {
     constructor(config = {}) {
       this.config = { ...DEFAULTS, ...config };
+      if (config.robotTiming !== undefined) this.config.robotTiming = Plan.normalizeTiming(config.robotTiming);
+      if (config.robotPrograms !== undefined) this.config.robotPrograms = Plan.normalizePrograms(config.robotPrograms);
       if (config.brObservation !== undefined) this.config.brObservation = Perception.normalize(config.brObservation);
       if (config.brOpening !== undefined) this.config.brOpening = Perception.normalizeOpening(config.brOpening);
       Perception.normalizeSignal(config.trMustikaPickupSignal);
@@ -228,12 +231,13 @@
       const opponent = this.robot(`${robot.team === 'red' ? 'blue' : 'red'}BR`);
       robot.observation.scores = clone(this.scores());
       robot.observation.opponentBR = opponent ? { x: opponent.x, y: opponent.y, z: opponent.z,
-        maxSpeed: this.config.maxSpeed * this.config[`${opponent.team}Speed`], placeSeconds: this.config.placeSeconds } : null;
+        maxSpeed: Plan.effectiveMotion(this.config, opponent.id).maxSpeed * this.config[`${opponent.team}Speed`], placeSeconds: Plan.duration(Plan.effectiveMotion(this.config, opponent.id), 'flip') } : null;
     }
     view(robot) {
-      const motion = Object.fromEntries(['maxSpeed', 'acceleration', 'bodySize', 'rampFactor', 'stairSpeed', 'stairPause', 'scanSeconds', 'pickupSeconds', 'placeSeconds'].map(key => [key, this.config[key]]));
+      const motion = Plan.effectiveMotion(this.config, robot.id);
       motion.speedFactor = this.config[`${robot.team}Speed`];
       return clone({ id: robot.id, role: robot.role, team: robot.team,
+        ...(this.config.robotPrograms?.[robot.id] ? { programPlan: this.config.robotPrograms[robot.id], program: robot.program || { index: 0 } } : {}),
         ...(this.config.trMustikaPickupSignal === 'global-instant' ? { trMustikaPickupSignal: 'global-instant', opponentMustikaPickup: robot.opponentMustikaPickup || null } : {}),
         ...(robot.role === 'BR' && (this.config.brObservation || this.config.brOpening) ? { brObservation: this.config.brObservation,
           brOpeningActive: !!this.config.brOpening?.[robot.team] && !robot.openingReleased, needsWorkScan: !!robot.needsWorkScan, scanLoaded: robot.scanLoaded } : {}),
@@ -247,6 +251,7 @@
       this.log(this.robot(team + 'TR'), 'mustika-pickup-signal', '相手TRのMustika取得履歴をBRへ通知', 'signal', 'シミュレーション仮定', { receiver: br.id, ...signal });
     }
     changed() { this.version++; this.graphs.clear(); }
+    motionFor(robot) { return Plan.effectiveMotion(this.config, robot.id); }
     mustikaOffer(team) {
       const tr = this.robot(`${team}TR`), m = this.object('M'), p = F.points[team];
       if (m.location !== 'cargo' || m.holder !== tr.id || !tr.cargo.includes('M') || tr.job || distance(tr, p.transferTR) > .14 || F.surface(tr).type !== 'transfer') return null;
@@ -255,6 +260,8 @@
     validate(robot, action) {
       if (this.ended || this.time >= 180) return fail('競技は終了しています', '4.6.1');
       if (robot.role === 'TR' && robot.cargo.includes('M') && this.object('M').touchedBy === `${robot.team}BR`) return fail('Mustikaを直接受け渡し中です', 'シミュレーション指定', 'physical');
+      if (action.type === 'wait') return Number.isFinite(action.seconds) && action.seconds >= .05 && action.seconds <= 180 ? success : fail('待機は0.05〜180秒です', '入力', 'physical');
+      if (action.programStep !== undefined && action.seconds !== undefined && (!Number.isFinite(action.seconds) || action.seconds < .05 || action.seconds > 60)) return fail('作業時間は0.05〜60秒です', '入力', 'physical');
       if (action.type === 'move') {
         if (!action.target || !Number.isFinite(action.target.x) || !Number.isFinite(action.target.y)) return fail('移動先を選んでください', '入力', 'physical');
         return this.footprintAllowed(robot, action.target) ? success : fail('その位置には車体を置けません。活動域・壁・段差を確認してください', 'MOVE-01～09', 'physical');
@@ -407,6 +414,7 @@
       r.queue.push(...clone(Array.isArray(actions) ? actions : [actions])); return true;
     }
     reject(r, a, result) {
+      if (this.config.robotPrograms?.[r.id]?.enabled && r.program && r.program.index < this.config.robotPrograms[r.id].steps.length) r.program.error = { reason: result.reason, rule: result.rule };
       r.failure = { ...result, action: a.type }; r.status = result.reason; r.queue = []; r.job = null; r.velocity = 0;
       if (r.role === 'BR' && ['place', 'flip'].includes(a.type)) { r.localRescanAllowed = true; r.scanLoaded = false; r.batchRemaining = 0; }
       this.log(r, a.type, result.reason, result.kind, result.rule);
@@ -417,12 +425,12 @@
       if (a.type === 'move') {
         const route = this.findPath(r, a.target);
         if (!route) { this.reject(r, a, fail('現在の車体・配置で通れる経路がありません', 'MOVE-08', 'physical')); return; }
-        r.job = { ...a, route, destination: a.target }; r.status = a.label || '移動'; r.blocked = 0; return;
+        r.job = { ...a, route, destination: a.target, ...(this.config.recordActions || a.programStep !== undefined ? { startedAt: this.time } : {}) }; r.status = a.label || '移動'; r.blocked = 0; return;
       }
-      r.job = { ...a, remaining: a.type === 'scan' ? this.config.scanSeconds : a.type === 'retry' ? 3 : ['place', 'flip', 'enshrine', 'recover'].includes(a.type) ? this.config.placeSeconds : this.config.pickupSeconds };
+      r.job = { ...a, remaining: a.type === 'wait' ? a.seconds : a.type === 'retry' ? 3 : a.programStep !== undefined && a.seconds !== undefined ? a.seconds : Plan.duration(Plan.effectiveMotion(this.config, r.id), a.type), ...(this.config.recordActions || a.programStep !== undefined ? { startedAt: this.time } : {}) };
       if (a.type === 'flip' || a.type === 'recover') { const top = this.tower(a.spotId).at(-1); top.touchedBy = r.id; r.job.lockedObject = top.id; }
       if (['pickup', 'receive'].includes(a.type)) { this.object(a.objectId).touchedBy = r.id; r.job.lockedObject = a.objectId; }
-      r.status = labels[a.type]; r.velocity = 0;
+      r.status = a.type === 'wait' ? '指定待機' : labels[a.type]; r.velocity = 0;
     }
     complete(r, job) {
       if (job.lockedObject) this.object(job.lockedObject).touchedBy = null;
@@ -482,7 +490,8 @@
         if (!r.queue.length) r.brain.stage = 'return';
       }
       this.recordBrTurn(r, job);
-      this.updateSanctuary(); this.log(r, job.type, `${job.type === 'scan' && job.local ? 'その場で停止・再認識' : labels[job.type]}${job.spotId ? ' · ' + F.spotById[job.spotId].label : ''}${job.objectId ? ' · ' + job.objectId : ''}`, 'action', '', { cargo: [...r.cargo], observationAt: r.observation?.at ?? null, objectId: job.objectId, objectType: this.object(job.objectId)?.type, spotId: job.spotId,
+      this.recordAction(r, job);
+      this.updateSanctuary(); this.log(r, job.type, `${job.type === 'scan' && job.local ? 'その場で停止・再認識' : labels[job.type] || (job.type === 'wait' ? '指定待機' : job.type)}${job.spotId ? ' · ' + F.spotById[job.spotId].label : ''}${job.objectId ? ' · ' + job.objectId : ''}`, 'action', '', { cargo: [...r.cargo], observationAt: r.observation?.at ?? null, objectId: job.objectId, objectType: this.object(job.objectId)?.type, spotId: job.spotId,
         ...(job.type === 'scan' ? { local: !!job.local, arrival: !!job.arrival, observationMode: this.config.brObservationMode, level: F.surface(r).type, origin: { x: r.x, y: r.y } } : {}),
         ...(job.type === 'pickup' && job.objectId === 'M' ? { sanctuaryAt: this.sanctuary[r.team], sanctuaryEvidence: clone(this.sanctuaryEvidence[r.team]) } : {}) });
     }
@@ -507,6 +516,25 @@
       const strategy = this.brStrategy(r.team);
       r.brTurn = { completed: r.brTurn.completed + 1, worked: false }; r.brain = { stage: 'choose' }; r.decision = null;
       this.log(r, 'br-turn-complete', `BR ${r.brTurn.completed}回目の作業完了`, 'action', '', { turn: r.brTurn.completed, strategy, nextStrategy: this.brStrategy(r.team) });
+    }
+    recordAction(r, job) {
+      if (job.programStep !== undefined) r.program = { index: job.programStep + 1, lastCompletedAt: this.time };
+      if (!this.config.recordActions && job.programStep === undefined) return;
+      const startedAt = job.startedAt ?? this.time, duration = Math.max(0, Math.round((this.time - startedAt) * 1e9) / 1e9);
+      this.log(r, job.type, `${labels[job.type] || (job.type === 'wait' ? '待機' : job.type)}完了 · ${duration.toFixed(2)}秒`, 'timing', '', {
+        startedAt, duration, programStep: job.programStep, objectId: job.objectId, spotId: job.spotId,
+      });
+    }
+    setRobotProgram(id, plan, timing = {}, keepProgress = true) {
+      const r = this.robot(id);
+      if (!r || this.ended || r.job || r.queue.length || r.retryPending || r.trRestartPending) throw new Error('対象ロボットの動作完了後に更新してください');
+      const normalized = Plan.normalizePrograms({ [id]: plan })[id], times = Plan.normalizeTiming({ [id]: timing })[id];
+      const index = keepProgress ? r.program?.index || 0 : 0, previous = this.config.robotPrograms?.[id];
+      if (index && JSON.stringify(previous?.steps.slice(0, index)) !== JSON.stringify(normalized.steps.slice(0, index))) throw new Error('完了した手順は変更できません');
+      this.config.robotPrograms = { ...this.config.robotPrograms, [id]: normalized };
+      this.config.robotTiming = { ...this.config.robotTiming, [id]: times };
+      r.program = { index }; r.failure = null; r.wait = 0; r.brain = { stage: 'choose' }; r.auto = true;
+      this.log(r, 'program-update', '未実行の手順と動作時間を更新', 'setup');
     }
     recordDelivery(r, o) {
       r.transport.pending.push({ id: o.id, type: o.type });
@@ -631,6 +659,7 @@
         if (r.retryPending || r.trRestartPending) continue;
         if (r.wait > 0) { r.wait = Math.max(0, r.wait - dt); continue; }
         if (!r.job && !r.queue.length && r.auto && controllers) {
+          if (this.config.robotPrograms?.[r.id]?.enabled && !r.program) r.program = { index: 0 };
           if (r.role === 'TR') this.observe(r);
           const response = controllers.next(this.view(r)); r.brain = response.brain;
           if (response.fallbackTurn && this.brTurnPlan(r.team)?.slots) {
@@ -661,15 +690,16 @@
       for (const r of this.robots) {
         const job = r.job; if (!job || job.type !== 'move' || r.wait > 0 || r.trRestartPending) continue;
         if (!job.route.length) {
+          this.recordAction(r, job);
           r.job = null; r.velocity = 0; r.status = '到着';
           if (r.role === 'BR' && r.auto && this.config.brObservation?.replan !== 'after-work' && this.config.brObservationMode === 'stopped' && r.enteredL1 && ['l1', 'l2'].includes(F.surface(r).type)
             && r.queue[0]?.type !== 'scan' && (!r.observation || distance(r, r.observation.origin) > .12)) r.queue.unshift({ type: 'scan', arrival: true });
           continue;
         }
-        const target = job.route[0], d = distance(r, target), surface = F.surface(r), speed = this.config[`${r.team}Speed`];
+        const target = job.route[0], d = distance(r, target), surface = F.surface(r), speed = this.config[`${r.team}Speed`], motion = Plan.effectiveMotion(this.config, r.id);
         const stairs = ['stairs', 'upperStairs'].includes(surface.type);
-        const cap = stairs ? this.config.stairSpeed * speed : this.config.maxSpeed * speed * (surface.type === 'ramp' ? this.config.rampFactor : 1);
-        const acceleration = this.config.acceleration * speed;
+        const cap = stairs ? motion.stairSpeed * speed : motion.maxSpeed * speed * (surface.type === 'ramp' ? motion.rampFactor : 1);
+        const acceleration = motion.acceleration * speed;
         r.velocity = Math.min(cap, r.velocity + acceleration * dt, Math.sqrt(2 * acceleration * Math.max(d, .005)));
         const move = Math.min(d, r.velocity * dt);
         proposed.set(r.id, { x: r.x + (target.x - r.x) * (d ? move / d : 0), y: r.y + (target.y - r.y) * (d ? move / d : 0), arrived: move >= d - 1e-6 });
@@ -726,7 +756,7 @@
         }
         const old = F.surface(r); Object.assign(r, { x: p.x, y: p.y, z: F.surface(p).z }); r.blocked = 0;
         const now = F.surface(r);
-        if (['stairs', 'upperStairs', 'transfer', 'l2'].includes(now.type) && Math.abs(now.z - old.z) > .1) { r.wait = this.config.stairPause; r.velocity = 0; r.status = '段差で姿勢合わせ'; }
+        if (['stairs', 'upperStairs', 'transfer', 'l2'].includes(now.type) && Math.abs(now.z - old.z) > .1) { r.wait = Plan.effectiveMotion(this.config, r.id).stairPause; r.velocity = 0; r.status = '段差で姿勢合わせ'; }
         if (r.role === 'BR' && !r.enteredL1 && now.type === 'l1' && r.x - this.config.bodySize / 2 > 2.5 && r.x + this.config.bodySize / 2 < 8.5) { r.enteredL1 = true; this.graphs.clear(); }
         if (p.arrived) { r.job.route.shift(); r.velocity = 0; }
       }
@@ -746,6 +776,8 @@
     export() {
       return { format: 'robocon-field-sim-v1', config: this.config, assumptions: [
         'axis-aligned square body',
+        ...(this.config.robotTiming ? ['Robot-specific motion/action duration overrides; team speed factors scale speed and acceleration, not manipulation/observation seconds'] : []),
+        ...(this.config.robotPrograms ? ['Explicit robot action programs override ordinary strategies until their configured end; all actions retain engine legality and observation checks; failed steps pause; timing resolution is 0.05 seconds'] : []),
         ...(this.config.brObservation ? [`BR observation ${this.config.brObservation.model}; cross-level radius ${this.config.brObservation.crossLevelRadius}; replanning ${this.config.brObservation.replan}; partial scores are last-known estimates`] : []),
         ...(this.config.trMustikaPickupSignal === 'global-instant' ? ['Own TR signals opponent Mustika pickup completion globally and instantly; acquisition history only, not current possession'] : []),
         this.config.brObservation?.model === 'level-radius' ? 'same-level and cross-level radius snapshots; unknown/stale information retained; no occlusion model; global scores unavailable'
@@ -768,5 +800,5 @@
       ], events: this.events, history: this.history, final: this.snapshot() };
     }
   }
-  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, blockCount, normalizeTrTrips, normalizeBrTurns, transportTripIndex };
+  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, blockCount, normalizeTrTrips, normalizeBrTurns, transportTripIndex, programNext: Plan.next, actionSeconds: Plan.duration };
 });
