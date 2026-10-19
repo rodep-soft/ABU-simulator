@@ -1,0 +1,5592 @@
+{
+  "options": {
+    "out": "results/flexible-post-2026-10-19-final",
+    "speeds": [
+      1,
+      0.75,
+      0.5
+    ]
+  },
+  "timeStep": 0.05,
+  "hashes": {
+    "sim/action-plan.js": "6d4273eebfe71f8e2be1a0108de16421b979c26a6af2519ea39e0253c68fb76b",
+    "sim/br-observation.js": "3589d34f4e62366dcd0967d9c8508d1525582172b5ad1f2ecb3dfb51b25f3ed5",
+    "sim/competitive-strategies.js": "a7e2023cd5954371ff579165b5962bf78e7a01fbccdc613b8507fde432646429",
+    "sim/controllers.js": "21ec092a72ad9ab9a627a1717dfc1eb07baa4d791e4a466fbf7172580f9fbc32",
+    "sim/efficient-strategy.js": "02468a90668756df46e4bda68b393ed1f3bdae1c82dbeed26abc2c2da774b5a2",
+    "sim/engine.js": "d9258a0df541e8bc665edc6373d4ebb36dd95f0b62e990322c79eb3694c305a4",
+    "sim/field-3d.js": "26cc1e42bd2f91ec87da5c2af346ae70b3064fd4adb40dff17780b6e27f2574b",
+    "sim/field.js": "5f06a3e26c336dc53669c24fdc19f87cd43df930f1b66a5e8b23f78127858ede",
+    "sim/flexible-post.js": "876914999664c490ea3a26d72e8bac4222dd92c6ed97199f94a5f4bee61f423f",
+    "sim/ideal-baseline.js": "6e443c955939b25b40d31a59d2efccaf1b79d7b6d6afc3dafcc8946e537bb4f5",
+    "sim/l2-sky-defense.js": "eca0e6a3373529298605befd2a98b4742a5ca601f62b0cc2ecc4700a371271aa",
+    "sim/match-strategies.js": "d843af5694a58df972dacb0ffc3963776013fb970968b3ef3a1dca79f9f734f7",
+    "sim/post-match-review.js": "4c940ee9e27d3076301d2831a3ed9b8e4272beaf19ef3cf04aa47950ebdf9de6",
+    "sim/private-first.js": "1311265ab342e68593de79daf3acf1ee7f27d90ebd034a3488ba2b31765380af",
+    "sim/score-planner.js": "4267063db6848537010cf911fbeeacc29dbe5197f4360a4293087458b9f3101a",
+    "sim/sequence-ui.js": "8dcf94a4d066e7f64fc685e8cd6fa6c87ef5a3be19ce5d6036627120dace1681",
+    "sim/tactical-baseline.js": "1ca10d7589d0824cbafb8c5e2c5bb217a42b534ba5e5f2d33da6903dbe152664",
+    "sim/view.js": "a84ee6f5a20203d6733ff352db3a13823188eea3543fc560600bf4889fd5131a",
+    "sim/workspace-ui.js": "aca26d4dd4f1e4ef5786092e2a4d76cc66b3ee9c073405a83145a7263245db8b",
+    "tools/compare-flexible-post.cjs": "738c240016b16b67d66761c851ac9747b7f8c046e77576989b2510dd316a92ab"
+  },
+  "elapsedMs": 105693.6315,
+  "rows": [
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2",
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "red": 570,
+      "blue": 340,
+      "difference": 230,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 320,
+          "mustika": 250,
+          "total": 570,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 340,
+          "mustika": 0,
+          "total": 340,
+          "sky": 3
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 60,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E9",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E12",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S12",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.25,
+        "blue": 67.65
+      },
+      "pickup": 53.35,
+      "enshrine": 81.75,
+      "activatedAt": null,
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "lateActions": [
+        {
+          "time": 140.25,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 142.3,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 144.8,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 152.5,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 154.35,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 156.85,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 165.5,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "sky"
+        },
+        {
+          "time": 165.65,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 173.2,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 178.25,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "sky"
+        },
+        {
+          "time": 178.3,
+          "robot": "redBR",
+          "action": "return",
+          "number": null,
+          "objectType": "earth"
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 2.9,
+          "y": 6.8,
+          "z": 0.6
+        },
+        "cargo": [],
+        "job": null,
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 5882.3
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "L2防衛",
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "red": 540,
+      "blue": 400,
+      "difference": 140,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 290,
+          "mustika": 250,
+          "total": 540,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 20,
+          "blue": 40,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 140,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 40,
+          "blue": 100,
+          "layers": [
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S4",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.25,
+        "blue": 67.65
+      },
+      "pickup": 53.35,
+      "enshrine": 81.75,
+      "activatedAt": null,
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "lateActions": [
+        {
+          "time": 145.3,
+          "robot": "redBR",
+          "action": "place",
+          "number": 10,
+          "objectType": "earth"
+        },
+        {
+          "time": 151.8,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 151.95,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 158.6,
+          "robot": "redBR",
+          "action": "place",
+          "number": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 164,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 173.2,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 173.95,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 10
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 4.3,
+          "y": 5.5,
+          "z": 0.9
+        },
+        "cargo": [],
+        "job": null,
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 5553.45
+    },
+    {
+      "strategy": "private-first-short-flexible",
+      "label": "全エリア・点差対応",
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "red": 570,
+      "blue": 430,
+      "difference": 140,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 320,
+          "mustika": 250,
+          "total": 570,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 430,
+          "mustika": 0,
+          "total": 430,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 60,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E9",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 80,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S7",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 140,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S12",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.25,
+        "blue": 67.65
+      },
+      "pickup": 53.35,
+      "enshrine": 81.75,
+      "activatedAt": 82.75,
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "lateActions": [
+        {
+          "time": 141.95,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 9,
+          "objectType": "sky"
+        },
+        {
+          "time": 144.7,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "sky"
+        },
+        {
+          "time": 152.4,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 164.3,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 9
+        },
+        {
+          "time": 171.15,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 8,
+          "objectType": "sky"
+        },
+        {
+          "time": 176.8,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 9
+        }
+      ],
+      "phases": [
+        {
+          "time": 82.75,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 6.85,
+            "reserve": 1.4625,
+            "crowded": false,
+            "safeSeconds": 8.3125,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              8.375838926174497,
+              60,
+              60,
+              -8.3125
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 84.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 87.1,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 88.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 90.6,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 91.6,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 20.799999999999983,
+            "reserve": 4.949999999999996,
+            "crowded": false,
+            "safeSeconds": 25.74999999999998,
+            "fits": true,
+            "lead": 210,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 270,
+            "replyMargin": 270,
+            "netGain": 60,
+            "rank": [
+              0,
+              2.9158878504672923,
+              60,
+              60,
+              -25.74999999999998
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 101.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 11.29999999999999,
+            "reserve": 2.5749999999999975,
+            "crowded": false,
+            "safeSeconds": 13.874999999999988,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              5.243697478991601,
+              60,
+              60,
+              -13.874999999999988
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 107.4,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 109.9,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 110.9,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 113.4,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 114.4,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "u4"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u4"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 21.949999999999978,
+            "reserve": 5.2374999999999945,
+            "crowded": false,
+            "safeSeconds": 27.18749999999997,
+            "fits": true,
+            "lead": 210,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 270,
+            "replyMargin": 270,
+            "netGain": 60,
+            "rank": [
+              0,
+              2.767184035476721,
+              60,
+              60,
+              -27.18749999999997
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 124,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 7.900000000000001,
+            "reserve": 1.7250000000000003,
+            "crowded": false,
+            "safeSeconds": 9.625000000000002,
+            "fits": true,
+            "lead": 150,
+            "diff": 30,
+            "fixedGain": 30,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 180,
+            "replyMargin": 180,
+            "netGain": 30,
+            "rank": [
+              0,
+              3.670588235294117,
+              30,
+              30,
+              -9.625000000000002
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 126.9,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 10,
+            "fixedGain": 10,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 160,
+            "replyMargin": 160,
+            "netGain": 10,
+            "rank": [
+              0,
+              2.888888888888889,
+              10,
+              10,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 129.4,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 130.4,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 160,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 180,
+            "replyMargin": 180,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 132.9,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 133.9,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 10.800000000000002,
+            "reserve": 3.0750000000000006,
+            "crowded": false,
+            "safeSeconds": 13.875000000000004,
+            "fits": true,
+            "lead": 180,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 220,
+            "replyMargin": 220,
+            "netGain": 40,
+            "rank": [
+              0,
+              3.49579831932773,
+              40,
+              40,
+              -13.875000000000004
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 139.3,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 5.400000000000001,
+            "reserve": 1.7250000000000003,
+            "crowded": false,
+            "safeSeconds": 7.125000000000002,
+            "fits": true,
+            "lead": 180,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 220,
+            "replyMargin": 220,
+            "netGain": 40,
+            "rank": [
+              0,
+              6.399999999999999,
+              40,
+              40,
+              -7.125000000000002
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 142.2,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 100,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 140,
+            "replyMargin": 140,
+            "netGain": 40,
+            "rank": [
+              2,
+              54,
+              11.555555555555555,
+              40,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 144.7,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 145.7,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "s2"
+            },
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 18.599999999999984,
+            "reserve": 4.399999999999996,
+            "crowded": false,
+            "safeSeconds": 22.99999999999998,
+            "fits": true,
+            "lead": 140,
+            "diff": 240,
+            "fixedGain": 0,
+            "newExposure": 240,
+            "replyLoss": 160,
+            "projectedMargin": 380,
+            "replyMargin": 220,
+            "netGain": 84,
+            "rank": [
+              2,
+              84,
+              3.500000000000003,
+              0,
+              -22.99999999999998
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 149.9,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "s2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 140,
+            "diff": 80,
+            "fixedGain": 0,
+            "newExposure": 80,
+            "replyLoss": 80,
+            "projectedMargin": 220,
+            "replyMargin": 140,
+            "netGain": 28,
+            "rank": [
+              2,
+              28,
+              6.222222222222222,
+              0,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 152.4,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 153.4,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 10.899999999999986,
+            "reserve": 3.0999999999999965,
+            "crowded": false,
+            "safeSeconds": 13.999999999999982,
+            "fits": true,
+            "lead": 220,
+            "diff": 160,
+            "fixedGain": 0,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 380,
+            "replyMargin": 220,
+            "netGain": 56,
+            "rank": [
+              2,
+              56,
+              3.733333333333338,
+              0,
+              -13.999999999999982
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 161.8,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 4.5,
+            "crowded": true,
+            "safeSeconds": 7,
+            "fits": true,
+            "lead": 220,
+            "diff": 160,
+            "fixedGain": 0,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 380,
+            "replyMargin": 220,
+            "netGain": 56,
+            "rank": [
+              2,
+              56,
+              7,
+              0,
+              -7
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 164.3,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 165.3,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 167.1,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 179.1,
+          "phase": "hold",
+          "tasks": []
+        }
+      ],
+      "pendingRed": {
+        "position": {
+          "x": 6.75,
+          "y": 4.85,
+          "z": 0.9
+        },
+        "cargo": [],
+        "job": {
+          "type": "wait",
+          "seconds": 0.9000000000000057,
+          "remaining": 0.0500000000000054,
+          "startedAt": 179.1
+        },
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 6842.44
+    },
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2",
+      "redSpeed": 0.75,
+      "blueSpeed": 1,
+      "red": 500,
+      "blue": 510,
+      "difference": -10,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 250,
+          "mustika": 250,
+          "total": 500,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 510,
+          "mustika": 0,
+          "total": 510,
+          "sky": 5
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 60,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 80,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 80,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S12",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 140,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S7",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.75,
+        "blue": 67.65
+      },
+      "pickup": 53.5,
+      "enshrine": 84.75,
+      "activatedAt": null,
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "lateActions": [
+        {
+          "time": 144.9,
+          "robot": "redBR",
+          "action": "place",
+          "number": 7,
+          "objectType": "sky"
+        },
+        {
+          "time": 152.75,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 8,
+          "objectType": "sky"
+        },
+        {
+          "time": 158.4,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 7
+        },
+        {
+          "time": 165.1,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 171.5,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 178.15,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 178.75,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 1
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 4.671505308917271,
+          "y": 8.140598612153612,
+          "z": 0.6
+        },
+        "cargo": [
+          "S4"
+        ],
+        "job": {
+          "type": "move",
+          "target": {
+            "x": 2.9,
+            "y": 6.8
+          },
+          "label": "置けない荷物を種類別置場へ返却",
+          "route": [
+            {
+              "x": 2.9,
+              "y": 6.8
+            }
+          ],
+          "destination": {
+            "x": 2.9,
+            "y": 6.8
+          },
+          "startedAt": 179.75
+        },
+        "pendingWork": [
+          {
+            "type": "return",
+            "objectId": "S4"
+          }
+        ]
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 5462.46
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "L2防衛",
+      "redSpeed": 0.75,
+      "blueSpeed": 1,
+      "red": 540,
+      "blue": 400,
+      "difference": 140,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 290,
+          "mustika": 250,
+          "total": 540,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 80,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 80,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S4",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.75,
+        "blue": 67.65
+      },
+      "pickup": 53.5,
+      "enshrine": 84.75,
+      "activatedAt": null,
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "lateActions": [
+        {
+          "time": 146.65,
+          "robot": "redBR",
+          "action": "place",
+          "number": 7,
+          "objectType": "earth"
+        },
+        {
+          "time": 152.5,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 159.45,
+          "robot": "redBR",
+          "action": "place",
+          "number": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 160.65,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 171.5,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 10
+        },
+        {
+          "time": 177.55,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 10
+        },
+        {
+          "time": 178.15,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 8
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 6.15,
+          "y": 6.15,
+          "z": 0.9
+        },
+        "cargo": [],
+        "job": null,
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 13192.24
+    },
+    {
+      "strategy": "private-first-short-flexible",
+      "label": "全エリア・点差対応",
+      "redSpeed": 0.75,
+      "blueSpeed": 1,
+      "red": 530,
+      "blue": 400,
+      "difference": 130,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 280,
+          "mustika": 250,
+          "total": 530,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E9",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 140,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S12",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 51.75,
+        "blue": 67.65
+      },
+      "pickup": 53.5,
+      "enshrine": 84.75,
+      "activatedAt": 85.75,
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "lateActions": [
+        {
+          "time": 141.95,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 9,
+          "objectType": "sky"
+        },
+        {
+          "time": 153.6,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "sky"
+        },
+        {
+          "time": 157.75,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 165.8,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 9
+        },
+        {
+          "time": 176.75,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 9
+        }
+      ],
+      "phases": [
+        {
+          "time": 85.75,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 6.95,
+            "reserve": 1.4875,
+            "crowded": false,
+            "safeSeconds": 8.4375,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              8.264900662251655,
+              60,
+              60,
+              -8.4375
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 87.7,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 90.2,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 91.2,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 93.7,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 94.7,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 22.29999999999998,
+            "reserve": 5.324999999999995,
+            "crowded": false,
+            "safeSeconds": 27.624999999999975,
+            "fits": true,
+            "lead": 210,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 270,
+            "replyMargin": 270,
+            "netGain": 60,
+            "rank": [
+              0,
+              2.7248908296943255,
+              60,
+              60,
+              -27.624999999999975
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 104.85,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 12.149999999999988,
+            "reserve": 2.787499999999997,
+            "crowded": false,
+            "safeSeconds": 14.937499999999986,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              4.8941176470588275,
+              60,
+              60,
+              -14.937499999999986
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 112,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 114.5,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 115.5,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 118,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 119,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "u4"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u4"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 23.649999999999977,
+            "reserve": 9.162499999999994,
+            "crowded": true,
+            "safeSeconds": 32.81249999999997,
+            "fits": true,
+            "lead": 210,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 270,
+            "replyMargin": 270,
+            "netGain": 60,
+            "rank": [
+              0,
+              2.3068391866913145,
+              60,
+              60,
+              -32.81249999999997
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 129.35,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 8.25,
+            "reserve": 1.8125,
+            "crowded": false,
+            "safeSeconds": 10.0625,
+            "fits": true,
+            "lead": 150,
+            "diff": 30,
+            "fixedGain": 30,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 180,
+            "replyMargin": 180,
+            "netGain": 30,
+            "rank": [
+              0,
+              3.5254237288135593,
+              30,
+              30,
+              -10.0625
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 132.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 10,
+            "fixedGain": 10,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 160,
+            "replyMargin": 160,
+            "netGain": 10,
+            "rank": [
+              0,
+              2.888888888888889,
+              10,
+              10,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 135.1,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 136.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 160,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 180,
+            "replyMargin": 180,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 138.6,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 139.6,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 11.5,
+            "reserve": 3.25,
+            "crowded": false,
+            "safeSeconds": 14.75,
+            "fits": true,
+            "lead": 180,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 220,
+            "replyMargin": 220,
+            "netGain": 40,
+            "rank": [
+              0,
+              3.3015873015873014,
+              40,
+              40,
+              -14.75
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 145.35,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E11",
+              "spotId": "s1"
+            },
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 22.79999999999999,
+            "reserve": 5.4499999999999975,
+            "crowded": false,
+            "safeSeconds": 28.249999999999986,
+            "fits": true,
+            "lead": 100,
+            "diff": 170,
+            "fixedGain": 10,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 270,
+            "replyMargin": 110,
+            "netGain": 66,
+            "rank": [
+              2,
+              69.5,
+              2.35897435897436,
+              10,
+              -28.249999999999986
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 147.85,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            },
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 17.949999999999985,
+            "reserve": 4.237499999999996,
+            "crowded": false,
+            "safeSeconds": 22.187499999999982,
+            "fits": true,
+            "lead": 100,
+            "diff": 200,
+            "fixedGain": 40,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 300,
+            "replyMargin": 140,
+            "netGain": 96,
+            "rank": [
+              2,
+              110,
+              4.6576819407008125,
+              40,
+              -22.187499999999982
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 151.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 100,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 140,
+            "replyMargin": 140,
+            "netGain": 40,
+            "rank": [
+              2,
+              54,
+              11.555555555555555,
+              40,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 153.6,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 154.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 11.199999999999985,
+            "reserve": 3.1749999999999963,
+            "crowded": false,
+            "safeSeconds": 14.374999999999982,
+            "fits": true,
+            "lead": 140,
+            "diff": 160,
+            "fixedGain": 0,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 300,
+            "replyMargin": 140,
+            "netGain": 56,
+            "rank": [
+              2,
+              56,
+              3.642276422764232,
+              0,
+              -14.374999999999982
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 163.3,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 130,
+            "diff": 160,
+            "fixedGain": 0,
+            "newExposure": 160,
+            "replyLoss": 160,
+            "projectedMargin": 290,
+            "replyMargin": 130,
+            "netGain": 56,
+            "rank": [
+              2,
+              56,
+              12.444444444444445,
+              0,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 165.8,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 166.8,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 168.8,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 170.7,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 179.7,
+          "phase": "hold",
+          "tasks": []
+        }
+      ],
+      "pendingRed": {
+        "position": {
+          "x": 6.75,
+          "y": 4.85,
+          "z": 0.9
+        },
+        "cargo": [
+          "red-E11"
+        ],
+        "job": {
+          "type": "wait",
+          "seconds": 0.30000000000001137,
+          "remaining": 0.050000000000011396,
+          "startedAt": 179.7
+        },
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [],
+      "recoveries": [],
+      "elapsedMs": 26433.04
+    },
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2",
+      "redSpeed": 0.5,
+      "blueSpeed": 1,
+      "red": 460,
+      "blue": 340,
+      "difference": 120,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 210,
+          "mustika": 250,
+          "total": 460,
+          "sky": 1
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 340,
+          "mustika": 0,
+          "total": 340,
+          "sky": 3
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 30,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E12",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 56.95,
+        "blue": 74.65
+      },
+      "pickup": 58.5,
+      "enshrine": 95,
+      "activatedAt": null,
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "lateActions": [
+        {
+          "time": 140.15,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 154.25,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 156.75,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 163.95,
+          "robot": "redBR",
+          "action": "retry",
+          "number": null
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 5.051782275728668,
+          "y": 5.786811586029722,
+          "z": 0.9
+        },
+        "cargo": [
+          "S10",
+          "S4"
+        ],
+        "job": {
+          "type": "move",
+          "target": {
+            "x": 6.15,
+            "y": 6.15
+          },
+          "label": "効率化計画の作業先へ",
+          "route": [
+            {
+              "x": 5.15,
+              "y": 5.95
+            },
+            {
+              "x": 6.15,
+              "y": 6.15
+            }
+          ],
+          "destination": {
+            "x": 6.15,
+            "y": 6.15
+          },
+          "startedAt": 164.95
+        },
+        "pendingWork": [
+          {
+            "type": "place",
+            "spotId": "u4",
+            "objectId": "S10"
+          }
+        ]
+      },
+      "unfinishedScoringMove": true,
+      "rejections": [
+        {
+          "time": 55.65,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        },
+        {
+          "time": 59.15,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        }
+      ],
+      "recoveries": [
+        {
+          "time": 163.95,
+          "robot": "redBR",
+          "action": "auto-retry-request",
+          "text": "移動停止 5秒 · 自動Retry",
+          "kind": "recovery",
+          "rule": "シミュレーション指定",
+          "level": 1,
+          "blockedSince": 158.95,
+          "cargo": [
+            "S10",
+            "S4"
+          ]
+        }
+      ],
+      "elapsedMs": 14907.41
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "L2防衛",
+      "redSpeed": 0.5,
+      "blueSpeed": 1,
+      "red": 500,
+      "blue": 430,
+      "difference": 70,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 250,
+          "mustika": 250,
+          "total": 500,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 430,
+          "mustika": 0,
+          "total": 430,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 0,
+          "layers": []
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 20,
+          "blue": 40,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 80,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 80,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S4",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 56.95,
+        "blue": 74.65
+      },
+      "pickup": 58.5,
+      "enshrine": 95,
+      "activatedAt": null,
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "lateActions": [
+        {
+          "time": 150.2,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 7,
+          "objectType": "earth"
+        },
+        {
+          "time": 155.85,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 8
+        },
+        {
+          "time": 171.55,
+          "robot": "redBR",
+          "action": "place",
+          "number": 9,
+          "objectType": "sky"
+        }
+      ],
+      "phases": [],
+      "pendingRed": {
+        "position": {
+          "x": 6.014504770302889,
+          "y": 4.352947897058731,
+          "z": 0.9
+        },
+        "cargo": [
+          "red-E10"
+        ],
+        "job": {
+          "type": "move",
+          "target": {
+            "x": 4.85,
+            "y": 4.85
+          },
+          "label": "効率化計画の作業先へ",
+          "route": [
+            {
+              "x": 5.35,
+              "y": 4.35
+            },
+            {
+              "x": 4.85,
+              "y": 4.85
+            }
+          ],
+          "destination": {
+            "x": 4.85,
+            "y": 4.85
+          },
+          "startedAt": 172.55
+        },
+        "pendingWork": [
+          {
+            "type": "flip",
+            "spotId": "u1"
+          }
+        ]
+      },
+      "unfinishedScoringMove": true,
+      "rejections": [
+        {
+          "time": 55.65,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        },
+        {
+          "time": 59.15,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 11189.74
+    },
+    {
+      "strategy": "private-first-short-flexible",
+      "label": "全エリア・点差対応",
+      "redSpeed": 0.5,
+      "blueSpeed": 1,
+      "red": 530,
+      "blue": 400,
+      "difference": 130,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 280,
+          "mustika": 250,
+          "total": 530,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "perSpot": [
+        {
+          "number": 1,
+          "id": "s2",
+          "red": 20,
+          "blue": 50,
+          "layers": [
+            {
+              "id": "blue-E6",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E6",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S8",
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "id": "r2",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E4",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E1",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S6",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "id": "r1",
+          "red": 70,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E9",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E10",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S10",
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "id": "s1",
+          "red": 0,
+          "blue": 10,
+          "layers": [
+            {
+              "id": "blue-E11",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "id": "b1",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E5",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E8",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S11",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "id": "b2",
+          "red": 0,
+          "blue": 70,
+          "layers": [
+            {
+              "id": "blue-E4",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E1",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S9",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E7",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E8",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "id": "u1",
+          "red": 60,
+          "blue": 0,
+          "layers": [
+            {
+              "id": "red-E5",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "red-E3",
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "red": 0,
+          "blue": 140,
+          "layers": [
+            {
+              "id": "blue-E7",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E3",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "S12",
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "red": 0,
+          "blue": 60,
+          "layers": [
+            {
+              "id": "blue-E9",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "id": "blue-E10",
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "sanctuary": {
+        "red": 56.95,
+        "blue": 74.65
+      },
+      "pickup": 58.5,
+      "enshrine": 95,
+      "activatedAt": 96,
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "lateActions": [
+        {
+          "time": 144.85,
+          "robot": "redBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 146.85,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 155.65,
+          "robot": "blueBR",
+          "action": "flip",
+          "number": 1
+        },
+        {
+          "time": 159.35,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 172.85,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 176.35,
+          "robot": "redBR",
+          "action": "place",
+          "number": 3,
+          "objectType": "sky"
+        },
+        {
+          "time": 177.2,
+          "robot": "blueBR",
+          "action": "place",
+          "number": 9,
+          "objectType": "sky"
+        }
+      ],
+      "phases": [
+        {
+          "time": 96,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 7.2,
+            "reserve": 1.55,
+            "crowded": false,
+            "safeSeconds": 8.75,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              8,
+              60,
+              60,
+              -8.75
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 98.2,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 100.7,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 101.7,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 104.2,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 105.2,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 25.39999999999997,
+            "reserve": 6.0999999999999925,
+            "crowded": false,
+            "safeSeconds": 31.499999999999964,
+            "fits": true,
+            "lead": 190,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 250,
+            "replyMargin": 250,
+            "netGain": 60,
+            "rank": [
+              0,
+              2.4000000000000026,
+              60,
+              60,
+              -31.499999999999964
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 116.85,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 13.749999999999984,
+            "reserve": 3.187499999999996,
+            "crowded": false,
+            "safeSeconds": 16.93749999999998,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              0,
+              4.348432055749134,
+              60,
+              60,
+              -16.93749999999998
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 125.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              0,
+              5.777777777777778,
+              20,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 128.1,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 129.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E8",
+              "spotId": "u3"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 190,
+            "replyMargin": 190,
+            "netGain": 40,
+            "rank": [
+              0,
+              11.555555555555555,
+              40,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 131.6,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 132.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "s2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 12.249999999999993,
+            "reserve": 3.4374999999999982,
+            "crowded": false,
+            "safeSeconds": 15.687499999999991,
+            "fits": true,
+            "lead": 150,
+            "diff": 80,
+            "fixedGain": 0,
+            "newExposure": 80,
+            "replyLoss": 80,
+            "projectedMargin": 230,
+            "replyMargin": 150,
+            "netGain": 28,
+            "rank": [
+              0,
+              1.6779026217228472,
+              28,
+              0,
+              -15.687499999999991
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 142.35,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "s2"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 80,
+            "fixedGain": 0,
+            "newExposure": 80,
+            "replyLoss": 80,
+            "projectedMargin": 230,
+            "replyMargin": 150,
+            "netGain": 28,
+            "rank": [
+              2,
+              28,
+              6.222222222222222,
+              0,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 144.85,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 145.85,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 15.999999999999998,
+            "reserve": 3.7499999999999996,
+            "crowded": false,
+            "safeSeconds": 19.749999999999996,
+            "fits": true,
+            "lead": 230,
+            "diff": 30,
+            "fixedGain": 30,
+            "newExposure": 0,
+            "replyLoss": 80,
+            "projectedMargin": 260,
+            "replyMargin": 180,
+            "netGain": 30,
+            "rank": [
+              2,
+              40.5,
+              1.879518072289157,
+              30,
+              -19.749999999999996
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 153.1,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 8.749999999999998,
+            "reserve": 1.9374999999999996,
+            "crowded": false,
+            "safeSeconds": 10.687499999999998,
+            "fits": true,
+            "lead": 220,
+            "diff": 30,
+            "fixedGain": 30,
+            "newExposure": 0,
+            "replyLoss": 80,
+            "projectedMargin": 250,
+            "replyMargin": 170,
+            "netGain": 30,
+            "rank": [
+              2,
+              40.5,
+              3.3368983957219256,
+              30,
+              -10.687499999999998
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 156.85,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E9",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 140,
+            "diff": 10,
+            "fixedGain": 10,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 150,
+            "replyMargin": 150,
+            "netGain": 10,
+            "rank": [
+              2,
+              13.5,
+              2.888888888888889,
+              10,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 159.35,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 160.35,
+          "phase": "supply",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 14.999999999999996,
+            "reserve": 3.499999999999999,
+            "crowded": false,
+            "safeSeconds": 18.499999999999996,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              2,
+              81,
+              4.000000000000001,
+              60,
+              -18.499999999999996
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 166.6,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 8.749999999999998,
+            "reserve": 1.9374999999999996,
+            "crowded": false,
+            "safeSeconds": 10.687499999999998,
+            "fits": true,
+            "lead": 150,
+            "diff": 60,
+            "fixedGain": 60,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 60,
+            "rank": [
+              2,
+              81,
+              6.673796791443851,
+              60,
+              -10.687499999999998
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 170.35,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 150,
+            "diff": 20,
+            "fixedGain": 20,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 170,
+            "replyMargin": 170,
+            "netGain": 20,
+            "rank": [
+              2,
+              27,
+              5.777777777777778,
+              20,
+              -3.5
+            ],
+            "rationale": "到着先を再観測し合法・時間内なら完了"
+          }
+        },
+        {
+          "time": 172.85,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 173.85,
+          "phase": "work",
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "r1"
+            }
+          ],
+          "assessment": {
+            "baseline": "private-first-short-flexible",
+            "nominalSeconds": 2.5,
+            "reserve": 1,
+            "crowded": false,
+            "safeSeconds": 3.5,
+            "fits": true,
+            "lead": 170,
+            "diff": 40,
+            "fixedGain": 40,
+            "newExposure": 0,
+            "replyLoss": 0,
+            "projectedMargin": 210,
+            "replyMargin": 210,
+            "netGain": 40,
+            "rank": [
+              2,
+              54,
+              11.555555555555555,
+              40,
+              -3.5
+            ],
+            "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+          }
+        },
+        {
+          "time": 176.35,
+          "phase": "scan",
+          "tasks": []
+        },
+        {
+          "time": 177.35,
+          "phase": "guard",
+          "tasks": []
+        },
+        {
+          "time": 179.35,
+          "phase": "hold",
+          "tasks": []
+        }
+      ],
+      "pendingRed": {
+        "position": {
+          "x": 3.4,
+          "y": 3.4,
+          "z": 0.6
+        },
+        "cargo": [],
+        "job": {
+          "type": "wait",
+          "seconds": 0.6500000000000057,
+          "remaining": 0.05000000000000562,
+          "startedAt": 179.35
+        },
+        "pendingWork": []
+      },
+      "unfinishedScoringMove": false,
+      "rejections": [
+        {
+          "time": 55.65,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        },
+        {
+          "time": 59.15,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 13186.09
+    }
+  ],
+  "pairs": [
+    {
+      "redSpeed": 1,
+      "strategy": "private-first-short-l2-defense",
+      "openingIdentical": true,
+      "differenceImprovement": -90,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": -80
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": -70
+        },
+        {
+          "number": 4,
+          "delta": 60
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": -80
+        },
+        {
+          "number": 8,
+          "delta": 80
+        },
+        {
+          "number": 9,
+          "delta": 0
+        },
+        {
+          "number": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "redSpeed": 1,
+      "strategy": "private-first-short-flexible",
+      "openingIdentical": true,
+      "differenceImprovement": -90,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": 0
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": 0
+        },
+        {
+          "number": 4,
+          "delta": 70
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": 0
+        },
+        {
+          "number": 8,
+          "delta": -80
+        },
+        {
+          "number": 9,
+          "delta": -80
+        },
+        {
+          "number": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "redSpeed": 0.75,
+      "strategy": "private-first-short-l2-defense",
+      "openingIdentical": true,
+      "differenceImprovement": 150,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": -80
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": 0
+        },
+        {
+          "number": 4,
+          "delta": -10
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": 80
+        },
+        {
+          "number": 8,
+          "delta": 0
+        },
+        {
+          "number": 9,
+          "delta": 0
+        },
+        {
+          "number": 10,
+          "delta": 160
+        }
+      ]
+    },
+    {
+      "redSpeed": 0.75,
+      "strategy": "private-first-short-flexible",
+      "openingIdentical": true,
+      "differenceImprovement": 140,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": -80
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": 70
+        },
+        {
+          "number": 4,
+          "delta": -10
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": 80
+        },
+        {
+          "number": 8,
+          "delta": 80
+        },
+        {
+          "number": 9,
+          "delta": -80
+        },
+        {
+          "number": 10,
+          "delta": 80
+        }
+      ]
+    },
+    {
+      "redSpeed": 0.5,
+      "strategy": "private-first-short-l2-defense",
+      "openingIdentical": true,
+      "differenceImprovement": -50,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": 0
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": 0
+        },
+        {
+          "number": 4,
+          "delta": 30
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": -80
+        },
+        {
+          "number": 8,
+          "delta": -80
+        },
+        {
+          "number": 9,
+          "delta": 80
+        },
+        {
+          "number": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "redSpeed": 0.5,
+      "strategy": "private-first-short-flexible",
+      "openingIdentical": true,
+      "differenceImprovement": 10,
+      "byNumber": [
+        {
+          "number": 1,
+          "delta": 0
+        },
+        {
+          "number": 2,
+          "delta": 0
+        },
+        {
+          "number": 3,
+          "delta": 70
+        },
+        {
+          "number": 4,
+          "delta": 20
+        },
+        {
+          "number": 5,
+          "delta": 0
+        },
+        {
+          "number": 6,
+          "delta": 0
+        },
+        {
+          "number": 7,
+          "delta": 0
+        },
+        {
+          "number": 8,
+          "delta": 0
+        },
+        {
+          "number": 9,
+          "delta": -80
+        },
+        {
+          "number": 10,
+          "delta": 0
+        }
+      ]
+    }
+  ]
+}

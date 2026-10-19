@@ -1,0 +1,1914 @@
+{
+  "config": {
+    "supplyMode": "ideal",
+    "brObservationMode": "stopped",
+    "scanSeconds": 1,
+    "maxSpeed": 7,
+    "acceleration": 3.5,
+    "redSpeed": 0.5,
+    "blueSpeed": 1,
+    "redTrPlan": "adaptive",
+    "blueTrPlan": "adaptive",
+    "redBrPlan": "private-first-short-l2-defense",
+    "blueBrPlan": "tactical-baseline-v2",
+    "recordActions": true
+  },
+  "result": {
+    "strategy": "private-first-short-l2-defense",
+    "label": "奉納後L2防衛",
+    "redSpeed": 0.5,
+    "blueSpeed": 1,
+    "red": 500,
+    "blue": 430,
+    "difference": 70,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 250,
+        "mustika": 250,
+        "total": 500,
+        "sky": 2
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 430,
+        "mustika": 0,
+        "total": 430,
+        "sky": 4
+      }
+    },
+    "sanctuary": {
+      "red": 56.95,
+      "blue": 74.65
+    },
+    "pickup": 58.5,
+    "enshrine": 95,
+    "activatedAt": 96,
+    "l2Final": [
+      {
+        "number": 8,
+        "id": "u1",
+        "layers": [
+          {
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "sky",
+            "team": "red",
+            "color": "blue",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "id": "u2",
+        "layers": [
+          {
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "sky",
+            "team": "red",
+            "color": "red",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "id": "u3",
+        "layers": [
+          {
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "id": "u4",
+        "layers": [
+          {
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      }
+    ],
+    "lateActions": [
+      {
+        "time": 150.2,
+        "robot": "blueBR",
+        "action": "place",
+        "spot": 7,
+        "objectType": "earth"
+      },
+      {
+        "time": 155.85,
+        "robot": "blueBR",
+        "action": "flip",
+        "spot": 8
+      },
+      {
+        "time": 171.55,
+        "robot": "redBR",
+        "action": "place",
+        "spot": 9,
+        "objectType": "sky"
+      }
+    ],
+    "phases": [
+      {
+        "time": 96,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E5",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 98.2,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "到着先を再確認・合法なら作業を完了",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E5",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 100.7,
+        "activatedAt": 96,
+        "phase": "scan",
+        "reason": "L2防衛・停止して再観測",
+        "intent": null,
+        "tasks": []
+      },
+      {
+        "time": 101.7,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E3",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 104.2,
+        "activatedAt": 96,
+        "phase": "scan",
+        "reason": "L2防衛・停止して再観測",
+        "intent": null,
+        "tasks": []
+      },
+      {
+        "time": 105.2,
+        "activatedAt": 96,
+        "phase": "supply-work",
+        "reason": "L2のSky・土台を優先",
+        "intent": null,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u2"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 116.85,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E7",
+          "spotId": "u3"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 125.6,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "到着先を再確認・合法なら作業を完了",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E7",
+          "spotId": "u3"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 128.1,
+        "activatedAt": 96,
+        "phase": "scan",
+        "reason": "L2防衛・停止して再観測",
+        "intent": null,
+        "tasks": []
+      },
+      {
+        "time": 129.1,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "S10",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 131.75,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "到着先を再確認・合法なら作業を完了",
+        "intent": {
+          "type": "place",
+          "objectId": "S10",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 134.25,
+        "activatedAt": 96,
+        "phase": "scan",
+        "reason": "L2防衛・停止して再観測",
+        "intent": null,
+        "tasks": []
+      },
+      {
+        "time": 135.25,
+        "activatedAt": 96,
+        "phase": "supply-work",
+        "reason": "L2のSky・土台を優先",
+        "intent": null,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 146.9,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "red-E10",
+          "spotId": "u3"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 155.65,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "place",
+          "objectId": "S4",
+          "spotId": "u2"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 169.05,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "到着先を再確認・合法なら作業を完了",
+        "intent": {
+          "type": "place",
+          "objectId": "S4",
+          "spotId": "u2"
+        },
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 171.55,
+        "activatedAt": 96,
+        "phase": "scan",
+        "reason": "L2防衛・停止して再観測",
+        "intent": null,
+        "tasks": []
+      },
+      {
+        "time": 172.55,
+        "activatedAt": 96,
+        "phase": "work",
+        "reason": "手持ち・現地のL2作業を優先",
+        "intent": {
+          "type": "flip",
+          "spotId": "u1"
+        },
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "u1"
+          }
+        ]
+      }
+    ],
+    "retries": [],
+    "rejections": [
+      {
+        "time": 55.65,
+        "robot": "blueBR",
+        "action": "place",
+        "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+        "kind": "unscored",
+        "rule": "8.6.2"
+      },
+      {
+        "time": 59.15,
+        "robot": "blueBR",
+        "action": "place",
+        "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+        "kind": "unscored",
+        "rule": "8.6.2"
+      }
+    ],
+    "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+    "elapsedMs": 9104.59
+  },
+  "actions": [
+    {
+      "time": 14.7,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E4"
+      ],
+      "observationAt": 13.2,
+      "objectId": "blue-E4",
+      "objectType": "earth"
+    },
+    {
+      "time": 16.2,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E4",
+        "blue-E1"
+      ],
+      "observationAt": 13.2,
+      "objectId": "blue-E1",
+      "objectType": "earth"
+    },
+    {
+      "time": 20.6,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E4"
+      ],
+      "observationAt": 19.1,
+      "objectId": "red-E4",
+      "objectType": "earth"
+    },
+    {
+      "time": 21.7,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · blue-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E1"
+      ],
+      "observationAt": 19.2,
+      "objectId": "blue-E4",
+      "objectType": "earth",
+      "spotId": "b2"
+    },
+    {
+      "time": 22.1,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E4",
+        "red-E1"
+      ],
+      "observationAt": 19.1,
+      "objectId": "red-E1",
+      "objectType": "earth"
+    },
+    {
+      "time": 24.2,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · blue-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 19.2,
+      "objectId": "blue-E1",
+      "objectType": "earth",
+      "spotId": "b2"
+    },
+    {
+      "time": 28,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · red-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E1"
+      ],
+      "observationAt": 25.5,
+      "objectId": "red-E4",
+      "objectType": "earth",
+      "spotId": "r2"
+    },
+    {
+      "time": 28.7,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S9"
+      ],
+      "observationAt": 27.2,
+      "objectId": "S9",
+      "objectType": "sky"
+    },
+    {
+      "time": 30.5,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · red-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 25.5,
+      "objectId": "red-E1",
+      "objectType": "earth",
+      "spotId": "r2"
+    },
+    {
+      "time": 31.2,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S9",
+        "blue-E6"
+      ],
+      "observationAt": 29.7,
+      "objectId": "blue-E6",
+      "objectType": "earth"
+    },
+    {
+      "time": 35.4,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S6"
+      ],
+      "observationAt": 33.9,
+      "objectId": "S6",
+      "objectType": "sky"
+    },
+    {
+      "time": 36.7,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · S9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E6"
+      ],
+      "observationAt": 34.2,
+      "objectId": "S9",
+      "objectType": "sky",
+      "spotId": "b2"
+    },
+    {
+      "time": 41.3,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · S6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 38.8,
+      "objectId": "S6",
+      "objectType": "sky",
+      "spotId": "r2"
+    },
+    {
+      "time": 42.45,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · blue-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 39.95,
+      "objectId": "blue-E6",
+      "objectType": "earth",
+      "spotId": "s2"
+    },
+    {
+      "time": 46.2,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E6"
+      ],
+      "observationAt": 44.7,
+      "objectId": "red-E6",
+      "objectType": "earth"
+    },
+    {
+      "time": 47.55,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E5"
+      ],
+      "observationAt": 46.05,
+      "objectId": "blue-E5",
+      "objectType": "earth"
+    },
+    {
+      "time": 47.7,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E6",
+        "S8"
+      ],
+      "observationAt": 44.7,
+      "objectId": "S8",
+      "objectType": "sky"
+    },
+    {
+      "time": 49.05,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E5",
+        "S11"
+      ],
+      "observationAt": 46.05,
+      "objectId": "S11",
+      "objectType": "sky"
+    },
+    {
+      "time": 54.45,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · red-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S8"
+      ],
+      "observationAt": 51.95,
+      "objectId": "red-E6",
+      "objectType": "earth",
+      "spotId": "s2"
+    },
+    {
+      "time": 56.95,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · S8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 51.95,
+      "objectId": "S8",
+      "objectType": "sky",
+      "spotId": "s2"
+    },
+    {
+      "time": 62.7,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5"
+      ],
+      "observationAt": 61.2,
+      "objectId": "red-E5",
+      "objectType": "earth"
+    },
+    {
+      "time": 64.2,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3"
+      ],
+      "observationAt": 61.2,
+      "objectId": "red-E3",
+      "objectType": "earth"
+    },
+    {
+      "time": 66.95,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · blue-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 64.45,
+      "objectId": "blue-E5",
+      "objectType": "earth",
+      "spotId": "b1"
+    },
+    {
+      "time": 74.65,
+      "robot": "blueBR",
+      "action": "flip",
+      "text": "Sky反転 · L1共有下",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 72.15,
+      "spotId": "s2"
+    },
+    {
+      "time": 79.75,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11",
+        "blue-E8"
+      ],
+      "observationAt": 78.25,
+      "objectId": "blue-E8",
+      "objectType": "earth"
+    },
+    {
+      "time": 83.35,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · M",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3",
+        "M"
+      ],
+      "observationAt": 81.85,
+      "objectId": "M",
+      "objectType": "mustika"
+    },
+    {
+      "time": 86.15,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · blue-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 83.65,
+      "objectId": "blue-E8",
+      "objectType": "earth",
+      "spotId": "b1"
+    },
+    {
+      "time": 88.65,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · S11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 83.65,
+      "objectId": "S11",
+      "objectType": "sky",
+      "spotId": "b1"
+    },
+    {
+      "time": 94.05,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E7"
+      ],
+      "observationAt": 92.55,
+      "objectId": "blue-E7",
+      "objectType": "earth"
+    },
+    {
+      "time": 95,
+      "robot": "redBR",
+      "action": "enshrine",
+      "text": "Mustika奉納",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3"
+      ],
+      "observationAt": 92.5
+    },
+    {
+      "time": 95.55,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E7",
+        "blue-E3"
+      ],
+      "observationAt": 92.55,
+      "objectId": "blue-E3",
+      "objectType": "earth"
+    },
+    {
+      "time": 100.7,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左上 · red-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E3"
+      ],
+      "observationAt": 98.2,
+      "objectId": "red-E5",
+      "objectType": "earth",
+      "spotId": "u1"
+    },
+    {
+      "time": 104.2,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左上 · red-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 101.7,
+      "objectId": "red-E3",
+      "objectType": "earth",
+      "spotId": "u1"
+    },
+    {
+      "time": 105.15,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · blue-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E3"
+      ],
+      "observationAt": 102.65,
+      "objectId": "blue-E7",
+      "objectType": "earth",
+      "spotId": "u2"
+    },
+    {
+      "time": 107.65,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · blue-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 102.65,
+      "objectId": "blue-E3",
+      "objectType": "earth",
+      "spotId": "u2"
+    },
+    {
+      "time": 114.35,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E7"
+      ],
+      "observationAt": 112.85,
+      "objectId": "red-E7",
+      "objectType": "earth"
+    },
+    {
+      "time": 115.85,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E7",
+        "S10"
+      ],
+      "observationAt": 112.85,
+      "objectId": "S10",
+      "objectType": "sky"
+    },
+    {
+      "time": 115.95,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E9"
+      ],
+      "observationAt": 114.45,
+      "objectId": "blue-E9",
+      "objectType": "earth"
+    },
+    {
+      "time": 117.45,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E9",
+        "blue-E10"
+      ],
+      "observationAt": 114.45,
+      "objectId": "blue-E10",
+      "objectType": "earth"
+    },
+    {
+      "time": 127.25,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右下 · blue-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E10"
+      ],
+      "observationAt": 124.75,
+      "objectId": "blue-E9",
+      "objectType": "earth",
+      "spotId": "u4"
+    },
+    {
+      "time": 128.1,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左下 · red-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S10"
+      ],
+      "observationAt": 125.6,
+      "objectId": "red-E7",
+      "objectType": "earth",
+      "spotId": "u3"
+    },
+    {
+      "time": 129.75,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右下 · blue-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 124.75,
+      "objectId": "blue-E10",
+      "objectType": "earth",
+      "spotId": "u4"
+    },
+    {
+      "time": 134.25,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左上 · S10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 131.75,
+      "objectId": "S10",
+      "objectType": "sky",
+      "spotId": "u1"
+    },
+    {
+      "time": 137.85,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E11"
+      ],
+      "observationAt": 136.35,
+      "objectId": "blue-E11",
+      "objectType": "earth"
+    },
+    {
+      "time": 139.35,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S12",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E11",
+        "S12"
+      ],
+      "observationAt": 136.35,
+      "objectId": "S12",
+      "objectType": "sky"
+    },
+    {
+      "time": 144.4,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E10"
+      ],
+      "observationAt": 142.9,
+      "objectId": "red-E10",
+      "objectType": "earth"
+    },
+    {
+      "time": 145.9,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E10",
+        "S4"
+      ],
+      "observationAt": 142.9,
+      "objectId": "S4",
+      "objectType": "sky"
+    },
+    {
+      "time": 150.2,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左下 · blue-E11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S12"
+      ],
+      "observationAt": 147.7,
+      "objectId": "blue-E11",
+      "objectType": "earth",
+      "spotId": "u3"
+    },
+    {
+      "time": 155.85,
+      "robot": "blueBR",
+      "action": "flip",
+      "text": "Sky反転 · L2左上",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S12"
+      ],
+      "observationAt": 153.35,
+      "spotId": "u1"
+    },
+    {
+      "time": 171.55,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · S4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E10"
+      ],
+      "observationAt": 169.05,
+      "objectId": "S4",
+      "objectType": "sky",
+      "spotId": "u2"
+    }
+  ],
+  "decisions": [
+    {
+      "time": 96,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 8 · L2左上へ配置 → 8 · L2左上へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 96,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 8 · L2左上へ配置 → 8 · L2左上へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 7.2,
+        "horizonSeconds": 7.2,
+        "candidates": 48,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            0,
+            11.275609756097563,
+            0,
+            60,
+            -7.2
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 98.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法なL2作業を完了 · 2往復内の予測加点 +20",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 98.2,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "到着先の合法なL2作業を完了",
+        "gain": 20,
+        "horizonGain": 20,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 100.7,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2防衛・停止して再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 98.2,
+        "summary": "L2防衛・停止して再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-l2-defense",
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 101.7,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 8 · L2左上へ配置 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 101.7,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 8 · L2左上へ配置",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 7,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            0,
+            17.29285714285714,
+            0,
+            40,
+            -2.5
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 104.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2防衛・停止して再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 101.7,
+        "summary": "L2防衛・停止して再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-l2-defense",
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 105.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2のSky・土台を優先 · 2往復内の予測加点 +120",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 105.2,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2のSky・土台を優先",
+        "gain": 120,
+        "horizonGain": 120,
+        "seconds": 26.45,
+        "horizonSeconds": 26.45,
+        "candidates": 91,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u2"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u2"
+          }
+        ],
+        "receive": [
+          "red-E7",
+          "S10"
+        ],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            3.6515482695810584,
+            0,
+            40,
+            -26.44999999999998
+          ],
+          "local": false,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 116.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 7 · L2左下へ配置 → 8 · L2左上へ配置 · 2往復内の予測加点 +100",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 116.85,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 7 · L2左下へ配置 → 8 · L2左上へ配置",
+        "gain": 100,
+        "horizonGain": 100,
+        "seconds": 17.4,
+        "horizonSeconds": 17.4,
+        "candidates": 28,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            3.669565217391307,
+            0,
+            20,
+            -17.399999999999984
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 125.6,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法なL2作業を完了 · 2往復内の予測加点 +20",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 125.6,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "到着先の合法なL2作業を完了",
+        "gain": 20,
+        "horizonGain": 20,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [],
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 128.1,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2防衛・停止して再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 125.6,
+        "summary": "L2防衛・停止して再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-l2-defense",
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 129.1,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 8 · L2左上へ配置 · 2往復内の予測加点 +80",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 129.1,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 8 · L2左上へ配置",
+        "gain": 80,
+        "horizonGain": 80,
+        "seconds": 5.15,
+        "horizonSeconds": 5.15,
+        "candidates": 3,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            5.353252032520325,
+            0,
+            0,
+            -5.15
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 131.75,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法なL2作業を完了 · 2往復内の予測加点 +80",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 131.75,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "到着先の合法なL2作業を完了",
+        "gain": 80,
+        "horizonGain": 80,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 134.25,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2防衛・停止して再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 131.75,
+        "summary": "L2防衛・停止して再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-l2-defense",
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 135.25,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2のSky・土台を優先 · 2往復内の予測加点 +120",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 135.25,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2のSky・土台を優先",
+        "gain": 120,
+        "horizonGain": 120,
+        "seconds": 25.4,
+        "horizonSeconds": 25.4,
+        "candidates": 74,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [
+          "red-E10",
+          "S4"
+        ],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            3.7848484848484887,
+            0,
+            40,
+            -25.39999999999997
+          ],
+          "local": false,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 146.9,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 7 · L2左下へ配置 → 7 · L2左下へ配置 · 2往復内の予測加点 +120",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 146.9,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 7 · L2左下へ配置 → 7 · L2左下へ配置",
+        "gain": 120,
+        "horizonGain": 120,
+        "seconds": 13.75,
+        "horizonSeconds": 13.75,
+        "candidates": 23,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            2.7406779661016976,
+            0,
+            40,
+            -13.749999999999984
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 155.65,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 9 · L2右上へ配置 · 2往復内の予測加点 +80",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 155.65,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 9 · L2右上へ配置",
+        "gain": 80,
+        "horizonGain": 80,
+        "seconds": 6.55,
+        "horizonSeconds": 6.55,
+        "candidates": 17,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            -24,
+            -3.0288079470198688,
+            -6.549999999999997
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        }
+      }
+    },
+    {
+      "time": 169.05,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法なL2作業を完了 · 2往復内の予測加点 +80",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 169.05,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "到着先の合法なL2作業を完了",
+        "gain": 80,
+        "horizonGain": 80,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        ],
+        "receive": [],
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          }
+        }
+      }
+    },
+    {
+      "time": 171.55,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2防衛・停止して再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 169.05,
+        "summary": "L2防衛・停止して再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-l2-defense",
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 172.55,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "L2優先 · 8 · L2左上を反転 · 2往復内の予測加点 +80",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 172.55,
+        "strategy": "private-first-short-l2-defense",
+        "summary": "L2優先 · 8 · L2左上を反転",
+        "gain": 80,
+        "horizonGain": 80,
+        "seconds": 5.15,
+        "horizonSeconds": 5.15,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-l2-defense",
+          "focus": "L2-Sky",
+          "rank": [
+            1,
+            160,
+            26.016260162601625,
+            -5.15
+          ],
+          "local": true,
+          "rationale": "L2のSky取得を優先し、点差・時間・再反転リスクで比較"
+        },
+        "l2Defense": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          }
+        }
+      }
+    }
+  ]
+}

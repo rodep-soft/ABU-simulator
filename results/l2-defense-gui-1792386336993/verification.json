@@ -1,0 +1,150 @@
+{
+  "result": {
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 290,
+        "mustika": 250,
+        "total": 540,
+        "sky": 2
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 400,
+        "mustika": 0,
+        "total": 400,
+        "sky": 4
+      }
+    },
+    "sanctuary": {
+      "red": 51.25,
+      "blue": 67.65
+    },
+    "phases": [
+      {
+        "time": 82.75,
+        "phase": "work"
+      },
+      {
+        "time": 84.6,
+        "phase": "work"
+      },
+      {
+        "time": 87.1,
+        "phase": "scan"
+      },
+      {
+        "time": 88.1,
+        "phase": "work"
+      },
+      {
+        "time": 90.6,
+        "phase": "scan"
+      },
+      {
+        "time": 91.6,
+        "phase": "supply-work"
+      },
+      {
+        "time": 101.1,
+        "phase": "work"
+      },
+      {
+        "time": 107.4,
+        "phase": "work"
+      },
+      {
+        "time": 109.9,
+        "phase": "scan"
+      },
+      {
+        "time": 110.9,
+        "phase": "work"
+      },
+      {
+        "time": 113.05,
+        "phase": "work"
+      },
+      {
+        "time": 115.55,
+        "phase": "scan"
+      },
+      {
+        "time": 116.55,
+        "phase": "guard"
+      },
+      {
+        "time": 126.5,
+        "phase": "supply-work"
+      },
+      {
+        "time": 135.45,
+        "phase": "work"
+      },
+      {
+        "time": 142.8,
+        "phase": "work"
+      },
+      {
+        "time": 145.3,
+        "phase": "scan"
+      },
+      {
+        "time": 146.3,
+        "phase": "work"
+      },
+      {
+        "time": 149.45,
+        "phase": "work"
+      },
+      {
+        "time": 151.95,
+        "phase": "scan"
+      },
+      {
+        "time": 152.95,
+        "phase": "work"
+      },
+      {
+        "time": 156.1,
+        "phase": "work"
+      },
+      {
+        "time": 158.6,
+        "phase": "scan"
+      },
+      {
+        "time": 159.6,
+        "phase": "guard"
+      },
+      {
+        "time": 164.55,
+        "phase": "work"
+      },
+      {
+        "time": 170.7,
+        "phase": "work"
+      },
+      {
+        "time": 173.2,
+        "phase": "scan"
+      },
+      {
+        "time": 174.2,
+        "phase": "guard"
+      },
+      {
+        "time": 179.15,
+        "phase": "fallback"
+      }
+    ],
+    "enshrine": 81.75
+  },
+  "parity": {
+    "events": true,
+    "scores": true,
+    "state": true
+  },
+  "pixels": 896,
+  "errors": []
+}

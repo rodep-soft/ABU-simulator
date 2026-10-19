@@ -1,0 +1,3057 @@
+{
+  "config": {
+    "supplyMode": "ideal",
+    "brObservationMode": "stopped",
+    "scanSeconds": 1,
+    "maxSpeed": 7,
+    "acceleration": 3.5,
+    "redSpeed": 0.5,
+    "blueSpeed": 1,
+    "redTrPlan": "adaptive",
+    "blueTrPlan": "adaptive",
+    "redBrPlan": "private-first-short-flexible",
+    "blueBrPlan": "tactical-baseline-v2",
+    "recordActions": true
+  },
+  "result": {
+    "strategy": "private-first-short-flexible",
+    "label": "全エリア・点差対応",
+    "redSpeed": 0.5,
+    "blueSpeed": 1,
+    "red": 530,
+    "blue": 400,
+    "difference": 130,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 280,
+        "mustika": 250,
+        "total": 530,
+        "sky": 2
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 400,
+        "mustika": 0,
+        "total": 400,
+        "sky": 4
+      }
+    },
+    "perSpot": [
+      {
+        "number": 1,
+        "id": "s2",
+        "red": 20,
+        "blue": 50,
+        "layers": [
+          {
+            "id": "blue-E6",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "red-E6",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S8",
+            "type": "sky",
+            "team": "red",
+            "color": "blue",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "id": "r2",
+        "red": 70,
+        "blue": 0,
+        "layers": [
+          {
+            "id": "red-E4",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "red-E1",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S6",
+            "type": "sky",
+            "team": "red",
+            "color": "red",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "id": "r1",
+        "red": 70,
+        "blue": 0,
+        "layers": [
+          {
+            "id": "red-E9",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "red-E10",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S10",
+            "type": "sky",
+            "team": "red",
+            "color": "red",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "id": "s1",
+        "red": 0,
+        "blue": 10,
+        "layers": [
+          {
+            "id": "blue-E11",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "id": "b1",
+        "red": 0,
+        "blue": 70,
+        "layers": [
+          {
+            "id": "blue-E5",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "blue-E8",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S11",
+            "type": "sky",
+            "team": "blue",
+            "color": "blue",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "id": "b2",
+        "red": 0,
+        "blue": 70,
+        "layers": [
+          {
+            "id": "blue-E4",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "blue-E1",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S9",
+            "type": "sky",
+            "team": "blue",
+            "color": "blue",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "id": "u3",
+        "red": 60,
+        "blue": 0,
+        "layers": [
+          {
+            "id": "red-E7",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "red-E8",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "id": "u1",
+        "red": 60,
+        "blue": 0,
+        "layers": [
+          {
+            "id": "red-E5",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "red-E3",
+            "type": "earth",
+            "team": "red",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "id": "u2",
+        "red": 0,
+        "blue": 140,
+        "layers": [
+          {
+            "id": "blue-E7",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "blue-E3",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "S12",
+            "type": "sky",
+            "team": "blue",
+            "color": "blue",
+            "touchedBy": null
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "id": "u4",
+        "red": 0,
+        "blue": 60,
+        "layers": [
+          {
+            "id": "blue-E9",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          },
+          {
+            "id": "blue-E10",
+            "type": "earth",
+            "team": "blue",
+            "color": null,
+            "touchedBy": null
+          }
+        ]
+      }
+    ],
+    "sanctuary": {
+      "red": 56.95,
+      "blue": 74.65
+    },
+    "pickup": 58.5,
+    "enshrine": 95,
+    "activatedAt": 96,
+    "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+    "lateActions": [
+      {
+        "time": 144.85,
+        "robot": "redBR",
+        "action": "flip",
+        "number": 1
+      },
+      {
+        "time": 146.85,
+        "robot": "blueBR",
+        "action": "place",
+        "number": 4,
+        "objectType": "earth"
+      },
+      {
+        "time": 155.65,
+        "robot": "blueBR",
+        "action": "flip",
+        "number": 1
+      },
+      {
+        "time": 159.35,
+        "robot": "redBR",
+        "action": "place",
+        "number": 3,
+        "objectType": "earth"
+      },
+      {
+        "time": 172.85,
+        "robot": "redBR",
+        "action": "place",
+        "number": 3,
+        "objectType": "earth"
+      },
+      {
+        "time": 176.35,
+        "robot": "redBR",
+        "action": "place",
+        "number": 3,
+        "objectType": "sky"
+      },
+      {
+        "time": 177.2,
+        "robot": "blueBR",
+        "action": "place",
+        "number": 9,
+        "objectType": "sky"
+      }
+    ],
+    "phases": [
+      {
+        "time": 96,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 7.2,
+          "reserve": 1.55,
+          "crowded": false,
+          "safeSeconds": 8.75,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            0,
+            8,
+            60,
+            60,
+            -8.75
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 98.2,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            0,
+            5.777777777777778,
+            20,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        }
+      },
+      {
+        "time": 100.7,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 101.7,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 170,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 40,
+          "rank": [
+            0,
+            11.555555555555555,
+            40,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 104.2,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 105.2,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 25.39999999999997,
+          "reserve": 6.0999999999999925,
+          "crowded": false,
+          "safeSeconds": 31.499999999999964,
+          "fits": true,
+          "lead": 190,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 250,
+          "replyMargin": 250,
+          "netGain": 60,
+          "rank": [
+            0,
+            2.4000000000000026,
+            60,
+            60,
+            -31.499999999999964
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 116.85,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 13.749999999999984,
+          "reserve": 3.187499999999996,
+          "crowded": false,
+          "safeSeconds": 16.93749999999998,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            0,
+            4.348432055749134,
+            60,
+            60,
+            -16.93749999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 125.6,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            0,
+            5.777777777777778,
+            20,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        }
+      },
+      {
+        "time": 128.1,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 129.1,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 190,
+          "replyMargin": 190,
+          "netGain": 40,
+          "rank": [
+            0,
+            11.555555555555555,
+            40,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 131.6,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 132.6,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 12.249999999999993,
+          "reserve": 3.4374999999999982,
+          "crowded": false,
+          "safeSeconds": 15.687499999999991,
+          "fits": true,
+          "lead": 150,
+          "diff": 80,
+          "fixedGain": 0,
+          "newExposure": 80,
+          "replyLoss": 80,
+          "projectedMargin": 230,
+          "replyMargin": 150,
+          "netGain": 28,
+          "rank": [
+            0,
+            1.6779026217228472,
+            28,
+            0,
+            -15.687499999999991
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 142.35,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 80,
+          "fixedGain": 0,
+          "newExposure": 80,
+          "replyLoss": 80,
+          "projectedMargin": 230,
+          "replyMargin": 150,
+          "netGain": 28,
+          "rank": [
+            2,
+            28,
+            6.222222222222222,
+            0,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        }
+      },
+      {
+        "time": 144.85,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 145.85,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 15.999999999999998,
+          "reserve": 3.7499999999999996,
+          "crowded": false,
+          "safeSeconds": 19.749999999999996,
+          "fits": true,
+          "lead": 230,
+          "diff": 30,
+          "fixedGain": 30,
+          "newExposure": 0,
+          "replyLoss": 80,
+          "projectedMargin": 260,
+          "replyMargin": 180,
+          "netGain": 30,
+          "rank": [
+            2,
+            40.5,
+            1.879518072289157,
+            30,
+            -19.749999999999996
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 153.1,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 8.749999999999998,
+          "reserve": 1.9374999999999996,
+          "crowded": false,
+          "safeSeconds": 10.687499999999998,
+          "fits": true,
+          "lead": 220,
+          "diff": 30,
+          "fixedGain": 30,
+          "newExposure": 0,
+          "replyLoss": 80,
+          "projectedMargin": 250,
+          "replyMargin": 170,
+          "netGain": 30,
+          "rank": [
+            2,
+            40.5,
+            3.3368983957219256,
+            30,
+            -10.687499999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 156.85,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 140,
+          "diff": 10,
+          "fixedGain": 10,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 150,
+          "replyMargin": 150,
+          "netGain": 10,
+          "rank": [
+            2,
+            13.5,
+            2.888888888888889,
+            10,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        }
+      },
+      {
+        "time": 159.35,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 160.35,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 14.999999999999996,
+          "reserve": 3.499999999999999,
+          "crowded": false,
+          "safeSeconds": 18.499999999999996,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            2,
+            81,
+            4.000000000000001,
+            60,
+            -18.499999999999996
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 166.6,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 8.749999999999998,
+          "reserve": 1.9374999999999996,
+          "crowded": false,
+          "safeSeconds": 10.687499999999998,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            2,
+            81,
+            6.673796791443851,
+            60,
+            -10.687499999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 170.35,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            2,
+            27,
+            5.777777777777778,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        }
+      },
+      {
+        "time": 172.85,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 173.85,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 170,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 40,
+          "rank": [
+            2,
+            54,
+            11.555555555555555,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        }
+      },
+      {
+        "time": 176.35,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 177.35,
+        "phase": "guard",
+        "tasks": []
+      },
+      {
+        "time": 179.35,
+        "phase": "hold",
+        "tasks": []
+      }
+    ],
+    "pendingRed": {
+      "position": {
+        "x": 3.4,
+        "y": 3.4,
+        "z": 0.6
+      },
+      "cargo": [],
+      "job": {
+        "type": "wait",
+        "seconds": 0.6500000000000057,
+        "remaining": 0.05000000000000562,
+        "startedAt": 179.35
+      },
+      "pendingWork": []
+    },
+    "unfinishedScoringMove": false,
+    "rejections": [
+      {
+        "time": 55.65,
+        "robot": "blueBR",
+        "action": "place",
+        "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+        "kind": "unscored",
+        "rule": "8.6.2"
+      },
+      {
+        "time": 59.15,
+        "robot": "blueBR",
+        "action": "place",
+        "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+        "kind": "unscored",
+        "rule": "8.6.2"
+      }
+    ],
+    "recoveries": [],
+    "elapsedMs": 13186.09
+  },
+  "actions": [
+    {
+      "time": 14.7,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E4"
+      ],
+      "observationAt": 13.2,
+      "objectId": "blue-E4",
+      "objectType": "earth"
+    },
+    {
+      "time": 16.2,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E4",
+        "blue-E1"
+      ],
+      "observationAt": 13.2,
+      "objectId": "blue-E1",
+      "objectType": "earth"
+    },
+    {
+      "time": 20.6,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E4"
+      ],
+      "observationAt": 19.1,
+      "objectId": "red-E4",
+      "objectType": "earth"
+    },
+    {
+      "time": 21.7,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · blue-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E1"
+      ],
+      "observationAt": 19.2,
+      "objectId": "blue-E4",
+      "objectType": "earth",
+      "spotId": "b2"
+    },
+    {
+      "time": 22.1,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E4",
+        "red-E1"
+      ],
+      "observationAt": 19.1,
+      "objectId": "red-E1",
+      "objectType": "earth"
+    },
+    {
+      "time": 24.2,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · blue-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 19.2,
+      "objectId": "blue-E1",
+      "objectType": "earth",
+      "spotId": "b2"
+    },
+    {
+      "time": 28,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · red-E4",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E1"
+      ],
+      "observationAt": 25.5,
+      "objectId": "red-E4",
+      "objectType": "earth",
+      "spotId": "r2"
+    },
+    {
+      "time": 28.7,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S9"
+      ],
+      "observationAt": 27.2,
+      "objectId": "S9",
+      "objectType": "sky"
+    },
+    {
+      "time": 30.5,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · red-E1",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 25.5,
+      "objectId": "red-E1",
+      "objectType": "earth",
+      "spotId": "r2"
+    },
+    {
+      "time": 31.2,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S9",
+        "blue-E6"
+      ],
+      "observationAt": 29.7,
+      "objectId": "blue-E6",
+      "objectType": "earth"
+    },
+    {
+      "time": 35.4,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S6"
+      ],
+      "observationAt": 33.9,
+      "objectId": "S6",
+      "objectType": "sky"
+    },
+    {
+      "time": 36.7,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1下 · S9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E6"
+      ],
+      "observationAt": 34.2,
+      "objectId": "S9",
+      "objectType": "sky",
+      "spotId": "b2"
+    },
+    {
+      "time": 41.3,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1下 · S6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 38.8,
+      "objectId": "S6",
+      "objectType": "sky",
+      "spotId": "r2"
+    },
+    {
+      "time": 42.45,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · blue-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 39.95,
+      "objectId": "blue-E6",
+      "objectType": "earth",
+      "spotId": "s2"
+    },
+    {
+      "time": 46.2,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E6"
+      ],
+      "observationAt": 44.7,
+      "objectId": "red-E6",
+      "objectType": "earth"
+    },
+    {
+      "time": 47.55,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E5"
+      ],
+      "observationAt": 46.05,
+      "objectId": "blue-E5",
+      "objectType": "earth"
+    },
+    {
+      "time": 47.7,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E6",
+        "S8"
+      ],
+      "observationAt": 44.7,
+      "objectId": "S8",
+      "objectType": "sky"
+    },
+    {
+      "time": 49.05,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E5",
+        "S11"
+      ],
+      "observationAt": 46.05,
+      "objectId": "S11",
+      "objectType": "sky"
+    },
+    {
+      "time": 54.45,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · red-E6",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S8"
+      ],
+      "observationAt": 51.95,
+      "objectId": "red-E6",
+      "objectType": "earth",
+      "spotId": "s2"
+    },
+    {
+      "time": 56.95,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有下 · S8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 51.95,
+      "objectId": "S8",
+      "objectType": "sky",
+      "spotId": "s2"
+    },
+    {
+      "time": 62.7,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5"
+      ],
+      "observationAt": 61.2,
+      "objectId": "red-E5",
+      "objectType": "earth"
+    },
+    {
+      "time": 64.2,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3"
+      ],
+      "observationAt": 61.2,
+      "objectId": "red-E3",
+      "objectType": "earth"
+    },
+    {
+      "time": 66.95,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · blue-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 64.45,
+      "objectId": "blue-E5",
+      "objectType": "earth",
+      "spotId": "b1"
+    },
+    {
+      "time": 74.65,
+      "robot": "blueBR",
+      "action": "flip",
+      "text": "Sky反転 · L1共有下",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 72.15,
+      "spotId": "s2"
+    },
+    {
+      "time": 79.75,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11",
+        "blue-E8"
+      ],
+      "observationAt": 78.25,
+      "objectId": "blue-E8",
+      "objectType": "earth"
+    },
+    {
+      "time": 83.35,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · M",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3",
+        "M"
+      ],
+      "observationAt": 81.85,
+      "objectId": "M",
+      "objectType": "mustika"
+    },
+    {
+      "time": 86.15,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · blue-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S11"
+      ],
+      "observationAt": 83.65,
+      "objectId": "blue-E8",
+      "objectType": "earth",
+      "spotId": "b1"
+    },
+    {
+      "time": 88.65,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · 青L1上 · S11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 83.65,
+      "objectId": "S11",
+      "objectType": "sky",
+      "spotId": "b1"
+    },
+    {
+      "time": 94.05,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E7"
+      ],
+      "observationAt": 92.55,
+      "objectId": "blue-E7",
+      "objectType": "earth"
+    },
+    {
+      "time": 95,
+      "robot": "redBR",
+      "action": "enshrine",
+      "text": "Mustika奉納",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E5",
+        "red-E3"
+      ],
+      "observationAt": 92.5
+    },
+    {
+      "time": 95.55,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E7",
+        "blue-E3"
+      ],
+      "observationAt": 92.55,
+      "objectId": "blue-E3",
+      "objectType": "earth"
+    },
+    {
+      "time": 100.7,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左上 · red-E5",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E3"
+      ],
+      "observationAt": 98.2,
+      "objectId": "red-E5",
+      "objectType": "earth",
+      "spotId": "u1"
+    },
+    {
+      "time": 104.2,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左上 · red-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 101.7,
+      "objectId": "red-E3",
+      "objectType": "earth",
+      "spotId": "u1"
+    },
+    {
+      "time": 105.15,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · blue-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E3"
+      ],
+      "observationAt": 102.65,
+      "objectId": "blue-E7",
+      "objectType": "earth",
+      "spotId": "u2"
+    },
+    {
+      "time": 107.65,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · blue-E3",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 102.65,
+      "objectId": "blue-E3",
+      "objectType": "earth",
+      "spotId": "u2"
+    },
+    {
+      "time": 114.35,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E7"
+      ],
+      "observationAt": 112.85,
+      "objectId": "red-E7",
+      "objectType": "earth"
+    },
+    {
+      "time": 115.85,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E7",
+        "red-E8"
+      ],
+      "observationAt": 112.85,
+      "objectId": "red-E8",
+      "objectType": "earth"
+    },
+    {
+      "time": 115.95,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E9"
+      ],
+      "observationAt": 114.45,
+      "objectId": "blue-E9",
+      "objectType": "earth"
+    },
+    {
+      "time": 117.45,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E9",
+        "blue-E10"
+      ],
+      "observationAt": 114.45,
+      "objectId": "blue-E10",
+      "objectType": "earth"
+    },
+    {
+      "time": 127.25,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右下 · blue-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E10"
+      ],
+      "observationAt": 124.75,
+      "objectId": "blue-E9",
+      "objectType": "earth",
+      "spotId": "u4"
+    },
+    {
+      "time": 128.1,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左下 · red-E7",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E8"
+      ],
+      "observationAt": 125.6,
+      "objectId": "red-E7",
+      "objectType": "earth",
+      "spotId": "u3"
+    },
+    {
+      "time": 129.75,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右下 · blue-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 124.75,
+      "objectId": "blue-E10",
+      "objectType": "earth",
+      "spotId": "u4"
+    },
+    {
+      "time": 131.6,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2左下 · red-E8",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 129.1,
+      "objectId": "red-E8",
+      "objectType": "earth",
+      "spotId": "u3"
+    },
+    {
+      "time": 137.85,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · blue-E11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E11"
+      ],
+      "observationAt": 136.35,
+      "objectId": "blue-E11",
+      "objectType": "earth"
+    },
+    {
+      "time": 139.35,
+      "robot": "blueBR",
+      "action": "receive",
+      "text": "ブロック受取 · S12",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "blue-E11",
+        "S12"
+      ],
+      "observationAt": 136.35,
+      "objectId": "S12",
+      "objectType": "sky"
+    },
+    {
+      "time": 144.85,
+      "robot": "redBR",
+      "action": "flip",
+      "text": "Sky反転 · L1共有下",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 142.35,
+      "spotId": "s2"
+    },
+    {
+      "time": 146.85,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L1共有上 · blue-E11",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S12"
+      ],
+      "observationAt": 144.35,
+      "objectId": "blue-E11",
+      "objectType": "earth",
+      "spotId": "s1"
+    },
+    {
+      "time": 150.6,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E9"
+      ],
+      "observationAt": 149.1,
+      "objectId": "red-E9",
+      "objectType": "earth"
+    },
+    {
+      "time": 152.1,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · red-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E9",
+        "red-E10"
+      ],
+      "observationAt": 149.1,
+      "objectId": "red-E10",
+      "objectType": "earth"
+    },
+    {
+      "time": 155.65,
+      "robot": "blueBR",
+      "action": "flip",
+      "text": "Sky反転 · L1共有下",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S12"
+      ],
+      "observationAt": 153.15,
+      "spotId": "s2"
+    },
+    {
+      "time": 159.35,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1上 · red-E9",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E10"
+      ],
+      "observationAt": 156.85,
+      "objectId": "red-E9",
+      "objectType": "earth",
+      "spotId": "r1"
+    },
+    {
+      "time": 165.6,
+      "robot": "redBR",
+      "action": "receive",
+      "text": "ブロック受取 · S10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "red-E10",
+        "S10"
+      ],
+      "observationAt": 164.1,
+      "objectId": "S10",
+      "objectType": "sky"
+    },
+    {
+      "time": 172.85,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1上 · red-E10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [
+        "S10"
+      ],
+      "observationAt": 170.35,
+      "objectId": "red-E10",
+      "objectType": "earth",
+      "spotId": "r1"
+    },
+    {
+      "time": 176.35,
+      "robot": "redBR",
+      "action": "place",
+      "text": "タワーへ配置 · 赤L1上 · S10",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 173.85,
+      "objectId": "S10",
+      "objectType": "sky",
+      "spotId": "r1"
+    },
+    {
+      "time": 177.2,
+      "robot": "blueBR",
+      "action": "place",
+      "text": "タワーへ配置 · L2右上 · S12",
+      "kind": "action",
+      "rule": "",
+      "cargo": [],
+      "observationAt": 174.7,
+      "objectId": "S12",
+      "objectType": "sky",
+      "spotId": "u2"
+    }
+  ],
+  "decisions": [
+    {
+      "time": 96,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 8 · L2左上へ配置 → 8 · L2左上へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 96,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 8 · L2左上へ配置 → 8 · L2左上へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 7.2,
+        "horizonSeconds": 7.2,
+        "candidates": 48,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 7.2,
+          "reserve": 1.55,
+          "crowded": false,
+          "safeSeconds": 8.75,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            0,
+            8,
+            60,
+            60,
+            -8.75
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 98.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法な作業を完了 · 2往復内の予測加点 +20",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 98.2,
+        "strategy": "private-first-short-flexible",
+        "summary": "到着先の合法な作業を完了",
+        "gain": 20,
+        "horizonGain": 20,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            0,
+            5.777777777777778,
+            20,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法かつ時間内なら完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 100.7,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 98.2,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 101.7,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 8 · L2左上へ配置 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 101.7,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 8 · L2左上へ配置",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 67,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 170,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 40,
+          "rank": [
+            0,
+            11.555555555555555,
+            40,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        }
+      }
+    },
+    {
+      "time": 104.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 101.7,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 105.2,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 7 · L2左下へ配置 → 7 · L2左下へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 105.2,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 7 · L2左下へ配置 → 7 · L2左下へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 25.4,
+        "horizonSeconds": 25.4,
+        "candidates": 91,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [
+          "red-E7",
+          "red-E8"
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 25.39999999999997,
+          "reserve": 6.0999999999999925,
+          "crowded": false,
+          "safeSeconds": 31.499999999999964,
+          "fits": true,
+          "lead": 190,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 250,
+          "replyMargin": 250,
+          "netGain": 60,
+          "rank": [
+            0,
+            2.4000000000000026,
+            60,
+            60,
+            -31.499999999999964
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "supply",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 116.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 7 · L2左下へ配置 → 7 · L2左下へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 116.85,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 7 · L2左下へ配置 → 7 · L2左下へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 13.75,
+        "horizonSeconds": 13.75,
+        "candidates": 24,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 13.749999999999984,
+          "reserve": 3.187499999999996,
+          "crowded": false,
+          "safeSeconds": 16.93749999999998,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            0,
+            4.348432055749134,
+            60,
+            60,
+            -16.93749999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 125.6,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法な作業を完了 · 2往復内の予測加点 +20",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 125.6,
+        "strategy": "private-first-short-flexible",
+        "summary": "到着先の合法な作業を完了",
+        "gain": 20,
+        "horizonGain": 20,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            0,
+            5.777777777777778,
+            20,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法かつ時間内なら完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 128.1,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 125.6,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 129.1,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 7 · L2左下へ配置 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 129.1,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 7 · L2左下へ配置",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 57,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 190,
+          "replyMargin": 190,
+          "netGain": 40,
+          "rank": [
+            0,
+            11.555555555555555,
+            40,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        }
+      }
+    },
+    {
+      "time": 131.6,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 129.1,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 132.6,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 1 · L1共有下を反転 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 132.6,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 1 · L1共有下を反転",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 12.25,
+        "horizonSeconds": 12.25,
+        "candidates": 93,
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 12.249999999999993,
+          "reserve": 3.4374999999999982,
+          "crowded": false,
+          "safeSeconds": 15.687499999999991,
+          "fits": true,
+          "lead": 150,
+          "diff": 80,
+          "fixedGain": 0,
+          "newExposure": 80,
+          "replyLoss": 80,
+          "projectedMargin": 230,
+          "replyMargin": 150,
+          "netGain": 28,
+          "rank": [
+            0,
+            1.6779026217228472,
+            28,
+            0,
+            -15.687499999999991
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        }
+      }
+    },
+    {
+      "time": 142.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法な作業を完了 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 142.35,
+        "strategy": "private-first-short-flexible",
+        "summary": "到着先の合法な作業を完了",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 80,
+          "fixedGain": 0,
+          "newExposure": 80,
+          "replyLoss": 80,
+          "projectedMargin": 230,
+          "replyMargin": 150,
+          "netGain": 28,
+          "rank": [
+            2,
+            28,
+            6.222222222222222,
+            0,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法かつ時間内なら完了",
+          "intent": {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        }
+      }
+    },
+    {
+      "time": 144.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 142.35,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 145.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置 · 2往復内の予測加点 +30",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 145.85,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置",
+        "gain": 30,
+        "horizonGain": 30,
+        "seconds": 16,
+        "horizonSeconds": 16,
+        "candidates": 68,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [
+          "red-E9",
+          "red-E10"
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 15.999999999999998,
+          "reserve": 3.7499999999999996,
+          "crowded": false,
+          "safeSeconds": 19.749999999999996,
+          "fits": true,
+          "lead": 230,
+          "diff": 30,
+          "fixedGain": 30,
+          "newExposure": 0,
+          "replyLoss": 80,
+          "projectedMargin": 260,
+          "replyMargin": 180,
+          "netGain": 30,
+          "rank": [
+            2,
+            40.5,
+            1.879518072289157,
+            30,
+            -19.749999999999996
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "supply",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 153.1,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置 · 2往復内の予測加点 +30",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 153.1,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置",
+        "gain": 30,
+        "horizonGain": 30,
+        "seconds": 8.75,
+        "horizonSeconds": 8.75,
+        "candidates": 5,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 8.749999999999998,
+          "reserve": 1.9374999999999996,
+          "crowded": false,
+          "safeSeconds": 10.687499999999998,
+          "fits": true,
+          "lead": 220,
+          "diff": 30,
+          "fixedGain": 30,
+          "newExposure": 0,
+          "replyLoss": 80,
+          "projectedMargin": 250,
+          "replyMargin": 170,
+          "netGain": 30,
+          "rank": [
+            2,
+            40.5,
+            3.3368983957219256,
+            30,
+            -10.687499999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          }
+        }
+      }
+    },
+    {
+      "time": 156.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法な作業を完了 · 2往復内の予測加点 +10",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 156.85,
+        "strategy": "private-first-short-flexible",
+        "summary": "到着先の合法な作業を完了",
+        "gain": 10,
+        "horizonGain": 10,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 140,
+          "diff": 10,
+          "fixedGain": 10,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 150,
+          "replyMargin": 150,
+          "netGain": 10,
+          "rank": [
+            2,
+            13.5,
+            2.888888888888889,
+            10,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法かつ時間内なら完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          }
+        }
+      }
+    },
+    {
+      "time": 159.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 156.85,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 160.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 160.35,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 15,
+        "horizonSeconds": 15,
+        "candidates": 12,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [
+          "S10"
+        ],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 14.999999999999996,
+          "reserve": 3.499999999999999,
+          "crowded": false,
+          "safeSeconds": 18.499999999999996,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            2,
+            81,
+            4.000000000000001,
+            60,
+            -18.499999999999996
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "supply",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 166.6,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置 · 2往復内の予測加点 +60",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 166.6,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 3 · 赤L1上へ配置 → 3 · 赤L1上へ配置",
+        "gain": 60,
+        "horizonGain": 60,
+        "seconds": 8.75,
+        "horizonSeconds": 8.75,
+        "candidates": 7,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 8.749999999999998,
+          "reserve": 1.9374999999999996,
+          "crowded": false,
+          "safeSeconds": 10.687499999999998,
+          "fits": true,
+          "lead": 150,
+          "diff": 60,
+          "fixedGain": 60,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 60,
+          "rank": [
+            2,
+            81,
+            6.673796791443851,
+            60,
+            -10.687499999999998
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        }
+      }
+    },
+    {
+      "time": 170.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "到着先の合法な作業を完了 · 2往復内の予測加点 +20",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 170.35,
+        "strategy": "private-first-short-flexible",
+        "summary": "到着先の合法な作業を完了",
+        "gain": 20,
+        "horizonGain": 20,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 150,
+          "diff": 20,
+          "fixedGain": 20,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 170,
+          "replyMargin": 170,
+          "netGain": 20,
+          "rank": [
+            2,
+            27,
+            5.777777777777778,
+            20,
+            -3.5
+          ],
+          "rationale": "到着先を再観測し合法・時間内なら完了"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法かつ時間内なら完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        }
+      }
+    },
+    {
+      "time": 172.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 170.35,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 173.85,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "全エリア比較 · 3 · 赤L1上へ配置 · 2往復内の予測加点 +40",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 173.85,
+        "strategy": "private-first-short-flexible",
+        "summary": "全エリア比較 · 3 · 赤L1上へ配置",
+        "gain": 40,
+        "horizonGain": 40,
+        "seconds": 2.5,
+        "horizonSeconds": 2.5,
+        "candidates": 1,
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ],
+        "receive": [],
+        "assessment": {
+          "baseline": "private-first-short-flexible",
+          "nominalSeconds": 2.5,
+          "reserve": 1,
+          "crowded": false,
+          "safeSeconds": 3.5,
+          "fits": true,
+          "lead": 170,
+          "diff": 40,
+          "fixedGain": 40,
+          "newExposure": 0,
+          "replyLoss": 0,
+          "projectedMargin": 210,
+          "replyMargin": 210,
+          "netGain": 40,
+          "rank": [
+            2,
+            54,
+            11.555555555555555,
+            40,
+            -3.5
+          ],
+          "rationale": "全エリアの点差・固定点・1回反撃・完了余裕を比較"
+        },
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "点差・固定点・再反転リスク・完了余裕で選択",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        }
+      }
+    },
+    {
+      "time": 176.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "停止して点差・残り時間を再評価 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 173.85,
+        "summary": "停止して点差・残り時間を再評価",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "停止して点差・残り時間を再評価",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 177.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "完了余裕のある得点候補なし・その場で再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 177.35,
+        "summary": "完了余裕のある得点候補なし・その場で再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "guard",
+          "reason": "完了余裕のある得点候補なし・その場で再観測",
+          "intent": null
+        }
+      }
+    },
+    {
+      "time": 179.35,
+      "robot": "redBR",
+      "action": "plan",
+      "text": "完了余裕のある得点候補なし・その場で再観測 · 2往復内の予測加点 +0",
+      "kind": "plan",
+      "rule": "",
+      "decision": {
+        "at": 179.35,
+        "summary": "完了余裕のある得点候補なし・その場で再観測",
+        "gain": 0,
+        "horizonGain": 0,
+        "seconds": 0,
+        "horizonSeconds": 0,
+        "tasks": [],
+        "receive": [],
+        "strategy": "private-first-short-flexible",
+        "flexiblePost": {
+          "activatedAt": 96,
+          "phase": "hold",
+          "reason": "完了余裕のある得点候補なし・その場で再観測",
+          "intent": null
+        }
+      }
+    }
+  ]
+}

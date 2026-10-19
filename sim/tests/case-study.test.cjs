@@ -5,12 +5,15 @@ const Cache = require('../../tools/case-study-cache.cjs');
 const S = require('../engine.js');
 const F = require('../field.js');
 
-test('finite study covers all sixty profiles and preserves old profile IDs at five speed conditions', () => {
-  assert.equal(Core.profiles().length, 60);
+test('finite study covers all eighty-five profiles and preserves old profile IDs at five speed conditions', () => {
+  assert.equal(Core.profiles().length, 85);
   assert.equal(Core.profiles().find(p => p.id === 'T5B5').br, 'mustika-fast');
   assert.equal(Core.profiles().find(p => p.id === 'T5B6').br, 'earth-late');
-  const cases = Core.scenarios(); assert.equal(cases.length, 18000); assert.equal(new Set(cases.map(s => s.id)).size, 18000);
-  for (const [r, b] of [[1, 1], [.75, 1], [1, .75], [.5, 1], [1, .5]]) assert.equal(cases.filter(s => s.config.redSpeed === r && s.config.blueSpeed === b).length, 3600);
+  assert.equal(Core.profiles().find(p => p.id === 'T5B12').br, 'tactical-baseline-v2');
+  assert.deepEqual(Core.profiles().filter(p => p.id.startsWith('T5B')).slice(12, 16).map(p => p.br), ['private-first-now', 'private-first-short', 'private-first-observe', 'private-first-short-l2-defense']);
+  assert.equal(Core.profiles().find(p => p.id === 'T5B17').br, 'private-first-short-flexible');
+  const cases = Core.scenarios(); assert.equal(cases.length, 36125); assert.equal(new Set(cases.map(s => s.id)).size, 36125);
+  for (const [r, b] of [[1, 1], [.75, 1], [1, .75], [.5, 1], [1, .5]]) assert.equal(cases.filter(s => s.config.redSpeed === r && s.config.blueSpeed === b).length, 7225);
 });
 test('victory uses score then Mustika then Sky, and never invents a referee tiebreak', () => {
   const red = { total: 400, mustika: 0, sky: 2 }, blue = { total: 395, mustika: 250, sky: 3 };

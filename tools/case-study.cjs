@@ -16,7 +16,7 @@ if (!isMainThread) {
   const args = process.argv.slice(2), dir = path.resolve(args.find(a => !a.startsWith('--')) || path.join(root, 'results', 'case-study-2026-09-24'));
   const flag = (key, fallback) => Number(args.find(a => a.startsWith(`--${key}=`))?.split('=')[1] || fallback);
   const count = flag('workers', 6), limit = flag('limit', Infinity), pilot = args.includes('--pilot'), competitive = args.includes('--competitive');
-  const files = ['sim/engine.js', 'sim/field.js', 'sim/controllers.js', 'sim/score-planner.js', 'sim/efficient-strategy.js', 'sim/match-strategies.js', 'sim/competitive-strategies.js', 'tools/case-study-core.cjs', 'tools/case-study-cache.cjs'];
+  const files = ['sim/engine.js', 'sim/field.js', 'sim/controllers.js', 'sim/score-planner.js', 'sim/efficient-strategy.js', 'sim/match-strategies.js', 'sim/competitive-strategies.js', 'sim/private-first.js', 'sim/l2-sky-defense.js', 'sim/flexible-post.js', 'tools/case-study-core.cjs', 'tools/case-study-cache.cjs'];
   const hashes = Object.fromEntries(files.map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex')]));
   let all = core.scenarios();
   if (competitive) all = all.filter(s => {

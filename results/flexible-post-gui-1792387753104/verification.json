@@ -1,0 +1,317 @@
+{
+  "result": {
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 320,
+        "mustika": 250,
+        "total": 570,
+        "sky": 3
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 430,
+        "mustika": 0,
+        "total": 430,
+        "sky": 4
+      }
+    },
+    "sanctuary": {
+      "red": 51.25,
+      "blue": 67.65
+    },
+    "phases": [
+      {
+        "time": 82.75,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 84.6,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 87.1,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 88.1,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          }
+        ]
+      },
+      {
+        "time": 90.6,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 91.6,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 101.1,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 107.4,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 109.9,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 110.9,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E8",
+            "spotId": "u3"
+          }
+        ]
+      },
+      {
+        "time": 113.4,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 114.4,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "u4"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u4"
+          }
+        ]
+      },
+      {
+        "time": 124,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          },
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 126.9,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E9",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 129.4,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 130.4,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 132.9,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 133.9,
+        "phase": "supply",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 139.3,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 142.2,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "r1"
+          }
+        ]
+      },
+      {
+        "time": 144.7,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 145.7,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          },
+          {
+            "type": "flip",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 149.9,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "s2"
+          }
+        ]
+      },
+      {
+        "time": 152.4,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 153.4,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 161.8,
+        "phase": "work",
+        "tasks": [
+          {
+            "type": "flip",
+            "spotId": "u2"
+          }
+        ]
+      },
+      {
+        "time": 164.3,
+        "phase": "scan",
+        "tasks": []
+      },
+      {
+        "time": 165.3,
+        "phase": "guard",
+        "tasks": []
+      },
+      {
+        "time": 167.1,
+        "phase": "guard",
+        "tasks": []
+      },
+      {
+        "time": 179.1,
+        "phase": "hold",
+        "tasks": []
+      }
+    ],
+    "enshrine": 81.75
+  },
+  "parity": {
+    "scores": true,
+    "events": true,
+    "state": true
+  },
+  "pixels": 896,
+  "errors": []
+}

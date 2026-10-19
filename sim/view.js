@@ -425,7 +425,8 @@ function render() {
   const brPlan = displayedBrPlan(r.team);
   const turn = sim.config[`${r.team}BrTurns`][r.brTurn?.completed || 0];
   $('br-manifest').textContent = turn?.slots ? `${(r.brTurn?.completed || 0) + 1}回目: ${turnManifest(turn)}${r.brTurn?.fallback ? ' / 代替配置・返却' : ''}` : '配置戦略に任せる';
-  $('robot-phase').textContent = ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
+  $('robot-phase').textContent = brPlan.startsWith('private-first-') ? r.decision?.flexiblePost?.reason || r.decision?.l2Defense?.reason || r.decision?.privateFirst?.reason || '専有完成→E1+S1'
+    : ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
   $('pending-work').replaceChildren(...(r.pendingWork?.length ? r.pendingWork : [null]).map(a => {
     const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotName(a.spotId) + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
   }));

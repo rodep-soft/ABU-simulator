@@ -24,7 +24,7 @@ const server = http.createServer((request, response) => {
     assert.equal(await page.locator('#red-score').textContent(), '0');
     assert.ok(await page.locator('svg.lucide').count() > 10);
     assert.equal(await page.locator('#red-tr-plan option').count(), 5);
-    assert.equal(await page.locator('#red-br-plan option').count(), 12);
+    assert.equal(await page.locator('#red-br-plan option').count(), 17);
     assert.equal(await page.locator('#rate').inputValue(), '3');
     assert.equal(await page.locator('#scan-seconds').inputValue(), '1');
     assert.equal(await page.locator('#red-br-plan').inputValue(), 'efficient');

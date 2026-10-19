@@ -1,0 +1,143 @@
+[
+  {
+    "time": 14.8,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E4",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E4"
+    ],
+    "observationAt": 13.3,
+    "objectId": "red-E4",
+    "objectType": "earth"
+  },
+  {
+    "time": 16.3,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E1",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E4",
+      "red-E1"
+    ],
+    "observationAt": 13.3,
+    "objectId": "red-E1",
+    "objectType": "earth"
+  },
+  {
+    "time": 21.8,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · red-E4",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E1"
+    ],
+    "observationAt": 19.3,
+    "objectId": "red-E4",
+    "objectType": "earth",
+    "spotId": "r2"
+  },
+  {
+    "time": 24.3,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · red-E1",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 19.3,
+    "objectId": "red-E1",
+    "objectType": "earth",
+    "spotId": "r2"
+  },
+  {
+    "time": 28.8,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · S6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "S6"
+    ],
+    "observationAt": 27.3,
+    "objectId": "S6",
+    "objectType": "sky"
+  },
+  {
+    "time": 31.3,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "S6",
+      "red-E6"
+    ],
+    "observationAt": 29.8,
+    "objectId": "red-E6",
+    "objectType": "earth"
+  },
+  {
+    "time": 36.8,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · S6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E6"
+    ],
+    "observationAt": 34.3,
+    "objectId": "S6",
+    "objectType": "sky",
+    "spotId": "r2"
+  },
+  {
+    "time": 42.55,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · L1共有下 · red-E6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 40.05,
+    "objectId": "red-E6",
+    "objectType": "earth",
+    "spotId": "s2"
+  },
+  {
+    "time": 47.65,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · S8",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "S8"
+    ],
+    "observationAt": 46.15,
+    "objectId": "S8",
+    "objectType": "sky"
+  },
+  {
+    "time": 53.75,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · L1共有下 · S8",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 51.25,
+    "objectId": "S8",
+    "objectType": "sky",
+    "spotId": "s2"
+  }
+]

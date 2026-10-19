@@ -1,0 +1,2203 @@
+{
+  "options": {
+    "out": "results/l2-defense-2026-10-19-verified",
+    "speeds": [
+      1,
+      0.75,
+      0.5
+    ]
+  },
+  "timeStep": 0.05,
+  "hashes": {
+    "sim/action-plan.js": "6d4273eebfe71f8e2be1a0108de16421b979c26a6af2519ea39e0253c68fb76b",
+    "sim/br-observation.js": "3589d34f4e62366dcd0967d9c8508d1525582172b5ad1f2ecb3dfb51b25f3ed5",
+    "sim/competitive-strategies.js": "a7e2023cd5954371ff579165b5962bf78e7a01fbccdc613b8507fde432646429",
+    "sim/controllers.js": "c064a69760e9dd48efb918d6453f309cd0a25972129c36c070eaa1b661d471b9",
+    "sim/efficient-strategy.js": "02468a90668756df46e4bda68b393ed1f3bdae1c82dbeed26abc2c2da774b5a2",
+    "sim/engine.js": "d9258a0df541e8bc665edc6373d4ebb36dd95f0b62e990322c79eb3694c305a4",
+    "sim/field-3d.js": "26cc1e42bd2f91ec87da5c2af346ae70b3064fd4adb40dff17780b6e27f2574b",
+    "sim/field.js": "5f06a3e26c336dc53669c24fdc19f87cd43df930f1b66a5e8b23f78127858ede",
+    "sim/ideal-baseline.js": "6e443c955939b25b40d31a59d2efccaf1b79d7b6d6afc3dafcc8946e537bb4f5",
+    "sim/l2-sky-defense.js": "eca0e6a3373529298605befd2a98b4742a5ca601f62b0cc2ecc4700a371271aa",
+    "sim/match-strategies.js": "d843af5694a58df972dacb0ffc3963776013fb970968b3ef3a1dca79f9f734f7",
+    "sim/post-match-review.js": "4c940ee9e27d3076301d2831a3ed9b8e4272beaf19ef3cf04aa47950ebdf9de6",
+    "sim/private-first.js": "1311265ab342e68593de79daf3acf1ee7f27d90ebd034a3488ba2b31765380af",
+    "sim/score-planner.js": "4267063db6848537010cf911fbeeacc29dbe5197f4360a4293087458b9f3101a",
+    "sim/sequence-ui.js": "8dcf94a4d066e7f64fc685e8cd6fa6c87ef5a3be19ce5d6036627120dace1681",
+    "sim/tactical-baseline.js": "1ca10d7589d0824cbafb8c5e2c5bb217a42b534ba5e5f2d33da6903dbe152664",
+    "sim/view.js": "c43e9f2b94086a52d7d8e7f52dec4ec6234e0f1ee0b62ad674a740222efeafc7",
+    "sim/workspace-ui.js": "aca26d4dd4f1e4ef5786092e2a4d76cc66b3ee9c073405a83145a7263245db8b",
+    "tools/compare-l2-defense.cjs": "1cb7b526a8ef4d3cd90f14100f9328a16e11dbf8c9546bfa121a252f75826797"
+  },
+  "elapsedMs": 70049.0434,
+  "rows": [
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2（現行）",
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "red": 570,
+      "blue": 340,
+      "difference": 230,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 320,
+          "mustika": 250,
+          "total": 570,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 340,
+          "mustika": 0,
+          "total": 340,
+          "sky": 3
+        }
+      },
+      "sanctuary": {
+        "red": 51.25,
+        "blue": 67.65
+      },
+      "pickup": 53.35,
+      "enshrine": 81.75,
+      "activatedAt": null,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 140.25,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 1
+        },
+        {
+          "time": 142.3,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 144.8,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 3,
+          "objectType": "earth"
+        },
+        {
+          "time": 152.5,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 1
+        },
+        {
+          "time": 154.35,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 156.85,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 165.5,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 3,
+          "objectType": "sky"
+        },
+        {
+          "time": 165.65,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 1
+        },
+        {
+          "time": 173.2,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 1
+        },
+        {
+          "time": 178.25,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "sky"
+        },
+        {
+          "time": 178.3,
+          "robot": "redBR",
+          "action": "return",
+          "spot": null,
+          "objectType": "earth"
+        }
+      ],
+      "phases": [],
+      "retries": [],
+      "rejections": [],
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "elapsedMs": 6155.25
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "奉納後L2防衛",
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "red": 540,
+      "blue": 400,
+      "difference": 140,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 290,
+          "mustika": 250,
+          "total": 540,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "sanctuary": {
+        "red": 51.25,
+        "blue": 67.65
+      },
+      "pickup": 53.35,
+      "enshrine": 81.75,
+      "activatedAt": 82.75,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 145.3,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 10,
+          "objectType": "earth"
+        },
+        {
+          "time": 151.8,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 151.95,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 158.6,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 164,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 173.2,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 173.95,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 10
+        }
+      ],
+      "phases": [
+        {
+          "time": 82.75,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 84.6,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 87.1,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 88.1,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 90.6,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 91.6,
+          "activatedAt": 82.75,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 101.1,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 107.4,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 109.9,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 110.9,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 113.05,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 115.55,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 116.55,
+          "activatedAt": 82.75,
+          "phase": "guard",
+          "reason": "L2で再観測・Skyの再奪取に備える",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 126.5,
+          "activatedAt": 82.75,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 135.45,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u4"
+            },
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 142.8,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 145.3,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 146.3,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 149.45,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 151.95,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 152.95,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 156.1,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 158.6,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 159.6,
+          "activatedAt": 82.75,
+          "phase": "guard",
+          "reason": "L2で再観測・Skyの再奪取に備える",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 164.55,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 170.7,
+          "activatedAt": 82.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 173.2,
+          "activatedAt": 82.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 174.2,
+          "activatedAt": 82.75,
+          "phase": "guard",
+          "reason": "L2で再観測・Skyの再奪取に備える",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 179.15,
+          "activatedAt": 82.75,
+          "phase": "fallback",
+          "reason": "間に合うL2作業なし・V2で残り得点を評価",
+          "intent": null,
+          "tasks": []
+        }
+      ],
+      "retries": [],
+      "rejections": [],
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "elapsedMs": 11472.21
+    },
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2（現行）",
+      "redSpeed": 0.75,
+      "blueSpeed": 1,
+      "red": 500,
+      "blue": 510,
+      "difference": -10,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 250,
+          "mustika": 250,
+          "total": 500,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 510,
+          "mustika": 0,
+          "total": 510,
+          "sky": 5
+        }
+      },
+      "sanctuary": {
+        "red": 51.75,
+        "blue": 67.65
+      },
+      "pickup": 53.5,
+      "enshrine": 84.75,
+      "activatedAt": null,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "blue",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 144.9,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 7,
+          "objectType": "sky"
+        },
+        {
+          "time": 152.75,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 8,
+          "objectType": "sky"
+        },
+        {
+          "time": 158.4,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 7
+        },
+        {
+          "time": 165.1,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 171.5,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 178.15,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 178.75,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 1
+        }
+      ],
+      "phases": [],
+      "retries": [],
+      "rejections": [],
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "elapsedMs": 16088.85
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "奉納後L2防衛",
+      "redSpeed": 0.75,
+      "blueSpeed": 1,
+      "red": 540,
+      "blue": 400,
+      "difference": 140,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 290,
+          "mustika": 250,
+          "total": 540,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 400,
+          "mustika": 0,
+          "total": 400,
+          "sky": 4
+        }
+      },
+      "sanctuary": {
+        "red": 51.75,
+        "blue": 67.65
+      },
+      "pickup": 53.5,
+      "enshrine": 84.75,
+      "activatedAt": 85.75,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 146.65,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 7,
+          "objectType": "earth"
+        },
+        {
+          "time": 152.5,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 159.45,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 10,
+          "objectType": "sky"
+        },
+        {
+          "time": 160.65,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 171.5,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 10
+        },
+        {
+          "time": 177.55,
+          "robot": "redBR",
+          "action": "flip",
+          "spot": 10
+        },
+        {
+          "time": 178.15,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 8
+        }
+      ],
+      "phases": [
+        {
+          "time": 85.75,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 87.7,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 90.2,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 91.2,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 93.7,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 94.7,
+          "activatedAt": 85.75,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 104.85,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 112,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 114.5,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 115.5,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 117.85,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 120.35,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 121.35,
+          "activatedAt": 85.75,
+          "phase": "guard",
+          "reason": "L2で再観測・Skyの再奪取に備える",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 127.45,
+          "activatedAt": 85.75,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 137,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u3"
+            },
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 144.15,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 146.65,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 147.65,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 150,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 152.5,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 153.5,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 156.95,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 159.45,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 160.45,
+          "activatedAt": 85.75,
+          "phase": "guard",
+          "reason": "L2で再観測・Skyの再奪取に備える",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 171.75,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 175.05,
+          "activatedAt": 85.75,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "flip",
+            "spotId": "u4"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u4"
+            }
+          ]
+        },
+        {
+          "time": 177.55,
+          "activatedAt": 85.75,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 178.55,
+          "activatedAt": 85.75,
+          "phase": "fallback",
+          "reason": "間に合うL2作業なし・V2で残り得点を評価",
+          "intent": null,
+          "tasks": []
+        }
+      ],
+      "retries": [],
+      "rejections": [],
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "elapsedMs": 13958.74
+    },
+    {
+      "strategy": "private-first-short",
+      "label": "後半V2（現行）",
+      "redSpeed": 0.5,
+      "blueSpeed": 1,
+      "red": 460,
+      "blue": 340,
+      "difference": 120,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 210,
+          "mustika": 250,
+          "total": 460,
+          "sky": 1
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 340,
+          "mustika": 0,
+          "total": 340,
+          "sky": 3
+        }
+      },
+      "sanctuary": {
+        "red": 56.95,
+        "blue": 74.65
+      },
+      "pickup": 58.5,
+      "enshrine": 95,
+      "activatedAt": null,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 140.15,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 1
+        },
+        {
+          "time": 154.25,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 156.75,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 4,
+          "objectType": "earth"
+        },
+        {
+          "time": 163.95,
+          "robot": "redBR",
+          "action": "retry",
+          "spot": null
+        }
+      ],
+      "phases": [],
+      "retries": [
+        {
+          "time": 163.95,
+          "robot": "redBR",
+          "action": "auto-retry-request",
+          "text": "移動停止 5秒 · 自動Retry",
+          "kind": "recovery",
+          "rule": "シミュレーション指定",
+          "level": 1,
+          "blockedSince": 158.95,
+          "cargo": [
+            "S10",
+            "S4"
+          ]
+        }
+      ],
+      "rejections": [
+        {
+          "time": 55.65,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        },
+        {
+          "time": 59.15,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        }
+      ],
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "elapsedMs": 10988.4
+    },
+    {
+      "strategy": "private-first-short-l2-defense",
+      "label": "奉納後L2防衛",
+      "redSpeed": 0.5,
+      "blueSpeed": 1,
+      "red": 500,
+      "blue": 430,
+      "difference": 70,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 250,
+          "mustika": 250,
+          "total": 500,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 430,
+          "mustika": 0,
+          "total": 430,
+          "sky": 4
+        }
+      },
+      "sanctuary": {
+        "red": 56.95,
+        "blue": 74.65
+      },
+      "pickup": 58.5,
+      "enshrine": 95,
+      "activatedAt": 96,
+      "l2Final": [
+        {
+          "number": 8,
+          "id": "u1",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "blue",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "id": "u2",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "sky",
+              "team": "red",
+              "color": "red",
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "id": "u3",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "red",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "id": "u4",
+          "layers": [
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            },
+            {
+              "type": "earth",
+              "team": "blue",
+              "color": null,
+              "touchedBy": null
+            }
+          ]
+        }
+      ],
+      "lateActions": [
+        {
+          "time": 150.2,
+          "robot": "blueBR",
+          "action": "place",
+          "spot": 7,
+          "objectType": "earth"
+        },
+        {
+          "time": 155.85,
+          "robot": "blueBR",
+          "action": "flip",
+          "spot": 8
+        },
+        {
+          "time": 171.55,
+          "robot": "redBR",
+          "action": "place",
+          "spot": 9,
+          "objectType": "sky"
+        }
+      ],
+      "phases": [
+        {
+          "time": 96,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            },
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 98.2,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E5",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E5",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 100.7,
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 101.7,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E3",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E3",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 104.2,
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 105.2,
+          "activatedAt": 96,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u2"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u2"
+            }
+          ]
+        },
+        {
+          "time": 116.85,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 125.6,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E7",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E7",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 128.1,
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 129.1,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 131.75,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S10",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S10",
+              "spotId": "u1"
+            }
+          ]
+        },
+        {
+          "time": 134.25,
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 135.25,
+          "activatedAt": 96,
+          "phase": "supply-work",
+          "reason": "L2のSky・土台を優先",
+          "intent": null,
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 146.9,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "red-E10",
+            "spotId": "u3"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "red-E10",
+              "spotId": "u3"
+            },
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u3"
+            }
+          ]
+        },
+        {
+          "time": 155.65,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u2"
+            }
+          ]
+        },
+        {
+          "time": 169.05,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "到着先を再確認・合法なら作業を完了",
+          "intent": {
+            "type": "place",
+            "objectId": "S4",
+            "spotId": "u2"
+          },
+          "tasks": [
+            {
+              "type": "place",
+              "objectId": "S4",
+              "spotId": "u2"
+            }
+          ]
+        },
+        {
+          "time": 171.55,
+          "activatedAt": 96,
+          "phase": "scan",
+          "reason": "L2防衛・停止して再観測",
+          "intent": null,
+          "tasks": []
+        },
+        {
+          "time": 172.55,
+          "activatedAt": 96,
+          "phase": "work",
+          "reason": "手持ち・現地のL2作業を優先",
+          "intent": {
+            "type": "flip",
+            "spotId": "u1"
+          },
+          "tasks": [
+            {
+              "type": "flip",
+              "spotId": "u1"
+            }
+          ]
+        }
+      ],
+      "retries": [],
+      "rejections": [
+        {
+          "time": 55.65,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        },
+        {
+          "time": 59.15,
+          "robot": "blueBR",
+          "action": "place",
+          "text": "正規の配置順はEarth → Earth → Skyです。この配置は得点対象外です",
+          "kind": "unscored",
+          "rule": "8.6.2"
+        }
+      ],
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "elapsedMs": 9104.59
+    }
+  ],
+  "pairs": [
+    {
+      "redSpeed": 1,
+      "openingIdentical": true,
+      "prefixHash": "3254fda4bb03d5c6f2874e91a38ad76472e83e4319fd36f64d0660ecb3ad89ad",
+      "controlDifference": 230,
+      "defenseDifference": 140,
+      "differenceImprovement": -90,
+      "enshrine": 81.75
+    },
+    {
+      "redSpeed": 0.75,
+      "openingIdentical": true,
+      "prefixHash": "1feed8281b430059546753b7245b1a332158f30959e1bfe4fd968d0b0a351c06",
+      "controlDifference": -10,
+      "defenseDifference": 140,
+      "differenceImprovement": 150,
+      "enshrine": 84.75
+    },
+    {
+      "redSpeed": 0.5,
+      "openingIdentical": true,
+      "prefixHash": "38f6f3b899e4a2f70cc90989ffbe49b349bd56a3ae41e84260110668ff94597e",
+      "controlDifference": 120,
+      "defenseDifference": 70,
+      "differenceImprovement": -50,
+      "enshrine": 95
+    }
+  ]
+}

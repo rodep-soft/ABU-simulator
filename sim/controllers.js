@@ -7,10 +7,13 @@
     typeof module === 'object' ? require('./engine.js') : root.RoboSim,
     typeof module === 'object' ? require('./tactical-baseline.js') : root.RoboTacticalBaseline,
     typeof module === 'object' ? require('./ideal-baseline.js') : root.RoboIdealBaseline,
-    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation);
+    typeof module === 'object' ? require('./br-observation.js') : root.RoboBrObservation,
+    typeof module === 'object' ? require('./private-first.js') : root.RoboPrivateFirst,
+    typeof module === 'object' ? require('./l2-sky-defense.js') : root.RoboL2Defense,
+    typeof module === 'object' ? require('./flexible-post.js') : root.RoboFlexiblePost);
   if (typeof module === 'object') module.exports = api;
   else root.RoboControllers = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive, S, TacticalBaseline, IdealBaseline, Perception) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (F, Planner, Efficient, Match, Competitive, S, TacticalBaseline, IdealBaseline, Perception, PrivateFirst, L2Defense, FlexiblePost) {
   'use strict';
   const copy = x => JSON.parse(JSON.stringify(x));
   const go = (target, label) => ({ type: 'move', target, label });
@@ -239,6 +242,10 @@
         details: () => [['初配置', '赤1・2・7 / 青1・6・10'], ['評価', '点差・Earth固定点・資格進捗・再反転リスク'], ['Mustika', '共通の直接受取・優先奉納']] },
       { id: IdealBaseline.ID, name: '戦術ベースライン v2 · 資格完成と終盤の点差', shortName: '戦術基準 v2', run: IdealBaseline.builder,
         details: team => [['資格形成', `${team === 'red' ? '2' : '6'}番の完成 → 1番 / 即資格の共有反転も比較`], ['運搬', '受渡では有用な2個組 / 出発後は手持ちの資格形成を優先'], ['110秒以降', '点差・Earth固定点・再反転リスク'], ['150秒以降', '有用な現地配置・反転を補給より優先'], ['Mustika', '届くまでは作業継続 / 直接受取・奉納は優先']] },
+      ...PrivateFirst.modes.map(mode => ({ id: mode.id, name: '専有完成→E1+S1 · ' + mode.label, shortName: '専有先行・' + mode.label,
+        run: v => PrivateFirst.builder(v, mode.id), details: team => PrivateFirst.details(team, mode.id) })),
+      { id: L2Defense.ID, name: '短時間待機→奉納後L2 Sky防衛', shortName: '短待機・奉納後L2防衛', run: L2Defense.builder, details: L2Defense.details },
+      { id: FlexiblePost.ID, name: '短時間待機→奉納後全エリア・点差対応', shortName: '短待機・奉納後全域', run: FlexiblePost.builder, details: FlexiblePost.details },
     ],
   };
   function resolveStrategy(role, id) {

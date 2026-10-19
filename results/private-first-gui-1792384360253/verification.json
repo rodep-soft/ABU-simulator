@@ -1,0 +1,235 @@
+{
+  "result": {
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 320,
+        "mustika": 250,
+        "total": 570,
+        "sky": 3
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 340,
+        "mustika": 0,
+        "total": 340,
+        "sky": 3
+      }
+    },
+    "config": {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "adaptive",
+      "blueTrPlan": "adaptive",
+      "redBrPlan": "private-first-short",
+      "blueBrPlan": "tactical-baseline-v2",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "trAutoRestartSeconds": 1,
+      "brObservationMode": "stopped",
+      "supplyMode": "ideal",
+      "recordActions": true,
+      "redBrTurns": [],
+      "redTrTrips": [],
+      "blueBrTurns": [],
+      "blueTrTrips": [],
+      "trMustikaPickupSignal": "off"
+    },
+    "sanctuary": {
+      "red": 51.25,
+      "blue": 67.65
+    },
+    "calls": 461,
+    "phases": [
+      {
+        "at": 0,
+        "phase": "scan"
+      },
+      {
+        "at": 11.4,
+        "phase": "private"
+      },
+      {
+        "at": 17.3,
+        "phase": "private"
+      },
+      {
+        "at": 19.3,
+        "phase": "private"
+      },
+      {
+        "at": 24.3,
+        "phase": "scan"
+      },
+      {
+        "at": 25.3,
+        "phase": "private"
+      },
+      {
+        "at": 29.8,
+        "phase": "private"
+      },
+      {
+        "at": 31.8,
+        "phase": "private"
+      },
+      {
+        "at": 34.3,
+        "phase": "scan"
+      },
+      {
+        "at": 35.3,
+        "phase": "arm"
+      },
+      {
+        "at": 41.3,
+        "phase": "watch"
+      },
+      {
+        "at": 43.2,
+        "phase": "claim"
+      },
+      {
+        "at": 46.25,
+        "phase": "claim"
+      },
+      {
+        "at": 51.25,
+        "phase": "scan"
+      },
+      {
+        "at": 52.25,
+        "phase": "baseline"
+      },
+      {
+        "at": 58.85,
+        "phase": "baseline"
+      },
+      {
+        "at": 81.75,
+        "phase": "scan"
+      },
+      {
+        "at": 82.75,
+        "phase": "baseline"
+      },
+      {
+        "at": 84.6,
+        "phase": "baseline"
+      },
+      {
+        "at": 89.6,
+        "phase": "scan"
+      },
+      {
+        "at": 90.6,
+        "phase": "baseline"
+      },
+      {
+        "at": 97.5,
+        "phase": "baseline"
+      },
+      {
+        "at": 100,
+        "phase": "scan"
+      },
+      {
+        "at": 101,
+        "phase": "baseline"
+      },
+      {
+        "at": 107.6,
+        "phase": "baseline"
+      },
+      {
+        "at": 113.9,
+        "phase": "baseline"
+      },
+      {
+        "at": 118.9,
+        "phase": "scan"
+      },
+      {
+        "at": 119.9,
+        "phase": "baseline"
+      },
+      {
+        "at": 126.8,
+        "phase": "baseline"
+      },
+      {
+        "at": 129.3,
+        "phase": "scan"
+      },
+      {
+        "at": 130.3,
+        "phase": "baseline"
+      },
+      {
+        "at": 136.9,
+        "phase": "baseline"
+      },
+      {
+        "at": 139.8,
+        "phase": "baseline"
+      },
+      {
+        "at": 144.8,
+        "phase": "scan"
+      },
+      {
+        "at": 145.8,
+        "phase": "baseline"
+      },
+      {
+        "at": 150,
+        "phase": "baseline"
+      },
+      {
+        "at": 152.5,
+        "phase": "scan"
+      },
+      {
+        "at": 153.5,
+        "phase": "baseline"
+      },
+      {
+        "at": 160.1,
+        "phase": "baseline"
+      },
+      {
+        "at": 163,
+        "phase": "baseline"
+      },
+      {
+        "at": 165.5,
+        "phase": "scan"
+      },
+      {
+        "at": 166.5,
+        "phase": "baseline"
+      },
+      {
+        "at": 170.7,
+        "phase": "baseline"
+      },
+      {
+        "at": 173.2,
+        "phase": "scan"
+      },
+      {
+        "at": 174.2,
+        "phase": "baseline"
+      }
+    ]
+  },
+  "errors": []
+}

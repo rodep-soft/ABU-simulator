@@ -1,0 +1,554 @@
+[
+  {
+    "time": 0,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有先行 · 停止して認識 · 2往復内の予測加点 +0",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 0,
+      "strategy": "private-first-now",
+      "summary": "専有先行 · 停止して認識",
+      "gain": 0,
+      "horizonGain": 0,
+      "seconds": 0,
+      "horizonSeconds": 0,
+      "tasks": [],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "scan",
+        "reason": "専有先行 · 停止して認識"
+      }
+    }
+  },
+  {
+    "time": 16.8,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +30",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 16.8,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 30,
+      "horizonGain": 30,
+      "seconds": 13.7,
+      "horizonSeconds": 13.7,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "red-E4",
+          "spotId": "r2"
+        },
+        {
+          "type": "place",
+          "objectId": "red-E1",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [
+        "red-E4",
+        "red-E1"
+      ],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 20.6,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E4",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E4"
+    ],
+    "observationAt": 19.1,
+    "objectId": "red-E4",
+    "objectType": "earth"
+  },
+  {
+    "time": 22.1,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E1",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E4",
+      "red-E1"
+    ],
+    "observationAt": 19.1,
+    "objectId": "red-E1",
+    "objectType": "earth"
+  },
+  {
+    "time": 23.1,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +30",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 23.1,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 30,
+      "horizonGain": 30,
+      "seconds": 7.4,
+      "horizonSeconds": 7.4,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "red-E4",
+          "spotId": "r2"
+        },
+        {
+          "type": "place",
+          "objectId": "red-E1",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 25.5,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +30",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 25.5,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 30,
+      "horizonGain": 30,
+      "seconds": 5,
+      "horizonSeconds": 5,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "red-E4",
+          "spotId": "r2"
+        },
+        {
+          "type": "place",
+          "objectId": "red-E1",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 28,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · red-E4",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E1"
+    ],
+    "observationAt": 25.5,
+    "objectId": "red-E4",
+    "objectType": "earth",
+    "spotId": "r2"
+  },
+  {
+    "time": 30.5,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · red-E1",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 25.5,
+    "objectId": "red-E1",
+    "objectType": "earth",
+    "spotId": "r2"
+  },
+  {
+    "time": 30.5,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有先行 · 停止して認識 · 2往復内の予測加点 +0",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 25.5,
+      "strategy": "private-first-now",
+      "summary": "専有先行 · 停止して認識",
+      "gain": 0,
+      "horizonGain": 0,
+      "seconds": 0,
+      "horizonSeconds": 0,
+      "tasks": [],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "scan",
+        "reason": "専有先行 · 停止して認識"
+      }
+    }
+  },
+  {
+    "time": 31.5,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +40",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 31.5,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 40,
+      "horizonGain": 40,
+      "seconds": 9.8,
+      "horizonSeconds": 9.8,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "S6",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [
+        "S6"
+      ],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 35.4,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · S6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "S6"
+    ],
+    "observationAt": 33.9,
+    "objectId": "S6",
+    "objectType": "sky"
+  },
+  {
+    "time": 36.4,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +40",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 36.4,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 40,
+      "horizonGain": 40,
+      "seconds": 4.9,
+      "horizonSeconds": 4.9,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "S6",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 38.8,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有2を先に完成 · 2往復内の予測加点 +40",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 38.8,
+      "strategy": "private-first-now",
+      "summary": "専有2を先に完成",
+      "gain": 40,
+      "horizonGain": 40,
+      "seconds": 2.5,
+      "horizonSeconds": 2.5,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "S6",
+          "spotId": "r2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "private",
+        "reason": "専有2を先に完成"
+      }
+    }
+  },
+  {
+    "time": 41.3,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · 赤L1下 · S6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 38.8,
+    "objectId": "S6",
+    "objectType": "sky",
+    "spotId": "r2"
+  },
+  {
+    "time": 41.3,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有先行 · 停止して認識 · 2往復内の予測加点 +0",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 38.8,
+      "strategy": "private-first-now",
+      "summary": "専有先行 · 停止して認識",
+      "gain": 0,
+      "horizonGain": 0,
+      "seconds": 0,
+      "horizonSeconds": 0,
+      "tasks": [],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "scan",
+        "reason": "専有先行 · 停止して認識"
+      }
+    }
+  },
+  {
+    "time": 42.3,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "E1+S1を受取 · 2往復内の予測加点 +0",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 42.3,
+      "strategy": "private-first-now",
+      "summary": "E1+S1を受取",
+      "gain": 0,
+      "horizonGain": 0,
+      "seconds": 6.4,
+      "horizonSeconds": 6.4,
+      "candidates": 1,
+      "tasks": [],
+      "receive": [
+        "red-E6",
+        "S8"
+      ],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "arm",
+        "reason": "E1+S1を受取"
+      }
+    }
+  },
+  {
+    "time": 46.2,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · red-E6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E6"
+    ],
+    "observationAt": 44.7,
+    "objectId": "red-E6",
+    "objectType": "earth"
+  },
+  {
+    "time": 47.7,
+    "robot": "redBR",
+    "action": "receive",
+    "text": "ブロック受取 · S8",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "red-E6",
+      "S8"
+    ],
+    "observationAt": 44.7,
+    "objectId": "S8",
+    "objectType": "sky"
+  },
+  {
+    "time": 48.7,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "共有1の土台を利用して完成 · 2往復内の予測加点 +60",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 48.7,
+      "strategy": "private-first-now",
+      "summary": "共有1の土台を利用して完成",
+      "gain": 60,
+      "horizonGain": 60,
+      "seconds": 8.25,
+      "horizonSeconds": 8.25,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "red-E6",
+          "spotId": "s2"
+        },
+        {
+          "type": "place",
+          "objectId": "S8",
+          "spotId": "s2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "claim",
+        "reason": "共有1の土台を利用して完成",
+        "armed": true,
+        "readyAt": 48.7,
+        "deadline": 48.7
+      }
+    }
+  },
+  {
+    "time": 51.95,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "共有1の土台を利用して完成 · 2往復内の予測加点 +60",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 51.95,
+      "strategy": "private-first-now",
+      "summary": "共有1の土台を利用して完成",
+      "gain": 60,
+      "horizonGain": 60,
+      "seconds": 5,
+      "horizonSeconds": 5,
+      "candidates": 1,
+      "tasks": [
+        {
+          "type": "place",
+          "objectId": "red-E6",
+          "spotId": "s2"
+        },
+        {
+          "type": "place",
+          "objectId": "S8",
+          "spotId": "s2"
+        }
+      ],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "claim",
+        "reason": "共有1の土台を利用して完成",
+        "armed": true,
+        "readyAt": 48.7,
+        "deadline": 48.7
+      }
+    }
+  },
+  {
+    "time": 54.45,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · L1共有下 · red-E6",
+    "kind": "action",
+    "rule": "",
+    "cargo": [
+      "S8"
+    ],
+    "observationAt": 51.95,
+    "objectId": "red-E6",
+    "objectType": "earth",
+    "spotId": "s2"
+  },
+  {
+    "time": 56.95,
+    "robot": "redBR",
+    "action": "place",
+    "text": "タワーへ配置 · L1共有下 · S8",
+    "kind": "action",
+    "rule": "",
+    "cargo": [],
+    "observationAt": 51.95,
+    "objectId": "S8",
+    "objectType": "sky",
+    "spotId": "s2"
+  },
+  {
+    "time": 56.95,
+    "robot": "redBR",
+    "action": "plan",
+    "text": "専有先行 · 停止して認識 · 2往復内の予測加点 +0",
+    "kind": "plan",
+    "rule": "",
+    "decision": {
+      "at": 51.95,
+      "strategy": "private-first-now",
+      "summary": "専有先行 · 停止して認識",
+      "gain": 0,
+      "horizonGain": 0,
+      "seconds": 0,
+      "horizonSeconds": 0,
+      "tasks": [],
+      "receive": [],
+      "privateFirst": {
+        "mode": "private-first-now",
+        "phase": "scan",
+        "reason": "専有先行 · 停止して認識",
+        "armed": true,
+        "readyAt": 48.7,
+        "deadline": 48.7
+      }
+    }
+  }
+]
