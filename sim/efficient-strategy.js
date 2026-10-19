@@ -51,12 +51,36 @@
       return { priority: 1, seconds: 16, reason: '共有土台待ちのE1+S1を準備済' };
     return null;
   }
-  function demand(v) {
+  function supplyReadiness(v, incoming = []) {
+    const obs = v.observation, partner = obs?.partner, entries = obs?.visibility?.entries;
+    const current = key => !entries || ['current', 'self-action'].includes(entries[key]?.status);
+    if (!partner || !Number.isFinite(partner.x) || !Number.isFinite(partner.y) || !current('partner') || !current('stock')) return { known: false };
+    const towers = F.spots.filter(p => (!p.team || p.team === v.team) && Object.hasOwn(obs.towers, p.id) && current('tower:' + p.id));
+    if (!towers.length) return { known: false };
+    let earthRoom = 0, skyRoom = 0, singleFoundation = false;
+    for (const p of towers) {
+      const t = obs.towers[p.id];
+      if (t.length > 2 || !t.every((o, i) => o.type === 'earth' && o.layer === i && !o.touchedBy)) continue;
+      earthRoom += 2 - t.length; skyRoom += t.length === 2 ? 1 : 0; singleFoundation ||= t.length === 1;
+    }
+    const available = [...obs.stock.filter(o => !o.touchedBy && !obs.stock.some(top => top.slot === o.slot && top.layer > o.layer && top.touchedBy)),
+      ...partner.cargo, ...incoming].filter(o => o.type !== 'mustika');
+    const earth = count(available, 'earth'), sky = count(available, 'sky');
+    const pair = earth >= 2 && earthRoom >= 2 || sky >= 2 && skyRoom >= 2
+      || earth && sky && (singleFoundation || earthRoom && skyRoom);
+    // This estimates useful material, not the BR's hidden plan or an execution guarantee.
+    return { known: true, near: near(partner, F.points[v.team].brStandby, 1.4) && !partner.cargo.some(o => o.type === 'mustika'),
+      earth, sky, skyRoom, ready: pair ? 2 : sky && skyRoom ? 1 : 0 };
+  }
+  function demand(v, responsive = false) {
     const obs = v.observation, available = [...obs.stock, ...(obs.partner?.cargo || [])];
     const targets = F.spots.filter(p => (!p.team || p.team === v.team) && (obs.towers[p.id] || []).length < 3)
+      .filter(p => !responsive || Object.hasOwn(obs.towers, p.id) && (!obs.visibility || ['current', 'self-action'].includes(obs.visibility.entries[`tower:${p.id}`]?.status))
+        && obs.towers[p.id].every((o, i) => o.type === 'earth' && o.layer === i && !o.touchedBy))
       .sort((a, b) => {
         const priority = p => (obs.towers[p.id]?.length || 0) * 4 + p.level;
-        return priority(b) - priority(a) || S.distance(v, a) - S.distance(v, b);
+        const origin = responsive ? obs.partner : v;
+        return priority(b) - priority(a) || S.distance(origin, a) - S.distance(origin, b);
       }).slice(0, 2);
     const need = { earth: Math.max(0, targets.reduce((n, p) => n + Math.max(0, 2 - (obs.towers[p.id]?.length || 0)), 0) - count(available, 'earth')),
       sky: Math.max(0, targets.length - count(available, 'sky')) };
@@ -67,13 +91,14 @@
       // Keep a small Earth buffer beyond the two currently most-developed towers.
       need.earth = Math.max(need.earth, Math.min(2, room) - count(available, 'earth'));
     }
-    const selected = [];
-    for (let i = 0; i < 3; i++) {
+    const selected = responsive ? v.cargo.filter(o => o.type !== 'mustika') : [];
+    for (let i = selected.length; i < 3; i++) {
       const types = ['earth', 'sky'].filter(type => count(selected, type) < need[type])
         .sort((a, b) => need[b] / (count(selected, b) + 1) - need[a] / (count(selected, a) + 1));
       const type = types.find(type => {
         const o = { type, size: type === 'earth' ? .35 : .2, height: type === 'earth' ? .35 : .2 };
-        return obs.source.some(item => item.type === type) && canStore(v.team, obs.stock, [...selected, o].sort((a, b) => b.size - a.size), obs.partner?.cargo || []);
+        const load = responsive ? selected.filter(item => item.type === type) : selected;
+        return obs.source.some(item => item.type === type) && canStore(v.team, obs.stock, [...load, o].sort((a, b) => b.size - a.size), obs.partner?.cargo || []);
       });
       if (!type) break;
       selected.push({ type, size: type === 'earth' ? .35 : .2, height: type === 'earth' ? .35 : .2 });
@@ -183,7 +208,10 @@
     }
     if (!forecast) for (const key of ['prepositionUntil', 'prepositionSince', 'prepositionPriority']) delete brain[key];
     if (v.cargo.length && (urgent || soon || v.transport?.pending.length)) brain.stage = 'deliver';
+    const supply = supplyReadiness(v);
+    const responsive = v.supplyMode === 'normal' && !opening.opening && !options.stockTarget && !v.trTrips?.length && v.time < 120 && supply.known;
     if (options.stockTarget && !opening.opening && brain.stage !== 'deliver') brain.manifest = stockDemand(v);
+    if (responsive && brain.stage !== 'deliver') brain.manifest = demand(v, true);
     if (!brain.manifest) brain.manifest = opening.opening ? { earth: opening.earth, sky: opening.sky } : options.stockTarget ? stockDemand(v) : demand(v);
     const plan = brain.manifest, target = plan.earth + plan.sky;
     if (v.cargo.length >= target && v.cargo.length) brain.stage = 'deliver';
@@ -193,8 +221,15 @@
       if (!v.cargo.length) { delete brain.manifest; brain.stage = 'collect'; return { brain, wait: .05 }; }
       if (deadline && !deliveryBudget(v).deliverable) return { brain, wait: Math.min(2, Math.max(.05, 180 - v.time)), status: '終盤締切 · 納品完了の時間不足' };
       const use = endgame && near(v, p.transferTR) ? usableSupply(v) : null;
-      const order = id => { const i = use?.tasks?.findIndex(t => t.objectId === id); return i >= 0 ? i : 100; };
-      const item = [...v.cargo].sort((a, b) => order(a.id) - order(b.id))
+      const order = o => {
+        if (responsive && supply.near && !supply.ready) {
+          const ready = supplyReadiness(v, [o]).ready;
+          const next = v.cargo.some(other => other.id !== o.id && supplyReadiness(v, [o, other]).ready);
+          return (ready ? -100 * ready : next ? -20 : 0) + supply[o.type];
+        }
+        const i = use?.tasks?.findIndex(t => t.objectId === o.id); return i >= 0 ? i : 100;
+      };
+      const item = [...v.cargo].sort((a, b) => order(a) - order(b))
         .find(o => canStore(v.team, obs.stock, [o], obs.partner?.cargo || []));
       if (options.stockTarget && (!item || near(obs.partner, p.transferBR, .75))) {
         return near(v, p.stockStandby) ? { brain, wait: .75, status: '在庫待機 · 返却枠・BR動線を確保' }
@@ -222,7 +257,8 @@
         .sort((a, b) => b.y - a.y || Math.abs(a.x - v.x) - Math.abs(b.x - v.x));
       if (!eligible.length) continue;
       const o = eligible[0], target = sourcePoint(o, v.team);
-      if (endgame && !canStore(v.team, obs.stock, [...v.cargo, o].sort((a, b) => b.size - a.size), obs.partner?.cargo || [])) continue;
+      const load = responsive ? v.cargo.filter(item => item.type === type) : v.cargo;
+      if ((endgame || responsive) && !canStore(v.team, obs.stock, [...load, o].sort((a, b) => b.size - a.size), obs.partner?.cargo || [])) continue;
       const budget = deadline ? deliveryBudget(v, o) : null;
       if (budget && !budget.fits) {
         assessment?.candidates.push({ objectId: o.id, type: o.type, budget, reason: 'delivery-deadline' });
@@ -234,9 +270,21 @@
       if (!useful) { noUse = true; continue; }
       candidates.push({ o, target, gain: use?.known && directUse?.known ? use.gain - directUse.gain : 0,
         seconds: budget?.seconds || 0 });
-      if (!endgame) break;
+      if (!endgame && !responsive) break;
     }
-    candidates.sort((a, b) => b.gain / Math.max(1, b.seconds) - a.gain / Math.max(1, a.seconds));
+    if (responsive) {
+      const priority = o => !supply.near || supply.ready ? 0
+        : 10 * supplyReadiness(v, [...v.cargo, o]).ready + (o.type === 'sky' && supply.skyRoom && !supply.sky && !count(v.cargo, 'sky') ? 30 : 0);
+      candidates.sort((a, b) => priority(b.o) - priority(a.o) || S.distance(v, a.target) - S.distance(v, b.target));
+      const next = candidates[0], carried = supplyReadiness(v, v.cargo);
+      if (next && v.cargo.length && v.cargo.length < 3 && supply.near && !supply.ready && carried.ready
+        && !(next.o.type === 'sky' && supply.skyRoom && !carried.sky)) {
+        const direct = deliveryBudget(v), detour = deliveryBudget(v, next.o);
+        if (direct.fits && detour.seconds - direct.seconds - S.actionSeconds(v.motion, 'unload') - .05 > 2) {
+          return { brain: { ...brain, stage: 'deliver' }, wait: .05, status: 'BRの作業再開を優先 · 手持ちを先行納品' };
+        }
+      }
+    } else candidates.sort((a, b) => b.gain / Math.max(1, b.seconds) - a.gain / Math.max(1, a.seconds));
     if (candidates.length) {
       const { o, target } = candidates[0];
       if (directUse?.known) {

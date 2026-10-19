@@ -1,0 +1,1138 @@
+{
+  "sourceHashes": {
+    "action-plan.js": "6d4273eebfe71f8e2be1a0108de16421b979c26a6af2519ea39e0253c68fb76b",
+    "br-observation.js": "d12135ad915e1889eea8f553dcb967c47921cab674172826712006e43bab8a8c",
+    "competitive-strategies.js": "a7e2023cd5954371ff579165b5962bf78e7a01fbccdc613b8507fde432646429",
+    "controllers.js": "6e5da6724da7bfbe0b5d92adfddc40b2c055196ba2a538a3ae41225ba4b9d132",
+    "efficient-strategy.js": "25f8829bfa433399667040fe04c06192b068f77a69223ffd0064dc121e128f03",
+    "engine.js": "a63fcd18b7a56a310211d3ca9938530b96375f5bd865c5e6990228a186168a22",
+    "field-3d.js": "26cc1e42bd2f91ec87da5c2af346ae70b3064fd4adb40dff17780b6e27f2574b",
+    "field.js": "5f06a3e26c336dc53669c24fdc19f87cd43df930f1b66a5e8b23f78127858ede",
+    "flexible-post.js": "876914999664c490ea3a26d72e8bac4222dd92c6ed97199f94a5f4bee61f423f",
+    "ideal-baseline.js": "6e443c955939b25b40d31a59d2efccaf1b79d7b6d6afc3dafcc8946e537bb4f5",
+    "l2-sky-defense.js": "eca0e6a3373529298605befd2a98b4742a5ca601f62b0cc2ecc4700a371271aa",
+    "match-strategies.js": "d843af5694a58df972dacb0ffc3963776013fb970968b3ef3a1dca79f9f734f7",
+    "post-match-review.js": "4c940ee9e27d3076301d2831a3ed9b8e4272beaf19ef3cf04aa47950ebdf9de6",
+    "private-first.js": "673baeccc1463b453f81c2c63e48cb96d4b5ea7d76b01177e253b3678e128e0d",
+    "score-planner.js": "4267063db6848537010cf911fbeeacc29dbe5197f4360a4293087458b9f3101a",
+    "sequence-ui.js": "163734a3b8ad04e3b823238027c3b441d489a7914cb4ea035b2baf19d2eab2f0",
+    "tactical-baseline.js": "1ca10d7589d0824cbafb8c5e2c5bb217a42b534ba5e5f2d33da6903dbe152664",
+    "view.js": "554f37e1668ebd58c08b66cbdb4ff9cc4e1947ede532d284a189fd4df2209cc5",
+    "workspace-ui.js": "aca26d4dd4f1e4ef5786092e2a4d76cc66b3ee9c073405a83145a7263245db8b"
+  },
+  "timeStep": 0.05,
+  "rows": [
+    {
+      "id": "gui-blue-1",
+      "blueSpeed": 1,
+      "redBrPlan": "efficient",
+      "scores": {
+        "red": {
+          "transfer": 50,
+          "tower": 320,
+          "mustika": 0,
+          "total": 370,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 50,
+          "tower": 200,
+          "mustika": 250,
+          "total": 500,
+          "sky": 2
+        }
+      },
+      "byTeam": {
+        "red": {
+          "sanctuary": 140.55,
+          "enshrine": null,
+          "firstPlace": 37.9,
+          "brContexts": {
+            "other": 117.5,
+            "br-other-supply-plan": 44.35,
+            "br-transfer-refresh": 18.15
+          },
+          "trCategories": {
+            "dispatch": 3.75,
+            "movement": 78.2,
+            "movement-obstacle": 2,
+            "pickup": 14.5,
+            "unload": 14.5,
+            "terrain-pause": 11.05,
+            "controller-wait": 56
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "red-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S10",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 51.9,
+              "items": [
+                {
+                  "id": "S8",
+                  "type": "sky"
+                },
+                {
+                  "id": "red-E18",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E17",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 87.75,
+              "items": [
+                {
+                  "id": "red-E16",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 109.55,
+              "items": [
+                {
+                  "id": "S6",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 131.3,
+              "items": [
+                {
+                  "id": "S4",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            },
+            {
+              "number": 6,
+              "time": 143,
+              "items": [
+                {
+                  "id": "red-E15",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 10,
+          "placedDeliveries": 8,
+          "unusedDeliveries": 2,
+          "finalCargo": []
+        },
+        "blue": {
+          "sanctuary": 80.35,
+          "enshrine": 128.7,
+          "firstPlace": 31.7,
+          "brContexts": {
+            "other": 145.7,
+            "br-box-supply": 15.75,
+            "br-unload-wait": 1.9,
+            "br-transfer-refresh": 16.65
+          },
+          "trCategories": {
+            "dispatch": 5.35,
+            "movement": 83.35,
+            "movement-obstacle": 2,
+            "pickup": 15.95,
+            "unload": 14.5,
+            "terrain-pause": 6.5,
+            "controller-wait": 52.35
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "blue-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S12",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 48.15,
+              "items": [
+                {
+                  "id": "S11",
+                  "type": "sky"
+                },
+                {
+                  "id": "blue-E18",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 73.9,
+              "items": [
+                {
+                  "id": "blue-E17",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 95.85,
+              "items": [
+                {
+                  "id": "S9",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 119.15,
+              "items": [
+                {
+                  "id": "M",
+                  "type": "mustika"
+                }
+              ],
+              "types": [
+                "mustika"
+              ]
+            },
+            {
+              "number": 6,
+              "time": 134.15,
+              "items": [
+                {
+                  "id": "blue-E15",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E16",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 7,
+              "time": 148.1,
+              "items": [
+                {
+                  "id": "blue-E14",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 10,
+          "placedDeliveries": 6,
+          "unusedDeliveries": 4,
+          "finalCargo": []
+        }
+      },
+      "rejections": [
+        {
+          "time": 31.55,
+          "robot": "redTR",
+          "action": "pickup",
+          "text": "取得できる物体がありません",
+          "kind": "physical",
+          "rule": "OBJ-11"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 9293.6473
+    },
+    {
+      "id": "gui-blue-0.75",
+      "blueSpeed": 0.75,
+      "redBrPlan": "efficient",
+      "scores": {
+        "red": {
+          "transfer": 55,
+          "tower": 300,
+          "mustika": 0,
+          "total": 355,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 45,
+          "tower": 330,
+          "mustika": 250,
+          "total": 625,
+          "sky": 3
+        }
+      },
+      "byTeam": {
+        "red": {
+          "sanctuary": 173.05,
+          "enshrine": null,
+          "firstPlace": 37.9,
+          "brContexts": {
+            "other": 117.5,
+            "br-other-supply-plan": 44.35,
+            "br-transfer-refresh": 18.15
+          },
+          "trCategories": {
+            "dispatch": 4.05,
+            "movement": 79.45,
+            "movement-obstacle": 2,
+            "pickup": 15.95,
+            "unload": 15.95,
+            "terrain-pause": 3.9,
+            "controller-wait": 58.7
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "red-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S10",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 51.7,
+              "items": [
+                {
+                  "id": "S11",
+                  "type": "sky"
+                },
+                {
+                  "id": "red-E18",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E17",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 104.7,
+              "items": [
+                {
+                  "id": "S8",
+                  "type": "sky"
+                },
+                {
+                  "id": "red-E16",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 119.95,
+              "items": [
+                {
+                  "id": "red-E15",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 144.15,
+              "items": [
+                {
+                  "id": "red-E14",
+                  "type": "earth"
+                },
+                {
+                  "id": "S6",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "sky"
+              ]
+            }
+          ],
+          "delivered": 11,
+          "placedDeliveries": 8,
+          "unusedDeliveries": 3,
+          "finalCargo": []
+        },
+        "blue": {
+          "sanctuary": 84.3,
+          "enshrine": 130.2,
+          "firstPlace": 33.9,
+          "brContexts": {
+            "other": 136.9,
+            "br-box-supply": 17.1,
+            "br-unload-wait": 2.05,
+            "br-transfer-refresh": 23.65,
+            "br-other-supply-plan": 0.3
+          },
+          "trCategories": {
+            "dispatch": 4.55,
+            "movement": 81.2,
+            "movement-obstacle": 2.3,
+            "pickup": 14.5,
+            "unload": 13.05,
+            "terrain-pause": 4.55,
+            "controller-wait": 59.85
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 24.1,
+              "items": [
+                {
+                  "id": "blue-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S12",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 54,
+              "items": [
+                {
+                  "id": "S9",
+                  "type": "sky"
+                },
+                {
+                  "id": "blue-E18",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 101.85,
+              "items": [
+                {
+                  "id": "blue-E17",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E16",
+                  "type": "earth"
+                },
+                {
+                  "id": "S7",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 120.05,
+              "items": [
+                {
+                  "id": "M",
+                  "type": "mustika"
+                }
+              ],
+              "types": [
+                "mustika"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 133.3,
+              "items": [
+                {
+                  "id": "blue-E15",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 9,
+          "placedDeliveries": 7,
+          "unusedDeliveries": 2,
+          "finalCargo": []
+        }
+      },
+      "rejections": [
+        {
+          "time": 34.9,
+          "robot": "blueTR",
+          "action": "pickup",
+          "text": "取得できる物体がありません",
+          "kind": "physical",
+          "rule": "OBJ-11"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 15272.5539
+    },
+    {
+      "id": "gui-blue-0.5",
+      "blueSpeed": 0.5,
+      "redBrPlan": "efficient",
+      "scores": {
+        "red": {
+          "transfer": 55,
+          "tower": 380,
+          "mustika": 0,
+          "total": 435,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 30,
+          "tower": 170,
+          "mustika": 250,
+          "total": 450,
+          "sky": 2
+        }
+      },
+      "byTeam": {
+        "red": {
+          "sanctuary": 174.4,
+          "enshrine": null,
+          "firstPlace": 37.9,
+          "brContexts": {
+            "other": 124.65,
+            "br-other-supply-plan": 37.2,
+            "br-transfer-refresh": 18.15
+          },
+          "trCategories": {
+            "dispatch": 3.85,
+            "movement": 80.1,
+            "movement-obstacle": 2,
+            "pickup": 15.95,
+            "unload": 15.95,
+            "terrain-pause": 8.45,
+            "controller-wait": 53.7
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "red-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S10",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 51.7,
+              "items": [
+                {
+                  "id": "S11",
+                  "type": "sky"
+                },
+                {
+                  "id": "red-E18",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E17",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 88.15,
+              "items": [
+                {
+                  "id": "red-E16",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 112.45,
+              "items": [
+                {
+                  "id": "red-E15",
+                  "type": "earth"
+                },
+                {
+                  "id": "S8",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 134.05,
+              "items": [
+                {
+                  "id": "S6",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            },
+            {
+              "number": 6,
+              "time": 146.05,
+              "items": [
+                {
+                  "id": "red-E14",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 11,
+          "placedDeliveries": 9,
+          "unusedDeliveries": 2,
+          "finalCargo": []
+        },
+        "blue": {
+          "sanctuary": 80.7,
+          "enshrine": 129.45,
+          "firstPlace": 37.9,
+          "brContexts": {
+            "other": 109.65,
+            "br-box-supply": 26.35,
+            "br-unload-wait": 2.3,
+            "br-transfer-refresh": 4.7,
+            "br-other-supply-plan": 37
+          },
+          "trCategories": {
+            "dispatch": 4.5,
+            "movement": 97.75,
+            "movement-obstacle": 2.8,
+            "pickup": 10.15,
+            "unload": 8.7,
+            "terrain-pause": 9.1,
+            "controller-wait": 47
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 27.7,
+              "items": [
+                {
+                  "id": "blue-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S12",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 60.75,
+              "items": [
+                {
+                  "id": "S9",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 89.25,
+              "items": [
+                {
+                  "id": "blue-E18",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 117.8,
+              "items": [
+                {
+                  "id": "M",
+                  "type": "mustika"
+                }
+              ],
+              "types": [
+                "mustika"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 149.6,
+              "items": [
+                {
+                  "id": "S7",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky"
+              ]
+            }
+          ],
+          "delivered": 6,
+          "placedDeliveries": 5,
+          "unusedDeliveries": 1,
+          "finalCargo": []
+        }
+      },
+      "rejections": [
+        {
+          "time": 41.9,
+          "robot": "blueTR",
+          "action": "pickup",
+          "text": "取得できる物体がありません",
+          "kind": "physical",
+          "rule": "OBJ-11"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 11607.2869
+    },
+    {
+      "id": "earth-heavy",
+      "blueSpeed": 1,
+      "redBrPlan": "l2-earth",
+      "scores": {
+        "red": {
+          "transfer": 55,
+          "tower": 190,
+          "mustika": 250,
+          "total": 495,
+          "sky": 0
+        },
+        "blue": {
+          "transfer": 45,
+          "tower": 480,
+          "mustika": 0,
+          "total": 525,
+          "sky": 5
+        }
+      },
+      "byTeam": {
+        "red": {
+          "sanctuary": 95.85,
+          "enshrine": 118.25,
+          "firstPlace": 37.9,
+          "brContexts": {
+            "other": 123.7,
+            "br-other-supply-plan": 22.2,
+            "br-transfer-refresh": 34.1
+          },
+          "trCategories": {
+            "dispatch": 4.5,
+            "movement": 72.85,
+            "movement-obstacle": 2,
+            "pickup": 17.4,
+            "unload": 15.95,
+            "terrain-pause": 6.5,
+            "controller-wait": 60.8
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "red-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S10",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 53.7,
+              "items": [
+                {
+                  "id": "S8",
+                  "type": "sky"
+                },
+                {
+                  "id": "red-E18",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E17",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 85.45,
+              "items": [
+                {
+                  "id": "red-E16",
+                  "type": "earth"
+                },
+                {
+                  "id": "red-E15",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 108.75,
+              "items": [
+                {
+                  "id": "M",
+                  "type": "mustika"
+                }
+              ],
+              "types": [
+                "mustika"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 134.5,
+              "items": [
+                {
+                  "id": "S4",
+                  "type": "sky"
+                },
+                {
+                  "id": "S6",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "sky",
+                "sky"
+              ]
+            },
+            {
+              "number": 6,
+              "time": 160.85,
+              "items": [
+                {
+                  "id": "red-E14",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 11,
+          "placedDeliveries": 10,
+          "unusedDeliveries": 1,
+          "finalCargo": []
+        },
+        "blue": {
+          "sanctuary": 103.85,
+          "enshrine": null,
+          "firstPlace": 31.7,
+          "brContexts": {
+            "other": 123.75,
+            "br-box-supply": 34.75,
+            "br-unload-wait": 3.8,
+            "br-transfer-refresh": 17.7
+          },
+          "trCategories": {
+            "dispatch": 4.25,
+            "movement": 66.8,
+            "movement-obstacle": 2,
+            "pickup": 13.05,
+            "unload": 13.05,
+            "terrain-pause": 4.55,
+            "controller-wait": 76.3
+          },
+          "trips": [
+            {
+              "number": 1,
+              "time": 22,
+              "items": [
+                {
+                  "id": "blue-E20",
+                  "type": "earth"
+                },
+                {
+                  "id": "blue-E19",
+                  "type": "earth"
+                },
+                {
+                  "id": "S12",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 2,
+              "time": 48.15,
+              "items": [
+                {
+                  "id": "S11",
+                  "type": "sky"
+                },
+                {
+                  "id": "blue-E18",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "sky",
+                "earth"
+              ]
+            },
+            {
+              "number": 3,
+              "time": 88.5,
+              "items": [
+                {
+                  "id": "blue-E17",
+                  "type": "earth"
+                },
+                {
+                  "id": "S9",
+                  "type": "sky"
+                }
+              ],
+              "types": [
+                "earth",
+                "sky"
+              ]
+            },
+            {
+              "number": 4,
+              "time": 100.2,
+              "items": [
+                {
+                  "id": "blue-E16",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            },
+            {
+              "number": 5,
+              "time": 111.9,
+              "items": [
+                {
+                  "id": "blue-E15",
+                  "type": "earth"
+                }
+              ],
+              "types": [
+                "earth"
+              ]
+            }
+          ],
+          "delivered": 9,
+          "placedDeliveries": 8,
+          "unusedDeliveries": 1,
+          "finalCargo": []
+        }
+      },
+      "rejections": [
+        {
+          "time": 31.55,
+          "robot": "redTR",
+          "action": "pickup",
+          "text": "取得できる物体がありません",
+          "kind": "physical",
+          "rule": "OBJ-11"
+        }
+      ],
+      "recoveries": [],
+      "elapsedMs": 14932.546000000002
+    }
+  ],
+  "elapsedMs": 52054.3741
+}

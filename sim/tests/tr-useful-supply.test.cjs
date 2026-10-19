@@ -89,12 +89,15 @@ test('partner timing is pre-match configuration, never live action duration or p
   assert.deepEqual(sim.view(tr).partnerMotion, v.partnerMotion);
   assert.equal(sim.view(br).partnerMotion, undefined);
 });
-test('the narrower time reserve remains explicit, while pre-120 and specified trips keep their collection rules', () => {
+test('the narrower time reserve stays explicit; pre-120 responsive supply avoids endgame search and specified trips stay fixed', () => {
   const { v, sky } = scenario();
   const b = E.deliveryBudget(v, sky);
   assert.ok(Math.abs(b.reserve - (.1 + .02 * b.travel + .5)) < 1e-8);
   assert.ok(b.reserve < 1 + .25 * b.travel + 2);
-  assert.equal(v.observation.source.find(o => o.id === pickup(C.next({ ...v, time: 119 })).objectId).type, 'earth');
+  const early = C.next({ ...v, time: 119 });
+  assert.equal(v.observation.source.find(o => o.id === pickup(early).objectId).type, 'sky');
+  assert.equal(early.supplyAssessment, undefined);
   const explicit = C.next({ ...v, time: 179, trTrips: [['earth', 'earth', 'earth']] });
-  assert.ok(pickup(explicit)); assert.equal(explicit.supplyAssessment, undefined);
+  assert.equal(v.observation.source.find(o => o.id === pickup(explicit).objectId).type, 'earth');
+  assert.equal(explicit.supplyAssessment, undefined);
 });

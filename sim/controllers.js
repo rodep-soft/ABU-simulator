@@ -261,6 +261,8 @@
       if (strategy.adaptive) return [
         ...strategy.opening.map((plan, index) => [`${index + 1}便目`, blocks(plan)]),
         ['通常補給', strategy.stockTarget ? '在庫上限 Earth3 / Sky4、欠けた種類を最大3個補給' : '不足するEarth・Sky / 受渡の空き容量に合わせ最大3個'],
+        ...(!strategy.stockTarget ? [['BRへの追従', '序中盤は観測した在庫・手持ち・盤面から便を更新 / 遠い追加採集より先行納品を判断'],
+          ['採集・荷下ろし', '必要な箱を近い順に採集 / BRの作業を始められる箱から納品 / 指定開幕・便指定は維持']] : []),
         ['Mustika', '条件接近時に先回り / 達成後最優先 / TR保持で直接受渡'],
         ['開幕指定', strategy.stockTarget ? '初便E3を固定 / 以後は返却枠を残して補給' : strategy.opening.length ? 'Mustika優先への移行時は短縮' : '盤面・在庫に応じて選択'],
       ];

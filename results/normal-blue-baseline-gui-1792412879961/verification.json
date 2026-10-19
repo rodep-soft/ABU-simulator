@@ -1,0 +1,124 @@
+{
+  "initial": [
+    {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "adaptive",
+      "blueTrPlan": "adaptive",
+      "redBrPlan": "efficient",
+      "blueBrPlan": "private-first-short",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "trAutoRestartSeconds": 1,
+      "brObservationMode": "stopped",
+      "supplyMode": "normal",
+      "recordActions": true,
+      "redBrTurns": [],
+      "redTrTrips": [],
+      "blueBrTurns": [],
+      "blueTrTrips": []
+    },
+    {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "adaptive",
+      "blueTrPlan": "adaptive",
+      "redBrPlan": "efficient",
+      "blueBrPlan": "private-first-short",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "trAutoRestartSeconds": 1,
+      "brObservationMode": "stopped",
+      "supplyMode": "normal",
+      "recordActions": true,
+      "redBrTurns": [],
+      "redTrTrips": [],
+      "blueBrTurns": [],
+      "blueTrTrips": []
+    }
+  ],
+  "result": {
+    "time": 180,
+    "config": {
+      "maxSpeed": 7,
+      "acceleration": 3.5,
+      "redSpeed": 1,
+      "blueSpeed": 1,
+      "redTrPlan": "adaptive",
+      "blueTrPlan": "adaptive",
+      "redBrPlan": "efficient",
+      "blueBrPlan": "private-first-short",
+      "bodySize": 0.5,
+      "rampFactor": 0.55,
+      "stairSpeed": 0.25,
+      "stairPause": 0.6,
+      "scanSeconds": 1,
+      "pickupSeconds": 1.5,
+      "placeSeconds": 2.5,
+      "brAutoRetrySeconds": 5,
+      "trAutoRestartSeconds": 1,
+      "brObservationMode": "stopped",
+      "supplyMode": "normal",
+      "recordActions": true,
+      "redBrTurns": [],
+      "redTrTrips": [],
+      "blueBrTurns": [],
+      "blueTrTrips": []
+    },
+    "scores": {
+      "red": {
+        "transfer": 50,
+        "tower": 320,
+        "mustika": 0,
+        "total": 370,
+        "sky": 2
+      },
+      "blue": {
+        "transfer": 50,
+        "tower": 200,
+        "mustika": 250,
+        "total": 500,
+        "sky": 2
+      }
+    },
+    "blueFirstPlace": "b2",
+    "bluePhases": [
+      "scan",
+      "supply",
+      "private",
+      "arm",
+      "watch",
+      "self-build",
+      "claim",
+      "baseline"
+    ],
+    "deliveries": {
+      "red": 10,
+      "blue": 10
+    },
+    "idealSupplies": 0,
+    "capacityOK": true
+  },
+  "parity": {
+    "scores": true,
+    "events": true,
+    "state": true
+  },
+  "errors": []
+}
