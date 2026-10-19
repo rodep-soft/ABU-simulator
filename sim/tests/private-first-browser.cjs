@@ -13,6 +13,8 @@ fs.mkdirSync(output, { recursive: true });
     await page.goto(pathToFileURL(path.join(root, 'field-simulator-3d.html')).href);
     await page.waitForFunction(() => window.fieldApp?.scene3d?.diagnostics().calls > 0);
     await page.locator('[data-tab="strategies"]').click();
+    await page.locator('#blue-br-plan').selectOption('tactical-baseline-v2');
+    await page.locator('#supply-mode').selectOption('ideal');
     for (const id of ['private-first-now', 'private-first-short', 'private-first-observe']) {
       assert.ok(await page.locator('#blue-br-plan option[value="' + id + '"]').count());
       await page.locator('#red-br-plan').selectOption(id);

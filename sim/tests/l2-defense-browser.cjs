@@ -18,6 +18,8 @@ fs.mkdirSync(output, { recursive: true });
     assert.notDeepEqual(await page.evaluate(() => fieldApp.scene3d.diagnostics().positions), oldPositions);
     await page.locator('#reset').click();
     await page.locator('[data-tab="strategies"]').click();
+    await page.locator('#blue-br-plan').selectOption('tactical-baseline-v2');
+    await page.locator('#supply-mode').selectOption('ideal');
     assert.equal(await page.locator('#red-br-plan option').count(), 17);
     assert.ok(await page.locator('#blue-br-plan option[value="' + id + '"]').count());
     await page.locator('#red-br-plan').selectOption(id);

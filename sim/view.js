@@ -5,7 +5,7 @@ const $ = id => document.getElementById(id);
 const canvas = $('field'), ctx = canvas.getContext('2d');
 let scene3d = null, displayMode = '2d', sequenceUI = null, workspaceUI = null;
 const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
-let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'ideal', blueBrPlan: 'tactical-baseline-v2', recordActions: true }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
+let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'normal', blueBrPlan: 'private-first-short', redTrPlan: 'adaptive', blueTrPlan: 'adaptive', recordActions: true }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
 let review = null, reviewActive = false, reviewObject = null;

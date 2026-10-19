@@ -315,7 +315,7 @@
   }
   function next(view) {
     const program = S.programNext(view, sourceApproach); if (program) return program;
-    const response = dispatch(view);
+    const response = Efficient.receiveAtTransfer(view, dispatch(view));
     if (view.role === 'BR' && view.brObservation?.replan === 'after-work') {
       const work = response.actions?.findIndex(a => Perception.WORK.includes(a.type));
       if (work >= 0) response.actions = response.actions.slice(0, work + 1);

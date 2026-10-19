@@ -227,16 +227,22 @@
       // Visible pose/cargo only: no partner plan, destination, messages or future arrival time.
       const partner = this.robot(`${robot.team}${robot.role === 'BR' ? 'TR' : 'BR'}`);
       robot.observation.partner = clone({ x: partner.x, y: partner.y, cargo: partner.cargo.map(id => this.object(id)) });
+      if (robot.role === 'BR' && this.config.supplyMode === 'normal') robot.observation.transferWork = this.transferWork(partner);
       robot.observation.handoff = this.mustikaOffer(robot.team);
       const opponent = this.robot(`${robot.team === 'red' ? 'blue' : 'red'}BR`);
       robot.observation.scores = clone(this.scores());
       robot.observation.opponentBR = opponent ? { x: opponent.x, y: opponent.y, z: opponent.z,
         maxSpeed: Plan.effectiveMotion(this.config, opponent.id).maxSpeed * this.config[`${opponent.team}Speed`], placeSeconds: Plan.duration(Plan.effectiveMotion(this.config, opponent.id), 'flip') } : null;
     }
+    transferWork(robot) {
+      return { unloading: robot.role === 'TR' && robot.job?.type === 'unload' };
+    }
     view(robot) {
       const motion = Plan.effectiveMotion(this.config, robot.id);
       motion.speedFactor = this.config[`${robot.team}Speed`];
       return clone({ id: robot.id, role: robot.role, team: robot.team,
+        ...(robot.role === 'TR' ? { partnerMotion: { ...Plan.effectiveMotion(this.config, `${robot.team}BR`), speedFactor: this.config[`${robot.team}Speed`] },
+          partnerObservation: { mode: this.config.brObservationMode, replan: this.config.brObservation?.replan || 'sortie' } } : {}),
         ...(this.config.robotPrograms?.[robot.id] ? { programPlan: this.config.robotPrograms[robot.id], program: robot.program || { index: 0 } } : {}),
         ...(this.config.trMustikaPickupSignal === 'global-instant' ? { trMustikaPickupSignal: 'global-instant', opponentMustikaPickup: robot.opponentMustikaPickup || null } : {}),
         ...(robot.role === 'BR' && (this.config.brObservation || this.config.brOpening) ? { brObservation: this.config.brObservation,

@@ -84,6 +84,12 @@
     if (sees({ x: 5.5, y: 5.5 }, 2)) { k.pillar = sim.object('M').location === 'pillar' ? cleanObject(sim.object('M')) : null; mark('pillar'); }
     meta.handoff ||= { status: 'unknown', observedAt: null };
     if (stockVisible && meta.partner.status === 'current') { k.handoff = copy(sim.mustikaOffer(robot.team)); mark('handoff'); }
+    if (sim.config.supplyMode === 'normal') {
+      meta.transferWork ||= { status: 'unknown', observedAt: null };
+      if (stockVisible && meta.partner.status === 'current') {
+        k.transferWork = sim.transferWork(sim.robot(`${robot.team}TR`)); mark('transferWork');
+      }
+    }
     const currentTowers = id => meta[`tower:${id}`]?.status === 'current' ? k.towers[id] || [] : [];
     const complete = completedTowers(currentTowers, robot.team);
     if (!k.sanctuary && complete.length >= 2 && complete.some(s => !s.team)) {
@@ -94,6 +100,7 @@
     return { at, origin: { x: robot.x, y: robot.y }, towers: copy(k.towers), stock: copy(k.stock || []), source: copy(k.source),
       partner: copy(k.partner || null), opponentBR: copy(k.opponentBR || null), pillar: k.pillar === undefined ? undefined : copy(k.pillar),
       handoff: copy(k.handoff || null), sanctuary: k.sanctuary, sanctuaryEvidence: copy(k.sanctuaryEvidence),
+      ...(sim.config.supplyMode === 'normal' ? { transferWork: copy(k.transferWork || null) } : {}),
       // A last-seen subtotal is not an exact global score or a proven bound.
       scores: null, estimatedScores: estimate, scoreStatus: 'partial-last-known',
       information: information(sim.config), visibility: { model: settings.model, crossLevelRadius: settings.crossLevelRadius, entries: copy(meta) } };
