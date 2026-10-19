@@ -1,0 +1,41 @@
+{
+  "result": {
+    "time": 180,
+    "scores": {
+      "red": {
+        "transfer": 0,
+        "tower": 20,
+        "mustika": 0,
+        "total": 20,
+        "sky": 0
+      },
+      "blue": {
+        "transfer": 0,
+        "tower": 480,
+        "mustika": 250,
+        "total": 730,
+        "sky": 3
+      }
+    },
+    "program": {
+      "index": 16,
+      "lastCompletedAt": 30.55
+    },
+    "placements": [
+      {
+        "spotId": "s2",
+        "duration": 5.5
+      },
+      {
+        "spotId": "r2",
+        "duration": 3
+      }
+    ],
+    "receipts": [
+      0.35,
+      0.35
+    ]
+  },
+  "paused": 3.5,
+  "errors": []
+}

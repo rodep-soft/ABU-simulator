@@ -43,8 +43,17 @@
     return picked;
   }
   function freeSlot(v, state, reason) {
-    const object = v.cargo.find(o => o.type === 'sky') || v.cargo.find(o => o.type === 'earth');
-    if (!object || !Efficient.canStore(v.team, v.observation.stock, [object])) return scan(v, state, 'supply', '返却枠を再確認', true);
+    if (!current(v, 'stock')) return scan(v, state, 'supply', '返却枠を再確認', true);
+    const objects = [...v.cargo].filter(o => ['earth', 'sky'].includes(o.type)).sort((a, b) => (a.type === 'sky' ? 0 : 1) - (b.type === 'sky' ? 0 : 1));
+    const object = objects.find(o => Efficient.canStore(v.team, v.observation.stock, [o]));
+    if (!object) {
+      const observed = { ...v, observation: { ...v.observation,
+        towers: Object.fromEntries(Object.entries(v.observation.towers).filter(([id]) => current(v, 'tower:' + id))) } };
+      const plan = Planner.plan(observed, { oneSortie: true, noPickup: true, onlyPlace: true, noRecover: true, requirePair: false, clearCargo: true,
+        rank: c => [-c.completeSeconds, c.gain - c.opponentGain] });
+      return plan ? decorate(v, Efficient.execute(v, plan, reason + '・手持ちを配置'), state, 'free-slot', reason)
+        : scan(v, state, 'supply', '返却・配置できる空きを再確認', true);
+    }
     const transfer = F.points[v.team].transferBR;
     return decorate(v, { brain: { stage: 'choose' }, actions: [go(transfer, reason), { type: 'return', objectId: object.id }, ...F.scanActions(v, transfer)] }, state, 'free-slot', reason);
   }
@@ -64,11 +73,33 @@
     if (!before || at > before.at) state.opponent = { at, distance };
     return approaching;
   }
+  function qualificationFlip(v) {
+    const observed = { ...v, observation: { ...v.observation,
+      towers: Object.fromEntries(Object.entries(v.observation.towers).filter(([id]) => current(v, 'tower:' + id))) } };
+    // Probe the board with a free hand, but release real cargo before issuing the flip.
+    const probe = S.blockCount(v.cargo) >= 2 ? { ...observed, cargo: [] } : observed;
+    const allowed = v.brOpeningActive ? (v.team === 'red' ? ['s2', 'r2', 'u3'] : ['s2', 'b2', 'u4']) : null;
+    let best = null;
+    for (const spot of F.spots.filter(p => !p.team && (!allowed || allowed.includes(p.id)))) {
+      const tower = observed.observation.towers[spot.id], top = tower?.at(-1);
+      if (top?.type !== 'sky' || top.color === v.team || tower.some(o => o.touchedBy)) continue;
+      const plan = Planner.specifiedPlan(probe, [], [{ type: 'flip', spotId: spot.id }]);
+      if (plan?.state.sanctuary && (!best || plan.completeSeconds < best.completeSeconds)) best = plan;
+    }
+    return best;
+  }
   function builder(v, id) {
     const mode = modes.find(m => m.id === id) || modes[0], state = { ...v.brain.privateFirst, mode: mode.id };
     const fallBack = reason => decorate(v, Baseline.builder(v), state, 'baseline', reason);
     if (Efficient.needsScan(v) || !v.enteredL1) return scan(v, state, 'scan', '専有先行 · 停止して認識');
-    if (v.observation.sanctuary || v.observation.pillar?.placedBy || v.opponentMustikaPickup || v.time >= 110) return fallBack('資格成立・取得競争終了後はV2へ');
+    if (v.observation.sanctuary || v.observation.pillar?.placedBy || v.opponentMustikaPickup) return fallBack('資格成立・取得競争終了後はV2へ');
+    const flip = qualificationFlip(v);
+    if (flip) {
+      const number = F.spotNumbers[flip.tasks[0].spotId], reason = '共有' + number + 'を反転して資格取得';
+      if (S.blockCount(v.cargo) >= 2) return freeSlot(v, state, '共有' + number + 'の資格反転用の空きを確保');
+      return decorate(v, Efficient.execute(v, flip, reason), state, 'claim', reason);
+    }
+    if (v.time >= 110) return fallBack('資格成立・取得競争終了後はV2へ');
     const own = ownSpot(v.team);
     if (!current(v, 'tower:' + own)) return decorate(v, { brain: v.brain, actions: [go(F.spotApproaches(F.spotById[own], v.team)[0], '専有塔を確認'), ...F.scanActions(v, F.spotApproaches(F.spotById[own], v.team)[0])] }, state, 'scout', '専有塔が未確認');
     const privateTower = v.observation.towers[own] || [];
@@ -112,6 +143,7 @@
   function details(team, id) {
     const mode = modes.find(m => m.id === id) || modes[0];
     return [['初動', F.spotNumbers[ownSpot(team)] + '番をE2→S1で完成'], ['次の手持ち', 'E1+S1 / 共有1番の土台を利用'],
+      ['即資格の反転', '観測済みの共有1・4・L2を比較 / 1回反転で資格成立なら待機・補給より優先'],
       ['空の共有', mode.seconds ? mode.label + '・上限' + mode.seconds + '秒（観測・移動時間込み）' : '待たずE1を置き、追加E1で完成'],
       ['接近判断', '停止時の相手位置と前回位置のみ / 相手積載・未来は参照しない'],
       ['取得競争後', '資格成立・奉納確認・110秒以降はV2 / Mustika手渡し・奉納は共通優先']];

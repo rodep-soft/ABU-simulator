@@ -129,9 +129,10 @@
       document.querySelectorAll('.action-row').forEach((row, i) => { row.classList.toggle('done', i < index); row.classList.toggle('current', i === index); row.querySelector('.turn-heading strong').textContent = `${i + 1}手目${i < index ? ' · 完了' : ''}`; });
       const actor = snapshot.robots.find(r => r.id === robotId), job = actor?.job;
       $('action-current').textContent = job ? `${P.names[job.type] || job.type} · 経過 ${Math.max(0, snapshot.time - (job.startedAt ?? snapshot.time)).toFixed(2)}秒${job.remaining !== undefined ? ' / 残り ' + job.remaining.toFixed(2) + '秒' : ''}` : actor?.status || '待機';
-      const key = sim.events.length + ':' + snapshot.time + ':' + robotId;
+      const history = sim.events.filter(e => e.kind === 'timing' && e.time <= snapshot.time).slice(-24).reverse();
+      const key = JSON.stringify(history.map(e => [e.time, e.robot, e.action, e.duration]));
       if (key !== historyKey) {
-        $('action-history').replaceChildren(...sim.events.filter(e => e.kind === 'timing' && e.time <= snapshot.time).slice(-24).reverse().map(e => {
+        $('action-history').replaceChildren(...history.map(e => {
           const row = document.createElement('tr');
           for (const value of [e.time.toFixed(2), robotName(e.robot), P.names[e.action] || e.action, e.duration.toFixed(2)]) { const c = document.createElement('td'); c.textContent = value; row.append(c); }
           return row;

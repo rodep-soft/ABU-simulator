@@ -13,6 +13,9 @@ fs.mkdirSync(output, { recursive: true });
     const errors = []; page.on('pageerror', e => errors.push(e.message));
     await page.goto(pathToFileURL(path.join(root, 'field-simulator-3d.html')).href);
     await page.waitForFunction(() => fieldApp.scene3d?.diagnostics().calls > 0);
+    // The receipt template assumes prepared boxes; do not inherit the normal-supply GUI default.
+    await page.locator('[data-tab="strategies"]').click();
+    await page.locator('#supply-mode').selectOption('ideal'); await page.locator('#apply-strategies').click();
     await page.locator('[data-tab="sequence"]').click();
     await page.locator('#program-robot').selectOption('redTR');
     await page.locator('#program-add').click();

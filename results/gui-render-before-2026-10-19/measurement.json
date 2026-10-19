@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "view": "2d",
+      "medianMs": 1.5,
+      "p95Ms": 2.200000047683716,
+      "maxMs": 3.199999988079071,
+      "mutations": {
+        "tower-state": 50,
+        "event-log": 0,
+        "action-history": 0,
+        "robots": 50
+      },
+      "immutable": true
+    },
+    {
+      "view": "3d",
+      "medianMs": 3.400000035762787,
+      "p95Ms": 8.400000035762787,
+      "maxMs": 13.899999976158142,
+      "mutations": {
+        "tower-state": 50,
+        "event-log": 0,
+        "action-history": 0,
+        "robots": 50
+      },
+      "immutable": true
+    }
+  ],
+  "errors": []
+}

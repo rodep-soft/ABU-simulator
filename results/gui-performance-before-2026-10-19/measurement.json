@@ -1,0 +1,181 @@
+{
+  "against": null,
+  "results": [
+    {
+      "supplyMode": "normal",
+      "elapsedMs": 11480.0205,
+      "scores": {
+        "red": {
+          "transfer": 50,
+          "tower": 320,
+          "mustika": 0,
+          "total": 370,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 45,
+          "tower": 180,
+          "mustika": 250,
+          "total": 475,
+          "sky": 2
+        }
+      },
+      "identical": null,
+      "steps": 3600,
+      "decisions": 293,
+      "p95StepMs": 0.6574000000000524,
+      "maxStepMs": 619.6021000000001,
+      "longestDecisions": [
+        {
+          "robot": "redTR",
+          "time": 121.4,
+          "ms": 556.0015999999996
+        },
+        {
+          "robot": "redTR",
+          "time": 140.5,
+          "ms": 477.77660000000105
+        },
+        {
+          "robot": "redBR",
+          "time": 27.4,
+          "ms": 455.28549999999996
+        },
+        {
+          "robot": "redTR",
+          "time": 142.55,
+          "ms": 426.29689999999937
+        },
+        {
+          "robot": "redBR",
+          "time": 33.3,
+          "ms": 388.31219999999985
+        },
+        {
+          "robot": "redTR",
+          "time": 146.65,
+          "ms": 382.4933000000001
+        },
+        {
+          "robot": "redTR",
+          "time": 148.7,
+          "ms": 369.14220000000023
+        },
+        {
+          "robot": "redTR",
+          "time": 150.75,
+          "ms": 322.60369999999966
+        },
+        {
+          "robot": "redTR",
+          "time": 127.95,
+          "ms": 290.97370000000046
+        },
+        {
+          "robot": "blueTR",
+          "time": 138.75,
+          "ms": 287.15839999999935
+        },
+        {
+          "robot": "redBR",
+          "time": 154,
+          "ms": 236.90869999999995
+        },
+        {
+          "robot": "redBR",
+          "time": 122.05,
+          "ms": 234.53880000000026
+        }
+      ],
+      "hash": "0d8db275995e3e2dfd2999cadea0fe961ec231812d97bfb1aca4f3b5424f9cee"
+    },
+    {
+      "supplyMode": "ideal",
+      "elapsedMs": 7734.752600000002,
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 390,
+          "mustika": 0,
+          "total": 390,
+          "sky": 3
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 350,
+          "mustika": 250,
+          "total": 600,
+          "sky": 3
+        }
+      },
+      "identical": null,
+      "steps": 3600,
+      "decisions": 529,
+      "p95StepMs": 0.5492000000012922,
+      "maxStepMs": 608.8729000000003,
+      "longestDecisions": [
+        {
+          "robot": "redBR",
+          "time": 29.6,
+          "ms": 594.4679999999989
+        },
+        {
+          "robot": "redBR",
+          "time": 17.3,
+          "ms": 518.7819999999992
+        },
+        {
+          "robot": "redBR",
+          "time": 54.65,
+          "ms": 517.3539999999994
+        },
+        {
+          "robot": "redBR",
+          "time": 11.4,
+          "ms": 486.09389999999985
+        },
+        {
+          "robot": "redBR",
+          "time": 82.05,
+          "ms": 360.41159999999945
+        },
+        {
+          "robot": "redBR",
+          "time": 115,
+          "ms": 335.14689999999973
+        },
+        {
+          "robot": "blueBR",
+          "time": 70.85,
+          "ms": 294.71900000000096
+        },
+        {
+          "robot": "blueBR",
+          "time": 65.2,
+          "ms": 279.5506999999998
+        },
+        {
+          "robot": "blueBR",
+          "time": 67.35,
+          "ms": 230.72019999999975
+        },
+        {
+          "robot": "redBR",
+          "time": 146,
+          "ms": 209.09289999999964
+        },
+        {
+          "robot": "blueBR",
+          "time": 99.15,
+          "ms": 199.5145999999986
+        },
+        {
+          "robot": "blueBR",
+          "time": 93.8,
+          "ms": 190.83859999999913
+        }
+      ],
+      "hash": "92a5eab168ab6f6be9a25f77efd43287f11c674a1e8fb5f0940ea400958bd0ab"
+    }
+  ]
+}

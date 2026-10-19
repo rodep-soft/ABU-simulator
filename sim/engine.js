@@ -12,6 +12,16 @@
   const blockCount = (cargo, object = o => o) => cargo.filter(value => ['earth', 'sky'].includes(object(value)?.type)).length;
   const overlap = (a, b) => a.x < b.x + b.w - 1e-7 && a.x + a.w > b.x + 1e-7 && a.y < b.y + b.h - 1e-7 && a.y + a.h > b.y + 1e-7;
   const box = (p, side) => F.rect(p.x - side / 2, p.y - side / 2, side, side);
+  const terrainCache = new Map(), terrainFunctions = [F.surface, F.territory, F.transition];
+  function terrainGrid(sim, robot) {
+    if (sim.footprintAllowed !== defaultFootprint || [F.surface, F.territory, F.transition].some((fn, i) => fn !== terrainFunctions[i])) return null;
+    const key = JSON.stringify([sim.config.bodySize, robot.team, robot.role, !!robot.enteredL1, F.regions, F.zones, F.walls]);
+    if (!terrainCache.has(key)) {
+      if (terrainCache.size >= 16) terrainCache.delete(terrainCache.keys().next().value);
+      terrainCache.set(key, { footprints: new Uint8Array(12100), transitions: new Uint8Array(48400) });
+    }
+    return terrainCache.get(key);
+  }
   function sweptContact(from, to, obstacle, half) {
     let enter = 0, leave = 1;
     for (const [axis, size] of [['x', 'w'], ['y', 'h']]) {
@@ -155,14 +165,31 @@
     graph(robot, dynamic = false) {
       const key = `${robot.id}:${robot.enteredL1}:${this.version}`;
       if (!dynamic && this.graphs.has(key)) return this.graphs.get(key);
+      // Only fixed terrain is shared. Objects and moving robots are checked on every rebuild.
+      const terrain = terrainGrid(this, robot);
       const graph = new A.Graph(Array.from({ length: 110 }, (_, x) => Array.from({ length: 110 }, (_, y) => {
         const p = { x: (x + .5) / 10, y: (y + .5) / 10 };
-        if (!this.footprintAllowed(robot, p) || !this.obstacleFree(robot, p, dynamic)) return 0;
+        const index = x * 110 + y;
+        let allowed = terrain?.footprints[index];
+        if (!allowed) {
+          allowed = this.footprintAllowed(robot, p) ? 2 : 1;
+          if (terrain) terrain.footprints[index] = allowed;
+        }
+        if (allowed !== 2 || !this.obstacleFree(robot, p, dynamic)) return 0;
         const type = F.surface(p).type;
         return ['stairs', 'upperStairs'].includes(type) ? 7 : type === 'ramp' ? 1 / this.config.rampFactor : 1;
       })));
       const neighbors = graph.neighbors.bind(graph);
-      graph.neighbors = node => neighbors(node).filter(next => F.transition({ x: (node.x + .5) / 10, y: (node.y + .5) / 10 }, { x: (next.x + .5) / 10, y: (next.y + .5) / 10 }));
+      graph.neighbors = node => neighbors(node).filter(next => {
+        const direction = next.x < node.x ? 0 : next.x > node.x ? 1 : next.y < node.y ? 2 : 3;
+        const index = (node.x * 110 + node.y) * 4 + direction;
+        let allowed = terrain?.transitions[index];
+        if (!allowed) {
+          allowed = F.transition({ x: (node.x + .5) / 10, y: (node.y + .5) / 10 }, { x: (next.x + .5) / 10, y: (next.y + .5) / 10 }) ? 2 : 1;
+          if (terrain) terrain.transitions[index] = allowed;
+        }
+        return allowed === 2;
+      });
       if (!dynamic) { if (this.graphs.size > 12) this.graphs.clear(); this.graphs.set(key, graph); }
       return graph;
     }
@@ -174,9 +201,10 @@
         for (let x = Math.max(0, Math.floor(p.x * 10) - 2); x <= Math.min(109, Math.floor(p.x * 10) + 2); x++)
           for (let y = Math.max(0, Math.floor(p.y * 10) - 2); y <= Math.min(109, Math.floor(p.y * 10) + 2); y++) {
             const node = graph.grid[x][y], q = { x: (x + .5) / 10, y: (y + .5) / 10 };
-            if (node.weight && this.segmentAllowed(robot, p, q, dynamic)) candidates.push({ node, d: distance(p, q) });
+            if (node.weight) candidates.push({ node, point: q, d: distance(p, q) });
           }
-        return candidates.sort((a, b) => a.d - b.d)[0]?.node;
+        // The nearest reachable node is unchanged; farther nodes need no segment test.
+        return candidates.sort((a, b) => a.d - b.d).find(c => this.segmentAllowed(robot, p, c.point, dynamic))?.node;
       };
       const start = nearest(robot), end = nearest(target);
       if (!start || !end) return null;
@@ -806,5 +834,7 @@
       ], events: this.events, history: this.history, final: this.snapshot() };
     }
   }
-  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, blockCount, normalizeTrTrips, normalizeBrTurns, transportTripIndex, programNext: Plan.next, actionSeconds: Plan.duration };
+  const defaultFootprint = Simulation.prototype.footprintAllowed;
+  return { Simulation, DEFAULTS, labels, distance, box, overlap, completedTowers, mandateHeld, scanBudget, blockCount, normalizeTrTrips, normalizeBrTurns, transportTripIndex, programNext: Plan.next, actionSeconds: Plan.duration,
+    clearTerrainCache: () => terrainCache.clear(), terrainCacheInfo: () => ({ entries: terrainCache.size, bytes: terrainCache.size * 60500 }) };
 });

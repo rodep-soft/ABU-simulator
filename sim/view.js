@@ -8,6 +8,15 @@ const colors = { red: '#ba3548', blue: '#2464b0', neutral: '#637166' };
 let sim = new S.Simulation({ brObservationMode: 'stopped', supplyMode: 'normal', blueBrPlan: 'private-first-short', redTrPlan: 'adaptive', blueTrPlan: 'adaptive', recordActions: true }), selected = 'redTR', running = false, computing = false, replayTime = null, playback = false, selectedSpot = 'r2', clickedPoint = null, previous = 0, accumulator = 0;
 let lastLog = -1, objectKey = '', snapshot = sim.snapshot(), cssSize = 700;
 let zoom = 1, generation = 0, lastPlayIcon = '', paintAt = 0;
+const renderKeys = new Map(), frameBudget = 8;
+function renderChildren(id, key, build) {
+  if (renderKeys.has(id) && renderKeys.get(id) === key) return;
+  $(id).replaceChildren(...build()); renderKeys.set(id, key);
+}
+function renderHTML(id, content) {
+  if (renderKeys.get(id) === content) return;
+  $(id).innerHTML = content; renderKeys.set(id, content);
+}
 let review = null, reviewActive = false, reviewObject = null;
 const strategyFields = ['red', 'blue'].flatMap(team => ['TR', 'BR'].map(role => ({ team, role, key: `${team}${role === 'TR' ? 'Tr' : 'Br'}Plan`, id: `${team}-${role.toLowerCase()}-plan` })));
 const strategyTurns = { red: [], blue: [] };
@@ -404,9 +413,10 @@ function render() {
     mandate.textContent = done ? `達成済 ${snapshot.sanctuary[team].toFixed(1)} s` : '条件未達'; mandate.className = `mandate${done ? ' done' : ''}`;
     mandate.title = snapshot.sanctuaryEvidence?.[team]?.towers.map(t => t.label).join(' / ') || '完成2塔以上・うち共有1塔以上';
   }
-  $('robots').replaceChildren(...snapshot.robots.map(r => {
+  const robotTiles = snapshot.robots.map(r => ({ r, cargo: cargoText(r.cargo, snapshot.objects) }));
+  renderChildren('robots', JSON.stringify([selected, robotTiles.map(({ r, cargo }) => [r.id, r.status, cargo])]), () => robotTiles.map(({ r, cargo }) => {
     const div = document.createElement('div'); div.className = `robot-tile${r.id === selected ? ' active' : ''}`; div.tabIndex = 0; div.setAttribute('role', 'button');
-    div.innerHTML = `<strong style="color:${colors[r.team]}">${r.team === 'red' ? '赤' : '青'} ${r.role}</strong><div class="cargo">${cargoText(r.cargo, snapshot.objects)}</div><small></small>`;
+    div.innerHTML = `<strong style="color:${colors[r.team]}">${r.team === 'red' ? '赤' : '青'} ${r.role}</strong><div class="cargo">${cargo}</div><small></small>`;
     div.querySelector('small').textContent = r.status; div.onclick = () => chooseRobot(r.id); div.onkeydown = e => { if (e.key === 'Enter') chooseRobot(r.id); }; return div;
   }));
   document.querySelectorAll('[data-robot]').forEach(b => b.classList.toggle('active', b.dataset.robot === selected));
@@ -427,7 +437,7 @@ function render() {
   $('br-manifest').textContent = turn?.slots ? `${(r.brTurn?.completed || 0) + 1}回目: ${turnManifest(turn)}${r.brTurn?.fallback ? ' / 代替配置・返却' : ''}` : '配置戦略に任せる';
   $('robot-phase').textContent = brPlan.startsWith('private-first-') ? r.decision?.flexiblePost?.reason || r.decision?.l2Defense?.reason || r.decision?.privateFirst?.reason || '専有完成→E1+S1'
     : ['efficient', 'mustika-fast', 'earth-late', 'second-layer', 'score-adaptive', 'endgame', 'l2-earth'].includes(brPlan) ? RoboControllers.phase(brPlan, snapshot.time, snapshot.sanctuary[r.team] !== null, r.observation, r.team) : '個別戦略';
-  $('pending-work').replaceChildren(...(r.pendingWork?.length ? r.pendingWork : [null]).map(a => {
+  renderChildren('pending-work', JSON.stringify(r.pendingWork), () => (r.pendingWork?.length ? r.pendingWork : [null]).map(a => {
     const li = document.createElement('li'); li.textContent = a ? `${a.spotId ? F.spotName(a.spotId) + ' · ' : ''}${S.labels[a.type]}${a.objectId ? ' · ' + a.objectId : ''}` : 'なし'; return li;
   }));
   $('transport-data').hidden = r.role !== 'TR';
@@ -444,25 +454,25 @@ function render() {
     if (!relevant.length) $('object-select').add(new Option('対象物なし', ''));
     if (relevant.some(o => o.id === old)) $('object-select').value = old; objectKey = key;
   }
-  $('transfer-state').innerHTML = ['red', 'blue'].map(team => {
+  renderHTML('transfer-state', ['red', 'blue'].map(team => {
     const stock = snapshot.objects.filter(o => o.location === 'transfer' && o.transferTeam === team);
     return `<div class="stock-row"><strong style="color:${colors[team]}">${team === 'red' ? '赤' : '青'} ${stock.length} / ${F.stockLimits.earth + F.stockLimits.sky}個</strong><div>Earth専用 ${stock.filter(o => o.type === 'earth').length}/${F.stockLimits.earth} · Sky専用 ${stock.filter(o => o.type === 'sky').length}/${F.stockLimits.sky}</div><small>${stock.map(o => `${o.id} (${o.type === 'earth' ? 'Earth' : 'Sky'}列 ${o.layer + 1}段)`).join('、') || '空き'}</small>${handoffReady(snapshot, team) ? '<small>Mustika: TR保持・直接受渡待ち</small>' : ''}</div>`;
-  }).join('');
-  $('sanctuary-state').replaceChildren(...['red', 'blue'].map(team => {
+  }).join(''));
+  renderChildren('sanctuary-state', JSON.stringify([snapshot.sanctuary, snapshot.sanctuaryEvidence]), () => ['red', 'blue'].map(team => {
     const row = document.createElement('div'); row.className = 'stock-row';
     const evidence = snapshot.sanctuaryEvidence?.[team];
     row.textContent = `${team === 'red' ? '赤' : '青'}: ${evidence ? `${evidence.at.toFixed(2)}秒に ${evidence.towers.map(t => t.label).join('・')} で達成済` : snapshot.sanctuary[team] !== null ? '達成済（旧記録・根拠未保存）' : '未達成'}`;
     return row;
   }));
-  $('tower-state').innerHTML = F.spots.map(s => {
+  renderHTML('tower-state', F.spots.map(s => {
     const t = snapshot.objects.filter(o => o.location === 'spot' && o.spotId === s.id).sort((a, b) => a.layer - b.layer);
     return `<div class="tower-row"><span>${F.spotName(s.id)}</span>${[0, 1, 2].map(i => { const o = t[i], team = o && (o.type === 'sky' ? o.color : o.placedBy); return `<span class="block-chip ${team || ''}">${o ? `${team === 'red' ? '赤' : '青'}${o.type === 'earth' ? 'E' : 'S'}` : '―'}</span>`; }).join('')}</div>`;
-  }).join('');
+  }).join(''));
   const m = snapshot.objects.find(o => o.id === 'M');
-  $('source-state').innerHTML = `<div class="stock-row">赤Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'red').length} / 青Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'blue').length}<br>共有Sky ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'sky').length}<br>Mustika: ${m.location === 'cargo' ? `${m.holder.replace('red', '赤 ').replace('blue', '青 ')}が保持` : ({ source: '初期柱・未取得', transfer: '受け渡し区画', pillar: '中央柱' })[m.location]}</div>`;
-  if (lastLog !== sim.events.length || replayTime !== null) {
+  renderHTML('source-state', `<div class="stock-row">赤Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'red').length} / 青Earth ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'earth' && o.team === 'blue').length}<br>共有Sky ${snapshot.objects.filter(o => o.location === 'source' && o.type === 'sky').length}<br>Mustika: ${m.location === 'cargo' ? `${m.holder.replace('red', '赤 ').replace('blue', '青 ')}が保持` : ({ source: '初期柱・未取得', transfer: '受け渡し区画', pillar: '中央柱' })[m.location]}</div>`);
+  if (!$('tab-log').hidden && lastLog !== `${sim.events.length}:${snapshot.time}:${$('errors-only').checked}`) {
     const events = sim.events.filter(e => e.time <= snapshot.time && (!$('errors-only').checked || !['action', 'setup', 'milestone'].includes(e.kind))).slice(-120).reverse();
-    $('event-log').replaceChildren(...events.map(e => { const li = document.createElement('li'), time = document.createElement('time'), span = document.createElement('span'); time.textContent = `${e.time.toFixed(1)}s`; span.textContent = `${e.robot ? e.robot.replace('red', '赤 ').replace('blue', '青 ') + ' · ' : ''}${e.text}${e.rule ? ` [${e.rule}]` : ''}`; if (e.rule) span.className = 'rule'; li.append(time, span); return li; })); lastLog = sim.events.length;
+    renderChildren('event-log', JSON.stringify(events), () => events.map(e => { const li = document.createElement('li'), time = document.createElement('time'), span = document.createElement('span'); time.textContent = `${e.time.toFixed(1)}s`; span.textContent = `${e.robot ? e.robot.replace('red', '赤 ').replace('blue', '青 ') + ' · ' : ''}${e.text}${e.rule ? ` [${e.rule}]` : ''}`; if (e.rule) span.className = 'rule'; li.append(time, span); return li; })); lastLog = `${sim.events.length}:${snapshot.time}:${$('errors-only').checked}`;
   }
   const blocked = computing || replayTime !== null || sim.ended;
   document.querySelectorAll('.command-grid button,.command-row button').forEach(b => b.disabled = blocked);
@@ -475,10 +485,10 @@ function render() {
   renderStrategyState();
   renderReview();
   $('next-action').disabled = computing || sim.ended || replayTime !== null || reviewActive;
-  sequenceUI?.render(snapshot, { running, computing, replayTime, reviewActive });
+  if (!$('tab-sequence').hidden) sequenceUI?.render(snapshot, { running, computing, replayTime, reviewActive });
   workspaceUI?.render(snapshot, sim, { reviewActive, reviewBase: review?.original.scores, replay: replayTime !== null });
 }
-function reset(config = sim.config, { preserveStrategyDraft = false } = {}) { generation++; RoboScorePlanner.clearCache(); sim.graphs.clear(); sim = new S.Simulation({ ...config, recordActions: true }); review = null; reviewActive = false; reviewObject = null; if (!$('tab-review').hidden) selectTab('operate'); running = false; computing = false; replayTime = null; playback = false; accumulator = 0; lastLog = -1; objectKey = ''; paintAt = 0; if (!preserveStrategyDraft) syncStrategyMenus(); sequenceUI?.sync(); $('action-step-status').textContent = ''; feedback('初期配置に戻しました · 計算キャッシュを更新'); render(); }
+function reset(config = sim.config, { preserveStrategyDraft = false } = {}) { generation++; RoboScorePlanner.clearCache(); S.clearTerrainCache(); renderKeys.clear(); sim.graphs.clear(); sim = new S.Simulation({ ...config, recordActions: true }); review = null; reviewActive = false; reviewObject = null; if (!$('tab-review').hidden) selectTab('operate'); running = false; computing = false; replayTime = null; playback = false; accumulator = 0; lastLog = -1; objectKey = ''; paintAt = 0; if (!preserveStrategyDraft) syncStrategyMenus(); sequenceUI?.sync(); $('action-step-status').textContent = ''; feedback('初期配置に戻しました · 計算キャッシュを更新'); render(); }
 function actionBoundary(from, target) {
   const events = sim.events.slice(from), chosen = e => !target || e.robot === target;
   const error = events.find(e => chosen(e) && ['physical', 'perception', 'rule', 'unsupported', 'unscored', 'policy'].includes(e.kind));
@@ -497,13 +507,13 @@ $('next-action').onclick = () => {
   render();
   function chunk() {
     if (run !== generation) return;
-    const stop = performance.now() + 35; let boundary = false;
+    const stop = performance.now() + frameBudget; let boundary = false;
     while (!sim.ended && sim.time < until && performance.now() < stop) { sim.step(.05, RoboControllers); if (actionBoundary(from, target)) { boundary = true; break; } }
     if (boundary || sim.ended || sim.time >= until) {
       computing = false;
       if (!boundary) $('action-step-status').textContent = sim.ended ? '180秒 · 競技終了' : `${sim.time.toFixed(2)}秒 · 確認上限に到達 · 対象動作の完了なし`;
       render();
-    } else { render(); requestAnimationFrame(chunk); }
+    } else { if (performance.now() - paintAt >= 50) { render(); paintAt = performance.now(); } requestAnimationFrame(chunk); }
   }
   requestAnimationFrame(chunk);
 };
@@ -519,7 +529,7 @@ $('reset').onclick = () => reset();
 $('finish').onclick = () => {
   running = false; computing = true; replayTime = null; render();
   const run = generation;
-  function chunk() { if (run !== generation) return; const stop = performance.now() + 60; while (!sim.ended && performance.now() < stop) sim.step(.05, RoboControllers); render(); if (!sim.ended) requestAnimationFrame(chunk); else { computing = false; render(); } }
+  function chunk() { if (run !== generation) return; const stop = performance.now() + frameBudget; while (!sim.ended && performance.now() < stop) sim.step(.05, RoboControllers); if (!sim.ended) { if (performance.now() - paintAt >= 50) { render(); paintAt = performance.now(); } requestAnimationFrame(chunk); } else { computing = false; render(); } }
   requestAnimationFrame(chunk);
 };
 $('timeline').oninput = () => { const value = Number($('timeline').value); if (reviewActive) exitReview(); running = false; playback = false; const t = Math.min(value, sim.time); replayTime = t >= sim.time - .01 ? null : t; lastLog = -1; render(); };
@@ -638,7 +648,7 @@ const observer = new ResizeObserver(() => { cssSize = canvas.getBoundingClientRe
 function tick(now) {
   const dt = previous ? Math.min(.15, (now - previous) / 1000) : 0; previous = now;
   if (playback && replayTime !== null) { replayTime += dt * Number($('rate').value); if (replayTime >= sim.time) { replayTime = null; playback = false; } if (now - paintAt >= 50 || !playback) { render(); paintAt = now; } }
-  else if (running && !computing && !sim.ended) { accumulator += dt * Number($('rate').value); const stop = performance.now() + 30; while (accumulator >= .05 && performance.now() < stop) { const from = sim.events.length; sim.step(.05, RoboControllers); accumulator -= .05; if ($('pause-each-action').checked && actionBoundary(from, $('action-step-scope').value === 'selected' ? selected : null)) { running = false; accumulator = 0; break; } } if (sim.ended) running = false; if (now - paintAt >= 50 || sim.ended || !running) { render(); paintAt = now; } }
+  else if (running && !computing && !sim.ended) { accumulator += dt * Number($('rate').value); const stop = performance.now() + frameBudget; while (accumulator >= .05 && performance.now() < stop) { const from = sim.events.length; sim.step(.05, RoboControllers); accumulator -= .05; if ($('pause-each-action').checked && actionBoundary(from, $('action-step-scope').value === 'selected' ? selected : null)) { running = false; accumulator = 0; break; } } if (sim.ended) running = false; if (now - paintAt >= 50 || sim.ended || !running) { render(); paintAt = now; } }
   requestAnimationFrame(tick);
 }
 window.fieldApp = { get sim() { return sim; }, reset, render, selectRobot: chooseRobot, setDisplayMode, get displayMode() { return displayMode; }, get scene3d() { return scene3d; } };

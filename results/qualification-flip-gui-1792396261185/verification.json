@@ -1,0 +1,813 @@
+{
+  "results": [
+    {
+      "decision": {
+        "actions": [
+          {
+            "type": "move",
+            "target": {
+              "x": 2.9,
+              "y": 6.8
+            },
+            "label": "共有4の資格反転用の空きを確保"
+          },
+          {
+            "type": "return",
+            "objectId": "red-E3"
+          },
+          {
+            "type": "scan"
+          }
+        ],
+        "phase": "free-slot"
+      },
+      "fixture": {
+        "team": "red",
+        "spot": "s1",
+        "full": true,
+        "view": "2d"
+      },
+      "time": 45.95,
+      "qualification": 45.95,
+      "color": "red",
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 110,
+          "mustika": 0,
+          "total": 110,
+          "sky": 2
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 30,
+          "mustika": 0,
+          "total": 30,
+          "sky": 0
+        }
+      },
+      "events": [
+        {
+          "time": 0,
+          "robot": null,
+          "action": "開始",
+          "text": "初期配置を確認しました",
+          "kind": "setup",
+          "rule": ""
+        },
+        {
+          "time": 35,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 0.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 35,
+          "duration": 0
+        },
+        {
+          "time": 35,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "red-E3",
+            "S3"
+          ],
+          "observationAt": 35,
+          "local": false,
+          "arrival": false,
+          "observationMode": "stopped",
+          "level": "l1",
+          "origin": {
+            "x": 3.7,
+            "y": 6.8
+          }
+        },
+        {
+          "time": 35,
+          "robot": "redBR",
+          "action": "plan",
+          "text": "共有4の資格反転用の空きを確保 · 2往復内の予測加点 +0",
+          "kind": "plan",
+          "rule": "",
+          "decision": {
+            "at": 35,
+            "strategy": "private-first-short",
+            "summary": "共有4の資格反転用の空きを確保",
+            "gain": 0,
+            "horizonGain": 0,
+            "seconds": 0,
+            "horizonSeconds": 0,
+            "tasks": [],
+            "receive": [],
+            "privateFirst": {
+              "mode": "private-first-short",
+              "phase": "free-slot",
+              "reason": "共有4の資格反転用の空きを確保"
+            }
+          }
+        },
+        {
+          "time": 35.85,
+          "robot": "redBR",
+          "action": "move",
+          "text": "移動完了 · 0.85秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 35,
+          "duration": 0.85
+        },
+        {
+          "time": 36.9,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 1.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 35.9,
+          "duration": 1
+        },
+        {
+          "time": 36.9,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "red-E3",
+            "S3"
+          ],
+          "observationAt": 36.9,
+          "local": false,
+          "arrival": true,
+          "observationMode": "stopped",
+          "level": "l1",
+          "origin": {
+            "x": 2.9,
+            "y": 6.8
+          }
+        },
+        {
+          "time": 38.4,
+          "robot": "redBR",
+          "action": "return",
+          "text": "種類別置場へ返却完了 · 1.50秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 36.9,
+          "duration": 1.5,
+          "objectId": "red-E3"
+        },
+        {
+          "time": 38.4,
+          "robot": "redBR",
+          "action": "return",
+          "text": "種類別置場へ返却 · red-E3",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "S3"
+          ],
+          "observationAt": 36.9,
+          "objectId": "red-E3",
+          "objectType": "earth"
+        },
+        {
+          "time": 39.4,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 1.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 38.4,
+          "duration": 1
+        },
+        {
+          "time": 39.4,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "S3"
+          ],
+          "observationAt": 39.4,
+          "local": false,
+          "arrival": false,
+          "observationMode": "stopped",
+          "level": "l1",
+          "origin": {
+            "x": 2.9,
+            "y": 6.8
+          }
+        },
+        {
+          "time": 39.4,
+          "robot": "redBR",
+          "action": "plan",
+          "text": "共有4を反転して資格取得 · 2往復内の予測加点 +40",
+          "kind": "plan",
+          "rule": "",
+          "decision": {
+            "at": 39.4,
+            "strategy": "private-first-short",
+            "summary": "共有4を反転して資格取得",
+            "gain": 40,
+            "horizonGain": 40,
+            "seconds": 6.55,
+            "horizonSeconds": 6.55,
+            "candidates": 1,
+            "tasks": [
+              {
+                "type": "flip",
+                "spotId": "s1"
+              }
+            ],
+            "receive": [],
+            "privateFirst": {
+              "mode": "private-first-short",
+              "phase": "claim",
+              "reason": "共有4を反転して資格取得"
+            }
+          }
+        },
+        {
+          "time": 42.4,
+          "robot": "redBR",
+          "action": "move",
+          "text": "移動完了 · 3.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 39.4,
+          "duration": 3
+        },
+        {
+          "time": 43.45,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 1.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 42.45,
+          "duration": 1
+        },
+        {
+          "time": 43.45,
+          "robot": "redBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "S3"
+          ],
+          "observationAt": 43.45,
+          "local": false,
+          "arrival": true,
+          "observationMode": "stopped",
+          "level": "l1",
+          "origin": {
+            "x": 4.75,
+            "y": 2.8
+          }
+        },
+        {
+          "time": 43.45,
+          "robot": "redBR",
+          "action": "plan",
+          "text": "共有4を反転して資格取得 · 2往復内の予測加点 +40",
+          "kind": "plan",
+          "rule": "",
+          "decision": {
+            "at": 43.45,
+            "strategy": "private-first-short",
+            "summary": "共有4を反転して資格取得",
+            "gain": 40,
+            "horizonGain": 40,
+            "seconds": 2.5,
+            "horizonSeconds": 2.5,
+            "candidates": 1,
+            "tasks": [
+              {
+                "type": "flip",
+                "spotId": "s1"
+              }
+            ],
+            "receive": [],
+            "privateFirst": {
+              "mode": "private-first-short",
+              "phase": "claim",
+              "reason": "共有4を反転して資格取得"
+            }
+          }
+        },
+        {
+          "time": 45.95,
+          "robot": "redBR",
+          "action": "flip",
+          "text": "Sky反転完了 · 2.50秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 43.45,
+          "duration": 2.5,
+          "spotId": "s1"
+        },
+        {
+          "time": 45.95,
+          "robot": null,
+          "action": "sanctuary",
+          "text": "赤 サンクチュアリ達成 · 赤L1下 / L1共有上",
+          "kind": "milestone",
+          "rule": "",
+          "team": "red",
+          "evidence": {
+            "at": 45.95,
+            "towers": [
+              {
+                "id": "r2",
+                "label": "赤L1下",
+                "objects": [
+                  {
+                    "id": "red-E1",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "red-0",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "r2",
+                    "color": null
+                  },
+                  {
+                    "id": "red-E2",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "red-0",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "r2",
+                    "color": null
+                  },
+                  {
+                    "id": "S1",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 2.8,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "red",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "r2",
+                    "layer": 2
+                  }
+                ]
+              },
+              {
+                "id": "s1",
+                "label": "L1共有上",
+                "objects": [
+                  {
+                    "id": "blue-E1",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 2.8,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-0",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "s1",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E2",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 2.8,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-0",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "s1",
+                    "color": null
+                  },
+                  {
+                    "id": "S2",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 5.5,
+                    "y": 2.8,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "red",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "s1",
+                    "layer": 2
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 45.95,
+          "robot": "redBR",
+          "action": "flip",
+          "text": "Sky反転 · L1共有上",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "S3"
+          ],
+          "observationAt": 43.45,
+          "spotId": "s1"
+        }
+      ],
+      "cargo": [
+        "S3"
+      ],
+      "capacityOK": true
+    },
+    {
+      "decision": {
+        "actions": [
+          {
+            "type": "move",
+            "target": {
+              "x": 6.15,
+              "y": 6.15
+            },
+            "label": "効率化計画の作業先へ"
+          },
+          {
+            "type": "flip",
+            "spotId": "u4"
+          }
+        ],
+        "phase": "claim"
+      },
+      "fixture": {
+        "team": "blue",
+        "spot": "u4",
+        "full": false,
+        "view": "3d"
+      },
+      "time": 43.7,
+      "qualification": 43.7,
+      "color": "blue",
+      "scores": {
+        "red": {
+          "transfer": 0,
+          "tower": 60,
+          "mustika": 0,
+          "total": 60,
+          "sky": 0
+        },
+        "blue": {
+          "transfer": 0,
+          "tower": 150,
+          "mustika": 0,
+          "total": 150,
+          "sky": 2
+        }
+      },
+      "events": [
+        {
+          "time": 0,
+          "robot": null,
+          "action": "開始",
+          "text": "初期配置を確認しました",
+          "kind": "setup",
+          "rule": ""
+        },
+        {
+          "time": 35,
+          "robot": "blueBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 0.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 35,
+          "duration": 0
+        },
+        {
+          "time": 35,
+          "robot": "blueBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "blue-E3"
+          ],
+          "observationAt": 35,
+          "local": false,
+          "arrival": false,
+          "observationMode": "stopped",
+          "level": "l1",
+          "origin": {
+            "x": 7.3,
+            "y": 6.8
+          }
+        },
+        {
+          "time": 35,
+          "robot": "blueBR",
+          "action": "plan",
+          "text": "共有10を反転して資格取得 · 2往復内の予測加点 +80",
+          "kind": "plan",
+          "rule": "",
+          "decision": {
+            "at": 35,
+            "strategy": "private-first-short",
+            "summary": "共有10を反転して資格取得",
+            "gain": 80,
+            "horizonGain": 80,
+            "seconds": 8.7,
+            "horizonSeconds": 8.7,
+            "candidates": 1,
+            "tasks": [
+              {
+                "type": "flip",
+                "spotId": "u4"
+              }
+            ],
+            "receive": [],
+            "privateFirst": {
+              "mode": "private-first-short",
+              "phase": "claim",
+              "reason": "共有10を反転して資格取得"
+            }
+          }
+        },
+        {
+          "time": 40.15,
+          "robot": "blueBR",
+          "action": "move",
+          "text": "移動完了 · 5.15秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 35,
+          "duration": 5.15
+        },
+        {
+          "time": 41.2,
+          "robot": "blueBR",
+          "action": "scan",
+          "text": "停止・見渡し完了 · 1.00秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 40.2,
+          "duration": 1
+        },
+        {
+          "time": 41.2,
+          "robot": "blueBR",
+          "action": "scan",
+          "text": "停止・見渡し",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "blue-E3"
+          ],
+          "observationAt": 41.2,
+          "local": false,
+          "arrival": true,
+          "observationMode": "stopped",
+          "level": "l2",
+          "origin": {
+            "x": 6.15,
+            "y": 6.15
+          }
+        },
+        {
+          "time": 41.2,
+          "robot": "blueBR",
+          "action": "plan",
+          "text": "共有10を反転して資格取得 · 2往復内の予測加点 +80",
+          "kind": "plan",
+          "rule": "",
+          "decision": {
+            "at": 41.2,
+            "strategy": "private-first-short",
+            "summary": "共有10を反転して資格取得",
+            "gain": 80,
+            "horizonGain": 80,
+            "seconds": 2.5,
+            "horizonSeconds": 2.5,
+            "candidates": 1,
+            "tasks": [
+              {
+                "type": "flip",
+                "spotId": "u4"
+              }
+            ],
+            "receive": [],
+            "privateFirst": {
+              "mode": "private-first-short",
+              "phase": "claim",
+              "reason": "共有10を反転して資格取得"
+            }
+          }
+        },
+        {
+          "time": 43.7,
+          "robot": "blueBR",
+          "action": "flip",
+          "text": "Sky反転完了 · 2.50秒",
+          "kind": "timing",
+          "rule": "",
+          "startedAt": 41.2,
+          "duration": 2.5,
+          "spotId": "u4"
+        },
+        {
+          "time": 43.7,
+          "robot": null,
+          "action": "sanctuary",
+          "text": "青 サンクチュアリ達成 · 青L1下 / L2右下",
+          "kind": "milestone",
+          "rule": "",
+          "team": "blue",
+          "evidence": {
+            "at": 43.7,
+            "towers": [
+              {
+                "id": "b2",
+                "label": "青L1下",
+                "objects": [
+                  {
+                    "id": "blue-E1",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.6,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "blue-0",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "blue-E2",
+                    "type": "earth",
+                    "team": "blue",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 0.95,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "blue-0",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "b2",
+                    "color": null
+                  },
+                  {
+                    "id": "S1",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 8.2,
+                    "y": 8.2,
+                    "z": 1.2999999999999998,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "blue",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "b2",
+                    "layer": 2
+                  }
+                ]
+              },
+              {
+                "id": "u4",
+                "label": "L2右下",
+                "objects": [
+                  {
+                    "id": "red-E1",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 6.75,
+                    "y": 6.75,
+                    "z": 0.9,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 0,
+                    "column": "red-0",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "u4",
+                    "color": null
+                  },
+                  {
+                    "id": "red-E2",
+                    "type": "earth",
+                    "team": "red",
+                    "location": "spot",
+                    "x": 6.75,
+                    "y": 6.75,
+                    "z": 1.25,
+                    "size": 0.35,
+                    "height": 0.35,
+                    "layer": 1,
+                    "column": "red-0",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "u4",
+                    "color": null
+                  },
+                  {
+                    "id": "S2",
+                    "type": "sky",
+                    "location": "spot",
+                    "x": 6.75,
+                    "y": 6.75,
+                    "z": 1.6,
+                    "size": 0.2,
+                    "height": 0.2,
+                    "color": "blue",
+                    "placedBy": "red",
+                    "touchedBy": null,
+                    "deliveries": [],
+                    "spotId": "u4",
+                    "layer": 2
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "time": 43.7,
+          "robot": "blueBR",
+          "action": "flip",
+          "text": "Sky反転 · L2右下",
+          "kind": "action",
+          "rule": "",
+          "cargo": [
+            "blue-E3"
+          ],
+          "observationAt": 41.2,
+          "spotId": "u4"
+        }
+      ],
+      "cargo": [
+        "blue-E3"
+      ],
+      "capacityOK": true
+    }
+  ],
+  "errors": []
+}

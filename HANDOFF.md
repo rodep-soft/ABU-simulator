@@ -2,7 +2,36 @@
 
 初回確認日: 2026-09-24 (Windows / Asia-Tokyo)。この資料は、会話履歴を持たないWSL側の開発者向けの現状記録です。`Reference/` 同梱とEarth/Sky反転に加え、その後のL2 Earth最優先・BR作業回の順番指定の実装を反映しています。
 
-## 2026-10-19 公開用コミットの範囲（今回）
+## 2026-10-19 資格反転修正と軽量化の公開
+
+ユーザーからcommit/pushの依頼を受け、`29c9cb9`以後の資格が成立する共有Sky反転の優先化と、GUI/地形/経路計算の軽量化をまとめる。関連テスト・計測ツール・文書と主要な成功検証を対象とし、古い画像・途中/失敗試行は削除せずローカルに保全して対象外とする。下の「未commit・未push」は各実装完了時点の履歴。最新状態はGit履歴とremoteで確認する。push完了とPagesの配信反映は別に確認する。
+
+公開前に`private-first.test.cjs`と`terrain-cache.test.cjs`の24件を再実行して全成功（2.34秒）。前段の全329件と各GUI検証は下記記録の通りで、公開作業で再度全件を実行したわけではない。競技コードの追加変更なし。
+
+## 2026-10-19 GUIと経路探索の軽量化
+
+- 作業対象はWindows GUIコピーのみ。直前の未commitの資格反転修正を保全し、戦略・探索候補/深さ・物理・採点・観測・0.05秒刻みは変更しない。WSLや既存結果は未変更、commit/pushなし。
+- `sim/engine.js`に共有固定地形キャッシュを追加。車体寸法/チーム/役割/L1入場/regions/zones/wallsで区別し、footprintと方向付き隣接transitionだけ再利用。16エントリ上限、1エントリのTypedArrayは60,500bytes。動くロボット/箱/供給元は毎回障害物判定し、傾斜のコストも現設定を読む。独自footprint/terrain関数は共有キャッシュを迂回。`clearTerrainCache()`/`terrainCacheInfo()`を公開し、GUI resetでplanner/DOMとともにクリア。
+- `findPath`は距離の同じ安定順序で近傍候補を先に並べ、最初の到達可能ノードで止める。従来の全候補を検査後に最短を選ぶ結果と同じ。安全判定の近似/量子化や経路変更ではない。新`sim/tests/terrain-cache.test.cjs`5件で旧方式との順序付き経路一致、全グリッド/複数寸法/両色/役割/入場状態、障害物/動的衝突/坂コスト、関数上書き、地形変更、上限/resetを検証。
+- `sim/view.js`は`renderChildren`/`renderHTML`で変更のない塔/在庫/ロボット/予定作業/資格根拠等のDOMを保持。ログは表示タブのみ、手順UIも表示タブのみ更新。リプレイからliveへ戻す時もログを再検証。連続/一手/3分計算のバッチ予算を8msへ、途中の描画を約20Hzへ抑制。これはatomicな1stepを8msで強制中断する仕組みではない。`sim/sequence-ui.js`は表示中の履歴も、時刻だけの変化で再作成しない。
+- 新`tools/measure-performance.cjs`はnormal/idealの完全exportをgzip保存し、任意の過去計測とJSON表現が完全一致することを検証。既存出力先は拒否する。`sim/tests/performance-browser.cjs`は2D/3D再描画の不変性と不要DOM再作成0、非表示欄の表示時更新・ログのreplay/live往復・履歴の再利用を確認。
+- 主計測は両方CPU profilingありの単発比較。通常供給11.480→7.303秒（36.4%短縮）、ideal7.735→5.473秒（29.2%短縮）。全イベント/全保存フレーム/最終状態が両方完全一致。通常の得点370:475、ideal390:600。基準`results/gui-performance-before-2026-10-19/`、最終`results/gui-performance-profiled-final-2026-10-19/`。非profile最終6.651/4.862秒は補助値で、同じ計測条件の比較と混同しない。反復/端末間性能保証ではない。
+- 最終engineに対するNode全329テスト成功、失敗/skip/cancel 0、159.27秒（concurrency2）。GUIは`gui-defaults-browser`（normal180秒・全イベント/得点/状態一致）、`workspace-browser`（PC/スマホ幅・得点・replay・終了後分析）、`field-3d-browser`（実ピクセル1214色・カメラ/動き/狭幅・180秒・描画なし一致）、`action-plan-browser`（16手完了・.35秒受取・5.5/3秒配置・1手送り等）成功。JSエラー0。手順履歴の最終変更後にperformance/action-planを再実行し、`results/gui-render-complete-2026-10-19/`、`results/action-plan-qa-1792398489606/`へ保存。スマホ幅画像を目視確認。
+- 旧`action-plan-browser`は新たな通常供給既定を暗黙に継承し4手目で止まった。変更前HEAD engineをread-onlyでメモリ内に読み同条件で4手目停止を確認し、テスト前提だったidealを明示するよう修正。生産コードの既定や供給ルールを変えてテストへ合わせていない。計測ツールの初期構文誤り/JSのundefinedとJSONの比較誤りも修正し、失敗出力は保全。詳細/証拠/コマンドは`results/gui-performance-2026-10-19/REPORT.md`。
+- 限界：同期plannerは残り、主計測の最大atomic stepは通常約499ms/ideal465ms。完全なカクつき解消ではない。将来は観測スナップショットと決定順を保つ分割/背景計算を検討するが、file://で開く配布形態とWorker制約を要確認。探索深さ/観測/時間刻みを黙って削って高速化しない。公開Pages/WSL/実機スマホ/全戦略ペアは未確認。
+
+## 2026-10-19 資格が成立する共有Sky反転の見逃しを修正
+
+- ユーザーから「共有Skyを反転するだけで資格成立なのに待機する」と指摘。該当試合ログは未提供で、同じ試合そのものを特定したわけではない。`sim/private-first.js`の共有①固定、在庫確認が反転より先、通常の近場専有建設が他の資格機会より先という制御を確認し、回帰盤面で修正前の失敗を再現した。
+- 専有先行3モード（既定青の`private-first-short`を含む）に`qualificationFlip(view)`を追加。現在/自分の操作で確認できた塔だけを使い、共有①④⑦⑧⑨⑩への合法な1反転を`Planner.specifiedPlan`で試算する。結果の`state.sanctuary`が成立する中から完了見積が最短のものを、待機/在庫確認/通常の専有初動より優先。通常建設の110秒締切後でも、間に合う資格反転は候補。相手取得通知/奉納観測後等の既存V2移行と共通Mustika優先は維持。奉納後L2防衛/全エリア案も共通初動を通すので修正を継承する。
+- 満載時の`freeSlot`はSky優先を維持しつつ、Sky返却枠が満杯ならEarthを返せる。両種満杯なら既存`Planner.plan`の合法な手持ち配置で空きを作る。配置後の有料再観測を省略せず、実際に空きができる前に反転は発行しない。自由な手を仮定した試算は機会検出のみで、実行時の容量/合法性はengineで検証する。資格・採点の重複実装、観測範囲拡張、TR/BR通信やlive相手/味方計画の参照は追加しない。指定開幕の対象範囲も維持。
+- `sim/tests/private-first.test.cjs`に8テスト追加。両色/3モード/全共有6箇所、在庫未知、通常専有が未完でも別塔と資格成立、Sky置場満杯時のEarth返却、両種満杯時の合法配置、古い/接触中の証拠の除外、観測不変・再scan必須、110秒後と終了直前を検証。修正前は追加テストの6件が失敗し、修正後は関連4ファイル56テスト成功。
+- 新`sim/tests/qualification-flip-browser.cjs`は制御盤面をテストだけで設定し、GUIの一手送りで通常controller/engineを実行。2D赤はE+S満載・Sky返却枠4箱からEarthを返し④を反転、45.95秒に資格成立。3D青はE1保持から⑩を反転、43.70秒に資格成立。表示の「達成済」・点数・積載・拒否なし・JSエラー0を確認。`results/qualification-flip-gui-1792396261185/verification.json`と前後画像へ保存し、3D画像を目視確認。最初の試行は実行/資格取得には成功したが、テストが画面文言を「資格成立」と誤記して失敗し、「達成済」に合わせて再実行した。
+- 既定180秒GUI確認は`sim/tests/gui-defaults-browser.cjs`成功。`results/normal-blue-baseline-gui-1792396293591/verification.json`へ保存。2D/3D初期値、理想/旧V2への変更・reset/reload、1440/390/320px、青初配置⑥、通常供給・実納品（赤10/青9）、箱容量を確認。描画なしと全イベント/得点/状態一致、JSエラー0。320px画像を目視確認。既定1試合は赤370:青475、青Mustika250。修正前の同設定は赤455:青385だが、1試合の改善を一般的勝率とは扱わない。
+- 最終コードの全回帰はWindows / Node v24.19.0で324件成功、失敗/skip/cancel 0、240.57秒。実行は`node --test --test-concurrency=2`へ`sim/tests/*.test.cjs`の正本27ファイルを渡した（PowerShellでは`Get-ChildItem sim/tests -Filter '*.test.cjs' | ForEach-Object FullName`で列挙）。最初の引数なし`node --test`は配布コピーを含むテスト探索で重複実行となったため中断し、対象を明示してやり直した。この中断結果を成功件数に含めない。`git diff --check`も成功。
+- 今回の修正はローカルのみ、未commit・未push。前段までの公開コミットは`29c9cb9`。旧結果・未追跡の過去検証・WSLを保全。公開サイト/実機スマホ/WSL・速度別勝率や全戦略総当たりは未確認。GitHub Pages反映はpushと別に確認する。
+
+## 2026-10-19 公開用コミットの範囲（前段）
 
 ユーザーからcommit/pushの依頼を受け、前回`4624a8b`以後のTR先回り・受渡調停・終盤締切/Earth補充・BR利用見込みの補給と、青private-first-short/通常供給のGUI既定をまとめる。関連するテスト・診断/比較ツール・文書も対象。
 
